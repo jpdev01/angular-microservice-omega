@@ -1,12 +1,12 @@
 <div class="loginbox">
   <!-- <img src="assets/images/avatar.png" class="avatar"> -->
   <h1>Login Here</h1>
-  <form name="frmlogin" method="post" id="ajax_form">
+  <form name="frmlogin" (ngSubmit)='validateLogin()' [formGroup]="formLogin">
     <p>Username</p>
-    <input type="text" name="usuariotxt" id="usuariotxt" placeholder="Enter Username" ngModel="user.name">
+    <input type="text" name="usuariotxt" id="usuariotxt" placeholder="Enter Username" formControlName="name">
     <p>Senha</p>
-    <input type="password" name="senhatxt" id="senhatxt" placeholder="Enter Password" ngModel="user.password">
-    <input type="submit" name="" value="Login" onclick="validateLogin()">
+    <input type="password" name="senhatxt" id="senhatxt" placeholder="Enter Password2" formControlName="password">
+    <input type="submit" name="" value="Login">
     <div class="msg-error" style="display:none;" id="error">
       <p>Usuario ou senha incorretos</p>
     </div>
