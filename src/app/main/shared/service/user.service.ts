@@ -20,7 +20,7 @@ export class UserService {
 
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient, public utilidade: Utils
   ) { }
 
   public getUsers(): Observable<ResponsePageable> {
@@ -33,7 +33,8 @@ export class UserService {
   }
 
   public validateLogin(user: any): Observable<User> {
-    return this.httpClient.post<any>(this.utils.apiUrl, user, this.httpOptions);
+    debugger;
+    return this.httpClient.post<any>(this.utils.apiUrl + '/user/login', user, this.httpOptions);
   }
 
 }
