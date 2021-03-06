@@ -1,3 +1,4 @@
+import { UserService } from './../../shared/service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/model/user.model';
 import { FormBuilder } from '@angular/forms';
@@ -11,17 +12,21 @@ export class LoginComponent implements OnInit {
 
   formLogin;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private rest: UserService
+    ) { }
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      name: [''],
+      login: [''],
       password: ['']
     })
   }
 
   validateLogin(): void {
-    // debugger;
+    this.rest.validateLogin(this.formLogin.value).subscribe(result => {});
+    debugger;
   }
 
 }

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponsePageable } from '../model/responsePageable.model';
-import {Utils } from '../utils/Utils.model';
+import { Utils } from '../utils/Utils.model';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class UserService {
 
   public getUser(id: number): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(this.utils.apiUrl + '/user' + '?id=' + id);
+  }
+
+  public validateLogin(user: any): Observable<User> {
+    return this.httpClient.post<any>(this.utils.apiUrl, user, this.httpOptions);
   }
 
 }
