@@ -2,12 +2,33 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponsePageable } from '../model/responsePageable.model';
-import { Live } from '../model/live.model';
+import {Utils } from '../utils/Utils.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  utils: Utils;
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type' : 'application/json'
+    })
+  };
+
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  public getUsers(): Observable<ResponsePageable> {
+    // aqui é feita a requisição
+    return this.httpClient.get<ResponsePageable>(this.utils.apiUrl + '/users');
+  }
+
+  public getUser(id: number): Observable<ResponsePageable> {
+    return this.httpClient.get<ResponsePageable>(this.utils.apiUrl + '/user' + '?id=' + id);
+  }
+
 }

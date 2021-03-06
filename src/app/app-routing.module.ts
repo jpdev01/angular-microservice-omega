@@ -4,19 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-//   {
-//   path: '',
-//   component: HomeComponent
-// },
-  { path: 'lives', loadChildren: () => import('./views/lives/lives.module').then(m => m.LivesModule) },
-  { path: 'users', loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule) },
-  // quando for assionado a porta default, ou seja,  localhost:4200
-  // redirecionamento para '/lives';
+  { path: 'security', loadChildren: () => import('./main/frontend/login/login.module').then(m => m.LoginModule) },
   {
     path: '',
-    redirectTo: '/lives',
+    redirectTo: '/security',
     pathMatch: 'full'
-  }
+  },
+  { path: 'login', loadChildren: () => import('./main/frontend/login/login.module').then(m => m.LoginModule) }
 ];
 
 @NgModule({
