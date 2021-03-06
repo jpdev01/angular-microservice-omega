@@ -10,7 +10,8 @@ import { User } from '../model/user.model';
 })
 export class UserService {
 
-  utils: Utils;
+  // utils: Utils;
+  apiUrl: string = "localhost:8080/neusamoda";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -20,21 +21,21 @@ export class UserService {
 
 
   constructor(
-    private httpClient: HttpClient, public utilidade: Utils
+    private httpClient: HttpClient
   ) { }
 
   public getUsers(): Observable<ResponsePageable> {
     // aqui é feita a requisição
-    return this.httpClient.get<ResponsePageable>(this.utils.apiUrl + '/users');
+    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/users');
   }
 
   public getUser(id: number): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(this.utils.apiUrl + '/user' + '?id=' + id);
+    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user' + '?id=' + id);
   }
 
   public validateLogin(user: any): Observable<User> {
     debugger;
-    return this.httpClient.post<any>(this.utils.apiUrl + '/user/login', user, this.httpOptions);
+    return this.httpClient.post<any>(this.apiUrl + '/user/login', user, this.httpOptions);
   }
 
 }
