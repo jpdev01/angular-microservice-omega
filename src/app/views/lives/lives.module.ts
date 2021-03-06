@@ -18,7 +18,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
-import { LocalDateTimePipe } from 'src/app/shared/pipe/local-date-time.pipe';
+import { LocalDateTimePipe } from 'src/app/main/shared/pipe/local-date-time.pipe';
 
 
 @NgModule({

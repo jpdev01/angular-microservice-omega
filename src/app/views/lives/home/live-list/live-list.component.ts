@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Live } from 'src/app/shared/model/live.model';
-import { LiveService } from 'src/app/shared/service/live.service';
+import { Live } from 'src/app/main/shared/model/live.model';
+import { LiveService } from 'src/app/main/shared/service/live.service';
 
 @Component({
   selector: 'app-live-list',
