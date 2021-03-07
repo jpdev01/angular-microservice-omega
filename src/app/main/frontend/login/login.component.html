@@ -8,11 +8,11 @@
     <p>Senha</p>
     <input type="password" name="senhatxt" id="senhatxt" placeholder="Enter Password2" formControlName="password">
     <input type="submit" name="" value="Login">
-    <div class="msg-error" style="display:none;" id="error" *ngIf="invalidLogin">
-      <p>Usuario ou senha incorretos</p>
-    </div>
     <!-- <a href="#">Lost your password?</a><br>
             <a href="#">Don't have an account?</a> -->
   </form>
-
+  <div class="msg-error" id="error" *ngIf="this.invalidLogin">
+    <p>Usuario ou senha incorretos</p>
+  </div>
 </div>
+<app-module></app-module>

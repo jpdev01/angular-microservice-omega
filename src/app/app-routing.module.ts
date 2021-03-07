@@ -10,7 +10,8 @@ const routes: Routes = [
     redirectTo: '/security',
     pathMatch: 'full'
   },
-  { path: 'login', loadChildren: () => import('./main/frontend/login/login.module').then(m => m.LoginModule) }
+  { path: 'login', loadChildren: () => import('./main/frontend/login/login.module').then(m => m.LoginModule) },
+  { path: 'home', loadChildren: () => import('./main/frontend/home/home.module').then(m => m.HomeModule) }
 ];
 
 @NgModule({

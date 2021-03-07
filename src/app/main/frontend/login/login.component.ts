@@ -2,6 +2,7 @@ import { UserService } from './../../shared/service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/model/user.model';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,24 +12,26 @@ import { FormBuilder } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   formLogin;
-  invalidLogin = false;
+  public invalidLogin = false;
 
   constructor(
     private fb: FormBuilder,
-    private rest: UserService
+    private rest: UserService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
       login: [''],
       password: ['']
-    })
+    });
+    this.invalidLogin = false;
   }
 
   validateLogin(): void {
     this.rest.validateLogin(this.formLogin.value).subscribe(
       (resultSuccess) => {
-      console.log(resultSuccess);
+        // window.
     },
     (resultError) => {
       if (resultError.status == '403') {
@@ -38,7 +41,10 @@ export class LoginComponent implements OnInit {
         this.invalidLogin = true;
       }
     });
-    debugger;
+  }
+
+  redirectToHome(){
+    this.router.navigate(['/home']);
   }
 
 }
