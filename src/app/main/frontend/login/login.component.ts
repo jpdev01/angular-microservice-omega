@@ -25,8 +25,11 @@ export class LoginComponent implements OnInit {
   }
 
   validateLogin(): void {
-    this.rest.validateLogin(this.formLogin.value).subscribe(result => {
-      console.log(result);
+    this.rest.validateLogin(this.formLogin.value).subscribe(
+      (resultSuccess) => {
+      console.log(resultSuccess);
+    }, (resultError) => {
+      console.log("erro:" + resultError);
     });
     debugger;
   }

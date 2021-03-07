@@ -11,7 +11,7 @@ import { User } from '../model/user.model';
 export class UserService {
 
   // utils: Utils;
-  apiUrl: string = "localhost:8080/neusamoda";
+  apiUrl: string = "http://localhost:8080/neusamoda";
 
   httpOptions = {
     headers: new HttpHeaders({
