@@ -15,7 +15,6 @@ import { HomeComponent } from '../home/home.component';
     LoginRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HomeComponent
   ]
 })
 export class LoginModule { }

@@ -12,6 +12,7 @@ export class UserService {
 
   // utils: Utils;
   apiUrl: string = "http://localhost:8080/neusamoda";
+  isLoged = false;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -36,6 +37,15 @@ export class UserService {
   public validateLogin(user: any): Observable<User> {
     debugger;
     return this.httpClient.post<any>(this.apiUrl + '/user/login', user, this.httpOptions);
+  }
+
+  public userIsLoged(): boolean {
+    debugger;
+    return this.isLoged;
+  }
+
+  public setLogin(isLoged: boolean): void {
+    this.isLoged = isLoged;
   }
 
 }

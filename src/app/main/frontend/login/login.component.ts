@@ -1,8 +1,9 @@
+
 import { UserService } from './../../shared/service/user.service';
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../shared/model/user.model';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Utils } from '../../shared/utils/Utils.model';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,17 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   formLogin;
+  userIsLogged = false;
   public invalidLogin = false;
+  public utils: Utils
+
+  // eventEmitter = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
     private rest: UserService,
-    private router: Router
+    private router: Router,
+    private service: UserService
     ) { }
 
   ngOnInit(): void {
@@ -26,12 +32,19 @@ export class LoginComponent implements OnInit {
       password: ['']
     });
     this.invalidLogin = false;
+    this.utils = new Utils();
   }
 
   validateLogin(): void {
     this.rest.validateLogin(this.formLogin.value).subscribe(
       (resultSuccess) => {
-        // window.
+        debugger;
+        // this.service.setLogin(true);
+        this.userIsLogged = true;
+        // this.eventEmitter.emit('userIsLogged', true);
+
+        // $rootScope.$broadcast('user:updated',data);
+        this.redirectToHome();
     },
     (resultError) => {
       if (resultError.status == '403') {
@@ -39,6 +52,7 @@ export class LoginComponent implements OnInit {
         // this.dialogRef.close();
         this.formLogin.reset();
         this.invalidLogin = true;
+
       }
     });
   }

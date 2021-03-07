@@ -1,3 +1,4 @@
+import { Utils } from './main/shared/utils/Utils.model';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +22,7 @@ import { NavbarComponent } from './main/frontend/navbar/navbar.component';
     AppRoutingModule,
     HttpClientModule
   ],
+  providers: [Utils],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
