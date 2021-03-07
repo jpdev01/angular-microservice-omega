@@ -4,6 +4,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Utils } from '../../shared/utils/Utils.model';
+import {Login } from '../../shared/utils/login.model';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private rest: UserService,
     private router: Router,
-    private service: UserService
+    private service: UserService,
+    public loginService: Login
     ) { }
 
   ngOnInit(): void {
@@ -33,17 +35,15 @@ export class LoginComponent implements OnInit {
     });
     this.invalidLogin = false;
     this.utils = new Utils();
+    this.loginService = new Login();
   }
 
   validateLogin(): void {
     this.rest.validateLogin(this.formLogin.value).subscribe(
       (resultSuccess) => {
         debugger;
-        // this.service.setLogin(true);
+        // this.service.login();
         this.userIsLogged = true;
-        // this.eventEmitter.emit('userIsLogged', true);
-
-        // $rootScope.$broadcast('user:updated',data);
         this.redirectToHome();
     },
     (resultError) => {
@@ -59,6 +59,10 @@ export class LoginComponent implements OnInit {
 
   redirectToHome(){
     this.router.navigate(['/home']);
+  }
+
+  login() {
+    this.loginService.login();
   }
 
 }
