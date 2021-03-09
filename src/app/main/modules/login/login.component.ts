@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.validateIsLogged();
     this.formLogin = this.fb.group({
       login: [''],
       password: ['']
@@ -58,6 +59,12 @@ export class LoginComponent implements OnInit {
 
   redirectToHome(){
     this.router.navigate(['/home']);
+  }
+
+  private validateIsLogged(): void{
+    if (this.authService.tokenAvailable()) {
+      this.redirectToHome();
+    }
   }
 
 }

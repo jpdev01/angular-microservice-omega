@@ -38,7 +38,7 @@ export class AuthService {
     return this.httpClient.post<any>(this.apiUrl + '/auth/login', user, this.httpOptions);
   }
 
-  private tokenAvailable(): boolean {
+  public tokenAvailable(): boolean {
     return !!localStorage.getItem('token');
   }
 
