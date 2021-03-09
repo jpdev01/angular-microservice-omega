@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.authService.validateLogin(this.formLogin.value).subscribe(
       (resultSuccess) => {
         debugger;
-        // this.service.login();
+        this.authService.login();
         this.userIsLogged = true;
         this.redirectToHome();
     },

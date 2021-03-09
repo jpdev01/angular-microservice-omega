@@ -12,6 +12,6 @@ import { HomeComponent } from './home.component';
     CommonModule,
     HomeRoutingModule
   ],
-  providers: [Utils]
+  providers: [Utils],
 })
 export class HomeModule { }

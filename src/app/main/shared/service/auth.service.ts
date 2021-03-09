@@ -19,14 +19,14 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
 
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private loggedIn = new BehaviorSubject<boolean>(this.tokenAvailable());
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
   }
 
-
   login(){
+    this.createToken();
     this.loggedIn.next(true);
   }
 
@@ -35,8 +35,14 @@ export class AuthService {
   }
 
   public validateLogin(user: any): Observable<User> {
-    debugger;
-    this.login();
-    return this.httpClient.post<any>(this.apiUrl + '/user/login', user, this.httpOptions);
+    return this.httpClient.post<any>(this.apiUrl + '/auth/login', user, this.httpOptions);
+  }
+
+  private tokenAvailable(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  private createToken(): void {
+    localStorage.setItem('token', 'login');
   }
 }
