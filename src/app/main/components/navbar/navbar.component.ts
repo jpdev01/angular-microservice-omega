@@ -10,7 +10,7 @@ import {IconDropdownNavbar} from '../../shared/model/icon-dropdown-navbar.model'
 export class NavbarComponent implements OnInit {
 
 
-  items2 = [
+  componentsNavbar = [
     new IconNavbar('Ínicio', 'fa fa-home', ''),
     new IconNavbar('Portal de vendas', 'fa fa-cart-plus', ''),
     new IconNavbar('Caixa', '', ''),
