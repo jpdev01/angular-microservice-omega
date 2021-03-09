@@ -14,9 +14,6 @@ export class HomeComponent implements OnInit {
     this.utils = new Utils();
   }
 
-  teste(): void{
-    debugger;
-    console.log(this.utils);
-  }
+
 
 }

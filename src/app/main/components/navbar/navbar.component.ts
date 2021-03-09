@@ -9,6 +9,8 @@ import {IconDropdownNavbar} from '../../shared/model/icon-dropdown-navbar.model'
 })
 export class NavbarComponent implements OnInit {
 
+  title = "Neusa Moda";
+
 
   componentsNavbar = [
     new IconNavbar('Ínicio', 'fa fa-home', ''),
@@ -16,7 +18,7 @@ export class NavbarComponent implements OnInit {
     new IconNavbar('Caixa', '', ''),
     new IconNavbar('Pagamentos', '', ''),
     new IconDropdownNavbar('Consultas', 'fa fa-home', [
-      new IconNavbar('Clientes', '', ''),
+      new IconNavbar('Clientes', '', '/home/customers'),
       new IconNavbar('Produtos', '', ''),
       new IconNavbar('Categorias', '', ''),
       new IconNavbar('Fornecedores', '', ''),
