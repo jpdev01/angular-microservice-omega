@@ -26,10 +26,11 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private service: UserService,
     private authService : AuthService
-    ) { }
+    ) {
+      this.validateIsLogged();
+    }
 
   ngOnInit(): void {
-    this.validateIsLogged();
     this.formLogin = this.fb.group({
       login: [''],
       password: ['']
@@ -62,7 +63,6 @@ export class LoginComponent implements OnInit {
   }
 
   private validateIsLogged(): void{
-    debugger;
     if (this.authService.tokenAvailable()) {
       this.redirectToHome();
     }
