@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IconNavbar} from '../../shared/model/icone-navbar.model';
+import {IconNavbar} from '../../shared/model/icon-navbar.model';
 import {IconDropdownNavbar} from '../../shared/model/icon-dropdown-navbar.model';
 
 @Component({
@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
       new IconNavbar('Aniversários', '', '')
     ]),
     new IconNavbar('Logout', '', '')
-  ]
+  ];
 
   constructor() { }
 
