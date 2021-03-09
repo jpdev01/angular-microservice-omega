@@ -34,18 +34,4 @@ export class UserService {
     return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user' + '?id=' + id);
   }
 
-  public validateLogin(user: any): Observable<User> {
-    debugger;
-    return this.httpClient.post<any>(this.apiUrl + '/user/login', user, this.httpOptions);
-  }
-
-  public userIsLoged(): boolean {
-    debugger;
-    return this.isLoged;
-  }
-
-  public setLogin(isLoged: boolean): void {
-    this.isLoged = isLoged;
-  }
-
 }

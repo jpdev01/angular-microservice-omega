@@ -1,5 +1,6 @@
 
 import { UserService } from '../../shared/service/user.service';
+import { AuthService } from '../../shared/service/auth.service';
 import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     private rest: UserService,
     private router: Router,
     private service: UserService,
+    private authService : AuthService
     ) { }
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   validateLogin(): void {
-    this.rest.validateLogin(this.formLogin.value).subscribe(
+    this.authService.validateLogin(this.formLogin.value).subscribe(
       (resultSuccess) => {
         debugger;
         // this.service.login();

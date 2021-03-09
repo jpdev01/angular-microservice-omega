@@ -1,6 +1,8 @@
 import { Utils } from './main/shared/utils/Utils.model';
 import { UserService } from './main/shared/service/user.service';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from './main/shared/service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Neusa Moda';
 
-  constructor(){}
+  isLoggedIn$: Observable<boolean>;
+
+  constructor(private authService: AuthService){}
+
+  ngOnInit() {
+    this.isLoggedIn$ = this.authService.isLoggedIn;
+  }
+
+  onLogout(){
+    this.authService.logout();
+  }
 
 }

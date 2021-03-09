@@ -7,8 +7,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './main/modules/navbar/navbar.component';
-
+import { NavbarComponent } from './main/components/navbar/navbar.component';
+import { AuthGuard } from './main/shared/safety/AuthGuard.model';
+import { AdminGuard } from './main/shared/safety/AdminGuard.model';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { NavbarComponent } from './main/modules/navbar/navbar.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [Utils],
+  providers: [Utils, AuthGuard, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
