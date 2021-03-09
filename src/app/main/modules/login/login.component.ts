@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
   }
 
   private validateIsLogged(): void{
+    debugger;
     if (this.authService.tokenAvailable()) {
       this.redirectToHome();
     }
