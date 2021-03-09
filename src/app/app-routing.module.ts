@@ -4,14 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: 'security', loadChildren: () => import('./main/frontend/login/login.module').then(m => m.LoginModule) },
+  { path: 'security', loadChildren: () => import('./main/modules/login/login.module').then(m => m.LoginModule) },
   {
     path: '',
     redirectTo: '/security',
     pathMatch: 'full'
   },
-  { path: 'login', loadChildren: () => import('./main/frontend/login/login.module').then(m => m.LoginModule) },
-  { path: 'home', loadChildren: () => import('./main/frontend/home/home.module').then(m => m.HomeModule) }
+  { path: 'login', loadChildren: () => import('./main/modules/login/login.module').then(m => m.LoginModule) },
+  { path: 'home', loadChildren: () => import('./main/modules/home/home.module').then(m => m.HomeModule) }
 ];
 
 @NgModule({

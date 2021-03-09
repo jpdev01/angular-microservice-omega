@@ -1,5 +1,5 @@
 
-import { UserService } from './../../shared/service/user.service';
+import { UserService } from '../../shared/service/user.service';
 import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';

@@ -1,4 +1,4 @@
-import { Utils } from './../../shared/utils/Utils.model';
+import { Utils } from '../../shared/utils/Utils.model';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
