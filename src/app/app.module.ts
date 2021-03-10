@@ -11,7 +11,6 @@ import { NavbarComponent } from './main/components/navbar/navbar.component';
 import { AuthGuard } from './main/shared/safety/AuthGuard.model';
 import { AdminGuard } from './main/shared/safety/AdminGuard.model';
 
-
 @NgModule({
   declarations: [
     AppComponent,

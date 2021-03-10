@@ -8,7 +8,8 @@ import { Utils } from '../../shared/utils/Utils.model';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public utils: Utils) { }
+  constructor(public utils: Utils) {
+   }
 
   ngOnInit(): void {
     this.utils = new Utils();

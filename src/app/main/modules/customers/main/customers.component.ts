@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TableComponent } from 'src/app/main/components/table/table.component';
 
 @Component({
   selector: 'app-customers',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomersComponent implements OnInit {
 
-  constructor() { }
+  table;
+
+  constructor(table: TableComponent) {
+    this.table = table;
+  }
 
   ngOnInit(): void {
+
+    this.table.x = "deu boa!!!";
   }
 
 }
