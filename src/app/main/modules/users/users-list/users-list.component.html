@@ -1,0 +1,18 @@
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">CPF</th>
+      <th scope="col">Telefone</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <th scope="row"> {{ user.name }}</th>
+      <td> {{user.customer.cpf }}</td>
+      <td>{{ user.customer.fone}}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

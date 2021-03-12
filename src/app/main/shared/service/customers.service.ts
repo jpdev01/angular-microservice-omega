@@ -12,7 +12,6 @@ export class CustomersService {
   constructor(private httpClient: HttpClient, private utils: Utils) { }
 
   public getCustomers(): Observable<ResponsePageable> {
-    // aqui é feita a requisição
     return this.httpClient.get<ResponsePageable>(this.utils.getApiUrl() + '/customers');
   }
 
