@@ -1,34 +1,34 @@
 <!-- FIXME NAVBAR SECUNDARIA -->
 
-<nav class="site-header sticky-top py-1">
-  <div class="container d-flex flex-column flex-md-row justify-content-between">
-    <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
-  </div>
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Visualizar em grid</a>
+  <div class="input-group input-group-sm mb-3">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  </form>
+</div>
 </nav>
 
 <!-- FIM NAVBAR SECUNDARIA -->
 
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Nome</th>
-      <th scope="col">CPF</th>
-      <th scope="col">Telefone</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <th scope="row"> {{ user.name }}</th>
-      <td> {{user.customer.cpf }}</td>
-      <td>{{ user.customer.fone}}</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Telefone</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row"> {{ user.name }}</th>
+        <td> {{user.customer.cpf }}</td>
+        <td>{{ user.customer.fone}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
