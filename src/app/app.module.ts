@@ -11,13 +11,11 @@ import { NavbarComponent } from './main/components/navbar/navbar.component';
 import { AuthGuard } from './main/shared/safety/AuthGuard.model';
 import { AdminGuard } from './main/shared/safety/AdminGuard.model';
 import { UsersListComponent } from './main/modules/users/users-list/users-list.component';
-import { UsersNavbarComponent } from './users-navbar/users-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    UsersNavbarComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
