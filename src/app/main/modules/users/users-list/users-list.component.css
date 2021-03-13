@@ -5,7 +5,7 @@
   max-width: 960px;
 }
 .site-header {
-  background-color: rgba(0, 0, 0, .85);
+  background-color: rgba(128,128,128);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
 }
@@ -62,8 +62,6 @@
 }
 
 .overflow-hidden { overflow: hidden; }
-
-
 /*
  * FIM 
  */
