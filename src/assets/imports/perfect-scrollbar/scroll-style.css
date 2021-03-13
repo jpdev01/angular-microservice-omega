@@ -1,0 +1,103 @@
+.my-custom-scrollbar {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  overflow: auto;
+}
+.ps__rail-y{
+  display: none;
+}
+
+
+.my-custom-scrollbar
+{
+	margin-left: 30px;
+	float: left;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+
+
+.my-custom-scrollbar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.my-custom-scrollbar::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.my-custom-scrollbar::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+	border: 2px solid #555555;
+}
+
+
+
+
+
+
+/* #bem-vindo{
+  background: url(../images/pic1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body{
+  overflow: hidden;
+}
+body, #content, .wrapper{
+  background-color: #f9f8f6;
+} */
+
+
+
+/* #content{
+  overflow-y: auto;
+} */
+/* .mypagina{
+  border: 1px #000000;
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+} */
+
+
+/* table{
+  height: 100%;
+} */
+/* table.tableBodyScroll tbody {
+  overflow-y: scroll;
+}
+
+table.tableBodyScroll thead, table.tableBodyScroll tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+} */
+
+.myscroll{
+  overflow-y: scroll;
+}
+
+.noscroll{
+  overflow-y: hidden;
+}
+/* li.myGroupList{
+  background-color: #FF0000;
+}
+
+p{
+  display: inline-block;
+} */
+
+table{
+  font-size: 12px;
+}
+
+html {
+  font-family: sans-serif;
+}
