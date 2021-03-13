@@ -1,4 +1,4 @@
-export class ResponsePageable{
+export class ResponsePageable {
   content: any[];
   first: boolean;
   last: boolean;
@@ -10,3 +10,4 @@ export class ResponsePageable{
   totalElements: number;
   totalPages: number;
 }
+  

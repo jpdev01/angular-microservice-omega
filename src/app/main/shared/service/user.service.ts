@@ -16,7 +16,7 @@ export class UserService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type' : 'application/json'
+      'Content-Type': 'application/json'
     })
   };
 
@@ -32,5 +32,4 @@ export class UserService {
   public getUser(id: number): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user' + '?id=' + id);
   }
-
-}
+} 

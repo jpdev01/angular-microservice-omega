@@ -1,6 +1,6 @@
 
 
-
+<div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid">
 <div class="table-responsive">
   <table class="table">
     <thead class="thead-light">
@@ -13,11 +13,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
-        <th scope="row"> {{ user.name }}</th>
-        <td> {{user.customer.cpf }}</td>
-        <td>{{ user.customer.fone}}</td>
+        <td scope="row"> {{ user.login }}</td>
+        <!-- <td> {{user.customer.cpf }}</td>
+        <td>{{ user.customer.fone}}</td> -->
+        <td></td>
+        <td></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+</div>
 </div>

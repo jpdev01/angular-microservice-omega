@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './main/shared/safety/AuthGuard.model';
@@ -17,6 +18,7 @@ const routes: Routes = [
 @NgModule({
     imports: [
       RouterModule.forRoot(routes),
+      CommonModule
     ],
     exports: [RouterModule]
 })

@@ -8,7 +8,7 @@ import {UsersNavbarComponent} from './users-navbar/users-navbar.component';
 
 
 @NgModule({
-  declarations: [UsersComponent, UsersNavbarComponent],
+  declarations: [UsersComponent, UsersNavbarComponent, UsersListComponent],
   imports: [
     CommonModule,
     UsersRoutingModule
