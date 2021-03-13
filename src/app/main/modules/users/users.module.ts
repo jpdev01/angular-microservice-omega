@@ -10,6 +10,7 @@ import { UsersComponent } from './users.component';
   imports: [
     CommonModule,
     UsersRoutingModule
-  ]
+  ],
+  exports: [UsersComponent]
 })
 export class UsersModule { }
