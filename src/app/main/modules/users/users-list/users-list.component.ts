@@ -35,7 +35,7 @@ export class UsersListComponent implements OnInit {
 
 
   redirectToUserInfo(id: number){
-    this.router.navigate(['/user', id]);
+    this.router.navigate(['home/user', id]);
   }
 
 
