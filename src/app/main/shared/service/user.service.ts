@@ -26,10 +26,10 @@ export class UserService {
   ) { }
 
   public getUsers(): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/users');
+    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user');
   }
 
   public getUser(id: number): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user' + '?id=' + id);
   }
-} 
+}
