@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/main/shared/model/user.model';
 import { UserService } from 'src/app/main/shared/service/user.service';
 import { DeveloperService } from 'src/app/main/shared/service/developer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -12,7 +13,7 @@ export class UsersListComponent implements OnInit {
 
   public users: User[];
 
-  constructor(private service: UserService) {
+  constructor(private service: UserService, private router: Router,) {
 
   }
 
@@ -27,5 +28,16 @@ export class UsersListComponent implements OnInit {
       this.users = result.content;
     });
   }
+
+  public openUserInfo(u: User): void {
+    this.redirectToUserInfo(u.id);
+  }
+
+
+  redirectToUserInfo(id: number){
+    this.router.navigate(['/user', id]);
+  }
+
+
 
 }
