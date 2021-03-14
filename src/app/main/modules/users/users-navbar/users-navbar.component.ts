@@ -12,6 +12,7 @@ export class UsersNavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    debugger;
   }
 
 }
