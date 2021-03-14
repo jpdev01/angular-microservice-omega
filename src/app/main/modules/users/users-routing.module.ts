@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UsersComponent } from './users.component';
 import {UserInfoComponent} from './user-info/user-info.component';
+import { SearchFilterPipe } from '../../shared/pipe/search-filter.pipe';
 
 const routes: Routes = [
   { path: '', component: UsersComponent,

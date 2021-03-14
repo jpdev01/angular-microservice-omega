@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class UsersListComponent implements OnInit {
 
   public users: User[];
+  filter: string;
 
   constructor(private service: UserService, private router: Router,) {
 
