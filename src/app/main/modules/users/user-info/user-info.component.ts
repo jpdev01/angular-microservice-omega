@@ -14,17 +14,25 @@ export class UserInfoComponent implements OnInit {
   user: User;
 
   constructor(private route: ActivatedRoute, private service: UserService) {
-    this.route.params.subscribe(params => this.userId = params['id']);
+    // this.route.params.subscribe(params => this.userId = params['id']);
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.userId = params['id']);
+    this.getIdByUrl();
+    debugger;
+    this.loadUserInfo(this.userId);
+    debugger;
   }
 
   loadUserInfo(id: number): void{
+    // this.route.params.subscribe(params => this.userId = params['id']);
     this.service.getUser(id).subscribe(result => {
       this.user = result[0];
     });
+  }
+
+  getIdByUrl(): void{
+    this.route.params.subscribe(params => this.userId = params['id']);
   }
 
 }

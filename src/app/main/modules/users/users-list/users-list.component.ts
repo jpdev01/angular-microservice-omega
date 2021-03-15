@@ -51,7 +51,7 @@ export class UsersListComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    $("#filter-users").change( () => {
+    $("#filter-users").keyup( () => {
       this.filter = $("#filter-users").val() + "";
     });
   }
