@@ -13,11 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'test', component: UsersListComponent
-  }
-  ] },
+  },
   {
     path: ':id', component: UserInfoComponent,
   }
+
+] }
 ];
 
 @NgModule({
