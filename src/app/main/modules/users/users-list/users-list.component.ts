@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { UsersNavbarComponent } from './../users-navbar/users-navbar.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/main/shared/model/user.model';
 import { UserService } from 'src/app/main/shared/service/user.service';
-import { DeveloperService } from 'src/app/main/shared/service/developer.service';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-users-list',
@@ -14,16 +15,26 @@ export class UsersListComponent implements OnInit {
   public users: User[];
   filter: string;
 
-  constructor(private service: UserService, private router: Router,) {
+  // @ViewChild(UsersNavbarComponent, {static: false})
+  // filho: UsersNavbarComponent;
+
+  // @ViewChild("filter-users") domReference;
+
+  // @ViewChild("filter-users") domReference: Element;
+  // directive: Element;
+
+  constructor(private service: UserService, private router: Router) {
 
   }
 
   ngOnInit(): void {
     this.getUsers();
+    //this.filter = $("#filter-users").val() + "";
   }
 
   getUsers() {
     this.service.getUsers().subscribe(result => {
+      debugger;
       this.users = [];
       //data.content !
       this.users = result.content;
@@ -38,6 +49,19 @@ export class UsersListComponent implements OnInit {
   redirectToUserInfo(id: number){
     this.router.navigate(['home/user', id]);
   }
+
+  ngAfterViewInit() {
+    $("#filter-users").change( () => {
+      this.filter = $("#filter-users").val() + "";
+    });
+  }
+
+  // @ViewChild(UsersNavbarComponent)
+  // set appShark(directive: UsersNavbarComponent) {
+  //   debugger;
+  //   // this.directive = directive;
+  // };
+
 
 
 

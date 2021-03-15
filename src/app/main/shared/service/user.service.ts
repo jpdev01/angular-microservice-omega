@@ -26,6 +26,7 @@ export class UserService {
   ) { }
 
   public getUsers(): Observable<ResponsePageable> {
+    debugger;
     return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user');
   }
 

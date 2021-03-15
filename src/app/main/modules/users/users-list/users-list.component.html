@@ -3,7 +3,7 @@
   <div class="row h-100">
     <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto h-100 mb-4 w-100">
       <div class="table-responsive">
-        <table class="table">
+        <table class="table" >
           <thead class="thead-light">
             <tr>
               <th scope="col">Nome</th>
@@ -12,8 +12,8 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let user of users | searchFilter" id="{{user.id}}" (click)="openUserInfo(user)">
+          <tbody >
+            <tr *ngFor="let user of users | searchFilter:filter" id="{{user.id}}" (click)="openUserInfo(user) ">
               <td scope="row"> {{ user.login }}</td>
               <!-- <td> {{user.customer.cpf }}</td>
               <td>{{ user.customer.fone}}</td> -->

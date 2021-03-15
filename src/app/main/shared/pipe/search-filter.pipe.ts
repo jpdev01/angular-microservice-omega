@@ -8,10 +8,19 @@ export class SearchFilterPipe implements PipeTransform {
   transform(items: any[], term: string): any {
     debugger;
     if (items && term) {
-      // I am unsure what id is here. did you mean title?
+      if (this.isUser(items)) {
+        return items.filter(item => item.login.indexOf(term) !== -1);
+      }
       return items.filter(item => item.id.indexOf(term) !== -1);
     }
     return items;
+  }
+
+  isUser(items: any): boolean{
+    if (items[0] && items[0].login != null) {
+      return true;
+    }
+    return false;
   }
 
 }
