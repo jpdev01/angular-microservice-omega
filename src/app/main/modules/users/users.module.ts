@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,17 +7,19 @@ import { UsersComponent } from './users.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import {UsersNavbarComponent} from './users-navbar/users-navbar.component';
 import { PipeModule } from '../../shared/pipe/pipe/pipe.module';
+import { UserFrmComponent } from './user-frm/user-frm.component';
 
 
 @NgModule({
-  declarations: [UsersComponent, UsersNavbarComponent, UsersListComponent],
+  declarations: [UsersComponent, UsersNavbarComponent, UsersListComponent, UserFrmComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
     FormsModule,
-    PipeModule
+    PipeModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [FormBuilder],
   exports: [UsersComponent]
 })
 export class UsersModule { }

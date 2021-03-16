@@ -5,7 +5,7 @@ import { Customer } from './customer.model';
 export class User
 {
   id: number;
-  name: string;
+  login: string;
   password: string;
   permission: Permission;
   active: Active;
