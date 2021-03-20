@@ -1,3 +1,4 @@
+import { Utils } from './../../shared/utils/Utils.model';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -17,6 +18,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(){
 
   }
+
 
 
 

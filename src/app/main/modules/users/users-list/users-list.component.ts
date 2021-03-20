@@ -1,3 +1,4 @@
+import { Utils } from './../../../shared/utils/Utils.model';
 import { ResponsePageable } from './../../../shared/model/responsePageable.model';
 import { UsersNavbarComponent } from './../users-navbar/users-navbar.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -24,13 +25,18 @@ export class UsersListComponent implements OnInit {
   // @ViewChild("filter-users") domReference: Element;
   // directive: Element;
 
-  constructor(private service: UserService, private router: Router) {
+  constructor(private service: UserService, private router: Router, public utils: Utils) {
 
   }
 
   ngOnInit(): void {
     this.getUsers();
-    //this.filter = $("#filter-users").val() + "";
+
+    this.utils.emitterFilterChange.subscribe(
+      (filter) => {
+        this.filter = filter;
+      }
+    );
   }
 
   getUsers() {
@@ -56,9 +62,9 @@ export class UsersListComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    $("#filter-users").keyup( () => {
-      this.filter = $("#filter-users").val() + "";
-    });
+    // $("#filter-users").keyup( () => {
+    //   this.filter = $("#filter-users").val() + "";
+    // });
   }
 
   // @ViewChild(UsersNavbarComponent)

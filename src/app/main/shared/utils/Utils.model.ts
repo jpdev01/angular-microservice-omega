@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Subject } from 'rxjs';
 
@@ -12,5 +12,10 @@ export class Utils {
   getApiUrl(): string {
     return this.apiUrl;
   }
+
+  // filter!
+  emitterFilterChange = new EventEmitter<string>();
+
+  
 
 }

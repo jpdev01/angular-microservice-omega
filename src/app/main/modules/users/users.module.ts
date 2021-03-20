@@ -1,3 +1,4 @@
+import { Utils } from './../../shared/utils/Utils.model';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,7 +9,6 @@ import { UsersListComponent } from './users-list/users-list.component';
 import {UsersNavbarComponent} from './users-navbar/users-navbar.component';
 import { PipeModule } from '../../shared/pipe/pipe/pipe.module';
 import { UserFrmComponent } from './user-frm/user-frm.component';
-import { Router } from '@angular/router';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
     PipeModule,
     ReactiveFormsModule
   ],
-  providers: [FormBuilder],
+  providers: [FormBuilder, Utils],
   exports: [UsersComponent]
 })
 export class UsersModule { }
