@@ -1,4 +1,4 @@
-# TrainingAngular
+# Projeto Omega - Frontend (com consumo em api)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
