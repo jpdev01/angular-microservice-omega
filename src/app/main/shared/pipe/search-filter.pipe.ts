@@ -9,9 +9,9 @@ export class SearchFilterPipe implements PipeTransform {
     debugger;
     if (items && term) {
       if (this.isUser(items)) {
-        return items.filter(item => item.login.indexOf(term) !== -1);
+        return items.filter(item => item.login != null && item.login.indexOf(term) !== -1);
       }
-      return items.filter(item => item.id.indexOf(term) !== -1);
+      return items.filter(item => item.login.indexOf(term) !== -1);
     }
     return items;
   }

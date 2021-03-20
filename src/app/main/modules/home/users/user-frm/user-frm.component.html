@@ -15,8 +15,8 @@
     <div class="form-group col-md-2 input-group-sm">
       <label for="campo3">Permissão: </label>
       <select class="form-control form-control-sm" formControlName="permission">
-        <option>Vendedora</option>
-        <option>Administrador</option>
+        <option selected>Vendedora</option>
+        <option value="ADM">Administrador</option>
         <option>Super</option>
       </select>
     </div>
@@ -34,5 +34,5 @@
     aqui deverá ser inserido um select -> provavelmente atraves de modal, para selecionar o cliente que contem as info para o usuario
   -->
 
-  <button type="button" class="btn btn-light" (click)="saveUser()">Salvar</button>
+  <button type="button" class="btn btn-light btn-sm" (click)="saveUser()">Salvar</button>
 </form>

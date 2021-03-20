@@ -37,8 +37,8 @@ export class UserService {
     return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user/' + id);
   }
 
-  public saveUser(user: User): void {
-    this.httpClient.post<any>(this.apiUrl + '/user/save', user, this.httpOptions);
+  public saveUser(user: any): Observable<User> {
+    return this.httpClient.post<any>(this.apiUrl + '/user/save', user, this.httpOptions);
   }
 
   public interfaceRule(name: string, show: boolean) {

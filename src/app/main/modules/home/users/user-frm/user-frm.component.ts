@@ -83,6 +83,9 @@ export class UserFrmComponent implements OnInit {
   }
 
   saveUser(): void {
-    this.service.saveUser(this.userForm.value);
+    this.service.saveUser(this.userForm.value).subscribe(
+      () => {},
+      (error) => { console.log (error); }
+      );
   }
 }

@@ -14,7 +14,7 @@ import * as $ from 'jquery';
 export class UsersListComponent implements OnInit {
 
   public users: User[];
-  filter: string;
+  filter = "";
 
   constructor(private service: UserService, private router: Router, public utils: Utils) {
 
