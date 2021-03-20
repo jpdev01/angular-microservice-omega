@@ -10,6 +10,8 @@ import { UsersListComponent } from './users-list/users-list.component';
 import {UsersNavbarComponent} from './users-navbar/users-navbar.component';
 import { PipeModule } from '../../../shared/pipe/pipe/pipe.module';
 import { UserFrmComponent } from './user-frm/user-frm.component';
+import { NavbarSecundaryModule } from 'src/app/main/components/navbar-secundary/navbar-secundary.module';
+import { NavbarSecundaryComponent } from 'src/app/main/components/navbar-secundary/navbar-secundary.component';
 
 
 @NgModule({
@@ -19,9 +21,10 @@ import { UserFrmComponent } from './user-frm/user-frm.component';
     UsersRoutingModule,
     FormsModule,
     PipeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NavbarSecundaryModule
   ],
-  providers: [FormBuilder, Utils, UserService],
+  providers: [FormBuilder, Utils, UserService, NavbarSecundaryComponent],
   exports: [UsersComponent]
 })
 export class UsersModule { }

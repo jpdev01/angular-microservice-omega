@@ -5,6 +5,8 @@ import { CustomersRoutingModule } from './customers-routing.module';
 import { CustomersComponent } from './customers.component';
 import {TableModule} from '../../../components/table/table.module';
 import { TableComponent } from 'src/app/main/components/table/table.component';
+import { NavbarSecundaryModule } from 'src/app/main/components/navbar-secundary/navbar-secundary.module';
+import { NavbarSecundaryComponent } from 'src/app/main/components/navbar-secundary/navbar-secundary.component';
 
 
 @NgModule({
@@ -12,8 +14,9 @@ import { TableComponent } from 'src/app/main/components/table/table.component';
   imports: [
     CommonModule,
     CustomersRoutingModule,
-    TableModule
+    TableModule,
+    NavbarSecundaryModule
   ],
-  providers: [TableComponent]
+  providers: [TableComponent, NavbarSecundaryComponent]
 })
 export class CustomersModule { }
