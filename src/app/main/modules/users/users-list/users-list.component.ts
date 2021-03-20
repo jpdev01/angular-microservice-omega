@@ -17,14 +17,6 @@ export class UsersListComponent implements OnInit {
   public users: User[];
   filter: string;
 
-  // @ViewChild(UsersNavbarComponent, {static: false})
-  // filho: UsersNavbarComponent;
-
-  // @ViewChild("filter-users") domReference;
-
-  // @ViewChild("filter-users") domReference: Element;
-  // directive: Element;
-
   constructor(private service: UserService, private router: Router, public utils: Utils) {
 
   }
@@ -62,16 +54,9 @@ export class UsersListComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    // $("#filter-users").keyup( () => {
-    //   this.filter = $("#filter-users").val() + "";
-    // });
+
   }
 
-  // @ViewChild(UsersNavbarComponent)
-  // set appShark(directive: UsersNavbarComponent) {
-  //   debugger;
-  //   // this.directive = directive;
-  // };
 
 
 
