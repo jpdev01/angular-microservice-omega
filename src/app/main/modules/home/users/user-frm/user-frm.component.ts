@@ -56,8 +56,8 @@ export class UserFrmComponent implements OnInit {
     let valueDefault = "";
 
     this.userForm = this.fb.group({
-      userLogin: [valueDefault, [Validators.required]],
-      userPassword: [valueDefault, [Validators.required]],
+      login: [valueDefault, [Validators.required]],
+      password: [valueDefault, [Validators.required]],
       createDate: ['2020-08-01T20:00:00', [Validators.required]],
       permission: ['', [Validators.required]],
       active: ['', [Validators.required]],

@@ -22,10 +22,14 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
     this.hideUserNavbar();
     this.getIdByUrl();
-    this.loadUserInfo(this.userId);
+    if (this.userId) {
+      this.getUserById(this.userId);
+    }
+    // ERROR
+    this.loadUser();
   }
 
-  loadUserInfo(id: number): void{
+  getUserById(id: number): void{
     // this.route.params.subscribe(params => this.userId = params['id']);
     this.service.getUser(id).subscribe(result => {
       this.user = result[0];
@@ -38,6 +42,10 @@ export class UserInfoComponent implements OnInit {
 
   hideUserNavbar() {
     this.service.hideUserNavbar();
+  }
+
+  loadUser(): void {
+    
   }
 
 

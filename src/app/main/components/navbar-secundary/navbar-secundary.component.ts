@@ -13,7 +13,7 @@ export class NavbarSecundaryComponent implements OnInit {
   constructor(public utils: Utils) { }
 
   ngOnInit(): void {
-    debugger;
+
   }
 
   updateFilter($event: any) {
