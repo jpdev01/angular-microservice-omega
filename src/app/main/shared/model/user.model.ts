@@ -8,6 +8,6 @@ export class User
   login: string;
   password: string;
   permission: Permission;
-  active: Active;
+  active = Active.ACTIVE;
   customer: Customer;
 }

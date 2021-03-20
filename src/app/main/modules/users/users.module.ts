@@ -8,6 +8,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 import {UsersNavbarComponent} from './users-navbar/users-navbar.component';
 import { PipeModule } from '../../shared/pipe/pipe/pipe.module';
 import { UserFrmComponent } from './user-frm/user-frm.component';
+import { Router } from '@angular/router';
 
 
 @NgModule({

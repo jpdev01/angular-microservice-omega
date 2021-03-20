@@ -1,3 +1,4 @@
+import { ResponsePageable } from './../../../shared/model/responsePageable.model';
 import { UsersNavbarComponent } from './../users-navbar/users-navbar.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/main/shared/model/user.model';
@@ -33,11 +34,15 @@ export class UsersListComponent implements OnInit {
   }
 
   getUsers() {
-    this.service.getUsers().subscribe(result => {
+    this.service.getUsers().subscribe(
+      (result: ResponsePageable) => {
       debugger;
       this.users = [];
       //data.content !
       this.users = result.content;
+    },
+    (error) => {
+
     });
   }
 
