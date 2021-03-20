@@ -22,7 +22,7 @@ export class UserFrmComponent implements OnInit {
   public userForm: FormGroup;
   formCustom: FormModel;
   navbarRule;
-  formFromEditing;
+  formFromEditing = false;
 
   constructor(private route: ActivatedRoute, private service: UserService, private fb: FormBuilder) {
 
@@ -80,5 +80,9 @@ export class UserFrmComponent implements OnInit {
 
   isEditing(): boolean {
     return this.formFromEditing;
+  }
+
+  saveUser(): void {
+    this.service.saveUser(this.userForm.value);
   }
 }
