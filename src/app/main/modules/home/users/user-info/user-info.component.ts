@@ -12,7 +12,7 @@ import { InterfaceRule } from '../../../../shared/model/interface-rule.model';
 export class UserInfoComponent implements OnInit {
 
   userId: number;
-  user: User;
+  user: any;
   navbarRule;
 
   constructor(private route: ActivatedRoute, private service: UserService) {
@@ -31,8 +31,8 @@ export class UserInfoComponent implements OnInit {
 
   getUserById(id: number): void{
     // this.route.params.subscribe(params => this.userId = params['id']);
-    this.service.getUser(id).subscribe(result => {
-      this.user = result[0];
+    this.service.getUser(id).subscribe( result => {
+      this.user = result;
     });
   }
 
@@ -45,7 +45,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   loadUser(): void {
-    
+
   }
 
 
