@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
 
-  navbarShow = false;
+  navbarShow = true;
 
   constructor(private userService: UserService) { }
 

@@ -16,13 +16,13 @@ export class UserInfoComponent implements OnInit {
   navbarRule;
 
   constructor(private route: ActivatedRoute, private service: UserService) {
+    this.hideUserNavbar();
     // this.route.params.subscribe(params => this.userId = params['id']);
   }
 
   ngOnInit(): void {
     this.getIdByUrl();
     this.loadUserInfo(this.userId);
-    this.hideUserNavbar();
   }
 
   loadUserInfo(id: number): void{

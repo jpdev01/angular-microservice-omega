@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {FormField} from '../../../shared/model/form-field.model';
 import {FormGroupCustom} from '../../../shared/model/form-group.model';
 import {FormModel} from '../../../shared/model/form-model.model';
+import { InterfaceRule } from 'src/app/main/shared/model/interface-rule.model';
 
 @Component({
   selector: 'app-user-frm',
@@ -20,18 +21,19 @@ export class UserFrmComponent implements OnInit {
   user: User;
   public userForm: FormGroup;
   formCustom: FormModel;
+  navbarRule;
 
   constructor(private route: ActivatedRoute, private service: UserService, private fb: FormBuilder) {
 
   }
 
   ngOnInit(): void {
+    this.hideUserNavbar();
     this.getIdByUrl();
     if (this.userId) {
       this.loadUserInfo(this.userId);
     }
     this.initFormImpl();
-    debugger;
   }
 
   loadUserInfo(id: number): void{
@@ -62,6 +64,10 @@ export class UserFrmComponent implements OnInit {
 
   initFormValues(): void {
 
+  }
+
+  hideUserNavbar() {
+    this.service.hideUserNavbar();
   }
 
 
