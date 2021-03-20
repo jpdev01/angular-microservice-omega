@@ -5,8 +5,9 @@ import { HomeComponent } from './home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent,
   children: [
-    { path: 'users', loadChildren: () => import('../users/users.module').then(m => m.UsersModule) },
-    { path: 'user', loadChildren: () => import('../users/users.module').then(m => m.UsersModule) }
+    { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
+    { path: 'user', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
+    { path: 'cutomers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) }
   ]
   },
   { path: 'home', component: HomeComponent }

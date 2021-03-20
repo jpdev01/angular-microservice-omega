@@ -1,7 +1,7 @@
 import { element } from 'protractor';
-import { UserService } from './../../shared/service/user.service';
-import { Utils } from './../../shared/utils/Utils.model';
-import { InterfaceRule } from './../../shared/model/interface-rule.model';
+import { UserService } from '../../../shared/service/user.service';
+import { Utils } from '../../../shared/utils/Utils.model';
+import { InterfaceRule } from '../../../shared/model/interface-rule.model';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';

@@ -1,13 +1,13 @@
-import { UserService } from './../../../shared/service/user.service';
+import { UserService } from '../../../../shared/service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/main/shared/model/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
-import {FormField} from '../../../shared/model/form-field.model';
-import {FormGroupCustom} from '../../../shared/model/form-group.model';
-import {FormModel} from '../../../shared/model/form-model.model';
+import {FormField} from '../../../../shared/model/form-field.model';
+import {FormGroupCustom} from '../../../../shared/model/form-group.model';
+import {FormModel} from '../../../../shared/model/form-model.model';
 import { InterfaceRule } from 'src/app/main/shared/model/interface-rule.model';
 
 @Component({

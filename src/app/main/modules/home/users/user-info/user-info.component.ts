@@ -1,8 +1,8 @@
-import { UserService } from './../../../shared/service/user.service';
+import { UserService } from '../../../../shared/service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/main/shared/model/user.model';
-import { InterfaceRule } from './../../../shared/model/interface-rule.model';
+import { InterfaceRule } from '../../../../shared/model/interface-rule.model';
 
 @Component({
   selector: 'app-user-info',
