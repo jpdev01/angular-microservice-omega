@@ -22,6 +22,7 @@ export class UserFrmComponent implements OnInit {
   public userForm: FormGroup;
   formCustom: FormModel;
   navbarRule;
+  formFromEditing;
 
   constructor(private route: ActivatedRoute, private service: UserService, private fb: FormBuilder) {
 
@@ -31,6 +32,7 @@ export class UserFrmComponent implements OnInit {
     this.hideUserNavbar();
     this.getIdByUrl();
     if (this.userId) {
+      this.formFromEditing = true;
       this.loadUserInfo(this.userId);
     }
     this.initFormImpl();
@@ -58,6 +60,7 @@ export class UserFrmComponent implements OnInit {
       userPassword: [valueDefault, [Validators.required]],
       createDate: ['2020-08-01T20:00:00', [Validators.required]],
       permission: ['', [Validators.required]],
+      active: ['', [Validators.required]],
       customer: ['', [Validators.required]]
     });
   }
@@ -70,10 +73,12 @@ export class UserFrmComponent implements OnInit {
     this.service.hideUserNavbar();
   }
 
-
-
   cancel(): void {
     // this.dialogRef.close();
     this.userForm.reset();
+  }
+
+  isEditing(): boolean {
+    return this.formFromEditing;
   }
 }

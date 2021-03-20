@@ -16,11 +16,11 @@ export class UserInfoComponent implements OnInit {
   navbarRule;
 
   constructor(private route: ActivatedRoute, private service: UserService) {
-    this.hideUserNavbar();
     // this.route.params.subscribe(params => this.userId = params['id']);
   }
 
   ngOnInit(): void {
+    this.hideUserNavbar();
     this.getIdByUrl();
     this.loadUserInfo(this.userId);
   }
@@ -37,8 +37,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   hideUserNavbar() {
-    this.navbarRule = new InterfaceRule("navbar", false, null);
-    this.service.interfaceRuleEmitter.emit(this.navbarRule);
+    this.service.hideUserNavbar();
   }
 
 

@@ -1,6 +1,5 @@
 import { Utils } from '../../../../shared/utils/Utils.model';
 import { ResponsePageable } from '../../../../shared/model/responsePageable.model';
-import { UsersNavbarComponent } from '../users-navbar/users-navbar.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/main/shared/model/user.model';
 import { UserService } from 'src/app/main/shared/service/user.service';
@@ -50,7 +49,7 @@ export class UsersListComponent implements OnInit {
 
 
   redirectToUserInfo(id: number){
-    this.router.navigate(['home/user', id]);
+    this.router.navigate(['home/user/info', id]);
   }
 
   ngAfterViewInit() {
