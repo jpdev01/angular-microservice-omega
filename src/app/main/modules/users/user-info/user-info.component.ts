@@ -2,6 +2,7 @@ import { UserService } from './../../../shared/service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/main/shared/model/user.model';
+import { InterfaceRule } from './../../../shared/model/interface-rule.model';
 
 @Component({
   selector: 'app-user-info',
@@ -12,6 +13,7 @@ export class UserInfoComponent implements OnInit {
 
   userId: number;
   user: User;
+  navbarRule;
 
   constructor(private route: ActivatedRoute, private service: UserService) {
     // this.route.params.subscribe(params => this.userId = params['id']);
@@ -19,9 +21,8 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIdByUrl();
-    debugger;
     this.loadUserInfo(this.userId);
-    debugger;
+    this.hideUserNavbar();
   }
 
   loadUserInfo(id: number): void{
@@ -34,5 +35,11 @@ export class UserInfoComponent implements OnInit {
   getIdByUrl(): void{
     this.route.params.subscribe(params => this.userId = params['id']);
   }
+
+  hideUserNavbar() {
+    this.navbarRule = new InterfaceRule("navbar", false, null);
+    this.service.interfaceRuleEmitter.emit(this.navbarRule);
+  }
+
 
 }

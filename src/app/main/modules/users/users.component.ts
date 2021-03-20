@@ -1,4 +1,7 @@
+import { element } from 'protractor';
+import { UserService } from './../../shared/service/user.service';
 import { Utils } from './../../shared/utils/Utils.model';
+import { InterfaceRule } from './../../shared/model/interface-rule.model';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,13 +14,26 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
 
-  actualRote:string;
+  navbarShow = false;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(){
+    this.userService.interfaceRuleEmitter.subscribe(
+      (interfaceRule: InterfaceRule) => {
+        if (interfaceRule.element === 'navbar') {
+          if (interfaceRule.show == true) {
+            this.navbarShow = true;
 
+          } else {
+            this.navbarShow = false;
+          }
+        }
+      }
+    );
   }
+
+
 
 
 

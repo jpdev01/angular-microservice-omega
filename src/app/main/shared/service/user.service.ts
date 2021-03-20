@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponsePageable } from '../model/responsePageable.model';
@@ -13,6 +13,7 @@ export class UserService {
   // utils: Utils;
   apiUrl: string = "http://localhost:8080/neusamoda";
   isLoged = false;
+  interfaceRuleEmitter = new EventEmitter<any>();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -33,5 +34,9 @@ export class UserService {
   public getUser(id: number): Observable<ResponsePageable> {
     debugger;
     return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user/' + id);
+  }
+
+  public interfaceRule(name: string, show: boolean) {
+
   }
 }

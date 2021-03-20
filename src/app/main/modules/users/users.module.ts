@@ -1,3 +1,4 @@
+import { UserService } from './../../shared/service/user.service';
 import { Utils } from './../../shared/utils/Utils.model';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -20,7 +21,7 @@ import { UserFrmComponent } from './user-frm/user-frm.component';
     PipeModule,
     ReactiveFormsModule
   ],
-  providers: [FormBuilder, Utils],
+  providers: [FormBuilder, Utils, UserService],
   exports: [UsersComponent]
 })
 export class UsersModule { }
