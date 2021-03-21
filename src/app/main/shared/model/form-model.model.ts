@@ -1,21 +1,21 @@
-import { FormGroupCustom } from "./form-group.model";
+import { FormField } from './form-field.model';
 
 export class FormModel {
   id: string;
   name: string;
-  formGroups: FormGroupCustom[];
+  fields: FormField[];
   formGroupName: string;
 
   constructor(options: {
     id?: string;
     name?: string;
-    formGroups?: FormGroupCustom[];
     formGroupName?: string;
+    fields?: FormField[];
   } = {}) {
 
     this.id = options.id;
     this.name = options.name;
-    this.formGroups = options.formGroups;
+    this.fields = options.fields;
     this.formGroupName = options.formGroupName;
 
   }

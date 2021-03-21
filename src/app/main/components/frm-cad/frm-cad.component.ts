@@ -10,6 +10,7 @@ export class FrmCadComponent implements OnInit {
   @Input() frm: any;
   //@Input('frm') frm;
   @Input() componentInfo: any;
+  @Input() formModel;
   service: any;
   element: any;
 
@@ -17,6 +18,8 @@ export class FrmCadComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.frm);
+    debugger;
+    console.log(this.formModel);
     this.initComponentInfo();
   }
 

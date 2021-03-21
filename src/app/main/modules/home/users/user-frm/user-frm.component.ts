@@ -1,4 +1,3 @@
-import { FormGroupCustom } from './../../../../shared/model/form-group.model';
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -7,7 +6,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 import { FormField } from '../../../../shared/model/form-field.model';
-import { FormGroupCustom } from '../../../../shared/model/form-group.model';
 import { FormModel } from '../../../../shared/model/form-model.model';
 import { InterfaceRule } from 'src/app/main/shared/model/interface-rule.model';
 import { UserService } from '../../../../shared/service/user.service';
@@ -23,7 +21,7 @@ export class UserFrmComponent implements OnInit {
   userId: number;
   user: User;
   public userForm: FormGroup;
-  formCustom: FormModel;
+  formModel: FormModel;
   navbarRule;
   formFromEditing = false;
   componentInfo: any;
@@ -41,6 +39,7 @@ export class UserFrmComponent implements OnInit {
       // this.loadUserInfo(this.userId);
     }
     this.initFormImpl();
+    this.initFormValues();
   }
 
   private initComponentInfo(): void {
@@ -75,14 +74,16 @@ export class UserFrmComponent implements OnInit {
     let formField = new FormField({
       id: "login",
       label: "Login",
-      type: "text"
+      type: "text",
+      row: "1"
     });
 
-    let frmGroup = new FormGroupCustom({
+
+
+    this.formModel = new FormModel({
       fields: [formField]
     });
 
-    let frmModel = new FormModel
   }
 
   hideUserNavbar() {
