@@ -3,6 +3,7 @@ import { Utils } from './../../../../shared/utils/Utils.model';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../../shared/model/product.model';
 import { ProductsApiService } from '../../../../shared/service/products-api.service';
+import { ProductsService } from '../../../../shared/service/products.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,7 @@ export class ProductListComponent implements OnInit {
   public products: Product[];
   filter = "";
 
-  constructor(private serviceApi: ProductsApiService, private utils: Utils, private router: Router) { }
+  constructor(private serviceApi: ProductsApiService, private utils: Utils, private router: Router, private service: ProductsService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -48,7 +49,7 @@ export class ProductListComponent implements OnInit {
   }
 
   private showNavbar(): void {
-    
+      this.service.showUserNavbar(true);
   }
 
 }
