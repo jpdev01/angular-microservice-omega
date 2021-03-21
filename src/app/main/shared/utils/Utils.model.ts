@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 // @Injectable()
 export class Utils {
 
-  apiUrl: string = "localhost:8080/neusamoda";
+  apiUrl: string = "http://localhost:8080/neusamoda";
 
   constructor() { }
 

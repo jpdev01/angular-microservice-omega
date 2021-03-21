@@ -2,12 +2,18 @@ import { ResponsePageable } from './../model/responsePageable.model';
 import { Observable } from 'rxjs';
 import { Utils } from './../utils/Utils.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsApiService {
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   constructor(private utils: Utils, private httpClient: HttpClient) { }
 
