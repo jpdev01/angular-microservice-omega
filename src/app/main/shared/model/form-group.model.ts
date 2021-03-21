@@ -3,15 +3,18 @@ export class FormGroupCustom {
   name: string;
   classes: string;
   fields: any[];
-  formGroup: string;
 
-  constructor(id: string, name: string, classes: string, fields: any[], formGroup: string){
-    this.id = id;
-    this.name = name;
-    if (classes){
-      this.classes = classes;
+  constructor(options: {
+    id?: string;
+    name?: string;
+    classes?: string;
+    fields?: any;
+  } = {}){
+    this.id = options.id;
+    this.name = options.name;
+    if (options.classes){
+      this.classes = options.classes;
     }
-    this.fields = fields;
-    this.formGroup = formGroup;
+    this.fields = options.fields;
   }
 }

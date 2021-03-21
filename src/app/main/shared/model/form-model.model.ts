@@ -6,10 +6,19 @@ export class FormModel {
   formGroups: FormGroupCustom[];
   formGroupName: string;
 
-  constructor(id: string, name: string, formGroups: FormGroupCustom[], formGroupName: string){
-    this.id = id;
-    this.name = name;
-    this.formGroups = formGroups;
-    this.formGroupName = formGroupName;
+  constructor(options: {
+    id?: string;
+    name?: string;
+    formGroups?: FormGroupCustom[];
+    formGroupName?: string;
+  } = {}) {
+
+    this.id = options.id;
+    this.name = options.name;
+    this.formGroups = options.formGroups;
+    this.formGroupName = options.formGroupName;
+
   }
+
+
 }

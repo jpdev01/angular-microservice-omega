@@ -6,16 +6,24 @@ export class FormField {
   classes = "";
   formControlName: string;
 
-  constructor(id: string, label: string, type: string, defaultValue: string, styles: string, formControlName: string) {
-    this.id = id;
-    this.label = label;
-    if (type) {
-      this.type = type;
+  constructor(options: {
+    id?: string;
+    label?: string;
+    type?: string;
+    defaultValue?: string;
+    style?: string;
+  }= {}) {
+
+    this.id = options.id;
+    this.label = options.label;
+    if (options.type) {
+      this.type = options.type;
     }
-    this.defaultValue = defaultValue;
-    if (styles) {
-      this.classes = styles;
+    this.defaultValue = options.defaultValue;
+    if (options.style) {
+      this.classes = options.style;
     }
+
   }
 
 }

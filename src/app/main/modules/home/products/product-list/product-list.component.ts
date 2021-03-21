@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.serviceApi.getProducts().subscribe((result: ResponsePageable ) => {
+    this.serviceApi.getAll().subscribe((result: ResponsePageable ) => {
       this.products = result.content;
     },
     (err) => console.log("erro encontrado: " + err)

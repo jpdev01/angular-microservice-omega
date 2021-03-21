@@ -13,6 +13,7 @@ import { NavbarSecundaryModule } from 'src/app/main/components/navbar-secundary/
 import { NavbarSecundaryComponent } from 'src/app/main/components/navbar-secundary/navbar-secundary.component';
 import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
 import { FrmCadComponent } from 'src/app/main/components/frm-cad/frm-cad.component';
+import { UserApiService } from 'src/app/main/shared/service/user-api.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { FrmCadComponent } from 'src/app/main/components/frm-cad/frm-cad.compone
     NavbarSecundaryModule,
     FrmCadModule
   ],
-  providers: [FormBuilder, Utils, UserService, NavbarSecundaryComponent, FrmCadComponent],
+  providers: [FormBuilder, Utils, UserService, UserApiService, NavbarSecundaryComponent, FrmCadComponent],
   exports: [UsersComponent]
 })
 export class UsersModule { }

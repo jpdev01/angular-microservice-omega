@@ -5,6 +5,7 @@ import { User } from 'src/app/main/shared/model/user.model';
 import { UserService } from 'src/app/main/shared/service/user.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
+import { UserApiService } from 'src/app/main/shared/service/user-api.service';
 
 @Component({
   selector: 'app-users-list',
@@ -16,7 +17,7 @@ export class UsersListComponent implements OnInit {
   public users: User[];
   filter = "";
 
-  constructor(private service: UserService, private router: Router, public utils: Utils) {
+  constructor(private service: UserService, private serviceApi: UserApiService, private router: Router, public utils: Utils) {
 
   }
 
@@ -26,7 +27,7 @@ export class UsersListComponent implements OnInit {
   }
 
   getUsers() {
-    this.service.getUsers().subscribe(
+    this.serviceApi.getAll().subscribe(
       (result: ResponsePageable) => {
       debugger;
       this.users = [];

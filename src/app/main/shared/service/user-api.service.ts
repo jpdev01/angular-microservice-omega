@@ -15,7 +15,7 @@ export class UserApiService {
 
   constructor(private httpClient: HttpClient, private utils: Utils) { }
 
-  onInit(): void {
+  ngOnInit(): void {
     this.apiUrl = this.utils.getApiUrl();
     this.httpOptions = this.utils.getHttpOptions();
   }

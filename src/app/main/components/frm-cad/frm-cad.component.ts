@@ -11,6 +11,7 @@ export class FrmCadComponent implements OnInit {
   //@Input('frm') frm;
   @Input() componentInfo: any;
   service: any;
+  element: any;
 
   constructor() { }
 
@@ -27,12 +28,12 @@ export class FrmCadComponent implements OnInit {
     this.service = this.componentInfo.service;
   }
 
-  cancel(): void {
+  public cancel(): void {
     // this.dialogRef.close();
     this.frm.reset();
   }
 
-  isEditing(): boolean {
+  public isEditing(): boolean {
     // return this.formFromEditing;
     return false;
   }
@@ -42,6 +43,12 @@ export class FrmCadComponent implements OnInit {
       () => {},
       (error) => { console.log (error); }
       );
+  }
+
+  load(id: number): void{
+    this.service.getById(id).subscribe(result => {
+      this.element = result;
+    });
   }
 
 }

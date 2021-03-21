@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/main/shared/model/user.model';
 import { InterfaceRule } from '../../../../shared/model/interface-rule.model';
+import { UserApiService } from 'src/app/main/shared/service/user-api.service';
 
 @Component({
   selector: 'app-user-info',
@@ -15,7 +16,7 @@ export class UserInfoComponent implements OnInit {
   user: any;
   navbarRule;
 
-  constructor(private route: ActivatedRoute, private service: UserService) {
+  constructor(private route: ActivatedRoute, private service: UserService, private serviceApi: UserApiService) {
     // this.route.params.subscribe(params => this.userId = params['id']);
   }
 
@@ -31,7 +32,7 @@ export class UserInfoComponent implements OnInit {
 
   getUserById(id: number): void{
     // this.route.params.subscribe(params => this.userId = params['id']);
-    this.service.getUser(id).subscribe( result => {
+    this.serviceApi.getById(id).subscribe( result => {
       this.user = result;
     });
   }

@@ -1,14 +1,17 @@
-import { UserService } from '../../../../shared/service/user.service';
+import { FormGroupCustom } from './../../../../shared/model/form-group.model';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/main/shared/model/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
-import {FormField} from '../../../../shared/model/form-field.model';
-import {FormGroupCustom} from '../../../../shared/model/form-group.model';
-import {FormModel} from '../../../../shared/model/form-model.model';
+import { FormField } from '../../../../shared/model/form-field.model';
+import { FormGroupCustom } from '../../../../shared/model/form-group.model';
+import { FormModel } from '../../../../shared/model/form-model.model';
 import { InterfaceRule } from 'src/app/main/shared/model/interface-rule.model';
+import { UserService } from '../../../../shared/service/user.service';
+import { UserApiService } from '../../../../shared/service/user-api.service';
 
 @Component({
   selector: 'app-user-frm',
@@ -25,7 +28,7 @@ export class UserFrmComponent implements OnInit {
   formFromEditing = false;
   componentInfo: any;
 
-  constructor(private route: ActivatedRoute, public service: UserService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder) {
 
   }
 
@@ -35,30 +38,24 @@ export class UserFrmComponent implements OnInit {
     this.getIdByUrl();
     if (this.userId) {
       this.formFromEditing = true;
-      this.loadUserInfo(this.userId);
+      // this.loadUserInfo(this.userId);
     }
     this.initFormImpl();
   }
 
   private initComponentInfo(): void {
-    this.componentInfo = {name: "user-frm", service: this.service};
+    this.componentInfo = { name: "user-frm", service: this.serviceApi };
   }
 
-  loadUserInfo(id: number): void{
-    this.service.getUser(id).subscribe(result => {
-      this.user = result[0];
-    });
-  }
-
-  getIdByUrl(): void{
+  getIdByUrl(): void {
     this.route.params.subscribe(params => this.userId = params['id']);
   }
 
-  initFormImpl():void {
+  initFormImpl(): void {
     this.initFormBuilder();
   }
 
-  initFormBuilder():void {
+  initFormBuilder(): void {
     let valueDefault = "";
 
     this.userForm = this.fb.group({
@@ -71,8 +68,21 @@ export class UserFrmComponent implements OnInit {
     });
   }
 
-  initFormValues(): void {
+  private initFormValues(): void {
+    // this.formCustom = new FormField();
 
+
+    let formField = new FormField({
+      id: "login",
+      label: "Login",
+      type: "text"
+    });
+
+    let frmGroup = new FormGroupCustom({
+      fields: [formField]
+    });
+
+    let frmModel = new FormModel
   }
 
   hideUserNavbar() {

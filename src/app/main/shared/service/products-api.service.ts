@@ -9,20 +9,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ProductsApiService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
+  httpOptions;
+  apiUrl: string;
 
   constructor(private utils: Utils, private httpClient: HttpClient) { }
 
-  public getProducts(): Observable<ResponsePageable>{
-    return this.httpClient.get<ResponsePageable>(this.utils.getApiUrl() + '/product');
+  ngOnInit(){
+    this.httpOptions = this.utils.getHttpOptions();
+    this.apiUrl = this.utils.getApiUrl();
   }
 
-  public getProductById(): Observable<ResponsePageable>{
-    return this.httpClient.get<ResponsePageable>(this.utils.getApiUrl() + '/product');
+  public getAll(): Observable<ResponsePageable>{
+    return this.httpClient.get<ResponsePageable>(this.apiUrl   + '/product');
+  }
+
+  public getById(): Observable<ResponsePageable>{
+    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/product');
   }
 
 
