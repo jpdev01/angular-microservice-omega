@@ -46,7 +46,7 @@ export class ProductListComponent implements OnInit {
 
   private redirectToProductInfo(id: number){
     // this.router.navigate(['home/product/info'], { queryParams: { id: id } });
-    this.router.navigate(['home/product/info', id]);
+    this.router.navigate(['home/products/info', id]);
   }
 
   private showNavbar(): void {
