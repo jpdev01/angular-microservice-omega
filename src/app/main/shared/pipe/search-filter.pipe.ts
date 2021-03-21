@@ -11,7 +11,7 @@ export class SearchFilterPipe implements PipeTransform {
       if (this.isUser(items)) {
         return items.filter(item => item.login != null && item.login.indexOf(term) !== -1);
       }
-      return items.filter(item => item.login.indexOf(term) !== -1);
+      return items.filter(item => item.name && item.name.indexOf(term) !== -1);
     }
     return items;
   }
