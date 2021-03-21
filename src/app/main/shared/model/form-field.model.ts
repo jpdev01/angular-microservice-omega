@@ -2,7 +2,7 @@ export class FormField {
   id: string;
   label: string;
   type = "text";
-  defaultValue: string;
+  defaultValue: string = "";
   classes = "";
   formControlName: string;
   row: string;

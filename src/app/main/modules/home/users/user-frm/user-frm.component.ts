@@ -81,7 +81,7 @@ export class UserFrmComponent implements OnInit {
 
 
     this.formModel = new FormModel({
-      fields: [formField]
+      fields: [[formField]]
     });
 
   }

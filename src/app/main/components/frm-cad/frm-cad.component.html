@@ -1,7 +1,24 @@
 <form [formGroup]="frm">
+  <div *ngFor="let group of formModel.fields">
+    <div class="row">
+      <div *ngFor="let field of group">
+        <div class="form-group row form-group-sm col-md-2">
+          <label for="" class="col-sm-2 col-form-label col-form-label-sm">{{ field.label }}</label>
+          <!-- readonly -->
+          <div class="col-sm-10">
+            <input type="{{ field.type }}" class="form-control-plaintext form-control-sm" id="{{ field.id }}" value="{{ field.defaultValue }}">
+          </div>
+        </div>
+      </div>
+    </div>
 
-
+  </div>
   <div class="row">
+
+
+  </div>
+
+  <!-- <div class="row">
     <div class="form-group col-md-2 input-group-sm" >
       <label for="name">Login: </label>
       <input type="text"class="form-control form-control-sm" formControlName="login">
@@ -28,7 +45,7 @@
         <option>Desativo</option>
       </select>
     </div>
-  </div>
+  </div> -->
 
   <!--
     aqui deverá ser inserido um select -> provavelmente atraves de modal, para selecionar o cliente que contem as info para o usuario
