@@ -22,12 +22,7 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-
-    this.utils.emitterFilterChange.subscribe(
-      (filter) => {
-        this.filter = filter;
-      }
-    );
+    this.createFilter();
   }
 
   getUsers() {
@@ -47,10 +42,15 @@ export class UsersListComponent implements OnInit {
     this.redirectToUserInfo(u.id);
   }
 
-
   redirectToUserInfo(id: number){
     this.router.navigate(['home/user/info', id]);
   }
 
-
+  private createFilter():void {
+    this.utils.emitterFilterChange.subscribe(
+      (filter) => {
+        this.filter = filter;
+      }
+    );
+  }
 }

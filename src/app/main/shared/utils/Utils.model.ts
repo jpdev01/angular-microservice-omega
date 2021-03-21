@@ -1,3 +1,4 @@
+import { HttpHeaders } from "@angular/common/http";
 import { EventEmitter, Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Subject } from 'rxjs';
@@ -16,6 +17,12 @@ export class Utils {
   // filter!
   emitterFilterChange = new EventEmitter<string>();
 
-  
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type' : 'application/json'
+    })
+  };
+
+
 
 }
