@@ -11,6 +11,8 @@ import { PipeModule } from '../../../shared/pipe/pipe/pipe.module';
 import { UserFrmComponent } from './user-frm/user-frm.component';
 import { NavbarSecundaryModule } from 'src/app/main/components/navbar-secundary/navbar-secundary.module';
 import { NavbarSecundaryComponent } from 'src/app/main/components/navbar-secundary/navbar-secundary.component';
+import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
+import { FrmCadComponent } from 'src/app/main/components/frm-cad/frm-cad.component';
 
 
 @NgModule({
@@ -21,9 +23,10 @@ import { NavbarSecundaryComponent } from 'src/app/main/components/navbar-secunda
     FormsModule,
     PipeModule,
     ReactiveFormsModule,
-    NavbarSecundaryModule
+    NavbarSecundaryModule,
+    FrmCadModule
   ],
-  providers: [FormBuilder, Utils, UserService, NavbarSecundaryComponent],
+  providers: [FormBuilder, Utils, UserService, NavbarSecundaryComponent, FrmCadComponent],
   exports: [UsersComponent]
 })
 export class UsersModule { }

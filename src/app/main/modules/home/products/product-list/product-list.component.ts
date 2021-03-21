@@ -50,7 +50,7 @@ export class ProductListComponent implements OnInit {
   }
 
   private showNavbar(): void {
-      this.service.showUserNavbar(true);
+      this.service.showSecondNavbar(true);
   }
 
 }

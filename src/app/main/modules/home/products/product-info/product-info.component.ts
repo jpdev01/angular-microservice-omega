@@ -1,7 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../../shared/service/products.service';
-import { InterfaceRule } from '../../../../shared/model/interface-rule.model';
 
 @Component({
   selector: 'app-product-info',
@@ -14,17 +13,16 @@ export class ProductInfoComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private service: ProductsService) { }
 
   ngOnInit() {
-    this.showNavbar(false);
     this.getParams();
+    this.hideSearchNavbar();
   }
 
   getParams(): void {
     this.route.params.subscribe(params => this.productId = params['id']);
   }
 
-  private showNavbar(show: boolean) {
-    let interfaceRuleNavbar = new InterfaceRule("navbar", show, "");
-    this.service.interfaceRuleEmitter.emit(interfaceRuleNavbar);
+  private hideSearchNavbar(): void {
+    this.service.showSecondNavbar(false);
   }
 
   // getParams(): void {

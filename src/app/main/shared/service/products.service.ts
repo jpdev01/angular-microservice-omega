@@ -11,7 +11,7 @@ export class ProductsService {
 
   interfaceRuleEmitter = new EventEmitter<any>();
 
-  showUserNavbar(show: boolean): void {
+  showSecondNavbar(show: boolean): void {
     let navbarRule = new InterfaceRule("navbar", show, null);
     this.interfaceRuleEmitter.emit(navbarRule);
   }

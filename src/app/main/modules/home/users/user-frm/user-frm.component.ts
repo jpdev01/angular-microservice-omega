@@ -23,12 +23,14 @@ export class UserFrmComponent implements OnInit {
   formCustom: FormModel;
   navbarRule;
   formFromEditing = false;
+  componentInfo: any;
 
-  constructor(private route: ActivatedRoute, private service: UserService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, public service: UserService, private fb: FormBuilder) {
 
   }
 
   ngOnInit(): void {
+    this.initComponentInfo();
     this.hideUserNavbar();
     this.getIdByUrl();
     if (this.userId) {
@@ -36,6 +38,10 @@ export class UserFrmComponent implements OnInit {
       this.loadUserInfo(this.userId);
     }
     this.initFormImpl();
+  }
+
+  private initComponentInfo(): void {
+    this.componentInfo = {name: "user-frm", service: this.service};
   }
 
   loadUserInfo(id: number): void{
@@ -73,19 +79,4 @@ export class UserFrmComponent implements OnInit {
     this.service.hideUserNavbar();
   }
 
-  cancel(): void {
-    // this.dialogRef.close();
-    this.userForm.reset();
-  }
-
-  isEditing(): boolean {
-    return this.formFromEditing;
-  }
-
-  saveUser(): void {
-    this.service.saveUser(this.userForm.value).subscribe(
-      () => {},
-      (error) => { console.log (error); }
-      );
-  }
 }
