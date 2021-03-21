@@ -9,10 +9,11 @@ import { Utils } from 'src/app/main/shared/utils/Utils.model';
 import { ProductsApiService } from 'src/app/main/shared/service/products-api.service';
 import { PipeModule } from 'src/app/main/shared/pipe/pipe/pipe.module';
 import { SearchFilterPipe } from 'src/app/main/shared/pipe/search-filter.pipe';
+import { ProductListComponent } from './product-list/product-list.component';
 
 
 @NgModule({
-  declarations: [ProductsComponent],
+  declarations: [ProductsComponent, ProductListComponent],
   imports: [
     CommonModule,
     ProductsRoutingModule,
