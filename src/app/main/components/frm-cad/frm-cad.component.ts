@@ -24,6 +24,7 @@ export class FrmCadComponent implements OnInit {
     console.log(this.formModel);
     this.initComponentInfo();
     this.initConfig();
+    this.configLabelSize();
   }
 
   initFormValues(): void {
@@ -59,6 +60,35 @@ export class FrmCadComponent implements OnInit {
     this.service.getById(id).subscribe(result => {
       this.element = result;
     });
+  }
+
+  private configLabelSize(): void {
+
+    this.formModel.fields.forEach(group => {
+      group.labelSize = "col-md-4";
+    });
+
+    this.formModel.fields.forEach((group) => {
+
+      group.forEach(field => {
+        let actualLabelSize = field.options.label.size;
+        if (actualLabelSize) {
+          let sizeOfField = actualLabelSize.substring(0, actualLabelSize.length - 1);
+          if (group.labelSize) {
+            if (sizeOfField > group.labelSize) {
+              group.labelSize = sizeOfField;
+            }
+          } else {
+            group.labelSize = sizeOfField;
+          }
+
+
+        }
+      });
+
+
+    });
+
   }
 
 }
