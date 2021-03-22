@@ -6,6 +6,7 @@ export class FormField {
   classes = "";
   formControlName: string;
   row: string;
+  options: object;
 
   constructor(options: {
     id?: string;
@@ -14,6 +15,7 @@ export class FormField {
     defaultValue?: string;
     style?: string;
     row?: string;
+    size?: string;
   }= {}) {
 
     this.id = options.id;
@@ -26,6 +28,10 @@ export class FormField {
       this.classes = options.style;
     }
     this.row = options.row;
+    this.options = {
+      size: options.size
+    };
+
 
   }
 

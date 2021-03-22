@@ -13,6 +13,8 @@ export class FrmCadComponent implements OnInit {
   @Input() formModel;
   service: any;
   element: any;
+  labelConfig = {size: ''};
+
 
   constructor() { }
 
@@ -21,6 +23,7 @@ export class FrmCadComponent implements OnInit {
     debugger;
     console.log(this.formModel);
     this.initComponentInfo();
+    this.initConfig();
   }
 
   initFormValues(): void {
@@ -29,6 +32,10 @@ export class FrmCadComponent implements OnInit {
 
   initComponentInfo(): void {
     this.service = this.componentInfo.service;
+  }
+
+  private initConfig(): void {
+    this.labelConfig = {size: "col-sm-4"};
   }
 
   public cancel(): void {
