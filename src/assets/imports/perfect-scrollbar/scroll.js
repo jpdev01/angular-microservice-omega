@@ -1,6 +1,8 @@
 
 var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
-var ps = new PerfectScrollbar(myCustomScrollbar);
+if (myCustomScrollbar) {
+  var ps = new PerfectScrollbar(myCustomScrollbar);
+}
 
 var scrollbarY = myCustomScrollbar.querySelector('.ps__rail-y');
 
