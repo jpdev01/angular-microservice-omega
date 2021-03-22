@@ -32,7 +32,7 @@ export class FormField {
     }
     this.row = options.row;
     this.options = {
-      // label: { size: "" }
+      label: { size: "" }
     };
     this.fields = options.fields;
 
