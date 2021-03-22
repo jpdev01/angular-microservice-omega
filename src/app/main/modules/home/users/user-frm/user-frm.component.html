@@ -1,1 +1,213 @@
-<app-frm-cad [frm]="userForm" [componentInfo]="componentInfo" [formModel]="formModel"></app-frm-cad>
+<div class="card-header panel-heading">
+  <div class="panel-title card-title">Usuário: </div>
+</div>
+
+
+<div class="col-12 h-75 pb-4 w-100">
+  <div class="row h-100">
+    <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto h-100 mb-4 w-100">
+
+      <form class="form-horizontal" type="bootstrap" novalidate="" enctype="multipart/form-data" name="my_form"
+        id="my_form" method="post">
+        <div class="card-body panel-body" style="width: 100%">
+
+          <div class="form-group tformrow row ">
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;">
+                <label id="tlabel_1989842181">Id</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-10 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;"><input
+                  class="form-control tfield tfield_disabled" widget="tentry" type="text" aria-label="Id"
+                  aria-labelledby="tlabel_1989842181" name="id" value="" id="tentry_1124894134" readonly="1"
+                  tabindex="-1" onmouseover="style.cursor='default'"></div>
+            </div>
+          </div>
+          <div class="form-group tformrow row ">
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  id="tlabel_1560360311">Description</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-10 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;"><input
+                  class="form-control tfield" widget="tentry" type="text" placeholder="Description placeholder" title=""
+                  aria-label="Description" aria-labelledby="tlabel_1560360311" name="description" value=""
+                  id="tentry_1929321683" data-original-title="Tip for description"></div>
+            </div>
+          </div>
+          <div class="form-group tformrow row ">
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  id="tlabel_1762076291">Password</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-10 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;"><input
+                  class="form-control tfield" widget="tpassword" aria-label="Password"
+                  aria-labelledby="tlabel_1762076291" name="password" value="" type="password"></div>
+            </div>
+          </div>
+          <div class="form-group tformrow row ">
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  id="tlabel_1879863457">Created at</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-4 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;;width: 100%">
+
+                <div class="tdate-group tdatetimepicker input-append date" style="width: 100%;"><input
+                    class="form-control tfield" widget="tdatetime" type="text" aria-label="Created at"
+                    aria-labelledby="tlabel_1879863457" name="created" value="21/03/2021 20:05" style="width:100%;"
+                    id="tdatetime_1738103035" maxlength="16"><span class="add-on btn btn-default tdate-group-addon"><i
+                      class="far fa-clock icon-th"></i></span>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  id="tlabel_1368610459">Expires at</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-4 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;;width: 100%">
+
+                <div class="tdate-group date" style="width: 100%;"><input class="form-control tfield" widget="tdate"
+                    type="text" autocomplete="off" aria-label="Expires at" aria-labelledby="tlabel_1368610459"
+                    name="expires" value="22/03/2021" style="width:100%;" id="tdate_1611983680" maxlength="10"><span
+                    class="btn btn-default tdate-group-addon"><i class="far fa-calendar"></i></span></div>
+
+              </div>
+            </div>
+          </div>
+          <div class="form-group tformrow row ">
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  id="tlabel_1850915546">Value</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-4 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;;width: 100%">
+                <input class="form-control tfield" widget="tentry" type="text" style="text-align:right;width:100%;"
+                  pattern="^\$?(([1-9](\d*|\d{0,2}(\.\d{3})*))|0)(,\d{1,2})?$" inputmode="numeric" data-nmask="2,."
+                  aria-label="Value" aria-labelledby="tlabel_1850915546" name="value" value="123,45"
+                  id="tentry_1166135945">
+
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  id="tlabel_1048312175">Color</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-4 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;;width: 100%">
+                <div class="input-group color-div colorpicker-component colorpicker-element"
+                  style="float: inherit; width: 100%;">
+                  <input class="form-control tfield" widget="tcolor" type="text" autocomplete="off" aria-label="Color"
+                    aria-labelledby="tlabel_1048312175" name="color" value="#ff0000" style="width:100%;"
+                    id="tcolor_1881334978"><span class="input-group-addon tcolor"><i class="tcolor-icon"
+                      style="background-color: rgb(255, 0, 0);"></i>
+                  </span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="form-group tformrow row ">
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  id="tlabel_1793082706">Weight</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-4 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;;width: 100%">
+                <div class="input-group spinner" data-trigger="spinner"><input class="form-control tfield"
+                    widget="tspinner" aria-label="Weight" aria-labelledby="tlabel_1793082706" name="weight" value="30"
+                    type="text" data-min="1" data-max="100" data-step="0.1" data-rule="currency"
+                    style="text-align:right;width:100%;" relwidth="100%" id="tspinner_1408495056">
+                  <div class="input-group-addon"> <a href="javascript:;" class="spin-up" data-spin="up"><i
+                        class="fa fa-caret-up"></i></a> <a href="javascript:;" class="spin-down" data-spin="down"><i
+                        class="fa fa-caret-down"></i></a> </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  id="tlabel_1071073004">Type</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-4 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;;width: 100%">
+                <select class="form-control tcombo" widget="tcombo" aria-label="Type"
+                  aria-labelledby="tlabel_1071073004" name="type" id="tcombo_1611681298" style="width:100%;">
+                  <option value=""></option>
+                  <option value="a" selected="1">Type a</option>
+                  <option value="b">Type b</option>
+                  <option value="c">Type c</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group tformrow row ">
+            <div class="col-sm-12 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  style="color: #7D78B6;font-size: 12pt;font-weight: bold;font-style: italic;text-align:left;border-bottom:1px solid #c0c0c0;width:100%"
+                  id="tlabel_1071858805">Division</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group tformrow row ">
+            <div class="col-sm-4 col-lg-2 fb-field-container  col-form-label control-label" style="min-height:26px">
+              <div class="fb-inline-field-container " style="display: inherit;vertical-align:top;"><label
+                  id="tlabel_1232587308">Description</label>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-10 fb-field-container " style="min-height:26px">
+              <div class="fb-inline-field-container form-line"
+                style="display: inherit;vertical-align:top;;width: 100%;height: 50px"><textarea
+                  class="form-control tfield" widget="ttext" aria-label="Description"
+                  aria-labelledby="tlabel_1232587308" name="text" style="width:100%;;height:100%"
+                  id="ttext_1655779723"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+
+
+
+  </div>
+</div>
+
+<div class="panel-footer card-footer" style="width: 100%">
+  <button id="tbutton_btn_send" name="btn_send" class="btn btn-default btn-sm" aria-label="Send"><span>
+      <i class="far fa-check-circle green" style="padding-right:4px"></i>
+      Send</span>
+  </button>
+  <div class="btn-group"
+    style="display:inline-block; -moz-user-select: none; -webkit-user-select:none; user-select:none;">
+    <button data-toggle="dropdown" class="btn btn-default btn-sm dropdown-toggle">
+      <i class="fa fa-th blue"></i>
+      Dropdown test</button>
+    <ul class="dropdown-menu pull-left" aria-labelledby="drop2" widget="tdropdown">
+      <li><a style="cursor: pointer">
+          <i class="far fa-check-circle" style="padding: 4px"></i>
+          <span>PostAction</span>
+        </a>
+      </li>
+      <li><a onclick="" style="cursor: pointer">
+          <i class="fa fa-link" style="padding: 4px"></i>
+          <span>Shortcut to customers</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
