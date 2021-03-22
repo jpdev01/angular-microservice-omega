@@ -23,7 +23,7 @@ export class FormModel {
     // this.initGroupsFields(options);
     this.fields = options.fields;
     this.formGroupName = options.formGroupName;
-    this.options = options;
+    this.options = options.options;
 
   }
 

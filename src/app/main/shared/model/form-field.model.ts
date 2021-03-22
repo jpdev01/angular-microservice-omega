@@ -19,6 +19,11 @@ export class FormField {
     size?: string;
     labelConfig?: any;
     fields?: object;
+    options?: {
+      label: {
+        size: string
+      }
+    };
   }= {}) {
 
     this.id = options.id;
@@ -31,9 +36,7 @@ export class FormField {
       this.classes = options.style;
     }
     this.row = options.row;
-    this.options = {
-      label: { size: "" }
-    };
+    this.options = options;
     this.fields = options.fields;
 
 

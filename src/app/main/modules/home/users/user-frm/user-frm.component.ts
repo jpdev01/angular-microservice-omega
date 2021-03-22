@@ -96,7 +96,9 @@ export class UserFrmComponent implements OnInit {
       label: "Permissao",
       type: "select",
       fields: [Permission],
-      labelConfig: {size: "col-sm-5"}
+      options: {
+        label: {size: "col-md-5"}
+      }
     });
 
     groups.push(formField);
