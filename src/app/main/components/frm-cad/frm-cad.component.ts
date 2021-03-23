@@ -11,7 +11,7 @@ export class FrmCadComponent implements OnInit {
   //@Input('frm') frm;
   @Input() componentInfo: any;
   @Input() formModel;
-  service: any;
+  serviceApi: any;
   element: any;
   labelConfig = {size: ''};
 
@@ -23,8 +23,6 @@ export class FrmCadComponent implements OnInit {
     debugger;
     console.log(this.formModel);
     this.initComponentInfo();
-    this.initConfig();
-    this.configLabelSize();
   }
 
   initFormValues(): void {
@@ -32,11 +30,7 @@ export class FrmCadComponent implements OnInit {
   }
 
   initComponentInfo(): void {
-    this.service = this.componentInfo.service;
-  }
-
-  private initConfig(): void {
-    this.labelConfig = {size: "col-sm-4"};
+    this.serviceApi = this.componentInfo.serviceApi;
   }
 
   public cancel(): void {
@@ -50,43 +44,16 @@ export class FrmCadComponent implements OnInit {
   }
 
   save(): void {
-    this.service.saveUser(this.frm.value).subscribe(
+    this.serviceApi.save(this.frm.value).subscribe(
       () => {},
       (error) => { console.log (error); }
       );
   }
 
   load(id: number): void{
-    this.service.getById(id).subscribe(result => {
+    this.serviceApi.getById(id).subscribe(result => {
       this.element = result;
     });
   }
-
-  private configLabelSize(): void {
-
-    // let groups = this.formModel.fields;
-
-    // groups.forEach(group => {
-    //   group.config.label = "col-md-4";
-    // });
-
-    // for (let i = 0; i <= groups.length; i++) {
-    //   let labelSizeOfGroup;
-
-    //   if (groups[i].configs.label) {
-    //     labelSizeOfGroup = groups[i].config.label.size;
-    //   }
-
-    //   let fieldGroupSize;
-    //   for (let posField = 0; posField <= groups.fields.length; posField++) {
-
-    //   }
-    // }
-
-  }
-
-
-
-
 
 }

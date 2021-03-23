@@ -7,7 +7,7 @@
   <div class="row h-100">
     <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto h-100 mb-4 w-100">
 
-      <form class="form-horizontal">
+      <form class="form-horizontal" [formGroup]="frm">
         <div class="card-body panel-body" style="width: 100%">
 
           <div *ngFor="let group of formModel.fields">
@@ -33,9 +33,9 @@
                       <div class="col-sm-2 col-lg-10 fb-field-container " style="min-height:26px">
                         <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;">
                           <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
-                            *ngIf="field.type != 'select'">
+                            *ngIf="field.type != 'select'" formControlName="{{ field.id }}">
                           <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'">
-                            <option *ngFor="let option of field.fields || ToArray(field.fields[0])" value="{{ option }}">{{ option }}</option>
+                            <option *ngFor="let option of field.fields" value="{{ option }}">{{ option }}</option>
                           </select>
                         </div>
                       </div>
@@ -63,7 +63,7 @@
   </div>
 </div>
 
-<div class="panel-footer card-footer" style="width: 100%">
+<div class="panel-footer card-footer" style="width: 100%; text-align: right;">
 
   <div class="btn-group"
     style="display:inline-block; -moz-user-select: none; -webkit-user-select:none; user-select:none;">
@@ -82,5 +82,7 @@
         </a>
       </li>
     </ul> -->
+    <button type="button" class="btn btn-secondary" onclick="cancel()">Cancelar</button>
+    <button type="button" class="btn btn-light" (click)="save()">Salvar</button>
   </div>
 </div>

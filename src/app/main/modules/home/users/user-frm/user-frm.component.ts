@@ -45,7 +45,7 @@ export class UserFrmComponent implements OnInit {
   }
 
   private initComponentInfo(): void {
-    this.componentInfo = { name: "user-frm", service: this.serviceApi };
+    this.componentInfo = { name: "user-frm", serviceApi: this.serviceApi };
   }
 
   getIdByUrl(): void {
@@ -62,10 +62,10 @@ export class UserFrmComponent implements OnInit {
     this.userForm = this.fb.group({
       login: [valueDefault, [Validators.required]],
       password: [valueDefault, [Validators.required]],
-      createDate: ['2020-08-01T20:00:00', [Validators.required]],
+      createDate: ['2020-08-01T20:00:00', []],
       permission: ['', [Validators.required]],
-      active: ['', [Validators.required]],
-      customer: ['', [Validators.required]]
+      active: ['', []],
+      customer: ['', []]
     });
   }
 

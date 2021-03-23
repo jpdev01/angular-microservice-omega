@@ -1,3 +1,4 @@
+import { Permission } from 'src/app/main/shared/enum/permission.enum';
 import { User } from './../model/user.model';
 import { Utils } from './../utils/Utils.model';
 import { ResponsePageable } from './../model/responsePageable.model';
@@ -13,11 +14,14 @@ export class UserApiService {
   apiUrl: string;
   httpOptions: object;
 
-  constructor(private httpClient: HttpClient, private utils: Utils) { }
-
-  ngOnInit(): void {
+  constructor(private httpClient: HttpClient, private utils: Utils) {
     this.apiUrl = this.utils.getApiUrl();
     this.httpOptions = this.utils.getHttpOptions();
+   }
+
+  ngOnInit(): void {
+    // this.apiUrl = this.utils.getApiUrl();
+    // this.httpOptions = this.utils.getHttpOptions();
   }
 
   public getAll(): Observable<ResponsePageable> {
@@ -30,7 +34,10 @@ export class UserApiService {
     return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user/' + id);
   }
 
-  public save(user: any): Observable<User> {
+  public save(user: User): Observable<User> {
+    // if (user.getPermission()){
+    //   // user.setPermission(Permission[user.getPermission()]);
+    // }
     return this.httpClient.post<any>(this.apiUrl + '/user/save', user, this.httpOptions);
   }
 

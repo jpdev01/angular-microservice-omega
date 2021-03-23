@@ -10,4 +10,12 @@ export class User
   permission: Permission;
   active = Active.ACTIVE;
   customer: Customer;
+
+  public getPermission(): Permission {
+    return this.permission;
+  }
+
+  public setPermission(permission: Permission) {
+    this.permission = permission;
+  }
 }
