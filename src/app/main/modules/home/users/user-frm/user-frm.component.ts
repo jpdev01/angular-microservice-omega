@@ -96,7 +96,7 @@ export class UserFrmComponent implements OnInit {
       label: "Permissao",
       type: "select",
       fields: [Permission],
-      options: {
+      config: {
         label: {size: "col-md-5"}
       }
     });

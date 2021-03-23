@@ -7,14 +7,14 @@ export class FormModel {
   fields: any[];
   groups: [{key: string; field: FormField[]}];
   formGroupName: string;
-  options: object;
+  configs: object;
 
   constructor(options: {
     id?: string;
     name?: string;
     formGroupName?: string;
     fields?: any[];
-    options?: object;
+    configs?: object;
   } = {}) {
 
     this.id = options.id;
@@ -23,7 +23,7 @@ export class FormModel {
     // this.initGroupsFields(options);
     this.fields = options.fields;
     this.formGroupName = options.formGroupName;
-    this.options = options.options;
+    this.configs = options.configs;
 
   }
 

@@ -64,31 +64,26 @@ export class FrmCadComponent implements OnInit {
 
   private configLabelSize(): void {
 
-    this.formModel.fields.forEach(group => {
-      group.labelSize = "col-md-4";
+    let groups = this.formModel.fields;
+
+    groups.forEach(group => {
+      group.config.label = "col-md-4";
     });
 
-    this.formModel.fields.forEach((group) => {
+    for (let i = 0; i <= groups.length; i++) {
+      let labelSizeOfGroup;
 
-      group.forEach(field => {
-        let actualLabelSize = field.options.label.size;
-        if (actualLabelSize) {
-          let sizeOfField = actualLabelSize.substring(0, actualLabelSize.length - 1);
-          if (group.labelSize) {
-            if (sizeOfField > group.labelSize) {
-              group.labelSize = sizeOfField;
-            }
-          } else {
-            group.labelSize = sizeOfField;
-          }
+      if (groups[i].configs.label) {
+        labelSizeOfGroup = groups[i].config.label.size;
+      }
 
+      let fieldGroupSize;
+      for (let posField = 0; posField <= groups.fields.length; posField++) {
 
-        }
-      });
-
-
-    });
+      }
+    }
 
   }
+
 
 }

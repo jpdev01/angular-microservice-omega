@@ -11,11 +11,13 @@
         <div class="card-body panel-body" style="width: 100%">
 
           <div *ngFor="let group of formModel.fields">
+            <div class="col-4">
+
             <div *ngFor="let field of group">
 
 
 
-              <div class="form-group row form-group-sm {{ group.labelSize }}">
+              <div class="form-group row col-12 form-group-sm {{ group.labelSize }}">
                 <div class="fb-field-container col-form-label control-label" style="min-height:26px">
                   <div class="fb-inline-field-container " style="display: inherit; vertical-align:top;">
                     <label id="tlabel_1989842181">{{ field.label }}: </label>
@@ -32,7 +34,7 @@
                 </div>
               </div>
 
-
+            </div>
 
             </div>
           </div>
