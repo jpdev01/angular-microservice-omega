@@ -24,11 +24,12 @@
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
                 <div class="col">
                   <div *ngFor="let field of group">
-                    <div class="row">
+                    <div class="row mb-2">
                       <div class="col-sm-2 col-lg-10 fb-field-container " style="min-height:26px">
                         <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;">
                           <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
@@ -45,35 +46,6 @@
             </div>
 
 
-
-            <div class="col-4">
-
-
-              <div *ngFor="let field of group">
-
-
-
-                <div class="form-group row col-12 form-group-sm {{ group.labelSize }}">
-                  <div class="fb-field-container col-form-label control-label" style="min-height:26px">
-                    <div class="fb-inline-field-container " style="display: inherit; vertical-align:top;">
-                      <label id="tlabel_1989842181">{{ field.label }}: </label>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-2 col-lg-10 fb-field-container " style="min-height:26px">
-                    <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;">
-                      <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
-                        *ngIf="field.type != 'select'">
-                      <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'">
-                        <option></option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
           </div>
 
 
