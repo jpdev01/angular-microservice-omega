@@ -35,7 +35,7 @@
                           <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
                             *ngIf="field.type != 'select'">
                           <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'">
-                            <option></option>
+                            <option *ngFor="let option of field.fields || ToArray(field.fields[0])" value="{{ option }}">{{ option }}</option>
                           </select>
                         </div>
                       </div>

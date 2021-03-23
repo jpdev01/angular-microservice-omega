@@ -11,6 +11,7 @@ import { InterfaceRule } from 'src/app/main/shared/model/interface-rule.model';
 import { UserService } from '../../../../shared/service/user.service';
 import { UserApiService } from '../../../../shared/service/user-api.service';
 import { Permission } from 'src/app/main/shared/enum/permission.enum';
+import { EnumUtils } from 'src/app/main/shared/utils/enum-utils.model';
 
 @Component({
   selector: 'app-user-frm',
@@ -27,7 +28,7 @@ export class UserFrmComponent implements OnInit {
   formFromEditing = false;
   componentInfo: any;
 
-  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder, private enumUtils: EnumUtils) {
 
   }
 
@@ -95,7 +96,7 @@ export class UserFrmComponent implements OnInit {
       id: "permission",
       label: "Permissao",
       type: "select",
-      fields: [Permission],
+      fields: this.enumUtils.getStringsOfEnum(Permission),
       config: {
         label: {size: "col-md-5"}
       }
@@ -112,6 +113,9 @@ export class UserFrmComponent implements OnInit {
 
 
   }
+  // getStringsOfEnum(myEnum){
+  //   return Object.keys(myEnum).map(key => myEnum[key]).filter(value => typeof value === 'string') as string[];
+  // }
 
   hideUserNavbar() {
     this.service.hideUserNavbar();
