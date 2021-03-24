@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+declare var $:any;
 
 @Component({
   selector: 'app-frm-cad',
@@ -49,6 +50,7 @@ export class FrmCadComponent implements OnInit {
   save(): void {
     this.serviceApi.save(this.frm.value).subscribe(
       (sucess ) => {
+        $('.toast').toast('show');
         this.onSave.onSucess();
       },
       (error) => { console.log (error); }
