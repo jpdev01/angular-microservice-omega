@@ -35,7 +35,7 @@
                           <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
                             *ngIf="field.type != 'select'" formControlName="{{ field.id }}">
                           <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'">
-                            <option *ngFor="let option of field.fields" value="{{ option }}">{{ option }}</option>
+                            <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option }}</option>
                           </select>
                         </div>
                       </div>
