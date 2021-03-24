@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-frm-cad',
@@ -14,9 +15,10 @@ export class FrmCadComponent implements OnInit {
   serviceApi: any;
   element: any;
   labelConfig = {size: ''};
+  onSave: any;
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     console.log(this.frm);
@@ -31,6 +33,7 @@ export class FrmCadComponent implements OnInit {
 
   initComponentInfo(): void {
     this.serviceApi = this.componentInfo.serviceApi;
+    this.onSave = this.componentInfo.onSave;
   }
 
   public cancel(): void {
@@ -45,7 +48,9 @@ export class FrmCadComponent implements OnInit {
 
   save(): void {
     this.serviceApi.save(this.frm.value).subscribe(
-      () => {},
+      (sucess ) => {
+        this.onSave.onSucess();
+      },
       (error) => { console.log (error); }
       );
   }

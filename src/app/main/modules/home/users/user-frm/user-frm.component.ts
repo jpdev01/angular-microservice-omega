@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/main/shared/model/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -27,7 +27,7 @@ export class UserFrmComponent implements OnInit {
   formFromEditing = false;
   componentInfo: any;
 
-  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder, private router: Router) {
 
   }
 
@@ -44,7 +44,12 @@ export class UserFrmComponent implements OnInit {
   }
 
   private initComponentInfo(): void {
-    this.componentInfo = { name: "user-frm", serviceApi: this.serviceApi };
+    this.componentInfo = {
+      name: "user-frm", serviceApi: this.serviceApi, onSave: {
+        onSucess: () => {
+          this.router.navigate(['home/users']);
+        }, onError: null}
+    };
   }
 
   getIdByUrl(): void {
@@ -106,10 +111,6 @@ export class UserFrmComponent implements OnInit {
     this.formModel = new FormModel({
       fields: [groups]
     });
-
-
-
-
 
   }
 
