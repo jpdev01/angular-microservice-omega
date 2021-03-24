@@ -96,7 +96,7 @@ export class UserFrmComponent implements OnInit {
       id: "permission",
       label: "Permissao",
       type: "select",
-      fields: this.enumUtils.getStringsOfEnum(Permission),
+      fields: Permission,
       config: {
         label: {size: "col-md-5"}
       }
