@@ -24,6 +24,7 @@ export class UsersListComponent implements OnInit {
   ngOnInit(): void {
     this.getUsers();
     this.createFilter();
+    this.openSecondNavbar();
   }
 
   getUsers() {
@@ -53,5 +54,9 @@ export class UsersListComponent implements OnInit {
         this.filter = filter;
       }
     );
+  }
+
+  private openSecondNavbar(): void {
+    this.service.showUserNavbar();
   }
 }
