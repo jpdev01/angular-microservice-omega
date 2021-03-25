@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastNotificationService } from '../../shared/service/toast-notification.service';
 
 @Component({
   selector: 'app-notification-toast',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationToastComponent implements OnInit {
 
-  constructor() { }
+  constructor(public toastService: ToastNotificationService) { }
 
   ngOnInit() {
+    this.getInterfaceRule();
+  }
+
+  private getInterfaceRule(): void {
+    this.toastService.interfaceRuleEmitter.subscribe(
+      (params) => {
+
+      }
+    );
   }
 
 }

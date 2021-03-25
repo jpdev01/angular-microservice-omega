@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastNotificationService } from '../../shared/service/toast-notification.service';
 declare var $:any;
 
 @Component({
@@ -50,7 +51,7 @@ export class FrmCadComponent implements OnInit {
   save(): void {
     this.serviceApi.save(this.frm.value).subscribe(
       (sucess ) => {
-        $('.toast').toast('show');
+        this.createToastNotification();
         this.onSave.onSucess();
       },
       (error) => { console.log (error); }
@@ -61,6 +62,14 @@ export class FrmCadComponent implements OnInit {
     this.serviceApi.getById(id).subscribe(result => {
       this.element = result;
     });
+  }
+
+  private createToastNotification(): void {
+    let options = {
+      text: "oi",
+      title: "eae"
+    };
+    new ToastNotificationService(options);
   }
 
 }
