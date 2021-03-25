@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './main/shared/safety/AuthGuard.model';
 import { AdminGuard } from './main/shared/safety/AdminGuard.model';
 import { SearchFilterPipe } from './main/shared/pipe/search-filter.pipe';
+import { ToastNotificationService } from './main/shared/service/toast-notification.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { SearchFilterPipe } from './main/shared/pipe/search-filter.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [Utils, AuthGuard, AdminGuard],
+  providers: [Utils, AuthGuard, AdminGuard, ToastNotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

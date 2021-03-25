@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastNotification } from '../../shared/model/toast-notification.model';
 import { ToastNotificationService } from '../../shared/service/toast-notification.service';
 
 @Component({
@@ -8,18 +9,29 @@ import { ToastNotificationService } from '../../shared/service/toast-notificatio
 })
 export class NotificationToastComponent implements OnInit {
 
+  element: ToastNotification;
+
   constructor(public toastService: ToastNotificationService) { }
 
   ngOnInit() {
     this.getInterfaceRule();
+    this.getSubject();
   }
 
   private getInterfaceRule(): void {
     this.toastService.interfaceRuleEmitter.subscribe(
-      (params) => {
-
+      (toast) => {
+        this.element = toast;
       }
     );
   }
+
+  getSubject(){
+    this.toastService.getToast().subscribe(toast => {
+      console.log("boa! Recebeu o toast: " + toast);
+      debugger;
+    })
+  }
+
 
 }

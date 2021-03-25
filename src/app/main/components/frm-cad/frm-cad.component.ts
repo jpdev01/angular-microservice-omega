@@ -20,7 +20,7 @@ export class FrmCadComponent implements OnInit {
   onSave: any;
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public toastService: ToastNotificationService) { }
 
   ngOnInit() {
     console.log(this.frm);
@@ -69,7 +69,9 @@ export class FrmCadComponent implements OnInit {
       text: "oi",
       title: "eae"
     };
-    new ToastNotificationService(options);
+    this.toastService.create(options);
+    this.toastService.setToast(options);
+    this.toastService.show();
   }
 
 }

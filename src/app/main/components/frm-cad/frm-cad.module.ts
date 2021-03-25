@@ -16,6 +16,6 @@ import { Router } from '@angular/router';
   ],
   declarations: [FrmCadComponent],
   exports: [FrmCadComponent],
-  providers: [EnumKeyPipe, ToastNotificationService, Router]
+  providers: [EnumKeyPipe, ToastNotificationService]
 })
 export class FrmCadModule { }
