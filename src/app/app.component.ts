@@ -15,29 +15,14 @@ export class AppComponent {
 
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private authService: AuthService, private toastService: ToastNotificationService){}
+  constructor(private authService: AuthService){}
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn;
-    this.createToastNotification();
   }
 
   onLogout(){
     this.authService.logout();
-  }
-
-  createToastNotification(): void {
-    this.toastService.init();
-    this.toastService.getToast().subscribe(toast => {
-      console.log("boa! Recebeu o toast no appcomponent: " + toast);
-
-      debugger;
-    });
-    ToastNotificationService.interfaceRuleEmitter.subscribe(
-      (toast) => {
-       console.log("appc_component:" + toast);
-      }
-    );
   }
 
 }

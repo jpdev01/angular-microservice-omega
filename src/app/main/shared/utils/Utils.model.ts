@@ -8,7 +8,6 @@ import { ToastNotification } from "../model/toast-notification.model";
 export class Utils {
 
   private apiUrl: string = "http://localhost:8080/neusamoda";
-  interfaceRuleEmitter = new EventEmitter<ToastNotification>();
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type' : 'application/json'
@@ -28,7 +27,7 @@ export class Utils {
   // filter!
   emitterFilterChange = new EventEmitter<string>();
 
-  
+
 
 
 

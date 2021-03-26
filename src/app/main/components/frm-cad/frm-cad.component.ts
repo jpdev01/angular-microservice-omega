@@ -72,12 +72,7 @@ export class FrmCadComponent implements OnInit {
       title: "eae"
     };
     this.toastService.create(options);
-    this.toastService.setToast(options);
     this.toastService.show();
-  }
-
-  createToast(toast: ToastNotification) {
-    this.utils.interfaceRuleEmitter.emit(toast);
   }
 
 }

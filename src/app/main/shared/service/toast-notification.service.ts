@@ -10,27 +10,24 @@ import { BehaviorSubject } from 'rxjs';
 export class ToastNotificationService {
 
   toast;
-  static interfaceRuleEmitter = new EventEmitter<any>();
-  static toastSubject = new BehaviorSubject<any>('sd');
+  static interfaceRuleEmitter = new EventEmitter<ToastNotification>();
+
   constructor(){}
 
-
-
   public init() {
-    console.log(ToastNotificationService.interfaceRuleEmitter);
+
   }
 
-  getToast(){
-    return ToastNotificationService.toastSubject.asObservable();
+  getToast() {
+    return ToastNotificationService.interfaceRuleEmitter;
   }
 
-  setToast(toast: any){
-    ToastNotificationService.toastSubject.next(toast);
+  emitToast(toast: ToastNotification){
+    ToastNotificationService.interfaceRuleEmitter.emit(toast);
   }
 
   public show(): void {
     ToastNotificationService.interfaceRuleEmitter.emit(this.toast);
-    // $('.toast').toast('show');
   }
 
   public create(options: {
@@ -42,9 +39,9 @@ export class ToastNotificationService {
     this.toast = new ToastNotification(options);
     ToastNotificationService.interfaceRuleEmitter.emit(this.toast);
 
-    // var show = () => {
-    //   this.interfaceRuleEmitter.emit(toast);
-    // }
+    var show = () => {
+      this.show();
+    }
   }
 
 }

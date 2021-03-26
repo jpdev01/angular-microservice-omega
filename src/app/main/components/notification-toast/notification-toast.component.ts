@@ -2,6 +2,7 @@ import { Utils } from 'src/app/main/shared/utils/Utils.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastNotification } from '../../shared/model/toast-notification.model';
 import { ToastNotificationService } from '../../shared/service/toast-notification.service';
+declare var $:any;
 
 @Component({
   selector: 'app-notification-toast',
@@ -11,29 +12,14 @@ import { ToastNotificationService } from '../../shared/service/toast-notificatio
 export class NotificationToastComponent implements OnInit {
 
   element: ToastNotification;
-  @Input() notification;
+  @Input() notification: ToastNotification;
 
   constructor(public toastService: ToastNotificationService, private utils: Utils) { }
 
   ngOnInit() {
-    this.getInterfaceRule();
-    this.getSubject();
-    this.utils.interfaceRuleEmitter.subscribe((toast: ToastNotification) => console.log("asssssssssss" + toast));
-  }
-
-  private getInterfaceRule(): void {
-    ToastNotificationService.interfaceRuleEmitter.subscribe(
-      (toast) => {
-        this.element = toast;
-      }
-    );
-  }
-
-  getSubject(){
-    this.toastService.getToast().subscribe(toast => {
-      console.log("boa! Recebeu o toast: " + toast);
-      debugger;
-    })
+    if (this.notification){
+      $('.toast').toast('show');
+    }
   }
 
 
