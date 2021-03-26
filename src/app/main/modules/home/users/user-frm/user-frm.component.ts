@@ -1,3 +1,4 @@
+import { ToastNotificationService } from './../../../../shared/service/toast-notification.service';
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +28,7 @@ export class UserFrmComponent implements OnInit {
   formFromEditing = false;
   componentInfo: any;
 
-  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder, private router: Router) {
+  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder, private router: Router, private toastService: ToastNotificationService) {
 
   }
 
@@ -45,10 +46,22 @@ export class UserFrmComponent implements OnInit {
 
   private initComponentInfo(): void {
     this.componentInfo = {
-      name: "user-frm", serviceApi: this.serviceApi, onSave: {
+      name: "user-frm", serviceApi: this.serviceApi
+      , onSave: {
         onSucess: () => {
           this.router.navigate(['home/users']);
-        }, onError: null}
+        }, onError: () => {
+          console.log("erro ao salvar usuario");
+        },
+        toastOnSucess: this.toastService.create({
+          title: "ok",
+          text: "Usuário salvo com sucesso!"
+        }),
+        toastOnError: this.toastService.create({
+          title: "ok",
+          text: "Usuário salvo com sucesso!"
+        })
+      }
     };
   }
 

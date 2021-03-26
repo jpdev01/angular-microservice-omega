@@ -19,7 +19,11 @@ export class FrmCadComponent implements OnInit {
   serviceApi: any;
   element: any;
   labelConfig = {size: ''};
+
+
   onSave: any;
+  toastOnSucess: ToastNotification;
+  toastOnError: ToastNotification;
 
 
   constructor(private router: Router, public toastService: ToastNotificationService, private utils: Utils) { }
@@ -36,8 +40,11 @@ export class FrmCadComponent implements OnInit {
   }
 
   initComponentInfo(): void {
-    this.serviceApi = this.componentInfo.serviceApi;
-    this.onSave = this.componentInfo.onSave;
+    let componentInfo = this.componentInfo;
+    this.serviceApi = componentInfo.serviceApi;
+    this.onSave = componentInfo.onSave;
+    this.toastOnSucess = componentInfo.toastOnSucess;
+    this.toastOnError = componentInfo.toastOnError;
   }
 
   public cancel(): void {
@@ -53,10 +60,12 @@ export class FrmCadComponent implements OnInit {
   save(): void {
     this.serviceApi.save(this.frm.value).subscribe(
       (sucess ) => {
-        this.createToastNotification();
+        this.createToastNotification(this.toastOnSucess);
         this.onSave.onSucess();
       },
-      (error) => { console.log (error); }
+      (error) => {
+        this.createToastNotification(this.toastOnSucess);
+       }
       );
   }
 
@@ -66,12 +75,8 @@ export class FrmCadComponent implements OnInit {
     });
   }
 
-  private createToastNotification(): void {
-    let options = {
-      text: "oi",
-      title: "eae"
-    };
-    this.toastService.create(options);
+  private createToastNotification(toast: ToastNotification): void {
+    this.toastService.create(toast);
     this.toastService.show();
   }
 
