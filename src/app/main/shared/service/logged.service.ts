@@ -10,9 +10,9 @@ export class LoggedService {
 
   private situacaoLoginUsuario = new BehaviorSubject<boolean>(false);
 
-  getSituacaoLoginUsuario() {
-      return this.situacaoLoginUsuario.asObservable();
-  }
+  // getSituacaoLoginUsuario() {
+  //     return this.situacaoLoginUsuario.asObservable();
+  // }
 
   definirTokenDeAutenticacao(token: string) {
       localStorage.setItem('token', token);

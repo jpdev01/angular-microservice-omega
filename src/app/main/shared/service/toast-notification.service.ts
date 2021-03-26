@@ -2,34 +2,34 @@ import { ToastNotification } from './../model/toast-notification.model';
 import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-declare var $:any;
+// declare var $:any;
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 export class ToastNotificationService {
 
   toast;
-
+  static interfaceRuleEmitter = new EventEmitter<any>();
+  static toastSubject = new BehaviorSubject<any>('sd');
   constructor(){}
 
-  interfaceRuleEmitter = new EventEmitter<any>();
-  private toastSubject = new BehaviorSubject<any>(null);
+
 
   public init() {
-    console.log(this.interfaceRuleEmitter);
+    console.log(ToastNotificationService.interfaceRuleEmitter);
   }
 
   getToast(){
-    return this.toastSubject.asObservable();
+    return ToastNotificationService.toastSubject.asObservable();
   }
 
   setToast(toast: any){
-    this.toastSubject.next(toast);
+    ToastNotificationService.toastSubject.next(toast);
   }
 
   public show(): void {
-    this.interfaceRuleEmitter.emit(this.toast);
+    ToastNotificationService.interfaceRuleEmitter.emit(this.toast);
     // $('.toast').toast('show');
   }
 
@@ -40,6 +40,7 @@ export class ToastNotificationService {
   } = {}) {
     debugger;
     this.toast = new ToastNotification(options);
+    ToastNotificationService.interfaceRuleEmitter.emit(this.toast);
 
     // var show = () => {
     //   this.interfaceRuleEmitter.emit(toast);

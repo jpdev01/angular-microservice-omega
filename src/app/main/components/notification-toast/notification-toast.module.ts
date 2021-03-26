@@ -1,3 +1,4 @@
+import { Utils } from 'src/app/main/shared/utils/Utils.model';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotificationToastComponent } from './notification-toast.component';
@@ -9,6 +10,6 @@ import {ToastNotificationService } from '../../shared/service/toast-notification
   ],
   declarations: [NotificationToastComponent],
   exports: [NotificationToastComponent],
-  providers: [ToastNotificationService]
+  providers: [ToastNotificationService, Utils]
 })
 export class NotificationToastModule { }

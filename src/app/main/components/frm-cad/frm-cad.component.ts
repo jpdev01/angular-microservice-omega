@@ -1,6 +1,8 @@
+import { Utils } from 'src/app/main/shared/utils/Utils.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastNotificationService } from '../../shared/service/toast-notification.service';
+import { ToastNotification } from '../../shared/model/toast-notification.model';
 declare var $:any;
 
 @Component({
@@ -20,7 +22,7 @@ export class FrmCadComponent implements OnInit {
   onSave: any;
 
 
-  constructor(private router: Router, public toastService: ToastNotificationService) { }
+  constructor(private router: Router, public toastService: ToastNotificationService, private utils: Utils) { }
 
   ngOnInit() {
     console.log(this.frm);
@@ -72,6 +74,10 @@ export class FrmCadComponent implements OnInit {
     this.toastService.create(options);
     this.toastService.setToast(options);
     this.toastService.show();
+  }
+
+  createToast(toast: ToastNotification) {
+    this.utils.interfaceRuleEmitter.emit(toast);
   }
 
 }

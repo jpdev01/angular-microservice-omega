@@ -6,6 +6,7 @@ import { FrmCadComponent } from './frm-cad.component';
 import { EnumKeyPipe } from '../../shared/pipe/enum-filter-key.pipe';
 import { ToastNotificationService } from '../../shared/service/toast-notification.service';
 import { Router } from '@angular/router';
+import { Utils } from '../../shared/utils/Utils.model';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { Router } from '@angular/router';
   ],
   declarations: [FrmCadComponent],
   exports: [FrmCadComponent],
-  providers: [EnumKeyPipe, ToastNotificationService]
+  providers: [EnumKeyPipe, ToastNotificationService, Utils]
 })
 export class FrmCadModule { }

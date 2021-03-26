@@ -28,6 +28,16 @@ export class AppComponent {
 
   createToastNotification(): void {
     this.toastService.init();
+    this.toastService.getToast().subscribe(toast => {
+      console.log("boa! Recebeu o toast no appcomponent: " + toast);
+
+      debugger;
+    });
+    ToastNotificationService.interfaceRuleEmitter.subscribe(
+      (toast) => {
+       console.log("appc_component:" + toast);
+      }
+    );
   }
 
 }
