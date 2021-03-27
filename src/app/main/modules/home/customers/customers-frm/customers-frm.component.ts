@@ -64,9 +64,10 @@ export class CustomersFrmComponent implements OnInit {
 
   private initFormValues(): void {
 
-    let groups = [];
     let group1 = [];
     let group2 = [];
+    let group3 = [];
+    let group4 = [];
 
     let formField = new FormField({
       id: "name",
@@ -126,14 +127,14 @@ export class CustomersFrmComponent implements OnInit {
     formField = new FormField({
       id: "fone",
       label: "Telefone",
-      type: "text",
+      type: "number",
       row: "1"
     });
     group1.push(formField);
     formField = new FormField({
       id: "mobile",
       label: "Celular",
-      type: "text",
+      type: "number",
       row: "1"
     });
     group2.push(formField);
@@ -170,20 +171,20 @@ export class CustomersFrmComponent implements OnInit {
     formField = new FormField({
       id: "addrress",
       label: "Endereço",
-      type: "text",
+      type: "addrress",
       row: "1"
     });
-    group2.push(formField);
+    group3.push(formField);
     formField = new FormField({
       id: "reference",
       label: "Referencia",
       type: "text",
       row: "1"
     });
-    group2.push(formField);
+    group4.push(formField);
 
     this.formModel = new FormModel({
-      fields: [group1, group2]
+      fields: [group1, group2, group3, group4]
     });
 
   }

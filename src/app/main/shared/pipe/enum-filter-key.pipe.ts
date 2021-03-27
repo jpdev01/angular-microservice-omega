@@ -6,7 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class EnumKeyPipe implements PipeTransform {
 
   transform(values, args:string[]) : any {
-    return Object.keys(values).map(key => values[key]).filter(val => typeof val === 'string') as string[];
+    if (values) {
+      return Object.keys(values).map(key => values[key]).filter(val => typeof val === 'string') as string[];
+    }
   }
 }
 //return items.filter(item => item.name && item.name.indexOf(term) !== -1);

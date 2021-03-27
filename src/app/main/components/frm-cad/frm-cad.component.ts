@@ -1,8 +1,11 @@
+import { FormField } from './../../shared/model/form-field.model';
+import { FormModel } from './../../shared/model/form-model.model';
 import { Utils } from 'src/app/main/shared/utils/Utils.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastNotificationService } from '../../shared/service/toast-notification.service';
 import { ToastNotification } from '../../shared/model/toast-notification.model';
+import {States } from '../../shared/enum/states.enum';
 declare var $:any;
 
 @Component({
@@ -15,7 +18,7 @@ export class FrmCadComponent implements OnInit {
   @Input() frm: any;
   //@Input('frm') frm;
   @Input() componentInfo: any;
-  @Input() formModel;
+  @Input() formModel: FormModel;
   serviceApi: any;
   element: any;
   labelConfig = {size: ''};
@@ -31,15 +34,16 @@ export class FrmCadComponent implements OnInit {
     debugger;
     console.log(this.formModel);
     this.initComponentInfo();
+    this.initForm();
+
   }
 
-  initFormValues(): void {
-
+  initForm(): void {
+    this.checkCustomFields();
   }
 
   initComponentInfo(): void {
     let componentInfo = this.componentInfo;
-
     this.serviceApi = componentInfo.serviceApi;
     this.onSave = componentInfo.onSave;
   }
@@ -81,6 +85,58 @@ export class FrmCadComponent implements OnInit {
   private createToastNotification(toast: ToastNotification): void {
     this.toastService.create(toast);
     this.toastService.show();
+  }
+
+  private checkCustomFields(): void {
+    let form = this.formModel;
+    let groups = form.fields;
+
+    for (let i = 0; i <= groups.length; i++){
+      groups[i].forEach(field => {
+        if (field.type === "addrress") {
+          groups[i] = this.initFieldsAddrress();
+        }
+
+      });
+    }
+
+  }
+
+  private initFieldsAddrress(): any {
+    let group = [];
+
+    let field = new FormField({
+      label: "CEP",
+      type: "text"
+    });
+    group.push(field);
+    field = new FormField({
+      label: "Estado",
+      type: "select",
+      fields: [States]
+    });
+    group.push(field);
+    field = new FormField({
+      label: "Cidade",
+      type: "text"
+    });
+    group.push(field);
+    field = new FormField({
+      label: "Bairro",
+      type: "text"
+    });
+    group.push(field);
+    field = new FormField({
+      label: "Endereço",
+      type: "text"
+    });
+    group.push(field);
+    field = new FormField({
+      label: "Complemento",
+      type: "text"
+    });
+    group.push(field);
+    return group;
   }
 
 }
