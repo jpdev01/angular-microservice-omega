@@ -10,10 +10,12 @@ import { NavbarSecundaryModule } from 'src/app/main/components/navbar-secundary/
 import { NavbarSecundaryComponent } from 'src/app/main/components/navbar-secundary/navbar-secundary.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListEntityModule } from 'src/app/main/components/list-entity/list-entity.module';
+import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
+import {CustomersFrmComponent} from 'src/app/main/modules/home/customers/customers-frm/customers-frm.component';
 
 
 @NgModule({
-  declarations: [CustomersComponent, CustomersListComponent],
+  declarations: [CustomersComponent, CustomersListComponent, CustomersFrmComponent],
   imports: [
     CommonModule,
     CustomersRoutingModule,
@@ -21,7 +23,8 @@ import { ListEntityModule } from 'src/app/main/components/list-entity/list-entit
     FormsModule,
     TableModule,
     NavbarSecundaryModule,
-    ListEntityModule
+    ListEntityModule,
+    FrmCadModule
   ],
   providers: [TableComponent, NavbarSecundaryComponent]
 })
