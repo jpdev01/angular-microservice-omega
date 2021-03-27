@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.utils = new Utils();
-    this.closeNotification();
+    //this.closeNotification();
     this.getInterfaceRule();
   }
 
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     ToastNotificationService.interfaceRuleEmitter.subscribe(
       (toast) => {
         this.notification = toast;
-        setTimeout(() => { this.closeNotification(); }, 3000);
+        //setTimeout(() => { this.closeNotification(); }, 3000);
       }
     );
   }

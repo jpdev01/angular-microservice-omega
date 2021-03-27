@@ -14,6 +14,7 @@ import { NavbarSecundaryComponent } from 'src/app/main/components/navbar-secunda
 import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
 import { FrmCadComponent } from 'src/app/main/components/frm-cad/frm-cad.component';
 import { UserApiService } from 'src/app/main/shared/service/user-api.service';
+import {ListEntityModule} from 'src/app/main/components/list-entity/list-entity.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { UserApiService } from 'src/app/main/shared/service/user-api.service';
     PipeModule,
     ReactiveFormsModule,
     NavbarSecundaryModule,
-    FrmCadModule
+    FrmCadModule,
+    ListEntityModule
   ],
   providers: [FormBuilder, Utils, UserService, UserApiService, NavbarSecundaryComponent, FrmCadComponent],
   exports: [UsersComponent]

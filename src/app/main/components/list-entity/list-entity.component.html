@@ -1,0 +1,30 @@
+
+<div class="col-12 h-100 pb-4 w-100">
+  <div class="row h-100">
+    <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto h-100 mb-4 w-100">
+      <div class="table-responsive">
+        <table class="table" >
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Telefone</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let entityInfo of entityInfoList | searchFilter:''" id="{{entityInfo.id}}" (click)="open(entityInfo) ">
+              <!-- <td scope="row"> {{ entityInfo[0] }}</td> -->
+              <!-- <td> {{user.customer.cpf }}</td>
+              <td>{{ user.customer.fone}}</td> -->
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+
+  </div>
+</div>
