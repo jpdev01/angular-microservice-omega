@@ -1,3 +1,4 @@
+import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { Component, OnInit, SimpleChange } from '@angular/core';
 import { Utils } from '../../shared/utils/Utils.model';
 
@@ -17,7 +18,7 @@ export class NavbarSecundaryComponent implements OnInit {
   }
 
   updateFilter($event: any) {
-    this.utils.emitterFilterChange.emit($event.target.value);
+    NavbarService.emitterFilterChange.emit($event.target.value);
   }
 
   ngOnChanges(change: SimpleChange) {

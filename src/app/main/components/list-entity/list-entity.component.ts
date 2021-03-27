@@ -1,3 +1,4 @@
+import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { Utils } from './../../shared/utils/Utils.model';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -32,7 +33,7 @@ export class ListEntityComponent implements OnInit {
   }
 
   private createFilter():void {
-    this.utils.emitterFilterChange.subscribe(
+    NavbarService.emitterFilterChange.subscribe(
       (filter) => {
         this.filter = filter;
       }

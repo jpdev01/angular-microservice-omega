@@ -1,3 +1,4 @@
+import { NavbarService } from './../../../../shared/service/navbar.service';
 import { Utils } from '../../../../shared/utils/Utils.model';
 import { ResponsePageable } from '../../../../shared/model/responsePageable.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -18,7 +19,7 @@ export class UsersListComponent implements OnInit {
   filter = "";
   tableInfo: {};
 
-  constructor(private service: UserService, private serviceApi: UserApiService, private router: Router, public utils: Utils) {
+  constructor(private service: UserService, private serviceApi: UserApiService, private router: Router, public utils: Utils, private navbarService: NavbarService) {
 
   }
 
@@ -26,6 +27,7 @@ export class UsersListComponent implements OnInit {
     this.getUsers();
     this.openSecondNavbar();
     this.initTableInfo();
+    this.getFilter();
   }
 
   getUsers() {
@@ -51,7 +53,7 @@ export class UsersListComponent implements OnInit {
   }
 
   private openSecondNavbar(): void {
-    this.service.showUserNavbar();
+    this.navbarService.showNavbar(true);
   }
 
   private initTableInfo(): void {
@@ -59,5 +61,9 @@ export class UsersListComponent implements OnInit {
       header: ["Login", "Senha", "Permissão", ""],
       row: ["login", "password", "permission", ""]
     };
+  }
+
+  private getFilter(): void {
+    NavbarService.emitterFilterChange.subscribe((filter) => this.filter = filter);
   }
 }

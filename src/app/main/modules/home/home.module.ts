@@ -1,3 +1,4 @@
+import { NavbarSecundaryModule } from './../../components/navbar-secundary/navbar-secundary.module';
 import { NotificationToastComponent } from './../../components/notification-toast/notification-toast.component';
 import { Utils } from '../../shared/utils/Utils.model';
 import { NgModule } from '@angular/core';
@@ -14,7 +15,8 @@ import { NotificationToastModule } from '../../components/notification-toast/not
   imports: [
     CommonModule,
     HomeRoutingModule,
-    NotificationToastModule
+    NotificationToastModule,
+    NavbarSecundaryModule
   ],
   providers: [Utils, NotificationToastComponent],
 })

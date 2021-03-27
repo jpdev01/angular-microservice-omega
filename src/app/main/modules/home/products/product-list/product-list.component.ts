@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-    this.createFilter();
+    // this.createFilter();
     this.showNavbar();
   }
 
@@ -32,13 +32,13 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  private createFilter(): void {
-    this.utils.emitterFilterChange.subscribe(
-      (filter) => {
-        this.filter = filter;
-      }
-    );
-  }
+  // private createFilter(): void {
+  //   this.utils.emitterFilterChange.subscribe(
+  //     (filter) => {
+  //       this.filter = filter;
+  //     }
+  //   );
+  // }
 
   public openProductInfo(product: Product){
     this.redirectToProductInfo(product.id);

@@ -12,7 +12,7 @@ export class CustomersApiService {
   constructor(private httpClient: HttpClient, private utils: Utils) { }
 
   public getCustomers(): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(this.utils.getApiUrl() + '/customers');
+    return this.httpClient.get<ResponsePageable>(this.utils.getApiUrl() + '/customer');
   }
 
   public getCustomer(id: number): Observable<ResponsePageable> {

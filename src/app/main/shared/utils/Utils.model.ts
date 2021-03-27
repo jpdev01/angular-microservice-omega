@@ -24,8 +24,7 @@ export class Utils {
     return this.httpOptions;
   }
 
-  // filter!
-  emitterFilterChange = new EventEmitter<string>();
+
 
 
 
