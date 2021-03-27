@@ -6,20 +6,12 @@
         <table class="table" >
           <thead class="thead-light">
             <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">CPF</th>
-              <th scope="col">Telefone</th>
-              <th scope="col"></th>
+              <th scope="col" *ngFor="let th of header">{{th}}</th>
             </tr>
           </thead>
           <tbody >
-            <tr *ngFor="let entityInfo of entityInfoList | searchFilter:''" id="{{entityInfo.id}}" (click)="open(entityInfo) ">
-              <!-- <td scope="row"> {{ entityInfo[0] }}</td> -->
-              <!-- <td> {{user.customer.cpf }}</td>
-              <td>{{ user.customer.fone}}</td> -->
-              <td></td>
-              <td></td>
-              <td></td>
+            <tr *ngFor="let entityInfo of entityInfoList | searchFilter:filter" (click)="open(entityInfo) ">
+             <td *ngFor="let td of row">{{entityInfo[td]}}</td>
             </tr>
           </tbody>
         </table>

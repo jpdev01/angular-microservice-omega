@@ -16,6 +16,7 @@ export class UsersListComponent implements OnInit {
 
   public users: User[];
   filter = "";
+  tableInfo: {};
 
   constructor(private service: UserService, private serviceApi: UserApiService, private router: Router, public utils: Utils) {
 
@@ -23,8 +24,8 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-    this.createFilter();
     this.openSecondNavbar();
+    this.initTableInfo();
   }
 
   getUsers() {
@@ -34,6 +35,7 @@ export class UsersListComponent implements OnInit {
       this.users = [];
       //data.content !
       this.users = result.content;
+      console.log(this.users);
     },
     (error) => {
 
@@ -48,15 +50,14 @@ export class UsersListComponent implements OnInit {
     this.router.navigate(['home/user/info', id]);
   }
 
-  private createFilter():void {
-    this.utils.emitterFilterChange.subscribe(
-      (filter) => {
-        this.filter = filter;
-      }
-    );
-  }
-
   private openSecondNavbar(): void {
     this.service.showUserNavbar();
+  }
+
+  private initTableInfo(): void {
+    this.tableInfo = {
+      header: ["Login", "Senha", "Permissão", ""],
+      row: ["login", "password", "permission", ""]
+    };
   }
 }

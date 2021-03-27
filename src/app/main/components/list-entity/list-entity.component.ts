@@ -1,3 +1,4 @@
+import { Utils } from './../../shared/utils/Utils.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -10,13 +11,32 @@ export class ListEntityComponent implements OnInit {
   @Input() tableInfo;
   @Input() entityInfoList: [];
   filter = "";
-  constructor() { }
+
+  header: [];
+  row: [];
+  constructor(private utils: Utils) { }
 
   ngOnInit() {
+    console.log(this.entityInfoList);
+    this.initHeader();
+    this.createFilter();
   }
 
   public open(): void {
 
+  }
+
+  private initHeader(): void {
+    this.header = this.tableInfo.header;
+    this.row = this.tableInfo.row;
+  }
+
+  private createFilter():void {
+    this.utils.emitterFilterChange.subscribe(
+      (filter) => {
+        this.filter = filter;
+      }
+    );
   }
 
 }
