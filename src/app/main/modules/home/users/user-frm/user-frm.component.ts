@@ -46,23 +46,29 @@ export class UserFrmComponent implements OnInit {
 
   private initComponentInfo(): void {
     this.componentInfo = {
-      name: "user-frm", serviceApi: this.serviceApi
-      , onSave: {
-        onSucess: () => {
-          this.router.navigate(['home/users']);
-        }, onError: () => {
-          console.log("erro ao salvar usuario");
+      name: "user-frm",
+      serviceApi: this.serviceApi,
+      onSave: {
+        onSucess: {
+          action: () => {
+            this.router.navigate(['home/users']);
+          },
+          toast: this.toastService.create({
+            title: "ok",
+            text: "Usuário salvo com sucesso!"
+          })
         },
-        toastOnSucess: this.toastService.create({
-          title: "ok",
-          text: "Usuário salvo com sucesso!"
-        }),
-        toastOnError: this.toastService.create({
-          title: "ok",
-          text: "Usuário salvo com sucesso!"
-        })
+        onError: {
+          action: () => {
+            console.log("Erro ao salvar usuario!");
+          },
+          toast: this.toastService.create({
+            title: "ok",
+            text: "Usuário salvo com sucesso!"
+          })
+        }
       }
-    };
+    }
   }
 
   getIdByUrl(): void {

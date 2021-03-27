@@ -12,7 +12,9 @@ export class ToastNotificationService {
   toast;
   static interfaceRuleEmitter = new EventEmitter<ToastNotification>();
 
-  constructor(){}
+  constructor(){
+    ToastNotificationService.interfaceRuleEmitter.emit(undefined);
+  }
 
   public init() {
 
@@ -34,14 +36,10 @@ export class ToastNotificationService {
     text?: string;
     title?: string;
     labelTime?: string;
-  } = {}) {
+  } = {}): ToastNotification {
     debugger;
     this.toast = new ToastNotification(options);
-    ToastNotificationService.interfaceRuleEmitter.emit(this.toast);
-
-    var show = () => {
-      this.show();
-    }
+    return this.toast;
   }
 
 }

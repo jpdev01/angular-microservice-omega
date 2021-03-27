@@ -22,5 +22,9 @@ export class NotificationToastComponent implements OnInit {
     }
   }
 
+  $destroy(): void {
+    ToastNotificationService.interfaceRuleEmitter.emit(undefined);
+  }
+
 
 }

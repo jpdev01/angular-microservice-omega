@@ -22,8 +22,6 @@ export class FrmCadComponent implements OnInit {
 
 
   onSave: any;
-  toastOnSucess: ToastNotification;
-  toastOnError: ToastNotification;
 
 
   constructor(private router: Router, public toastService: ToastNotificationService, private utils: Utils) { }
@@ -41,10 +39,9 @@ export class FrmCadComponent implements OnInit {
 
   initComponentInfo(): void {
     let componentInfo = this.componentInfo;
+
     this.serviceApi = componentInfo.serviceApi;
     this.onSave = componentInfo.onSave;
-    this.toastOnSucess = componentInfo.toastOnSucess;
-    this.toastOnError = componentInfo.toastOnError;
   }
 
   public cancel(): void {
@@ -58,13 +55,19 @@ export class FrmCadComponent implements OnInit {
   }
 
   save(): void {
+    let onSave = this.onSave;
     this.serviceApi.save(this.frm.value).subscribe(
-      (sucess ) => {
-        this.createToastNotification(this.toastOnSucess);
-        this.onSave.onSucess();
+
+      (sucess) => {
+        let onSucess = onSave.onSucess;
+        this.createToastNotification(onSucess.toast);
+        onSucess.action();
       },
+
       (error) => {
-        this.createToastNotification(this.toastOnSucess);
+        let onError = onSave.onError;
+        this.createToastNotification(onError.toast);
+        onError.action();
        }
       );
   }
