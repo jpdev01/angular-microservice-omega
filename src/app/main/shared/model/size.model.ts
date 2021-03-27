@@ -3,7 +3,7 @@ export class Size {
   size = this.populateSize();
   size2 = Size2;
 
-  private populateSize(): number[]{
+  private populateSize(): object{
     let values = [];
     for (let i = 30; i <= 50; i++) {
       values.push(i);
