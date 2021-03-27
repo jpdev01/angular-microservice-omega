@@ -6,6 +6,7 @@ import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { FormModel } from 'src/app/main/shared/model/form-model.model';
 import { FormField } from 'src/app/main/shared/model/form-field.model';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
+import { Size } from 'src/app/main/shared/model/size.model';
 
 @Component({
   selector: 'app-customers-frm',
@@ -58,7 +59,13 @@ export class CustomersFrmComponent implements OnInit {
       size2: emptyRequisities,
       office: emptyRequisities,
       addrress: emptyRequisities,
-      reference: emptyRequisities
+      reference: emptyRequisities,
+      cep: emptyRequisities,
+      uf: emptyRequisities,
+      publicPlace: emptyRequisities,
+      neighborhood: emptyRequisities,
+      city: emptyRequisities,
+      complement: emptyRequisities
     });
   }
 
@@ -111,7 +118,7 @@ export class CustomersFrmComponent implements OnInit {
     });
     group1.push(formField);
     formField = new FormField({
-      id: "dataRef",
+      id: "dataReg",
       label: "Data de Registro",
       type: "date",
       row: "1"
@@ -149,7 +156,7 @@ export class CustomersFrmComponent implements OnInit {
       id: "size",
       label: "Tamanho",
       type: "select",
-      fields: ["P", "M", "G"],
+      fields: new Size().size,
       row: "1"
     });
     group2.push(formField);
@@ -157,13 +164,13 @@ export class CustomersFrmComponent implements OnInit {
       id: "size2",
       label: "Tamanho",
       type: "select",
-      fields: [],
+      fields: new Size().size2,
       row: "1"
     });
     group2.push(formField);
     formField = new FormField({
-      id: "Trabalho",
-      label: "office",
+      id: "office",
+      label: "Trabalho",
       type: "select",
       row: "1"
     });

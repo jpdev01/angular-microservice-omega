@@ -91,7 +91,7 @@ export class FrmCadComponent implements OnInit {
     let form = this.formModel;
     let groups = form.fields;
 
-    for (let i = 0; i <= groups.length; i++){
+    for (let i = 0; i < groups.length; i++){
       groups[i].forEach(field => {
         if (field.type === "addrress") {
           groups[i] = this.initFieldsAddrress();
@@ -106,32 +106,38 @@ export class FrmCadComponent implements OnInit {
     let group = [];
 
     let field = new FormField({
+      id: "cep",
       label: "CEP",
       type: "text"
     });
     group.push(field);
     field = new FormField({
+      id: "uf",
       label: "Estado",
       type: "select",
-      fields: [States]
+      fields: States
     });
     group.push(field);
     field = new FormField({
+      id: "city",
       label: "Cidade",
       type: "text"
     });
     group.push(field);
     field = new FormField({
+      id: "neighborhood",
       label: "Bairro",
       type: "text"
     });
     group.push(field);
     field = new FormField({
+      id: "publicPlace",
       label: "Endereço",
       type: "text"
     });
     group.push(field);
     field = new FormField({
+      id: "complement",
       label: "Complemento",
       type: "text"
     });
