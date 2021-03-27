@@ -30,17 +30,17 @@ export class HomeComponent implements OnInit {
         //setTimeout(() => { this.closeNotification(); }, 3000);
       }
     );
-    // this.navbarService.interfaceRuleEmitter.subscribe(
-    //   (interfaceRule) => {
-    //     if (interfaceRule.element === 'navbar') {
-    //       if (interfaceRule.show == true) {
-    //         this.navbarShow = true;
-    //       } else {
-    //         this.navbarShow = false;
-    //       }
-    //     }
-    //   }
-    // );
+    NavbarService.interfaceRuleEmitter.subscribe(
+      (interfaceRule) => {
+        if (interfaceRule.element === 'navbar') {
+          if (interfaceRule.show == true) {
+            this.navbarShow = true;
+          } else {
+            this.navbarShow = false;
+          }
+        }
+      }
+    );
   }
 
   private closeNotification(): void{

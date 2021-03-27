@@ -1,3 +1,4 @@
+import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { ToastNotificationService } from './../../../../shared/service/toast-notification.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -28,7 +29,7 @@ export class UserFrmComponent implements OnInit {
   formFromEditing = false;
   componentInfo: any;
 
-  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder, private router: Router, private toastService: ToastNotificationService) {
+  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder, private router: Router, private toastService: ToastNotificationService, private navbarService: NavbarService) {
 
   }
 
@@ -134,7 +135,7 @@ export class UserFrmComponent implements OnInit {
   }
 
   hideUserNavbar() {
-    this.service.hideUserNavbar();
+    this.navbarService.showNavbar(false);
   }
 
 }

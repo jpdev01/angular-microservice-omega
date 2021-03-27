@@ -18,7 +18,7 @@ export class CustomersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navbarService.interfaceRuleEmitter.subscribe(
+    NavbarService.interfaceRuleEmitter.subscribe(
       (interfaceRule: InterfaceRule) => {
         if (interfaceRule.element === 'navbar') {
           if (interfaceRule.show == true) {

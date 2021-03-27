@@ -6,13 +6,13 @@ import { InterfaceRule } from '../model/interface-rule.model';
 })
 export class NavbarService {
 
-  interfaceRuleEmitter = new EventEmitter<any>();
+  static interfaceRuleEmitter = new EventEmitter<any>();
 
   constructor() { }
 
   public showNavbar(show: boolean): void {
     let navbarRule = new InterfaceRule("navbar", show, null);
-    this.interfaceRuleEmitter.emit(navbarRule);
+    NavbarService.interfaceRuleEmitter.emit(navbarRule);
   }
 
   // filter!

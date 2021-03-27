@@ -1,3 +1,4 @@
+import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../../shared/service/products.service';
@@ -10,7 +11,7 @@ import { ProductsService } from '../../../../shared/service/products.service';
 export class ProductInfoComponent implements OnInit {
 
   productId;
-  constructor(private router: Router, private route: ActivatedRoute, private service: ProductsService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private service: ProductsService, private navbarService: NavbarService) { }
 
   ngOnInit() {
     this.getParams();
@@ -22,7 +23,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   private hideSearchNavbar(): void {
-    this.service.showSecondNavbar(false);
+    this.navbarService.showNavbar(false);
   }
 
   // getParams(): void {

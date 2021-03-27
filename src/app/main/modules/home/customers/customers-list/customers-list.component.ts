@@ -35,7 +35,7 @@ export class CustomersListComponent implements OnInit {
   };
 
   private initNavbar(): void {
-    this.navbarService.interfaceRuleEmitter
+    this.navbarService.showNavbar(true);
   }
 
 }
