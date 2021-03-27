@@ -1,6 +1,7 @@
+import { Customer } from './../../../../shared/model/customer.model';
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/app/main/shared/model/customer.model';
-import {CustomersService } from '../../../../shared/service/customers.service';
+import {CustomersApiService} from './../../../../shared/service/customers-api.service';
+import { ResponsePageable } from 'src/app/main/shared/model/responsePageable.model';
 
 @Component({
   selector: 'app-customers-list',
@@ -10,18 +11,21 @@ import {CustomersService } from '../../../../shared/service/customers.service';
 export class CustomersListComponent implements OnInit {
 
   customers: Customer[];
+  tableInfo: {};
+  constructor(private serviceApi: CustomersApiService) { }
 
-  constructor(private service: CustomersService) { }
-
-  ngOnInit(): void {
-    this.getCustomers();
+  ngOnInit() {
+    this.getAllCustomers();
   }
 
-  getCustomers() {
-    this.service.getCustomers().subscribe(data => {
-      this.customers = data.content;
-    });
+  getAllCustomers(): void {
+    this.serviceApi.getCustomers().subscribe((result: ResponsePageable) => {
+      this.customers = result.content;
+    })
   }
 
+  private initTableInfo(): void {
+
+  }
 
 }

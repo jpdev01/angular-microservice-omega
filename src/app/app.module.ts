@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './main/shared/safety/AuthGuard.model';
 import { AdminGuard } from './main/shared/safety/AdminGuard.model';
+import { ListEntityModule } from './main/components/list-entity/list-entity.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AdminGuard } from './main/shared/safety/AdminGuard.model';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ListEntityModule
   ],
   providers: [Utils, AuthGuard, AdminGuard],
   bootstrap: [AppComponent]

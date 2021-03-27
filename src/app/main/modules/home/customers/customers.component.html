@@ -1,2 +1,7 @@
-<p>customers works!</p>
-
+<!-- <app-users-navbar *ngIf="navbarShow"></app-users-navbar> -->
+<app-navbar-secundary *ngIf="navbarShow"></app-navbar-secundary>
+<main role="main" class="container-fluid h-75">
+  <div class="my-3 p-3 bg-white rounded shadow-sm h-100">
+    <router-outlet></router-outlet>
+  </div>
+</main>

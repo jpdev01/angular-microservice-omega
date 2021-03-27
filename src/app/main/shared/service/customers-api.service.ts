@@ -1,5 +1,5 @@
-import { ResponsePageable } from './../model/responsePageable.model';
-import { Utils } from './../utils/Utils.model';
+import { ResponsePageable } from '../model/responsePageable.model';
+import { Utils } from '../utils/Utils.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CustomersService {
+export class CustomersApiService {
 
   constructor(private httpClient: HttpClient, private utils: Utils) { }
 
