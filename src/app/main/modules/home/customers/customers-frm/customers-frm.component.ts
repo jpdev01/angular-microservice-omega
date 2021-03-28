@@ -58,7 +58,7 @@ export class CustomersFrmComponent implements OnInit {
       size: emptyRequisities,
       size2: emptyRequisities,
       office: emptyRequisities,
-      addrress: emptyRequisities,
+      address: emptyRequisities,
       reference: emptyRequisities,
       cep: emptyRequisities,
       uf: emptyRequisities,
@@ -97,8 +97,9 @@ export class CustomersFrmComponent implements OnInit {
     formField = new FormField({
       id: "cpf",
       label: "CPF",
-      type: "text",
-      row: "1"
+      type: "number",
+      row: "1",
+      mask: 
     });
 
     group1.push(formField);
@@ -176,9 +177,9 @@ export class CustomersFrmComponent implements OnInit {
     });
     group2.push(formField);
     formField = new FormField({
-      id: "addrress",
+      id: "address",
       label: "Endereço",
-      type: "addrress",
+      type: "address",
       row: "1"
     });
     group3.push(formField);

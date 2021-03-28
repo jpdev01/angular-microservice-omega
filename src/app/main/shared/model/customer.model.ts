@@ -17,6 +17,6 @@ export class Customer {
   size: string;
   size2: string;
   office: string;
-  addrress: Address;
+  address: Address;
   reference: Reference;
 }

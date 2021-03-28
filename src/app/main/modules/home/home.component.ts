@@ -12,7 +12,7 @@ import { ToastNotification } from '../../shared/model/toast-notification.model';
 export class HomeComponent implements OnInit {
 
   public notification: ToastNotification;
-  navbarShow = true;
+  navbarShow = false;
 
   constructor(public utils: Utils, private toastService: ToastNotificationService, private navbarService: NavbarService) {
    }

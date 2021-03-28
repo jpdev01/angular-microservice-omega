@@ -33,7 +33,7 @@
                       <div class="col-sm-2 col-lg-10 fb-field-container " style="min-height:26px">
                         <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;">
                           <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
-                            *ngIf="field.type != 'select'" formControlName="{{ field.id }}">
+                            *ngIf="field.type != 'select'" formControlName="{{ field.id }}" (change)="field.onchange($event.target.value)">
                           <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'" formControlName="{{ field.id }}">
                             <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option }}</option>
                           </select>

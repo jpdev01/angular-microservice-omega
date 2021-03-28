@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ToastNotificationService } from '../../shared/service/toast-notification.service';
 import { ToastNotification } from '../../shared/model/toast-notification.model';
 import {States } from '../../shared/enum/states.enum';
+import {AddressService} from '../../shared/service/address.service';
+import { FormGroup } from '@angular/forms';
 declare var $:any;
 
 @Component({
@@ -15,7 +17,7 @@ declare var $:any;
 })
 export class FrmCadComponent implements OnInit {
 
-  @Input() frm: any;
+  @Input() frm: FormGroup;
   //@Input('frm') frm;
   @Input() componentInfo: any;
   @Input() formModel: FormModel;
@@ -27,7 +29,7 @@ export class FrmCadComponent implements OnInit {
   onSave: any;
 
 
-  constructor(private router: Router, public toastService: ToastNotificationService, private utils: Utils) { }
+  constructor(private router: Router, public toastService: ToastNotificationService, private utils: Utils, private addressService: AddressService) { }
 
   ngOnInit() {
     console.log(this.frm);
@@ -93,8 +95,8 @@ export class FrmCadComponent implements OnInit {
 
     for (let i = 0; i < groups.length; i++){
       groups[i].forEach(field => {
-        if (field.type === "addrress") {
-          groups[i] = this.initFieldsAddrress();
+        if (field.type === "address") {
+          groups[i] = this.initFieldsaddress();
         }
 
       });
@@ -102,13 +104,14 @@ export class FrmCadComponent implements OnInit {
 
   }
 
-  private initFieldsAddrress(): any {
+  private initFieldsaddress(): any {
     let group = [];
 
     let field = new FormField({
       id: "cep",
       label: "CEP",
-      type: "text"
+      type: "text",
+      onchange: (field)=> this.updateAddressByCep(field)
     });
     group.push(field);
     field = new FormField({
@@ -145,4 +148,27 @@ export class FrmCadComponent implements OnInit {
     return group;
   }
 
+
+  public updateAddressByCep(cep: string): void {
+    if (cep) {
+      this.addressService.getAddressByCep(cep).subscribe(result => {
+        this.frm.get('city').setValue(result.localidade);
+        this.frm.get('uf').setValue(result.uf);
+        this.frm.get('publicPlace').setValue(result.logradouro);
+        this.frm.get('uf').setValue(result.uf);
+        this.frm.get('neighborhood').setValue(result.bairro);
+      }, () => {});
+    }
+  }
+
 }
+// bairro: "Costa e Silva"
+// cep: "89218-640"
+// complemento: ""
+// ddd: "47"
+// gia: ""
+// ibge: "4209102"
+// localidade: "Joinville"
+// logradouro: "Rua Afonso Kieper"
+// siafi: "8179"
+// uf: "SC"

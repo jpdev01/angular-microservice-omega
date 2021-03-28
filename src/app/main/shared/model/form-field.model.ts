@@ -8,6 +8,8 @@ export class FormField {
   row: string;
   options: object;
   fields: object;
+  onchange: any;
+  mask:any;
 
   constructor(options: {
     id?: string;
@@ -19,6 +21,8 @@ export class FormField {
     size?: string;
     labelConfig?: any;
     fields?: object;
+    onchange?: any;
+    mask?: any;
     config?: {
       label: {
         size: string
@@ -38,6 +42,8 @@ export class FormField {
     this.row = options.row;
     this.options = options.config;
     this.fields = options.fields;
+    this.onchange = options.onchange;
+    this.mask = options.mask;
 
 
   }
