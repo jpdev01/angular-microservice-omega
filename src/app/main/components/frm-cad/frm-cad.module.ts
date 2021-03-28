@@ -7,13 +7,15 @@ import { EnumKeyPipe } from '../../shared/pipe/enum-filter-key.pipe';
 import { ToastNotificationService } from '../../shared/service/toast-notification.service';
 import { Router } from '@angular/router';
 import { Utils } from '../../shared/utils/Utils.model';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PipeModule
+    PipeModule,
+    NgxMaskModule.forRoot()
   ],
   declarations: [FrmCadComponent],
   exports: [FrmCadComponent],

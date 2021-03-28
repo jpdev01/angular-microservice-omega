@@ -33,6 +33,7 @@
     "bootstrap-icons": "^1.4.0",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
+    "ngx-mask": "^11.1.5",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",

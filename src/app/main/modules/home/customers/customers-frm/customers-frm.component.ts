@@ -7,6 +7,7 @@ import { FormModel } from 'src/app/main/shared/model/form-model.model';
 import { FormField } from 'src/app/main/shared/model/form-field.model';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { Size } from 'src/app/main/shared/model/size.model';
+import {Mask} from 'src/app/main/shared/model/mask.model';
 
 @Component({
   selector: 'app-customers-frm',
@@ -75,6 +76,7 @@ export class CustomersFrmComponent implements OnInit {
     let group2 = [];
     let group3 = [];
     let group4 = [];
+    let mask = new Mask();
 
     let formField = new FormField({
       id: "name",
@@ -97,9 +99,9 @@ export class CustomersFrmComponent implements OnInit {
     formField = new FormField({
       id: "cpf",
       label: "CPF",
-      type: "number",
+      type: "text",
       row: "1",
-      mask: 
+      mask: mask.cpf
     });
 
     group1.push(formField);
@@ -108,7 +110,8 @@ export class CustomersFrmComponent implements OnInit {
       id: "RG",
       label: "RG",
       type: "text",
-      row: "1"
+      row: "1",
+      mask: mask.rg
     });
     group1.push(formField);
     formField = new FormField({
@@ -136,14 +139,15 @@ export class CustomersFrmComponent implements OnInit {
       id: "fone",
       label: "Telefone",
       type: "number",
-      row: "1"
+      row: "1",
+      mask: mask.fone
     });
     group1.push(formField);
     formField = new FormField({
       id: "mobile",
       label: "Celular",
       type: "number",
-      row: "1"
+      mask: mask.fone
     });
     group2.push(formField);
     formField = new FormField({
