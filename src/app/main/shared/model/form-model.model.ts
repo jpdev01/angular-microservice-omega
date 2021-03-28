@@ -2,6 +2,7 @@ import { group } from '@angular/animations';
 import { FormField } from './form-field.model';
 
 export class FormModel {
+  entityName: string;
   id: string;
   name: string;
   fields: any[];
@@ -15,6 +16,7 @@ export class FormModel {
     formGroupName?: string;
     fields?: any[];
     configs?: object;
+    entityName?: string;
   } = {}) {
 
     this.id = options.id;
@@ -24,6 +26,7 @@ export class FormModel {
     this.fields = options.fields;
     this.formGroupName = options.formGroupName;
     this.configs = options.configs;
+    this.entityName = options.entityName;
 
   }
 

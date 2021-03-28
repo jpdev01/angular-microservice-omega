@@ -24,6 +24,7 @@ export class FrmCadComponent implements OnInit {
   serviceApi: any;
   element: any;
   labelConfig = {size: ''};
+  entityName = "";
 
 
   onSave: any;
@@ -37,11 +38,11 @@ export class FrmCadComponent implements OnInit {
     console.log(this.formModel);
     this.initComponentInfo();
     this.initForm();
-
   }
 
   initForm(): void {
     this.checkCustomFields();
+    this.entityName = this.formModel.entityName;
   }
 
   initComponentInfo(): void {
@@ -159,6 +160,12 @@ export class FrmCadComponent implements OnInit {
         this.frm.get('neighborhood').setValue(result.bairro);
       }, () => {});
     }
+  }
+
+  public getEntityTitle(): string {
+    let frm = this.frm;
+    let title = (frm.get('name') || frm.get('login') || frm.get('title')).value;
+    return title;
   }
 
 }

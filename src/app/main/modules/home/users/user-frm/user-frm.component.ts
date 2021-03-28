@@ -129,6 +129,7 @@ export class UserFrmComponent implements OnInit {
     groups.push(formField);
 
     this.formModel = new FormModel({
+      entityName: "Usuário",
       fields: [groups]
     });
 

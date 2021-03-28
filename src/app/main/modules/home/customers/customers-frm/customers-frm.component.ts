@@ -198,6 +198,7 @@ export class CustomersFrmComponent implements OnInit {
     group4.push(formField);
 
     this.formModel = new FormModel({
+      entityName: "Cliente",
       fields: [group1, group2, group3, group4]
     });
 
