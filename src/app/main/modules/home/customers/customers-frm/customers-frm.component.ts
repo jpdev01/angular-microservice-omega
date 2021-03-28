@@ -150,13 +150,7 @@ export class CustomersFrmComponent implements OnInit {
       mask: mask.fone
     });
     group2.push(formField);
-    formField = new FormField({
-      id: "description",
-      label: "Descrição",
-      type: "textarea",
-      row: "1"
-    });
-    group2.push(formField);
+
     formField = new FormField({
       id: "size",
       label: "Tamanho",
@@ -180,6 +174,14 @@ export class CustomersFrmComponent implements OnInit {
       row: "1"
     });
     group2.push(formField);
+    formField = new FormField({
+      id: "description",
+      label: "Descrição",
+      type: "textarea",
+      row: "1"
+    });
+    group2.push(formField);
+
     formField = new FormField({
       id: "address",
       label: "Endereço",
