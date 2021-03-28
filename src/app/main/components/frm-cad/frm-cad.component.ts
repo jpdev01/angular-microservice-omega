@@ -1,5 +1,5 @@
 import { FormField } from './../../shared/model/form-field.model';
-import { FormModel } from './../../shared/model/form-model.model';
+import { FormSerializer } from '../../shared/model/form-serializer.model';
 import { Utils } from 'src/app/main/shared/utils/Utils.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
@@ -20,7 +20,7 @@ export class FrmCadComponent implements OnInit {
   @Input() frm: FormGroup;
   //@Input('frm') frm;
   @Input() componentInfo: any;
-  @Input() formModel: FormModel;
+  @Input() formModel: FormSerializer;
   serviceApi: any;
   element: any;
   labelConfig = {size: ''};
@@ -47,7 +47,7 @@ export class FrmCadComponent implements OnInit {
 
   initComponentInfo(): void {
     let componentInfo = this.componentInfo;
-    this.serviceApi = componentInfo.serviceApi;
+    this.serviceApi = componentInfo.serviceApi || this.formModel.serviceApi;
     this.onSave = componentInfo.onSave;
   }
 

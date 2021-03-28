@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 import { FormField } from '../../../../shared/model/form-field.model';
-import { FormModel } from '../../../../shared/model/form-model.model';
+import { FormSerializer } from '../../../../shared/model/form-serializer.model';
 import { InterfaceRule } from 'src/app/main/shared/model/interface-rule.model';
 import { UserService } from '../../../../shared/service/user.service';
 import { UserApiService } from '../../../../shared/service/user-api.service';
@@ -24,7 +24,7 @@ export class UserFrmComponent implements OnInit {
   userId: number;
   user: User;
   public userForm: FormGroup;
-  formModel: FormModel;
+  formModel: FormSerializer;
   navbarRule;
   formFromEditing = false;
   componentInfo: any;
@@ -128,7 +128,7 @@ export class UserFrmComponent implements OnInit {
 
     groups.push(formField);
 
-    this.formModel = new FormModel({
+    this.formModel = new FormSerializer({
       entityName: "Usuário",
       fields: [groups]
     });

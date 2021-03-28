@@ -1,7 +1,7 @@
 import { group } from '@angular/animations';
 import { FormField } from './form-field.model';
 
-export class FormModel {
+export class FormSerializer {
   entityName: string;
   id: string;
   name: string;
@@ -9,6 +9,7 @@ export class FormModel {
   groups: [{key: string; field: FormField[]}];
   formGroupName: string;
   configs: object;
+  serviceApi: any;
 
   constructor(options: {
     id?: string;
@@ -17,6 +18,7 @@ export class FormModel {
     fields?: any[];
     configs?: object;
     entityName?: string;
+    serviceApi?: any;
   } = {}) {
 
     this.id = options.id;
@@ -27,6 +29,7 @@ export class FormModel {
     this.formGroupName = options.formGroupName;
     this.configs = options.configs;
     this.entityName = options.entityName;
+    this.serviceApi = options.serviceApi;
 
   }
 

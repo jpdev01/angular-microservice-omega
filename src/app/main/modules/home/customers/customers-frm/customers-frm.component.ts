@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
-import { FormModel } from 'src/app/main/shared/model/form-model.model';
+import { FormSerializer } from 'src/app/main/shared/model/form-serializer.model';
 import { FormField } from 'src/app/main/shared/model/form-field.model';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { Size } from 'src/app/main/shared/model/size.model';
@@ -17,7 +17,7 @@ import {Mask} from 'src/app/main/shared/model/mask.model';
 export class CustomersFrmComponent implements OnInit {
 
   public userForm: FormGroup;
-  formModel: FormModel;
+  formModel: FormSerializer;
   componentInfo: any;
 
   constructor(private navbarService: NavbarService, private fb: FormBuilder, public serviceApi: CustomersApiService, private toastService: ToastNotificationService) { }
@@ -138,7 +138,7 @@ export class CustomersFrmComponent implements OnInit {
     formField = new FormField({
       id: "fone",
       label: "Telefone",
-      type: "number",
+      type: "text",
       row: "1",
       mask: mask.fone
     });
@@ -146,7 +146,7 @@ export class CustomersFrmComponent implements OnInit {
     formField = new FormField({
       id: "mobile",
       label: "Celular",
-      type: "number",
+      type: "text",
       mask: mask.fone
     });
     group2.push(formField);
@@ -197,9 +197,10 @@ export class CustomersFrmComponent implements OnInit {
     });
     group4.push(formField);
 
-    this.formModel = new FormModel({
+    this.formModel = new FormSerializer({
       entityName: "Cliente",
-      fields: [group1, group2, group3, group4]
+      fields: [group1, group2, group3, group4],
+      serviceApi: this.serviceApi
     });
 
   }
