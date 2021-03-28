@@ -8,6 +8,7 @@ import { ToastNotificationService } from '../../shared/service/toast-notificatio
 import { Router } from '@angular/router';
 import { Utils } from '../../shared/utils/Utils.model';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import {FrmGroupComponent} from 'src/app/main/components/frm-cad/frm-group/frm-group.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
     PipeModule,
     NgxMaskModule.forRoot()
   ],
-  declarations: [FrmCadComponent],
+  declarations: [FrmCadComponent, FrmGroupComponent],
   exports: [FrmCadComponent],
   providers: [EnumKeyPipe, ToastNotificationService, Utils]
 })

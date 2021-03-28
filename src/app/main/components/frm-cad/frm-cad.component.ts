@@ -1,3 +1,4 @@
+import { FormGroupSerializer } from './../../shared/model/form-group-serializer.model';
 import { FormField } from './../../shared/model/form-field.model';
 import { FormSerializer } from '../../shared/model/form-serializer.model';
 import { Utils } from 'src/app/main/shared/utils/Utils.model';
@@ -8,12 +9,14 @@ import { ToastNotification } from '../../shared/model/toast-notification.model';
 import {States } from '../../shared/enum/states.enum';
 import {AddressService} from '../../shared/service/address.service';
 import { FormGroup } from '@angular/forms';
+import { Mask } from '../../shared/model/mask.model';
 declare var $:any;
 
 @Component({
   selector: 'app-frm-cad',
   templateUrl: './frm-cad.component.html',
   styleUrls: ['./frm-cad.component.css']
+
 })
 export class FrmCadComponent implements OnInit {
 
@@ -92,10 +95,10 @@ export class FrmCadComponent implements OnInit {
 
   private checkCustomFields(): void {
     let form = this.formModel;
-    let groups = form.fields;
+    let groups = form.groups;
 
     for (let i = 0; i < groups.length; i++){
-      groups[i].forEach(field => {
+      groups[i].fields.forEach(field => {
         if (field.type === "address") {
           groups[i] = this.initFieldsaddress();
         }
@@ -106,59 +109,62 @@ export class FrmCadComponent implements OnInit {
   }
 
   private initFieldsaddress(): any {
-    let group = [];
-
+    let group = new FormGroupSerializer();
+    let mask = new Mask();
     let field = new FormField({
       id: "cep",
       label: "CEP",
       type: "text",
+      mask: mask.cep,
       onchange: (field)=> this.updateAddressByCep(field)
     });
-    group.push(field);
+    group.fields.push(field);
     field = new FormField({
       id: "uf",
       label: "Estado",
       type: "select",
       fields: States
     });
-    group.push(field);
+    group.fields.push(field);
     field = new FormField({
       id: "city",
       label: "Cidade",
       type: "text"
     });
-    group.push(field);
+    group.fields.push(field);
     field = new FormField({
       id: "neighborhood",
       label: "Bairro",
       type: "text"
     });
-    group.push(field);
+    group.fields.push(field);
     field = new FormField({
       id: "publicPlace",
       label: "Endereço",
       type: "text"
     });
-    group.push(field);
+    group.fields.push(field);
     field = new FormField({
       id: "complement",
       label: "Complemento",
       type: "text"
     });
-    group.push(field);
+    group.fields.push(field);
+    group.formGroupName = "address";
     return group;
   }
 
 
   public updateAddressByCep(cep: string): void {
-    if (cep) {
+    let formGroupName = this.frm.get('address');
+    if (formGroupName && cep) {
       this.addressService.getAddressByCep(cep).subscribe(result => {
-        this.frm.get('city').setValue(result.localidade);
-        this.frm.get('uf').setValue(result.uf);
-        this.frm.get('publicPlace').setValue(result.logradouro);
-        this.frm.get('uf').setValue(result.uf);
-        this.frm.get('neighborhood').setValue(result.bairro);
-      }, () => {});
+        formGroupName.get('city').setValue(result.localidade);
+        formGroupName.get('uf').setValue(result.uf);
+        formGroupName.get('publicPlace').setValue(result.logradouro);
+        formGroupName.get('uf').setValue(result.uf);
+        formGroupName.get('neighborhood').setValue(result.bairro);
+      }, () => { });
     }
   }
 

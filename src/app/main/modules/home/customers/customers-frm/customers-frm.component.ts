@@ -8,6 +8,7 @@ import { FormField } from 'src/app/main/shared/model/form-field.model';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { Size } from 'src/app/main/shared/model/size.model';
 import {Mask} from 'src/app/main/shared/model/mask.model';
+import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
 
 @Component({
   selector: 'app-customers-frm',
@@ -46,6 +47,15 @@ export class CustomersFrmComponent implements OnInit {
     let emptyRequisities = ['', []];
 
     this.userForm = this.fb.group({
+      address: this.fb.group({
+        cep: emptyRequisities,
+        uf: emptyRequisities,
+        publicPlace: emptyRequisities,
+        neighborhood: emptyRequisities,
+        city: emptyRequisities,
+        complement: emptyRequisities
+      }),
+
       name: [valueDefault, [Validators.required]],
       nickname: [valueDefault, [Validators.required]],
       cpf: [valueDefault, [Validators.required]],
@@ -59,23 +69,18 @@ export class CustomersFrmComponent implements OnInit {
       size: emptyRequisities,
       size2: emptyRequisities,
       office: emptyRequisities,
-      address: emptyRequisities,
-      reference: emptyRequisities,
-      cep: emptyRequisities,
-      uf: emptyRequisities,
-      publicPlace: emptyRequisities,
-      neighborhood: emptyRequisities,
-      city: emptyRequisities,
-      complement: emptyRequisities
-    });
+      reference: emptyRequisities
+      //address: emptyRequisities,
+    })
+
   }
 
   private initFormValues(): void {
 
-    let group1 = [];
-    let group2 = [];
-    let group3 = [];
-    let group4 = [];
+    let group1 = new FormGroupSerializer();
+    let group2 = new FormGroupSerializer();
+    let group3 = new FormGroupSerializer();
+    let group4 = new FormGroupSerializer();
     let mask = new Mask();
 
     let formField = new FormField({
@@ -85,7 +90,7 @@ export class CustomersFrmComponent implements OnInit {
       row: "1"
     });
 
-    group1.push(formField);
+    group1.fields.push(formField);
 
     formField = new FormField({
       id: "nickname",
@@ -94,7 +99,7 @@ export class CustomersFrmComponent implements OnInit {
       row: "1"
     });
 
-    group1.push(formField);
+    group1.fields.push(formField);
 
     formField = new FormField({
       id: "cpf",
@@ -104,7 +109,7 @@ export class CustomersFrmComponent implements OnInit {
       mask: mask.cpf
     });
 
-    group1.push(formField);
+    group1.fields.push(formField);
 
     formField = new FormField({
       id: "RG",
@@ -113,28 +118,30 @@ export class CustomersFrmComponent implements OnInit {
       row: "1",
       mask: mask.rg
     });
-    group1.push(formField);
+    group1.fields.push(formField);
     formField = new FormField({
       id: "borndate",
       label: "Data de Nascimento",
       type: "date",
       row: "1"
     });
-    group1.push(formField);
+    group1.fields.push(formField);
     formField = new FormField({
       id: "dataReg",
       label: "Data de Registro",
       type: "date",
       row: "1"
     });
-    group1.push(formField);
+    group1.fields.push(formField);
+
     formField = new FormField({
       id: "email",
       label: "E-mail",
       type: "email",
       row: "1"
     });
-    group1.push(formField);
+    group1.fields.push(formField);
+
     formField = new FormField({
       id: "fone",
       label: "Telefone",
@@ -142,14 +149,14 @@ export class CustomersFrmComponent implements OnInit {
       row: "1",
       mask: mask.fone
     });
-    group1.push(formField);
+    group1.fields.push(formField);
     formField = new FormField({
       id: "mobile",
       label: "Celular",
       type: "text",
       mask: mask.fone
     });
-    group2.push(formField);
+    group2.fields.push(formField);
 
     formField = new FormField({
       id: "size",
@@ -158,7 +165,7 @@ export class CustomersFrmComponent implements OnInit {
       fields: new Size().size,
       row: "1"
     });
-    group2.push(formField);
+    group2.fields.push(formField);
     formField = new FormField({
       id: "size2",
       label: "Tamanho",
@@ -166,21 +173,21 @@ export class CustomersFrmComponent implements OnInit {
       fields: new Size().size2,
       row: "1"
     });
-    group2.push(formField);
+    group2.fields.push(formField);
     formField = new FormField({
       id: "office",
       label: "Trabalho",
       type: "select",
       row: "1"
     });
-    group2.push(formField);
+    group2.fields.push(formField);
     formField = new FormField({
       id: "description",
       label: "Descrição",
       type: "textarea",
       row: "1"
     });
-    group2.push(formField);
+    group2.fields.push(formField);
 
     formField = new FormField({
       id: "address",
@@ -188,18 +195,20 @@ export class CustomersFrmComponent implements OnInit {
       type: "address",
       row: "1"
     });
-    group3.push(formField);
+    group3.fields.push(formField);
+    group3.formGroupName = "address";
+
     formField = new FormField({
       id: "reference",
       label: "Referencia",
       type: "text",
       row: "1"
     });
-    group4.push(formField);
+    group4.fields.push(formField);
 
     this.formModel = new FormSerializer({
       entityName: "Cliente",
-      fields: [group1, group2, group3, group4],
+      groups: [group1, group2, group3, group4],
       serviceApi: this.serviceApi
     });
 

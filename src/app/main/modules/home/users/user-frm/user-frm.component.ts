@@ -13,6 +13,7 @@ import { InterfaceRule } from 'src/app/main/shared/model/interface-rule.model';
 import { UserService } from '../../../../shared/service/user.service';
 import { UserApiService } from '../../../../shared/service/user-api.service';
 import { Permission } from 'src/app/main/shared/enum/permission.enum';
+import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
 
 @Component({
   selector: 'app-user-frm',
@@ -96,7 +97,7 @@ export class UserFrmComponent implements OnInit {
   private initFormValues(): void {
     // this.formCustom = new FormField();
 
-    let groups = [];
+    let group = new FormGroupSerializer();
 
     let formField = new FormField({
       id: "login",
@@ -105,7 +106,7 @@ export class UserFrmComponent implements OnInit {
       row: "1"
     });
 
-    groups.push(formField);
+    group.fields.push(formField);
 
     formField = new FormField({
       id: "password",
@@ -114,7 +115,7 @@ export class UserFrmComponent implements OnInit {
       row: "1"
     });
 
-    groups.push(formField);
+    group.fields.push(formField);
 
     formField = new FormField({
       id: "permission",
@@ -126,11 +127,11 @@ export class UserFrmComponent implements OnInit {
       }
     });
 
-    groups.push(formField);
+    group.fields.push(formField);
 
     this.formModel = new FormSerializer({
       entityName: "Usuário",
-      fields: [groups]
+      groups: [group]
     });
 
   }

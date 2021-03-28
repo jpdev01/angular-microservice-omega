@@ -7,16 +7,18 @@
   <div class="row h-100">
     <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto h-100 mb-4 w-100">
 
+
       <form class="form-horizontal" [formGroup]="frm">
         <div class="card-body panel-body col-12" style="width: 100%">
           <div class="row">
-          <div *ngFor="let group of formModel.fields">
-            <div class="col-12">
+          <div *ngFor="let group of formModel.groups">
+
+            <div class="col-12" >
               <div class="row">
 
                 <div class="col-auto">
 
-                  <div *ngFor="let field of group">
+                  <div *ngFor="let field of group.fields">
                     <div class="row">
                       <div class="fb-field-container col-form-label control-label"
                       style="min-height:26px">
@@ -31,22 +33,49 @@
                   </div>
                 </div>
                 <div class="col">
-                  <div *ngFor="let field of group">
+                  <div *ngFor="let field of group.fields">
                     <div class="row mb-2">
                       <div class="col-sm-2 col-lg-10 fb-field-container " style="min-height:26px">
-                        <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;">
+                        <!-- if not groupName -->
+                        <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;" *ngIf="!group.formGroupName">
+
+
                           <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
-                            *ngIf="field.type != 'select' && field.type != 'textarea'" formControlName="{{ field.id }}"
+                            *ngIf="field.type != 'select' && field.type != 'textarea'" [formControlName]="field.id"
                             (change)="field.onchange ? field.onchange($event.target.value) : ''"
                             [mask]="field.mask">
 
-                          <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'" formControlName="{{ field.id }}">
+                          <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'" [formControlName]="field.id">
                             <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option }}</option>
                           </select>
 
                           <textarea *ngIf="field.type == 'textarea'"
-                          class="form-control form-control-sm rounded-0"placeholder="" formControlName="{{ field.id }}">
+                          class="form-control form-control-sm rounded-0"placeholder="" [formControlName]="field.id">
                         </textarea>
+
+
+                        </div>
+
+                         <!-- if groupName -->
+                         <!-- feito para campos especificos, ramificados, que possuem chave primaria na entidade-->
+
+                         <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;" *ngIf="group.formGroupName" [formGroupName]="group.formGroupName">
+
+
+                          <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
+                            *ngIf="field.type != 'select' && field.type != 'textarea'" [formControlName]="field.id"
+                            (change)="field.onchange ? field.onchange($event.target.value) : ''"
+                            [mask]="field.mask">
+
+                          <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'" [formControlName]="field.id">
+                            <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option }}</option>
+                          </select>
+
+                          <textarea *ngIf="field.type == 'textarea'"
+                          class="form-control form-control-sm rounded-0"placeholder="" [formControlName]="field.id">
+                        </textarea>
+
+
                         </div>
                       </div>
                     </div>

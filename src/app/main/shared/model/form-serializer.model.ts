@@ -1,12 +1,13 @@
 import { group } from '@angular/animations';
 import { FormField } from './form-field.model';
+import { FormGroupSerializer } from './form-group-serializer.model';
 
 export class FormSerializer {
   entityName: string;
   id: string;
   name: string;
-  fields: any[];
-  groups: [{key: string; field: FormField[]}];
+  groups: FormGroupSerializer[];
+  //groups: [{key: string; field: FormField[]}];
   formGroupName: string;
   configs: object;
   serviceApi: any;
@@ -15,7 +16,7 @@ export class FormSerializer {
     id?: string;
     name?: string;
     formGroupName?: string;
-    fields?: any[];
+    groups?: any[];
     configs?: object;
     entityName?: string;
     serviceApi?: any;
@@ -25,7 +26,7 @@ export class FormSerializer {
     this.name = options.name;
 
     // this.initGroupsFields(options);
-    this.fields = options.fields;
+    this.groups = options.groups ? options.groups : [];
     this.formGroupName = options.formGroupName;
     this.configs = options.configs;
     this.entityName = options.entityName;
