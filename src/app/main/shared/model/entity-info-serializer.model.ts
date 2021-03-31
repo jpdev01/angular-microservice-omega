@@ -5,19 +5,19 @@ export class EntityInfoSerializer {
   id: string;
   label: string;
   content: any;
-  fields: FieldInfoSerializer[];
+  groups: any[];
 
   constructor(options: {
     entity?: any;
     label?: string;
     content?: string;
     id?: string;
-    fields?: FieldInfoSerializer[];
+    groups?: any[];
   } = {}) {
     this.label = options.label;
     this.content = options.content;
     this.id = options.id;
-    this.fields = options.fields;
+    this.groups = options.groups;
     this.entity = options.entity;
   }
 }

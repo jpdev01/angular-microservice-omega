@@ -9,11 +9,12 @@ import { EntityInfoSerializer } from '../../shared/model/entity-info-serializer.
 export class EntityInfoComponent implements OnInit {
 
   @Input() entityInfoSerialize: EntityInfoSerializer;
+  entity: any;
 
   constructor() { }
 
   ngOnInit() {
-    
+    this.entity = this.entityInfoSerialize.entity;
   }
 
 }

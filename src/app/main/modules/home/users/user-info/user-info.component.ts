@@ -1,5 +1,5 @@
 import { UserService } from '../../../../shared/service/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/main/shared/model/user.model';
 import { EntityInfoSerializer } from '../../../../shared/model/entity-info-serializer.model';
@@ -16,7 +16,7 @@ export class UserInfoComponent implements OnInit {
   userId: number;
   user: any;
   navbarRule;
-  entityInfoSerialize: EntityInfoSerializer;
+  entityInfoSerialize: any;
 
   constructor(private route: ActivatedRoute, private service: UserService, private serviceApi: UserApiService) {
     // this.route.params.subscribe(params => this.userId = params['id']);
@@ -28,15 +28,15 @@ export class UserInfoComponent implements OnInit {
     if (this.userId) {
       this.getUserById(this.userId);
     }
-    // ERROR
-    this.loadUser();
-    this.initSerializer();
+    //this.loadUser();
+
   }
 
   getUserById(id: number): void{
     // this.route.params.subscribe(params => this.userId = params['id']);
     this.serviceApi.getById(id).subscribe( result => {
       this.user = result;
+      this.initSerializer();
     });
   }
 
@@ -55,7 +55,7 @@ export class UserInfoComponent implements OnInit {
   private initSerializer(): void {
     this.entityInfoSerialize = new EntityInfoSerializer({
       entity: this.user,
-      fields: new UserInfoSerialize().serialize(this.user)
+      groups: [new UserInfoSerialize().serialize(this.user)]
     });
   }
 
