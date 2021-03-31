@@ -156,14 +156,14 @@ export class FrmCadComponent implements OnInit {
 
 
   public updateAddressByCep(cep: string): void {
-    let formGroupName = this.frm.get('address');
-    if (formGroupName && cep) {
+    let addressForm = this.frm.get('address');
+    if (addressForm && cep) {
       this.addressService.getAddressByCep(cep).subscribe(result => {
-        formGroupName.get('city').setValue(result.localidade);
-        formGroupName.get('uf').setValue(result.uf);
-        formGroupName.get('publicPlace').setValue(result.logradouro);
-        formGroupName.get('uf').setValue(result.uf);
-        formGroupName.get('neighborhood').setValue(result.bairro);
+        addressForm.get('city').setValue(result.localidade);
+        addressForm.get('uf').setValue(result.uf);
+        addressForm.get('publicPlace').setValue(result.logradouro);
+        addressForm.get('uf').setValue(result.uf);
+        addressForm.get('neighborhood').setValue(result.bairro);
       }, () => { });
     }
   }

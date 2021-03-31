@@ -1,3 +1,4 @@
+import { UserInfoComponent } from './user-info/user-info.component';
 import { UserService } from '../../../shared/service/user.service';
 import { Utils } from '../../../shared/utils/Utils.model';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,10 +16,11 @@ import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
 import { FrmCadComponent } from 'src/app/main/components/frm-cad/frm-cad.component';
 import { UserApiService } from 'src/app/main/shared/service/user-api.service';
 import {ListEntityModule} from 'src/app/main/components/list-entity/list-entity.module';
+import {EntityInfoModule} from 'src/app/main/components/entity-info/entity-info.module';
 
 
 @NgModule({
-  declarations: [UsersComponent, UsersListComponent, UserFrmComponent],
+  declarations: [UsersComponent, UsersListComponent, UserFrmComponent, UserInfoComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -27,7 +29,8 @@ import {ListEntityModule} from 'src/app/main/components/list-entity/list-entity.
     ReactiveFormsModule,
     NavbarSecundaryModule,
     FrmCadModule,
-    ListEntityModule
+    ListEntityModule,
+    EntityInfoModule
   ],
   providers: [FormBuilder, Utils, UserService, UserApiService, NavbarSecundaryComponent, FrmCadComponent],
   exports: [UsersComponent]
