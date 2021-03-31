@@ -1,6 +1,7 @@
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { Utils } from './../../shared/utils/Utils.model';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-entity',
@@ -15,7 +16,7 @@ export class ListEntityComponent implements OnInit {
 
   header: [];
   row: [];
-  constructor(private utils: Utils) { }
+  constructor(private utils: Utils, private router: Router) { }
 
   ngOnInit() {
     console.log(this.entityInfoList);
@@ -23,8 +24,8 @@ export class ListEntityComponent implements OnInit {
     this.createFilter();
   }
 
-  public open(): void {
-
+  public open(entityInfo): void {
+    this.router.navigate(['home/user/info', entityInfo.id]);
   }
 
   private initHeader(): void {
