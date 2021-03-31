@@ -5,6 +5,7 @@ import { User } from 'src/app/main/shared/model/user.model';
 import { EntityInfoSerializer } from '../../../../shared/model/entity-info-serializer.model';
 import { UserApiService } from 'src/app/main/shared/service/user-api.service';
 import {UserInfoSerialize} from 'src/app/main/shared/serialize/user-info-serialize.model';
+import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
 
 @Component({
   selector: 'app-user-info',
@@ -55,7 +56,11 @@ export class UserInfoComponent implements OnInit {
   private initSerializer(): void {
     this.entityInfoSerialize = new EntityInfoSerializer({
       entity: this.user,
-      groups: [new UserInfoSerialize().serialize(this.user)]
+      // groups: [{title: "Informações de Login", content: new UserInfoSerialize().serialize(this.user)}]
+      groups: [new FormGroupSerializer({
+        formGroupName: "Informações de Login",
+        fields: new UserInfoSerialize().serialize(this.user)
+      })]
     });
   }
 

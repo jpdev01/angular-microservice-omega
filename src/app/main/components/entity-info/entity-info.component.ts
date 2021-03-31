@@ -10,11 +10,18 @@ export class EntityInfoComponent implements OnInit {
 
   @Input() entityInfoSerialize: EntityInfoSerializer;
   entity: any;
+  groupsOfFields: any;
 
   constructor() { }
 
   ngOnInit() {
     this.entity = this.entityInfoSerialize.entity;
+    console.log(this.entityInfoSerialize);
+    this.groupsOfFields = this.entityInfoSerialize.groups;
+  }
+
+  public edit(): void {
+    
   }
 
 }
