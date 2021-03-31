@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EntityInfoSerializer } from '../../shared/model/entity-info-serializer.model';
 
 @Component({
@@ -12,7 +13,7 @@ export class EntityInfoComponent implements OnInit {
   entity: any;
   groupsOfFields: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.entity = this.entityInfoSerialize.entity;
@@ -21,7 +22,8 @@ export class EntityInfoComponent implements OnInit {
   }
 
   public edit(): void {
-    
+    let entityInfoId = this.entity.id;
+    this.router.navigate(['home/user/frm', entityInfoId]);
   }
 
 }
