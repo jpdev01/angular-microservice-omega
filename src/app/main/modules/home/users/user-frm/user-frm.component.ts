@@ -40,10 +40,17 @@ export class UserFrmComponent implements OnInit {
     this.getIdByUrl();
     if (this.userId) {
       this.formFromEditing = true;
-      // this.loadUserInfo(this.userId);
+      this.loadUserInfo(this.userId);
     }
     this.initFormImpl();
     this.initFormValues();
+  }
+
+  private loadUserInfo(id: number): void {
+    this.serviceApi.getById(id).subscribe((result)=>{
+      console.log("resultado da requisicao de usuario:\n" + result);
+      this.user = result;
+    })
   }
 
   private initComponentInfo(): void {
@@ -82,15 +89,18 @@ export class UserFrmComponent implements OnInit {
   }
 
   initFormBuilder(): void {
+    if (!this.user){
+      this.user = new User();
+    }
     let valueDefault = "";
 
     this.userForm = this.fb.group({
-      login: [valueDefault, [Validators.required]],
-      password: [valueDefault, [Validators.required]],
+      login: [this.user.login, [Validators.required]],
+      password: [this.user.password, [Validators.required]],
       createDate: ['2020-08-01T20:00:00', []],
-      permission: ['', [Validators.required]],
-      active: ['', []],
-      customer: ['', []]
+      permission: [this.user.permission, [Validators.required]],
+      active: [this.user.active, []],
+      customer: [this.user.customer, []]
     });
   }
 
