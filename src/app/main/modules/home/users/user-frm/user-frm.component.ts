@@ -41,15 +41,16 @@ export class UserFrmComponent implements OnInit {
     if (this.userId) {
       this.formFromEditing = true;
       this.loadUserInfo(this.userId);
+    } else {
+      this.initFormImpl();
     }
-    this.initFormImpl();
     this.initFormValues();
   }
 
   private loadUserInfo(id: number): void {
     this.serviceApi.getById(id).subscribe((result)=>{
-      console.log("resultado da requisicao de usuario:\n" + result);
       this.user = result;
+      this.initFormImpl();
     })
   }
 
