@@ -36,7 +36,7 @@ export class UserFrmComponent implements OnInit {
 
   ngOnInit(): void {
     this.initComponentInfo();
-    this.hideUserNavbar();
+    this.applyInterfaceRule();
     this.getIdByUrl();
     if (this.userId) {
       this.formFromEditing = true;
@@ -147,7 +147,7 @@ export class UserFrmComponent implements OnInit {
 
   }
 
-  hideUserNavbar() {
+  applyInterfaceRule() {
     this.navbarService.showNavbar(false);
   }
 
