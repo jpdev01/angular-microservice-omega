@@ -12,4 +12,20 @@ export class ProductFrmComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  initTableInfo(): void {
+    throw new Error('Method not implemented.');
+  }
+  getEntityList(): void {
+    throw new Error('Method not implemented.');
+  }
+  openSecondNavbar(): void {
+    throw new Error('Method not implemented.');
+  }
+  getFilter(): void {
+    throw new Error('Method not implemented.');
+  }
+  redirectToInfo(): void {
+    throw new Error('Method not implemented.');
+  }
+
 }
