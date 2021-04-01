@@ -1,8 +1,8 @@
-export declare interface EntityListInterfaceComponent {
+export declare interface EntityFormInterfaceComponent {
 
     //  EDICAO!
     getIdByUrl(): void;
-    loadEntityInfo(): void;
+    loadEntityInfo(id: number): void;
 
     initComponentInfo(): void;
     initFormImpl(): void;
