@@ -5,6 +5,7 @@ import { Product } from '../../../../shared/model/product.model';
 import { ProductsApiService } from '../../../../shared/service/products-api.service';
 import { ProductsService } from '../../../../shared/service/products.service';
 import { Router } from '@angular/router';
+import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 
 @Component({
   selector: 'app-product-list',
@@ -15,13 +16,15 @@ export class ProductListComponent implements OnInit {
 
   public products: Product[];
   filter = "";
+  tableInfo: {};
 
-  constructor(private serviceApi: ProductsApiService, private utils: Utils, private router: Router, private service: ProductsService) { }
+  constructor(private serviceApi: ProductsApiService, private utils: Utils, private router: Router, private service: ProductsService, private navbarService: NavbarService) { }
 
   ngOnInit() {
     this.getProducts();
-    // this.createFilter();
-    this.showNavbar();
+    this.openSecondNavbar();
+    this.initTableInfo();
+    this.getFilter();
   }
 
   getProducts(): void {
@@ -32,13 +35,17 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  // private createFilter(): void {
-  //   this.utils.emitterFilterChange.subscribe(
-  //     (filter) => {
-  //       this.filter = filter;
-  //     }
-  //   );
-  // }
+  private openSecondNavbar(): void {
+    this.navbarService.showNavbar(true);
+  }
+
+  private getFilter(): void {
+    NavbarService.emitterFilterChange.subscribe((filter) => this.filter = filter);
+  }
+
+  redirectToUserInfo(id: number){
+    this.router.navigate(['home/product/', id]);
+  }
 
   public openProductInfo(product: Product){
     this.redirectToProductInfo(product.id);
@@ -51,6 +58,13 @@ export class ProductListComponent implements OnInit {
 
   private showNavbar(): void {
       this.service.showSecondNavbar(true);
+  }
+
+  private initTableInfo(): void {
+    this.tableInfo = {
+      header: ["Código", "Nome", "Categoria", ""],
+      row: ["code", "name", "category", ""]
+    };
   }
 
 }
