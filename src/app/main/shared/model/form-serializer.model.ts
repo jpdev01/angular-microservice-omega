@@ -10,6 +10,10 @@ export class FormSerializer {
   formGroupName: string;
   configs: object;
   serviceApi: any;
+  onSave: {
+    onSucess: any,
+    onError: any
+  };
 
   constructor(options: {
     id?: string;
@@ -19,6 +23,10 @@ export class FormSerializer {
     configs?: object;
     entityName?: string;
     serviceApi?: any;
+    onSave?: {
+      onSucess: any;
+      onError: any;
+    }
   } = {}) {
 
     this.id = options.id;
@@ -28,5 +36,6 @@ export class FormSerializer {
     this.configs = options.configs;
     this.entityName = options.entityName;
     this.serviceApi = options.serviceApi;
+    this.onSave = options.onSave;
   }
 }

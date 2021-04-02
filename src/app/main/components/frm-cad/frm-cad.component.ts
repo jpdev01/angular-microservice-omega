@@ -22,7 +22,6 @@ export class FrmCadComponent implements OnInit {
 
   @Input() frm: FormGroup;
   //@Input('frm') frm;
-  @Input() componentInfo: any;
   @Input() formModel: FormSerializer;
   serviceApi: any;
   element: any;
@@ -37,22 +36,18 @@ export class FrmCadComponent implements OnInit {
   constructor(private router: Router, public toastService: ToastNotificationService, private utils: Utils, private addressService: AddressService) { }
 
   ngOnInit() {
-    console.log(this.frm);
-    debugger;
-    console.log(this.formModel);
-    this.initComponentInfo();
+    this.getInfo();
     this.initForm();
+  }
+
+  getInfo(){
+    this.onSave = this.formModel.onSave;
+    this.serviceApi = this.formModel.serviceApi;
   }
 
   initForm(): void {
     this.checkCustomFields();
     this.entityName = this.formModel.entityName;
-  }
-
-  initComponentInfo(): void {
-    let componentInfo = this.componentInfo;
-    this.serviceApi = componentInfo.serviceApi || this.formModel.serviceApi;
-    this.onSave = componentInfo.onSave;
   }
 
   public cancel(): void {

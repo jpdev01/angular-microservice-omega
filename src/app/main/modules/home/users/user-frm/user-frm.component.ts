@@ -14,6 +14,7 @@ import { UserService } from '../../../../shared/service/user.service';
 import { UserApiService } from '../../../../shared/service/user-api.service';
 import { Permission } from 'src/app/main/shared/enum/permission.enum';
 import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
+import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 
 @Component({
   selector: 'app-user-frm',
@@ -30,38 +31,40 @@ export class UserFrmComponent implements OnInit {
   formFromEditing = false;
   componentInfo: any;
 
-  constructor(private route: ActivatedRoute, public service: UserService, public serviceApi: UserApiService, private fb: FormBuilder, private router: Router, private toastService: ToastNotificationService, private navbarService: NavbarService) {
+  constructor(private route: ActivatedRoute, 
+    public service: UserService, 
+    public serviceApi: UserApiService, 
+    private fb: FormBuilder, 
+    private router: Router, 
+    private toastService: ToastNotificationService, 
+    private navbarService: NavbarService) {
 
   }
 
   ngOnInit(): void {
-    this.initComponentInfo();
     this.applyInterfaceRule();
     this.getIdByUrl();
     if (this.userId) {
       this.formFromEditing = true;
       this.loadUserInfo(this.userId);
     } else {
-      this.initFormImpl();
+      this.initFormBuilder();
     }
-    this.initFormValues();
+    this.initFormStructure();
   }
 
   private loadUserInfo(id: number): void {
     this.serviceApi.getById(id).subscribe((result)=>{
       this.user = result;
-      this.initFormImpl();
+      this.initFormBuilder();
     })
   }
 
-  private initComponentInfo(): void {
-    this.componentInfo = {
-      name: "user-frm",
-      serviceApi: this.serviceApi,
-      onSave: {
+  private getOnSave(): {onSucess: {}, onError: {}} {
+    return {
         onSucess: {
           action: () => {
-            this.router.navigate(['home/users']);
+            this.router.navigate(['home/' + new PatternUrl().user]);
           },
           toast: this.toastService.create({
             title: "ok",
@@ -77,16 +80,11 @@ export class UserFrmComponent implements OnInit {
             text: "Usuário salvo com sucesso!"
           })
         }
-      }
     }
   }
 
   getIdByUrl(): void {
     this.route.params.subscribe(params => this.userId = params['id']);
-  }
-
-  initFormImpl(): void {
-    this.initFormBuilder();
   }
 
   initFormBuilder(): void {
@@ -105,9 +103,7 @@ export class UserFrmComponent implements OnInit {
     });
   }
 
-  private initFormValues(): void {
-    // this.formCustom = new FormField();
-
+  private initFormStructure(): void {
     let group = new FormGroupSerializer();
 
     let formField = new FormField({
@@ -142,7 +138,9 @@ export class UserFrmComponent implements OnInit {
 
     this.formModel = new FormSerializer({
       entityName: "Usuário",
-      groups: [group]
+      groups: [group],
+      serviceApi: this.serviceApi,
+      onSave: this.getOnSave()
     });
 
   }

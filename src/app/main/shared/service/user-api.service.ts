@@ -35,8 +35,8 @@ export class UserApiService implements ServiceApiInterface {
     return this.httpClient.get<User>(this.apiUrl + '/user/' + id);
   }
 
-  public save(user: User): void {
-    this.httpClient.post<any>(this.apiUrl + '/user/save', user, this.httpOptions);
+  public save(user: User): Observable<User> {
+    return this.httpClient.post<any>(this.apiUrl + '/user/save', user, this.httpOptions);
   }
 
 }
