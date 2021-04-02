@@ -2,6 +2,7 @@ import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { Utils } from './../../shared/utils/Utils.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EntityListSerialize } from '../../shared/serialize/entity-list-serialize.model';
 
 @Component({
   selector: 'app-list-entity',
@@ -10,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ListEntityComponent implements OnInit {
 
-  @Input() tableInfo;
-  @Input() entityInfoList: [];
+  @Input() listData: EntityListSerialize;
+  entityInfoList: any;
   filter = "";
 
   header: [];
@@ -19,7 +20,7 @@ export class ListEntityComponent implements OnInit {
   constructor(private utils: Utils, private router: Router) { }
 
   ngOnInit() {
-    console.log(this.entityInfoList);
+    console.log(this.listData);
     this.initHeader();
     this.createFilter();
   }
@@ -29,8 +30,11 @@ export class ListEntityComponent implements OnInit {
   }
 
   private initHeader(): void {
-    this.header = this.tableInfo.header;
-    this.row = this.tableInfo.row;
+    this.header = this.listData.tableStructure.header;
+    this.row = this.listData.tableStructure.row;
+    this.listData.entity.subscribe(result=>{
+      this.entityInfoList = result.content;
+    });
   }
 
   private createFilter():void {

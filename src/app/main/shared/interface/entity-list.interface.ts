@@ -5,4 +5,5 @@ export declare interface EntityListInterfaceComponent {
     openSecondNavbar(): void;
     getFilter(): void;
     redirectToInfo(): void;
+    initListData(): void;
 }

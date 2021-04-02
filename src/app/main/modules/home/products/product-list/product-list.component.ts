@@ -6,6 +6,7 @@ import { ProductsApiService } from '../../../../shared/service/products-api.serv
 import { ProductsService } from '../../../../shared/service/products.service';
 import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
+import { EntityListSerialize } from 'src/app/main/shared/serialize/entity-list-serialize.model';
 
 @Component({
   selector: 'app-product-list',
@@ -16,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   public products: Product[];
   filter = "";
-  tableInfo: {};
+  listData: {};
 
   constructor(private serviceApi: ProductsApiService, private utils: Utils, private router: Router, private service: ProductsService, private navbarService: NavbarService) { }
 
@@ -61,10 +62,15 @@ export class ProductListComponent implements OnInit {
   }
 
   private initTableInfo(): void {
-    this.tableInfo = {
+    let tableInfo = {
       header: ["Código", "Nome", "Categoria", ""],
       row: ["code", "name", "category", ""]
     };
+
+    this.listData = new EntityListSerialize({
+      entity: this.products,
+      tableStructure: tableInfo
+    })
   }
 
 }
