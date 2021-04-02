@@ -12,18 +12,26 @@ export class EntityInfoComponent implements OnInit {
   @Input() entityInfoSerialize: EntityInfoSerializer;
   entity: any;
   groupsOfFields: any;
+  titleEntity = "";
+  subTitleEntity: string;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.titleEntity = this.entityInfoSerialize.label;
     this.entity = this.entityInfoSerialize.entity;
     console.log(this.entityInfoSerialize);
     this.groupsOfFields = this.entityInfoSerialize.groups;
+    this.subTitleEntity = this.getSubTitleEntity();
   }
 
   public edit(): void {
     let entityInfoId = this.entity.id;
     this.router.navigate(['home/user/frm', entityInfoId]);
+  }
+
+  private getSubTitleEntity(): string{
+    return this.entity.name || this.entity.login || this.entity.title;
   }
 
 }

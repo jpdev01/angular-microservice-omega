@@ -25,23 +25,20 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.hideUserNavbar();
-    this.getIdByUrl();
+    this.loadIdByUrl();
     if (this.userId) {
-      this.getUserById(this.userId);
+      this.getEntityInfoById(this.userId);
     }
-    //this.loadUser();
-
   }
 
-  getUserById(id: number): void{
-    // this.route.params.subscribe(params => this.userId = params['id']);
+  getEntityInfoById(id: number): void{
     this.serviceApi.getById(id).subscribe( result => {
       this.user = result;
-      this.initSerializer();
+      this.loadEntityInfoSerialize();
     });
   }
 
-  getIdByUrl(): void{
+  loadIdByUrl(): void{
     this.route.params.subscribe(params => this.userId = params['id']);
   }
 
@@ -49,12 +46,9 @@ export class UserInfoComponent implements OnInit {
     this.service.hideUserNavbar();
   }
 
-  loadUser(): void {
-
-  }
-
-  private initSerializer(): void {
+  private loadEntityInfoSerialize(): void {
     this.entityInfoSerialize = new EntityInfoSerializer({
+      label: 'Usuário',
       entity: this.user,
       // groups: [{title: "Informações de Login", content: new UserInfoSerialize().serialize(this.user)}]
       groups: [new FormGroupSerializer({

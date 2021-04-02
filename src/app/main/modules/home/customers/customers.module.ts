@@ -12,10 +12,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListEntityModule } from 'src/app/main/components/list-entity/list-entity.module';
 import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
 import {CustomersFrmComponent} from 'src/app/main/modules/home/customers/customers-frm/customers-frm.component';
+import { CustomerInfoComponent } from './customer-info/customer-info.component';
+import { EntityInfoModule } from 'src/app/main/components/entity-info/entity-info.module';
 
 
 @NgModule({
-  declarations: [CustomersComponent, CustomersListComponent, CustomersFrmComponent],
+  declarations: [CustomersComponent, CustomersListComponent, CustomersFrmComponent, CustomerInfoComponent],
   imports: [
     CommonModule,
     CustomersRoutingModule,
@@ -24,7 +26,8 @@ import {CustomersFrmComponent} from 'src/app/main/modules/home/customers/custome
     TableModule,
     NavbarSecundaryModule,
     ListEntityModule,
-    FrmCadModule
+    FrmCadModule,
+    EntityInfoModule
   ],
   providers: [TableComponent, NavbarSecundaryComponent]
 })

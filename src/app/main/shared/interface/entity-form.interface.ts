@@ -5,9 +5,7 @@ export declare interface EntityFormInterfaceComponent {
     loadEntityInfo(id: number): void;
 
     initFormStructure(): void;
-    initFormImpl(): void;
     initFormBuilder(): void;
-    initFormValues(): void;
     applyInterfaceRule(): void;
     getOnSave(): {};
 }
