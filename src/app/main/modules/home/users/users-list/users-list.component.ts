@@ -7,20 +7,21 @@ import { UserService } from 'src/app/main/shared/service/user.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { UserApiService } from 'src/app/main/shared/service/user-api.service';
+import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abstract';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent extends EntityListAbstract implements OnInit {
 
   public users: User[];
   filter = "";
   tableInfo: {};
 
-  constructor(private service: UserService, private serviceApi: UserApiService, private router: Router, public utils: Utils, private navbarService: NavbarService) {
-
+  constructor(private service: UserService, public serviceApi: UserApiService, private router: Router, public utils: Utils, public navbarService: NavbarService) {
+    super(serviceApi, navbarService);
   }
 
   ngOnInit(): void {
@@ -31,17 +32,11 @@ export class UsersListComponent implements OnInit {
   }
 
   getUsers() {
-    this.serviceApi.getAll().subscribe(
-      (result: ResponsePageable) => {
-      debugger;
-      this.users = [];
-      //data.content !
+    super.getEntityList().subscribe(result => {
       this.users = result.content;
-      console.log(this.users);
-    },
-    (error) => {
-
-    });
+    }, error => {
+      console.log("erro: " + error);
+    })
   }
 
   public openUserInfo(u: User): void {
@@ -52,18 +47,18 @@ export class UsersListComponent implements OnInit {
     this.router.navigate(['home/user/info', id]);
   }
 
-  private openSecondNavbar(): void {
-    this.navbarService.showNavbar(true);
+  public openSecondNavbar(): void {
+    super.openSecondNavbar();
   }
 
-  private initTableInfo(): void {
+  public initTableInfo(): void {
     this.tableInfo = {
       header: ["Login", "Senha", "Permissão", ""],
       row: ["login", "password", "permission", ""]
     };
   }
 
-  private getFilter(): void {
-    NavbarService.emitterFilterChange.subscribe((filter) => this.filter = filter);
+  public getFilter(): void {
+    this.filter = super.getFilter();
   }
 }

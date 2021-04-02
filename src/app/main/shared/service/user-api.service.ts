@@ -5,11 +5,12 @@ import { ResponsePageable } from './../model/responsePageable.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ServiceApiInterface } from '../interface/service-api.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserApiService {
+export class UserApiService implements ServiceApiInterface {
 
   apiUrl: string;
   httpOptions: object;
@@ -34,11 +35,8 @@ export class UserApiService {
     return this.httpClient.get<User>(this.apiUrl + '/user/' + id);
   }
 
-  public save(user: User): Observable<User> {
-    // if (user.getPermission()){
-    //   // user.setPermission(Permission[user.getPermission()]);
-    // }
-    return this.httpClient.post<any>(this.apiUrl + '/user/save', user, this.httpOptions);
+  public save(user: User): void {
+    this.httpClient.post<any>(this.apiUrl + '/user/save', user, this.httpOptions);
   }
 
 }
