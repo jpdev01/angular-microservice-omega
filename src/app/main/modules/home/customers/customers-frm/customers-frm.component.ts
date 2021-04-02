@@ -13,6 +13,7 @@ import { EntityFrmAbstract } from 'src/app/main/shared/abstract/entity-frm.abstr
 import { ActivatedRoute, Router } from '@angular/router';
 import { EntityFormInterfaceComponent } from 'src/app/main/shared/interface/entity-form.interface';
 import { Customer } from 'src/app/main/shared/model/customer.model';
+import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 
 @Component({
   selector: 'app-customers-frm',
@@ -188,7 +189,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "office",
       label: "Trabalho",
-      type: "select",
+      type: "text",
       row: "1"
     });
     group2.fields.push(formField);
@@ -230,7 +231,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     return {
       onSucess: {
         action: () => {
-          // this.router.navigate(['home/users']);
+          this.router.navigate(['home/' + new PatternUrl().customer]);
         },
         toast: this.toastService.create({
           title: "ok",

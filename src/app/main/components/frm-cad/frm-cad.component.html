@@ -19,13 +19,12 @@
                 <div class="col-auto">
 
                   <div *ngFor="let field of group.fields">
-                    <div class="row">
-                      <div class="fb-field-container col-form-label control-label"
-                      style="min-height:26px">
-                        <div class="fb-inline-field-container "
-                        style="display: inherit; vertical-align:top;">
+                    <div class="row mb-2" style="height: 31px;">
+                      <div class="fb-field-container col-form-label control-label" class="">
+                        <div class="fb-inline-field-container h-100"
+                        style="display: inherit; vertical-align:middle;">
 
-                          <label id="tlabel_1989842181">{{ field.label }}: </label>
+                          <label class=" m-0" style="vertical-align:middle;">{{ field.label }}: </label>
                         </div>
                       </div>
                     </div>

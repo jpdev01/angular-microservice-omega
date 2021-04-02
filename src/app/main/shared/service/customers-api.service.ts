@@ -24,8 +24,8 @@ export class CustomersApiService implements ServiceApiInterface {
   getAll(): Observable<ResponsePageable>{
     return this.httpClient.get<ResponsePageable>(this.apiUrl + '/customer');
   }
-  public save(customer: Customer): void {
-    this.httpClient.post<any>(this.apiUrl + '/customer/save', customer, this.httpOptions);
+  public save(customer: Customer): Observable<Customer> {
+    return this.httpClient.post<any>(this.apiUrl + '/customer/save', customer, this.httpOptions);
   }
 
 }
