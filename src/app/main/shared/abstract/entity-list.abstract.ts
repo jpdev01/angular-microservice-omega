@@ -11,11 +11,8 @@ export abstract class EntityListAbstract implements EntityListInterfaceComponent
     constructor(public serviceApi: ServiceApiInterface, public navbarService: NavbarService){
 
     }
-    initListData(): void {
-        throw new Error("Method not implemented.");
-    }
 
-    initTableInfo(): void {
+    initListData(): void {
         throw new Error("Method not implemented.");
     }
 

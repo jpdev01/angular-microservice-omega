@@ -4,44 +4,40 @@ import { Component, OnInit } from '@angular/core';
 import {CustomersApiService} from './../../../../shared/service/customers-api.service';
 import { ResponsePageable } from 'src/app/main/shared/model/responsePageable.model';
 import { EntityListSerialize } from 'src/app/main/shared/serialize/entity-list-serialize.model';
+import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abstract';
 
 @Component({
   selector: 'app-customers-list',
   templateUrl: './customers-list.component.html',
   styleUrls: ['./customers-list.component.css']
 })
-export class CustomersListComponent implements OnInit {
+export class CustomersListComponent extends EntityListAbstract implements OnInit {
 
   customers: Customer[];
   listData: {};
-  constructor(private serviceApi: CustomersApiService, private navbarService: NavbarService) { }
+  constructor(public serviceApi: CustomersApiService, public navbarService: NavbarService) { 
+    super(serviceApi, navbarService);
+  }
 
   ngOnInit() {
-    this.getAllCustomers();
-    this.initTableInfo();
+    this.initListData();
     this.initNavbar();
   }
 
-  getAllCustomers(): void {
-    this.serviceApi.getCustomers().subscribe((result) => {
-      this.customers = result.content;
-    })
-  }
-
-  private initTableInfo(): void {
+  public initListData(): void {
     let tableInfo = {
       header: ["Nome", "CPF", "Celular"],
       row: ["name", "cpf", "mobile"]
-    }
+    };
 
     this.listData = new EntityListSerialize({
-      entity: this.customers,
+      entity: super.getEntityList(),
       tableStructure: tableInfo
     })
   };
 
   private initNavbar(): void {
-    this.navbarService.showNavbar(true);
+    super.openSecondNavbar();
   }
 
 }

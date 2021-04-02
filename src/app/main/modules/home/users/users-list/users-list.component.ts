@@ -25,6 +25,10 @@ export class UsersListComponent extends EntityListAbstract implements OnInit, En
   constructor(private service: UserService, public serviceApi: UserApiService, private router: Router, public utils: Utils, public navbarService: NavbarService) {
     super(serviceApi, navbarService);
   }
+  
+  initTableInfo(): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit(): void {
     this.openSecondNavbar();
@@ -52,10 +56,6 @@ export class UsersListComponent extends EntityListAbstract implements OnInit, En
 
   public openSecondNavbar(): void {
     super.openSecondNavbar();
-  }
-
-  public initTableInfo(): void {
-    
   }
 
   public initListData(): void {
