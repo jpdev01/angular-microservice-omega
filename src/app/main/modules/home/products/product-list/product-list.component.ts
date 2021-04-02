@@ -7,41 +7,35 @@ import { ProductsService } from '../../../../shared/service/products.service';
 import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { EntityListSerialize } from 'src/app/main/shared/serialize/entity-list-serialize.model';
+import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abstract';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
-
-  public products: Product[];
+export class ProductListComponent extends EntityListAbstract implements OnInit {
   filter = "";
   listData: {};
 
-  constructor(private serviceApi: ProductsApiService, private utils: Utils, private router: Router, private service: ProductsService, private navbarService: NavbarService) { }
+  constructor(public serviceApi: ProductsApiService, private utils: Utils, private router: Router, private service: ProductsService, public navbarService: NavbarService) { 
+    super(serviceApi, navbarService);
+  }
 
   ngOnInit() {
-    this.getProducts();
     this.openSecondNavbar();
-    this.initTableInfo();
+    this.initListData();
     this.getFilter();
   }
 
-  getProducts(): void {
-    this.serviceApi.getAll().subscribe((result: ResponsePageable ) => {
-      this.products = result.content;
-    },
-    (err) => console.log("erro encontrado: " + err)
-    );
-  }
 
-  private openSecondNavbar(): void {
+
+  public openSecondNavbar(): void {
     this.navbarService.showNavbar(true);
   }
 
-  private getFilter(): void {
-    NavbarService.emitterFilterChange.subscribe((filter) => this.filter = filter);
+  public getFilter(): void {
+    this.filter = super.getFilter();
   }
 
   redirectToUserInfo(id: number){
@@ -53,22 +47,17 @@ export class ProductListComponent implements OnInit {
   }
 
   private redirectToProductInfo(id: number){
-    // this.router.navigate(['home/product/info'], { queryParams: { id: id } });
     this.router.navigate(['home/products/info', id]);
   }
 
-  private showNavbar(): void {
-      this.service.showSecondNavbar(true);
-  }
-
-  private initTableInfo(): void {
+  public initListData(){
     let tableInfo = {
       header: ["Código", "Nome", "Categoria", ""],
       row: ["code", "name", "category", ""]
     };
 
     this.listData = new EntityListSerialize({
-      entity: this.products,
+      entity: super.getEntityList(),
       tableStructure: tableInfo
     })
   }

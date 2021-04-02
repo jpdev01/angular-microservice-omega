@@ -12,9 +12,10 @@ import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abs
   styleUrls: ['./customers-list.component.css']
 })
 export class CustomersListComponent extends EntityListAbstract implements OnInit {
-
   customers: Customer[];
   listData: {};
+  filter = "";
+
   constructor(public serviceApi: CustomersApiService, public navbarService: NavbarService) { 
     super(serviceApi, navbarService);
   }
@@ -22,6 +23,7 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
   ngOnInit() {
     this.initListData();
     this.initNavbar();
+    this.getFilter();
   }
 
   public initListData(): void {
@@ -38,6 +40,10 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
 
   private initNavbar(): void {
     super.openSecondNavbar();
+  }
+
+  public getFilter(): void {
+    this.filter = super.getFilter();
   }
 
 }
