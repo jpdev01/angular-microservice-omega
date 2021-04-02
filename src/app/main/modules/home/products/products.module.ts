@@ -14,10 +14,11 @@ import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
 import { ListEntityModule } from 'src/app/main/components/list-entity/list-entity.module';
 import { EntityInfoModule } from 'src/app/main/components/entity-info/entity-info.module';
 import { ProductFrmComponent } from './product-frm/product-frm.component';
+import { ProductInfoComponent } from './product-info/product-info.component';
 
 
 @NgModule({
-  declarations: [ProductsComponent, ProductListComponent, ProductFrmComponent],
+  declarations: [ProductsComponent, ProductListComponent, ProductFrmComponent, ProductInfoComponent],
   imports: [
     CommonModule,
     ProductsRoutingModule,

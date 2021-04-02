@@ -19,7 +19,7 @@ export class Product {
 
   code: string;
 
-  category: Category[];
+  categories: Category[];
 
   provider: Provider[];
 }

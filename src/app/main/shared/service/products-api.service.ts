@@ -26,8 +26,8 @@ export class ProductsApiService implements ServiceApiInterface {
     return this.httpClient.get<ResponsePageable>(this.apiUrl   + '/product');
   }
 
-  public getById(): Observable<ResponsePageable>{
-    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/product');
+  public getById(id: number): Observable<ResponsePageable>{
+    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/product/' + id);
   }
 
 
