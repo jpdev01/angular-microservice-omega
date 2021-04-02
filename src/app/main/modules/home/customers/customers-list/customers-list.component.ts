@@ -5,6 +5,7 @@ import {CustomersApiService} from './../../../../shared/service/customers-api.se
 import { ResponsePageable } from 'src/app/main/shared/model/responsePageable.model';
 import { EntityListSerialize } from 'src/app/main/shared/serialize/entity-list-serialize.model';
 import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abstract';
+import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 
 @Component({
   selector: 'app-customers-list',
@@ -34,7 +35,8 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
 
     this.listData = new EntityListSerialize({
       entity: super.getEntityList(),
-      tableStructure: tableInfo
+      tableStructure: tableInfo,
+      infoUrl: new PatternUrl().customer
     })
   };
 

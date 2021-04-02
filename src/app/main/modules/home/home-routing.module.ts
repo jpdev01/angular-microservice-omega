@@ -5,10 +5,9 @@ import { HomeComponent } from './home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent,
   children: [
-    { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
     { path: 'user', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
-    { path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
-    { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) }
+    { path: 'customer', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
+    { path: 'product', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) }
   ]
   },
   { path: 'home', component: HomeComponent }

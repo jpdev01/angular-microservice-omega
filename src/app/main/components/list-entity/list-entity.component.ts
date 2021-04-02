@@ -14,6 +14,7 @@ export class ListEntityComponent implements OnInit {
   @Input() listData: EntityListSerialize;
   entityInfoList: any;
   filter = "";
+  patternUrl;
 
   header: [];
   row: [];
@@ -26,7 +27,7 @@ export class ListEntityComponent implements OnInit {
   }
 
   public open(entityInfo): void {
-    this.router.navigate(['home/user/info', entityInfo.id]);
+    this.router.navigate(['home/' + this.patternUrl + '/info', entityInfo.id]);
   }
 
   private initHeader(): void {
@@ -35,6 +36,7 @@ export class ListEntityComponent implements OnInit {
     this.listData.entity.subscribe(result=>{
       this.entityInfoList = result.content;
     });
+    this.patternUrl = this.listData.infoUrl;
   }
 
   private createFilter():void {

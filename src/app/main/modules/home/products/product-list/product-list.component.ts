@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { EntityListSerialize } from 'src/app/main/shared/serialize/entity-list-serialize.model';
 import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abstract';
+import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 
 @Component({
   selector: 'app-product-list',
@@ -58,7 +59,8 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
 
     this.listData = new EntityListSerialize({
       entity: super.getEntityList(),
-      tableStructure: tableInfo
+      tableStructure: tableInfo,
+      infoUrl: new PatternUrl().product
     })
   }
 

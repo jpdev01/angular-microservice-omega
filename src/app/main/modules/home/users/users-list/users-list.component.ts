@@ -10,6 +10,7 @@ import { UserApiService } from 'src/app/main/shared/service/user-api.service';
 import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abstract';
 import { EntityListInterfaceComponent } from 'src/app/main/shared/interface/entity-list.interface';
 import { EntityListSerialize } from 'src/app/main/shared/serialize/entity-list-serialize.model';
+import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 
 @Component({
   selector: 'app-users-list',
@@ -25,7 +26,7 @@ export class UsersListComponent extends EntityListAbstract implements OnInit, En
   constructor(private service: UserService, public serviceApi: UserApiService, private router: Router, public utils: Utils, public navbarService: NavbarService) {
     super(serviceApi, navbarService);
   }
-  
+
   initTableInfo(): void {
     throw new Error('Method not implemented.');
   }
@@ -66,7 +67,8 @@ export class UsersListComponent extends EntityListAbstract implements OnInit, En
 
     this.listData = new EntityListSerialize({
       entity: super.getEntityList(),
-      tableStructure: tableInfo
+      tableStructure: tableInfo,
+      infoUrl: new PatternUrl().user
     });
   }
 
