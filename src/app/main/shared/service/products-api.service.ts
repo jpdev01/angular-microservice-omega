@@ -3,11 +3,12 @@ import { Observable } from 'rxjs';
 import { Utils } from './../utils/Utils.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ServiceApiInterface } from '../interface/service-api.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsApiService {
+export class ProductsApiService implements ServiceApiInterface {
 
   httpOptions;
   apiUrl: string;
@@ -17,6 +18,10 @@ export class ProductsApiService {
   ngOnInit(){
     this.httpOptions = this.utils.getHttpOptions();
     this.apiUrl = this.utils.getApiUrl();
+  }
+
+  save(): void {
+    throw new Error('Method not implemented.');
   }
 
   public getAll(): Observable<ResponsePageable>{

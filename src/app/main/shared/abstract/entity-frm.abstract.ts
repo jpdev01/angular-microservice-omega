@@ -8,7 +8,7 @@ export abstract class EntityFrmAbstract implements EntityFormInterfaceComponent{
     entityId: number;
     entity: any;
 
-    constructor(private route: ActivatedRoute, private serviceApi: ServiceApiInterface){
+    constructor(public route: ActivatedRoute, public serviceApi: ServiceApiInterface){
         
     }
 
