@@ -93,7 +93,6 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
     if (!this.user){
       this.user = new User();
     }
-    let valueDefault = "";
 
     this.userForm = this.fb.group({
       login: [this.user.login, [Validators.required]],

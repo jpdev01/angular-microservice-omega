@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EntityFormInterfaceComponent } from 'src/app/main/shared/interface/entity-form.interface';
 import { Customer } from 'src/app/main/shared/model/customer.model';
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
+import { Address } from 'src/app/main/shared/model/address.model';
 
 @Component({
   selector: 'app-customers-frm',
@@ -22,7 +23,7 @@ import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 })
 export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, EntityFormInterfaceComponent {
 
-  public userForm: FormGroup;
+  public customerForm: FormGroup;
   formModel: FormSerializer;
 
   customerId: any; customer: Customer;
@@ -37,8 +38,15 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
   }
 
   ngOnInit() {
+    this.getIdByUrl();
     this.closeNavBar();
     this.initFormImpl();
+    if (this.customerId) {
+      this.loadEntityInfo(this.customerId);
+    } else {
+      this.initFormBuilder();
+    }
+    this.initFormStructure();
   }
 
   closeNavBar(): void {
@@ -55,34 +63,40 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
   }
 
   public initFormBuilder(): void {
+    if (!this.customer){
+      this.customer = new Customer();
+    }
     let valueDefault = "";
     let emptyRequisities = ['', []];
-
-    this.userForm = this.fb.group({
+    
+    let address = this.customer.address;
+    if (!address) {
+      address = new Address();
+    }
+    this.customerForm = this.fb.group({
       address: this.fb.group({
-        cep: emptyRequisities,
-        uf: emptyRequisities,
-        publicPlace: emptyRequisities,
-        neighborhood: emptyRequisities,
-        city: emptyRequisities,
-        complement: emptyRequisities
+        cep: address.cep,
+        uf: address.uf,
+        publicPlace: address.publicPlace,
+        neighborhood: address.neighborhood,
+        city: address.city,
+        complement: address.complement
       }),
 
-      name: [valueDefault, [Validators.required]],
-      nickname: [valueDefault, [Validators.required]],
-      cpf: [valueDefault, [Validators.required]],
-      RG: ['', [Validators.required]],
-      borndate: emptyRequisities,
-      dataReg: emptyRequisities,
-      email: emptyRequisities,
-      fone: emptyRequisities,
-      mobile: emptyRequisities,
-      description: emptyRequisities,
-      size: emptyRequisities,
-      size2: emptyRequisities,
-      office: emptyRequisities,
-      reference: emptyRequisities
-      //address: emptyRequisities,
+      name: [this.customer.name, [Validators.required]],
+      nickname: [this.customer.nickname, [Validators.required]],
+      cpf: [this.customer.cpf, [Validators.required]],
+      RG: [this.customer.RG, [Validators.required]],
+      borndate: this.customer.borndate,
+      dataReg: this.customer.dataReg,
+      email: this.customer.email,
+      fone: this.customer.fone,
+      mobile: this.customer.mobile,
+      description: this.customer.description,
+      size: this.customer.size,
+      size2: this.customer.size2,
+      office: this.customer.office,
+      reference: this.customer.reference
     })
 
   }
@@ -248,6 +262,13 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
         })
       }
     };
+  }
+
+  public loadEntityInfo(id: number): void {
+    this.serviceApi.getById(id).subscribe((result)=>{
+      this.customer = result;
+      this.initFormBuilder();
+    })
   }
 
 }
