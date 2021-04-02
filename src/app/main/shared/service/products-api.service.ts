@@ -13,13 +13,11 @@ export class ProductsApiService implements ServiceApiInterface {
   httpOptions;
   apiUrl: string;
 
-  constructor(private utils: Utils, private httpClient: HttpClient) { }
-
-  ngOnInit(){
+  constructor(private utils: Utils, private httpClient: HttpClient) {
     this.httpOptions = this.utils.getHttpOptions();
     this.apiUrl = this.utils.getApiUrl();
-  }
-
+   }
+   
   save(): void {
     throw new Error('Method not implemented.');
   }
