@@ -4,9 +4,10 @@ export declare interface EntityFormInterfaceComponent {
     getIdByUrl(): void;
     loadEntityInfo(id: number): void;
 
-    initComponentInfo(): void;
+    initFormStructure(): void;
     initFormImpl(): void;
     initFormBuilder(): void;
     initFormValues(): void;
     applyInterfaceRule(): void;
+    getOnSave(): {};
 }

@@ -7,21 +7,33 @@ import { FormSerializer } from 'src/app/main/shared/model/form-serializer.model'
 import { FormField } from 'src/app/main/shared/model/form-field.model';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { Size } from 'src/app/main/shared/model/size.model';
-import {Mask} from 'src/app/main/shared/model/mask.model';
+import { Mask } from 'src/app/main/shared/model/mask.model';
 import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
+import { EntityFrmAbstract } from 'src/app/main/shared/abstract/entity-frm.abstract';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EntityFormInterfaceComponent } from 'src/app/main/shared/interface/entity-form.interface';
+import { Customer } from 'src/app/main/shared/model/customer.model';
 
 @Component({
   selector: 'app-customers-frm',
   templateUrl: './customers-frm.component.html',
   styleUrls: ['./customers-frm.component.css']
 })
-export class CustomersFrmComponent implements OnInit {
+export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, EntityFormInterfaceComponent {
 
   public userForm: FormGroup;
   formModel: FormSerializer;
-  componentInfo: any;
 
-  constructor(private navbarService: NavbarService, private fb: FormBuilder, public serviceApi: CustomersApiService, private toastService: ToastNotificationService) { }
+  customerId: any; customer: Customer;
+  constructor(
+    private navbarService: NavbarService,
+    private fb: FormBuilder,
+    public serviceApi: CustomersApiService,
+    private toastService: ToastNotificationService,
+    public route: ActivatedRoute,
+    public router: Router) {
+    super(route, serviceApi);
+  }
 
   ngOnInit() {
     this.closeNavBar();
@@ -33,16 +45,15 @@ export class CustomersFrmComponent implements OnInit {
   }
 
   getIdByUrl(): void {
-    // this.route.params.subscribe(params => this.userId = params['id']);
+    this.route.params.subscribe(params => this.customerId = params['id']);
   }
 
-  private initFormImpl(): void {
+  public initFormImpl(): void {
     this.initFormBuilder();
-    this.initFormValues();
-    this.initComponentInfo();
+    this.initFormStructure();
   }
 
-  private initFormBuilder(): void {
+  public initFormBuilder(): void {
     let valueDefault = "";
     let emptyRequisities = ['', []];
 
@@ -75,7 +86,7 @@ export class CustomersFrmComponent implements OnInit {
 
   }
 
-  private initFormValues(): void {
+  public initFormStructure(): void {
 
     let group1 = new FormGroupSerializer();
     let group2 = new FormGroupSerializer();
@@ -209,36 +220,33 @@ export class CustomersFrmComponent implements OnInit {
     this.formModel = new FormSerializer({
       entityName: "Cliente",
       groups: [group1, group2, group3, group4],
-      serviceApi: this.serviceApi
+      serviceApi: this.serviceApi,
+      onSave: this.getOnSave()
     });
 
   }
 
-  private initComponentInfo(): void {
-    this.componentInfo = {
-      name: "user-frm",
-      serviceApi: this.serviceApi,
-      onSave: {
-        onSucess: {
-          action: () => {
-            // this.router.navigate(['home/users']);
-          },
-          toast: this.toastService.create({
-            title: "ok",
-            text: "Cliente salvo com sucesso!"
-          })
+  public getOnSave(): { onSucess: {}, onError: {} } {
+    return {
+      onSucess: {
+        action: () => {
+          // this.router.navigate(['home/users']);
         },
-        onError: {
-          action: () => {
-            console.log("Erro ao salvar usuario!");
-          },
-          toast: this.toastService.create({
-            title: "ok",
-            text: "Erro ao salvar cliente!"
-          })
-        }
+        toast: this.toastService.create({
+          title: "ok",
+          text: "Cliente salvo com sucesso!"
+        })
+      },
+      onError: {
+        action: () => {
+          console.log("Erro ao salvar usuario!");
+        },
+        toast: this.toastService.create({
+          title: "ok",
+          text: "Erro ao salvar cliente!"
+        })
       }
-    }
+    };
   }
 
 }

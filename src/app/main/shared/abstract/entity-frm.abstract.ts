@@ -1,5 +1,5 @@
 
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { EntityFormInterfaceComponent } from "../interface/entity-form.interface";
 import { ServiceApiInterface } from "../interface/service-api.interface";
 
@@ -11,20 +11,19 @@ export abstract class EntityFrmAbstract implements EntityFormInterfaceComponent{
     constructor(public route: ActivatedRoute, public serviceApi: ServiceApiInterface){
         
     }
+    initFormStructure(): void {
+        throw new Error("Method not implemented.");
+    }
+    getOnSave(): {} {
+        throw new Error("Method not implemented.");
+    }
 
     getIdByUrl(): void {
-        this.route.params.subscribe(params => this.entityId = params['id']);
+        throw new Error("Method not implemented.");
     }
 
     loadEntityInfo(id: number): void {
-        this.serviceApi.getById(id).subscribe((result)=>{
-            this.entity = result;
-            this.initFormImpl();
-          })
-    }
-
-    initComponentInfo(): void {
-    
+        //
     }
 
     initFormImpl(): void {
@@ -41,6 +40,6 @@ export abstract class EntityFrmAbstract implements EntityFormInterfaceComponent{
 
     applyInterfaceRule(): void {
         throw new Error("Method not implemented.");
-    }    
+    }
     
 }

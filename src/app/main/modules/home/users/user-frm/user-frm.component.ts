@@ -15,13 +15,15 @@ import { UserApiService } from '../../../../shared/service/user-api.service';
 import { Permission } from 'src/app/main/shared/enum/permission.enum';
 import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
+import { EntityFrmAbstract } from 'src/app/main/shared/abstract/entity-frm.abstract';
+import { EntityFormInterfaceComponent } from 'src/app/main/shared/interface/entity-form.interface';
 
 @Component({
   selector: 'app-user-frm',
   templateUrl: './user-frm.component.html',
   styleUrls: ['./user-frm.component.css']
 })
-export class UserFrmComponent implements OnInit {
+export class UserFrmComponent extends EntityFrmAbstract implements OnInit, EntityFormInterfaceComponent {
 
   userId: number;
   user: User;
@@ -31,14 +33,14 @@ export class UserFrmComponent implements OnInit {
   formFromEditing = false;
   componentInfo: any;
 
-  constructor(private route: ActivatedRoute, 
+  constructor(public route: ActivatedRoute, 
     public service: UserService, 
     public serviceApi: UserApiService, 
     private fb: FormBuilder, 
-    private router: Router, 
+    public router: Router, 
     private toastService: ToastNotificationService, 
     private navbarService: NavbarService) {
-
+      super(route, serviceApi);
   }
 
   ngOnInit(): void {
@@ -46,21 +48,21 @@ export class UserFrmComponent implements OnInit {
     this.getIdByUrl();
     if (this.userId) {
       this.formFromEditing = true;
-      this.loadUserInfo(this.userId);
+      this.loadEntityInfo(this.userId);
     } else {
       this.initFormBuilder();
     }
     this.initFormStructure();
   }
 
-  private loadUserInfo(id: number): void {
+  public loadEntityInfo(id: number): void {
     this.serviceApi.getById(id).subscribe((result)=>{
       this.user = result;
       this.initFormBuilder();
     })
   }
 
-  private getOnSave(): {onSucess: {}, onError: {}} {
+  public getOnSave(): {onSucess: {}, onError: {}} {
     return {
         onSucess: {
           action: () => {
@@ -103,7 +105,7 @@ export class UserFrmComponent implements OnInit {
     });
   }
 
-  private initFormStructure(): void {
+  public initFormStructure(): void {
     let group = new FormGroupSerializer();
 
     let formField = new FormField({
@@ -142,7 +144,6 @@ export class UserFrmComponent implements OnInit {
       serviceApi: this.serviceApi,
       onSave: this.getOnSave()
     });
-
   }
 
   applyInterfaceRule() {

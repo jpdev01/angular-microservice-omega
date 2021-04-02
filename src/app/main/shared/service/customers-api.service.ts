@@ -18,8 +18,8 @@ export class CustomersApiService implements ServiceApiInterface {
     this.apiUrl = this.utils.getApiUrl();
     this.httpOptions = this.utils.getHttpOptions();
   }
-  getById(id: Number) {
-    return this.httpClient.get<ResponsePageable>(this.apiUrl  + '/customer' + '?id=' + id);
+  getById(id: Number): Observable<Customer> {
+    return this.httpClient.get<Customer>(this.apiUrl  + '/customer' + '?id=' + id);
   }
   getAll(): Observable<ResponsePageable>{
     return this.httpClient.get<ResponsePageable>(this.apiUrl + '/customer');
