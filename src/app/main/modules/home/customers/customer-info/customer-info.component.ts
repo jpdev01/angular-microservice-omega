@@ -8,6 +8,7 @@ import { CustomerInfoSerialize } from 'src/app/main/shared/serialize/customer-in
 import { UserInfoSerialize } from 'src/app/main/shared/serialize/user-info-serialize.model';
 import { CustomersApiService } from 'src/app/main/shared/service/customers-api.service';
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
+import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 
 @Component({
   selector: 'app-customer-info',
@@ -33,6 +34,7 @@ export class CustomerInfoComponent implements OnInit, EntityInfoInterface {
     this.entityInfoSerialize = new EntityInfoSerializer({
       label: "Cliente",
       entity: this.customer,
+      url: new PatternUrl().customer,
       groups: new CustomerInfoSerialize().serialize(this.customer)
     });
   }

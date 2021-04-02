@@ -1,3 +1,4 @@
+import { PatternUrl } from '../utils/PatternUrl.model';
 import { FieldInfoSerializer } from './field-info-serializer.model';
 
 export class EntityInfoSerializer {
@@ -6,6 +7,7 @@ export class EntityInfoSerializer {
   label: string;
   content: any;
   groups: any[];
+  url: string;
 
   constructor(options: {
     entity?: any;
@@ -13,11 +15,13 @@ export class EntityInfoSerializer {
     content?: string;
     id?: string;
     groups?: any[];
+    url?: string;
   } = {}) {
     this.label = options.label;
     this.content = options.content;
     this.id = options.id;
     this.groups = options.groups;
     this.entity = options.entity;
+    this.url = options.url;
   }
 }

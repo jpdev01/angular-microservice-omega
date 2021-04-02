@@ -1,3 +1,5 @@
+declare var $: any;
+
 export class Mask {
   cpf = '000.000.000-00';
   cnpj = '00.000.000/0000-00';
@@ -8,4 +10,8 @@ export class Mask {
   account = '00.000-0';
 
   fone = '(00) 00000-0000';
+
+  toMask(value: any, mask: Mask){
+    
+  }
 }

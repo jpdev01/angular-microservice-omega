@@ -27,7 +27,8 @@ export class EntityInfoComponent implements OnInit {
 
   public edit(): void {
     let entityInfoId = this.entity.id;
-    this.router.navigate(['home/user/frm', entityInfoId]);
+    let url = this.entityInfoSerialize.url;
+    this.router.navigate(['home/' + url + '/frm', entityInfoId]);
   }
 
   private getSubTitleEntity(): string{

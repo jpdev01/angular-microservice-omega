@@ -2,6 +2,7 @@ import { Customer } from '../model/customer.model';
 import { FieldInfoSerializer } from '../model/field-info-serializer.model';
 import { FormGroupSerializer } from '../model/form-group-serializer.model';
 import { DateUtils } from '../utils/DateUtils.model';
+import { AddressSerialize } from './address.serialize';
 
 export class CustomerInfoSerialize {
 
@@ -71,7 +72,7 @@ export class CustomerInfoSerialize {
                 }),
                 new FieldInfoSerializer({
                     label: "Endereço",
-                    value: customer.address
+                    value: customer.address ? new AddressSerialize(customer.address).toString() : ""
                 }),
                 new FieldInfoSerializer({
                     label: "Referência",
