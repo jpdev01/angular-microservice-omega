@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Utils } from '../../shared/utils/Utils.model';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import {FrmGroupComponent} from 'src/app/main/components/frm-cad/frm-group/frm-group.component';
+import { ModalModule } from '../modal/modal.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import {FrmGroupComponent} from 'src/app/main/components/frm-cad/frm-group/frm-g
     FormsModule,
     ReactiveFormsModule,
     PipeModule,
+    ModalModule,
     NgxMaskModule.forRoot()
   ],
   declarations: [FrmCadComponent, FrmGroupComponent],

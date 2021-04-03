@@ -36,11 +36,11 @@
                     <div class="row mb-2">
                       <div class="col-sm-2 col-lg-10 fb-field-container " style="min-height:26px">
                         <!-- if not groupName -->
-                        <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;" *ngIf="!group.formGroupName">
+                        <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;" *ngIf="!group.formGroupName && !field.formGroupName">
 
 
                           <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
-                            *ngIf="field.type != 'select' && field.type != 'textarea'" [formControlName]="field.id"
+                            *ngIf="field.type != 'select' && field.type != 'textarea' && field.type != 'modal'" [formControlName]="field.id"
                             (change)="field.onchange ? field.onchange($event.target.value) : ''"
                             [mask]="field.mask">
 
@@ -52,13 +52,18 @@
                           class="form-control form-control-sm rounded-0"placeholder="" [formControlName]="field.id">
                         </textarea>
 
+                        <button *ngIf="field.type == 'modal'" (click)="showModal=true" 
+                        type="button" class="btn btn-primary" >
+                          Launch static backdrop modal
+                      </button>
+
 
                         </div>
 
                          <!-- if groupName -->
                          <!-- feito para campos especificos, ramificados, que possuem chave primaria na entidade-->
 
-                         <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;" *ngIf="group.formGroupName" [formGroupName]="group.formGroupName">
+                         <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;" *ngIf="group.formGroupName && field.formGroupName" [formGroupName]="group.formGroupName">
 
 
                           <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
@@ -71,7 +76,7 @@
                           </select>
 
                           <textarea *ngIf="field.type == 'textarea'"
-                          class="form-control form-control-sm rounded-0"placeholder="" [formControlName]="field.id">
+                          class="form-control form-control-sm rounded-0"placeholder="" [formControlName]="field.id" >
                         </textarea>
 
 
@@ -124,3 +129,5 @@
     <button type="button" class="btn btn-light" (click)="save()">Salvar</button>
   </div>
 </div>
+
+<app-modal></app-modal>

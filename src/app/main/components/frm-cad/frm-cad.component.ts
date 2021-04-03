@@ -28,6 +28,8 @@ export class FrmCadComponent implements OnInit {
   labelConfig = {size: ''};
   entityName = "";
 
+  showModal=false;
+
 
 
   onSave: any;

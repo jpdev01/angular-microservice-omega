@@ -11,6 +11,8 @@ export class Mask {
 
   fone = '(00) 00000-0000';
 
+  money = '000.000.000.000,00';
+
   toMask(value: any, mask: Mask){
     
   }

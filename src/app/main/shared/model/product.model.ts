@@ -57,7 +57,7 @@ export class Product {
     this.size = options.size;
     this.size2 = options.size2;
     this.code = options.code;
-    this.categories = options.categories;
-    this.provider = options.provider;
+    this.categories = options.categories ? options.categories : [new Category()];
+    this.provider = options.provider ? options.provider : new Provider();
   }
 }

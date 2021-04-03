@@ -10,6 +10,7 @@ export class FormField {
   fields: object;
   onchange: any;
   mask:any;
+  formGroupName: string;
 
   constructor(options: {
     id?: string;
@@ -28,6 +29,7 @@ export class FormField {
         size: string
       }
     };
+    formGroupName?: string;
   }= {}) {
 
     this.id = options.id;
@@ -44,7 +46,7 @@ export class FormField {
     this.fields = options.fields;
     this.onchange = options.onchange;
     this.mask = options.mask;
-
+    this.formControlName = options.formGroupName;
 
   }
 
