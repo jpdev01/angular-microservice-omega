@@ -10,6 +10,7 @@ import {States } from '../../shared/enum/states.enum';
 import {AddressService} from '../../shared/service/address.service';
 import { FormGroup } from '@angular/forms';
 import { Mask } from '../../shared/model/mask.model';
+import { ModalService } from '../../shared/service/modal.service';
 declare var $:any;
 
 @Component({
@@ -27,15 +28,16 @@ export class FrmCadComponent implements OnInit {
   element: any;
   labelConfig = {size: ''};
   entityName = "";
-
-  showModal=false;
-
-
-
   onSave: any;
 
 
-  constructor(private router: Router, public toastService: ToastNotificationService, private utils: Utils, private addressService: AddressService) { }
+  constructor(
+    private router: Router, 
+    public toastService: ToastNotificationService, 
+    private utils: Utils, 
+    private addressService: AddressService,
+    private modalService: ModalService
+    ) { }
 
   ngOnInit() {
     this.getInfo();
@@ -170,6 +172,10 @@ export class FrmCadComponent implements OnInit {
     let frm = this.frm;
     let title = (frm.get('name') || frm.get('login') || frm.get('title')).value;
     return title;
+  }
+
+  public openModal(): void{
+    this.modalService.toggle();
   }
 
 }

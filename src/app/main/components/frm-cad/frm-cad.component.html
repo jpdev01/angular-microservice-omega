@@ -11,84 +11,94 @@
       <form class="form-horizontal" [formGroup]="frm">
         <div class="card-body panel-body col-12" style="width: 100%">
           <div class="row">
-          <div *ngFor="let group of formModel.groups">
+            <div *ngFor="let group of formModel.groups">
 
-            <div class="col-12" >
-              <div class="row">
+              <div class="col-12">
+                <div class="row">
 
-                <div class="col-auto">
+                  <div class="col-auto">
 
-                  <div *ngFor="let field of group.fields">
-                    <div class="row mb-2" style="height: 31px;">
-                      <div class="fb-field-container col-form-label control-label" class="">
-                        <div class="fb-inline-field-container h-100"
-                        style="display: inherit; vertical-align:middle;">
+                    <div *ngFor="let field of group.fields">
+                      <div class="row mb-2" style="height: 31px;">
+                        <div class="fb-field-container col-form-label control-label" class="">
+                          <div class="fb-inline-field-container h-100" style="display: inherit; vertical-align:middle;">
 
-                          <label class=" m-0" style="vertical-align:middle;">{{ field.label }}: </label>
+                            <label class=" m-0" style="vertical-align:middle;">{{ field.label }}: </label>
+                          </div>
                         </div>
                       </div>
+
                     </div>
-
                   </div>
-                </div>
-                <div class="col">
-                  <div *ngFor="let field of group.fields">
-                    <div class="row mb-2">
-                      <div class="col-sm-2 col-lg-10 fb-field-container " style="min-height:26px">
-                        <!-- if not groupName -->
-                        <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;" *ngIf="!group.formGroupName && !field.formGroupName">
+                  <div class="col">
+                    <div *ngFor="let field of group.fields">
+                      <div class="row mb-2">
+                        <div class="col-sm-2 col-lg-10 fb-field-container " style="min-height:26px">
+                          <!-- if not groupName -->
+                          <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;"
+                            *ngIf="!group.formGroupName && !field.formGroupName">
 
 
-                          <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
-                            *ngIf="field.type != 'select' && field.type != 'textarea' && field.type != 'modal'" [formControlName]="field.id"
-                            (change)="field.onchange ? field.onchange($event.target.value) : ''"
-                            [mask]="field.mask">
+                            <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
+                              *ngIf="field.type != 'select' && field.type != 'textarea' && field.type != 'modal'"
+                              [formControlName]="field.id"
+                              (change)="field.onchange ? field.onchange($event.target.value) : ''" [mask]="field.mask">
 
-                          <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'" [formControlName]="field.id">
-                            <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option }}</option>
-                          </select>
+                            <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'"
+                              [formControlName]="field.id">
+                              <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option
+                                }}</option>
+                            </select>
 
-                          <textarea *ngIf="field.type == 'textarea'"
-                          class="form-control form-control-sm rounded-0"placeholder="" [formControlName]="field.id">
+                            <textarea *ngIf="field.type == 'textarea'" class="form-control form-control-sm rounded-0"
+                              placeholder="" [formControlName]="field.id">
                         </textarea>
 
-                        <button *ngIf="field.type == 'modal'" (click)="showModal=true" 
-                        type="button" class="btn btn-primary" >
-                          Launch static backdrop modal
-                      </button>
+                            <div *ngIf="field.type == 'modal'">
+                              <button *ngIf="field.type == 'modal'" (click)="openModal()" type="button"
+                                class="btn btn-primary">
+                                Ver opções
+                              </button>
+                              <app-modal>
+                                  <app-product-list></app-product-list>
+                              </app-modal>
+
+                            </div>
 
 
-                        </div>
+                          </div>
 
-                         <!-- if groupName -->
-                         <!-- feito para campos especificos, ramificados, que possuem chave primaria na entidade-->
+                          <!-- if groupName -->
+                          <!-- feito para campos especificos, ramificados, que possuem chave primaria na entidade-->
 
-                         <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;" *ngIf="group.formGroupName && field.formGroupName" [formGroupName]="group.formGroupName">
+                          <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;"
+                            *ngIf="group.formGroupName && field.formGroupName" [formGroupName]="group.formGroupName">
 
 
-                          <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
-                            *ngIf="field.type != 'select' && field.type != 'textarea'" [formControlName]="field.id"
-                            (change)="field.onchange ? field.onchange($event.target.value) : ''"
-                            [mask]="field.mask">
+                            <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
+                              *ngIf="field.type != 'select' && field.type != 'textarea'" [formControlName]="field.id"
+                              (change)="field.onchange ? field.onchange($event.target.value) : ''" [mask]="field.mask">
 
-                          <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'" [formControlName]="field.id">
-                            <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option }}</option>
-                          </select>
+                            <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'"
+                              [formControlName]="field.id">
+                              <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option
+                                }}</option>
+                            </select>
 
-                          <textarea *ngIf="field.type == 'textarea'"
-                          class="form-control form-control-sm rounded-0"placeholder="" [formControlName]="field.id" >
+                            <textarea *ngIf="field.type == 'textarea'" class="form-control form-control-sm rounded-0"
+                              placeholder="" [formControlName]="field.id">
                         </textarea>
 
 
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-          </div>
+            </div>
           </div>
 
 
@@ -129,5 +139,3 @@
     <button type="button" class="btn btn-light" (click)="save()">Salvar</button>
   </div>
 </div>
-
-<app-modal></app-modal>

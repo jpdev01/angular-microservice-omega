@@ -8,6 +8,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { NotificationToastModule } from '../../components/notification-toast/notification-toast.module';
+import { ModalModule } from '../../components/modal/modal.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NotificationToastModule } from '../../components/notification-toast/not
     CommonModule,
     HomeRoutingModule,
     NotificationToastModule,
-    NavbarSecundaryModule
+    NavbarSecundaryModule,
+    ModalModule
   ],
   providers: [Utils, NotificationToastComponent],
 })
