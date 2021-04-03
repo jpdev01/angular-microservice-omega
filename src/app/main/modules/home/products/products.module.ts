@@ -26,7 +26,8 @@ import { ProductInfoComponent } from './product-info/product-info.component';
     PipeModule,
     FrmCadModule,
     ListEntityModule,
-    EntityInfoModule
+    EntityInfoModule,
+    FrmCadModule
   ],
   providers: [Utils, NavbarSecundaryComponent, ProductsApiService, SearchFilterPipe]
 })

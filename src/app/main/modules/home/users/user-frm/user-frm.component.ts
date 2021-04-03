@@ -30,8 +30,6 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
   public userForm: FormGroup;
   formModel: FormSerializer;
   navbarRule;
-  formFromEditing = false;
-  componentInfo: any;
 
   constructor(public route: ActivatedRoute, 
     public service: UserService, 
@@ -47,7 +45,7 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
     this.applyInterfaceRule();
     this.getIdByUrl();
     if (this.userId) {
-      this.formFromEditing = true;
+      console.log("is editing! code user:" + this.userId);
       this.loadEntityInfo(this.userId);
     } else {
       this.initFormBuilder();
