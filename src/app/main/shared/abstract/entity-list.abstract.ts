@@ -33,7 +33,7 @@ export abstract class EntityListAbstract implements EntityListInterfaceComponent
     getFilter(): any {
         return NavbarService.emitterFilterChange.subscribe((filter) => {return filter});
     }
-    redirectToInfo(): void {
+    redirectToInfo(id: number): void {
         throw new Error("Method not implemented.");
     }
 

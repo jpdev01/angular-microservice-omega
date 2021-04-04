@@ -27,10 +27,6 @@ export class UsersListComponent extends EntityListAbstract implements OnInit, En
     super(serviceApi, navbarService);
   }
 
-  initTableInfo(): void {
-    throw new Error('Method not implemented.');
-  }
-
   ngOnInit(): void {
     this.openSecondNavbar();
     this.initListData();

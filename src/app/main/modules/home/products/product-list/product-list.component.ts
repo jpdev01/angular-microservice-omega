@@ -39,7 +39,7 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
     this.filter = super.getFilter();
   }
 
-  redirectToUserInfo(id: number){
+  redirectToInfo(id: number){
     this.router.navigate(['home/product/', id]);
   }
 
