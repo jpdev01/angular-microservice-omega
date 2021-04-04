@@ -3,6 +3,7 @@ export class PatternUrl {
     customer = 'customer';
     user = 'user';
     category = 'category';
+    provider = 'provider';
 
     list: 'list';
     frm: 'frm';
