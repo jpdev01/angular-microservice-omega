@@ -12,7 +12,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'login', loadChildren: () => import('./main/modules/login/login.module').then(m => m.LoginModule) },
-  { path: 'home', loadChildren: () => import('./main/modules/home/home.module').then(m => m.HomeModule), canActivate: [AuthGuard] }
+  { path: 'home', loadChildren: () => import('./main/modules/home/home.module').then(m => m.HomeModule), canActivate: [AuthGuard] },
+  { path: 'categories', loadChildren: () => import('./main/modules/home/categories/categories.module').then(m => m.CategoriesModule) }
 ];
 
 @NgModule({

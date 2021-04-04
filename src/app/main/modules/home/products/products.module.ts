@@ -18,7 +18,7 @@ import { ProductInfoComponent } from './product-info/product-info.component';
 
 
 @NgModule({
-  declarations: [ProductsComponent, ProductListComponent, ProductFrmComponent, ProductInfoComponent],
+  declarations: [ProductsComponent, ProductFrmComponent, ProductInfoComponent],
   imports: [
     CommonModule,
     ProductsRoutingModule,
