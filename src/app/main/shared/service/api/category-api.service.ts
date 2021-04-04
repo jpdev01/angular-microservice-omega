@@ -17,12 +17,7 @@ export class CategoryApiService implements ServiceApiInterface {
     constructor(private httpClient: HttpClient, private utils: Utils) {
         this.apiUrl = this.utils.getApiUrl();
         this.httpOptions = this.utils.getHttpOptions();
-    }
-
-    ngOnInit(): void {
-        this.apiUrl = this.utils.getApiUrl();
-        this.httpOptions = this.utils.getHttpOptions();
-    }
+    }   
 
     public getAll(): Observable<ResponsePageable> {
         debugger;

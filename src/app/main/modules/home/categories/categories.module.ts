@@ -1,3 +1,4 @@
+import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,6 +7,7 @@ import { CategoriesComponent } from './categories.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { ListEntityModule } from 'src/app/main/components/list-entity/list-entity.module';
 import { CategoriesFrmComponent } from './categories-frm/categories-frm.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { CategoriesFrmComponent } from './categories-frm/categories-frm.componen
   imports: [
     CommonModule,
     CategoriesRoutingModule,
-    ListEntityModule
+    ListEntityModule,
+    FormsModule, ReactiveFormsModule, FrmCadModule
   ]
 })
 export class CategoriesModule { }
