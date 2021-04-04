@@ -1,3 +1,5 @@
+import { FrmCadModule } from './../../../components/frm-cad/frm-cad.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +15,10 @@ import { ProvidersFrmComponent } from './providers-frm/providers-frm.component';
   imports: [
     CommonModule,
     ProvidersRoutingModule,
-    ListEntityModule
+    ListEntityModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FrmCadModule
   ]
 })
 export class ProvidersModule { }
