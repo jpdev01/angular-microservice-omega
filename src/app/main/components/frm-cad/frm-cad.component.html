@@ -19,11 +19,10 @@
                   <div class="col-auto">
 
                     <div *ngFor="let field of group.fields">
-                      <div class="row mb-2" style="height: 31px;">
+                      <div class="row mb-2">
                         <div class="fb-field-container col-form-label control-label" class="">
                           <div class="fb-inline-field-container h-100" style="display: inherit; vertical-align:middle;">
-
-                            <label class=" m-0" style="vertical-align:middle;">{{ field.label }}: </label>
+                            <label class=" m-0 form-control form-control-sm" style="vertical-align:middle;border:0px;">{{ field.label }}: </label>
                           </div>
                         </div>
                       </div>
@@ -60,7 +59,7 @@
                                 Ver opções
                               </button>
                               <app-modal>
-                                 <app-product-list></app-product-list>D
+                                 <app-product-list></app-product-list>
                               </app-modal>
 
                             </div>
