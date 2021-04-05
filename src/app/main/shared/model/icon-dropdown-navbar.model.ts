@@ -3,9 +3,13 @@ export class IconDropdownNavbar {
   image: string;
   itens: object;
 
-  constructor(name: string, image: string, icons: object) {
-    this.title = name;
-    this.image = image;
-    this.itens = icons;
+  constructor(options: {
+    name?: string;
+    image?: string;
+    items?: object;
+  }={}) {
+    this.title = options.name;
+    this.image = options.image;
+    this.itens = options.items;
   }
 }

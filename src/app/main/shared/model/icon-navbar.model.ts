@@ -6,11 +6,18 @@ export class IconNavbar {
   link: string;
   security: SecurityLevel;
   enable = true;
+  action: any;
 
-  constructor(name: string, image: string, link: string){
-    this.title = name;
-    this.image = image;
-    this.link = link;
+  constructor(options: {
+    name?: string;
+    image?: string;
+    link?: string;
+    action?: any;
+  } = {}){
+    this.title = options.name;
+    this.image = options.image;
+    this.link = options.link;
+    this.action = options.action;
   }
 
 }

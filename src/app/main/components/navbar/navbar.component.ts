@@ -13,22 +13,24 @@ export class NavbarComponent implements OnInit {
 
 
   componentsNavbar = [
-    new IconNavbar('Ínicio', 'fa fa-home', ''),
-    new IconNavbar('Portal de vendas', 'fa fa-cart-plus', ''),
-    new IconNavbar('Caixa', '', ''),
-    new IconNavbar('Pagamentos', '', ''),
-    new IconDropdownNavbar('Consultas', 'fa fa-home', [
-      new IconNavbar('Clientes', '', '/home/customers'),
-      new IconNavbar('Produtos', '', ''),
-      new IconNavbar('Categorias', '', ''),
-      new IconNavbar('Fornecedores', '', ''),
-      new IconNavbar('Vendas', '', ''),
-      new IconNavbar('Vendas condicionais', '', '')
-    ]),
-    new IconDropdownNavbar('Mais', '', [
-      new IconNavbar('Aniversários', '', '')
-    ]),
-    new IconNavbar('Logout', '', '')
+    new IconNavbar({name:'Ínicio', image:'fa fa-home', link:''}),
+    new IconNavbar({name:'Portal de vendas', image:'fa fa-cart-plus', link:''}),
+    new IconNavbar({name:'Caixa', image:'', link:''}),
+    new IconNavbar({name:'Pagamentos', image:'', link:''}),
+    new IconDropdownNavbar({name:'Consultas', image:'fa fa-home', items:
+    [
+      new IconNavbar({name:'Clientes', image:'', link:'/home/customers'}),
+      new IconNavbar({name:'Produtos', image:'', link:''}),
+      new IconNavbar({name:'Categorias', image:'', link:''}),
+      new IconNavbar({name:'Fornecedores', image:'', link:''}),
+      new IconNavbar({name:'Vendas', image:'', link:''}),
+      new IconNavbar({name:'Vendas condicionais', image:'', link:''})
+    ]}),
+    new IconDropdownNavbar({name:'Mais', image:'', items:
+    [
+      new IconNavbar({name:'Aniversários', image:'', link:''})
+    ]}),
+    new IconNavbar({name:'Logout', image:'', link:''})
   ];
 
   constructor() { }

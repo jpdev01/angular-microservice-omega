@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SearchFilterPipe implements PipeTransform {
 
   transform(items: any[], term: string): any {
-    debugger;
     if (items && term) {
       if (this.isUser(items)) {
         return items.filter(item => item.login != null && item.login.indexOf(term) !== -1);

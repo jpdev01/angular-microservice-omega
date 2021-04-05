@@ -1,3 +1,4 @@
+import { IconNavbar } from './../model/icon-navbar.model';
 import { EventEmitter, Injectable } from '@angular/core';
 import { InterfaceRule } from '../model/interface-rule.model';
 
@@ -13,6 +14,10 @@ export class NavbarService {
   public showNavbar(show: boolean): void {
     let navbarRule = new InterfaceRule("navbar", show, null);
     NavbarService.interfaceRuleEmitter.emit(navbarRule);
+  }
+
+  public createIcon(icon: any){
+    let newIcon = new IconNavbar(icon);
   }
 
   // filter!
