@@ -14,7 +14,10 @@ export class NavbarSecundaryComponent implements OnInit {
   constructor(public utils: Utils) { }
 
   ngOnInit(): void {
-
+    NavbarService.icoms.subscribe((newFilter) => {
+      //filters.add(filter);
+    }
+    )
   }
 
   updateFilter($event: any) {

@@ -8,6 +8,7 @@ import { InterfaceRule } from '../model/interface-rule.model';
 export class NavbarService {
 
   static interfaceRuleEmitter = new EventEmitter<any>();
+  static icoms = new EventEmitter<any>();
 
   constructor() { }
 
