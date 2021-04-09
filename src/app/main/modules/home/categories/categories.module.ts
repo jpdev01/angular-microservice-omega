@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [CategoriesComponent, CategoriesListComponent, CategoriesFrmComponent],
+  declarations: [CategoriesComponent, CategoriesFrmComponent],
   imports: [
     CommonModule,
     CategoriesRoutingModule,
