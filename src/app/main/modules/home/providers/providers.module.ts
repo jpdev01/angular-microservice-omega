@@ -11,7 +11,7 @@ import { ProvidersFrmComponent } from './providers-frm/providers-frm.component';
 
 
 @NgModule({
-  declarations: [ProvidersComponent, ProvidersListComponent, ProvidersFrmComponent],
+  declarations: [ProvidersComponent, ProvidersFrmComponent],
   imports: [
     CommonModule,
     ProvidersRoutingModule,
