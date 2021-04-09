@@ -12,6 +12,7 @@ import { Size } from 'src/app/main/shared/model/size.model';
 import { ProductsApiService } from 'src/app/main/shared/service/products-api.service';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
+import {FieldFormType} from '../../../../shared/enum/field-form-type.enum';
 
 @Component({
   selector: 'app-product-frm',
@@ -26,9 +27,9 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
   navbarRule;
 
   constructor(
-    public route: ActivatedRoute, 
-    public serviceApi: ProductsApiService, 
-    private router: Router, 
+    public route: ActivatedRoute,
+    public serviceApi: ProductsApiService,
+    private router: Router,
     private toastService: ToastNotificationService,
     private fb: FormBuilder) {
     super(route, serviceApi);
@@ -116,51 +117,47 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       new FormField({
         id: "name",
         label: "Nome",
-        type: "text"
+        type: FieldFormType.TEXT
       }),
       new FormField({
         id: "code",
-        label: "Código de barras",
-        type: "text"
+        label: "Código de barras"
       }),
       new FormField({
         id: "finalValue",
         label: "Valor",
-        type: "text",
         mask: new Mask().money
       }),
       new FormField({
         id: "qtde",
         label: "Quantidade",
-        type: "select",
+        type: FieldFormType.SELECT,
         fields: this.getQtdeProducts()
       }),
       new FormField({
         id: "color",
-        label: "Cor",
-        type: "text"
+        label: "Cor"
       }),
       new FormField({
         id: "genre",
         label: "Gênero",
-        type: "select",
+        type: FieldFormType.SELECT,
         fields: ['M', 'F', 'Unissex']
       }),
       new FormField({
         id: "color",
-        label: "Cor",
-        type: "text"
+        label: "Cor"
       }),
       new FormField({
         id: "size",
         label: "Tamanho",
-        type: "select",
+        type: FieldFormType.SELECT,
         fields: new Size().size
       }),
       new FormField({
         id: "size2",
         label: "Tamanho",
-        type: "select",
+        type: FieldFormType.SELECT,
         fields: new Size().size2
       })
     ];
@@ -170,12 +167,11 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       new FormField({
         id: "entryDate",
         label: "Data de entrada",
-        type: "date"
+        type: FieldFormType.DATE
       }),
       new FormField({
         id: "initialValue",
         label: "Valor inicial",
-        type: "text",
         mask: new Mask().money
       }),
       /*
@@ -188,7 +184,7 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       new FormField({
         id: "provider",
         label: "Fornecedor",
-        type: "modal",
+        type: FieldFormType.LIST,
         formGroupName: 'provider'
       })
     ];

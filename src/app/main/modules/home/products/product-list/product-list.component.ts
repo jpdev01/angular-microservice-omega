@@ -1,3 +1,4 @@
+import { CategoriesListComponent } from './../../categories/categories-list/categories-list.component';
 import { ResponsePageable } from './../../../../shared/model/responsePageable.model';
 import { Utils } from './../../../../shared/utils/Utils.model';
 import { Component, OnInit } from '@angular/core';
@@ -19,7 +20,7 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
   filter = "";
   listData: {};
 
-  constructor(public serviceApi: ProductsApiService, private utils: Utils, private router: Router, private service: ProductsService, public navbarService: NavbarService) { 
+  constructor(public serviceApi: ProductsApiService, private utils: Utils, private router: Router, private service: ProductsService, public navbarService: NavbarService) {
     super(serviceApi, navbarService);
   }
 
