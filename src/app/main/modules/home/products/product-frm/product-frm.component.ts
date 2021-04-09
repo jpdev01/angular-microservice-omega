@@ -179,18 +179,19 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
         type: FieldFormType.TEXT,
         mask: new Mask().money
       }),
-      /*
-      new FormField({
-        id: "categories[0].name",
-        label: "Categorias",
-        type: "text",
-        formGroupName: 'categories'
-      }),*/
       new FormField({
         id: "provider",
         label: "Fornecedor",
         type: FieldFormType.LIST,
-        formGroupName: 'provider'
+        formGroupName: 'provider',
+        listOptions: '<app-providers-list></app-providers-list>'
+      }),
+      new FormField({
+        id: "categories",
+        label: "Categorias",
+        type: FieldFormType.LIST,
+        formGroupName: 'categories',
+        listOptions: '<app-categories-list></app-categories-list>'
       })
     ];
 

@@ -13,9 +13,11 @@ export class FormField {
   onchange: any;
   mask: any;
   formGroupName: string;
+  listOptions: string;
 
   constructor(options: {
     id?: string;
+    options?: string;
     label?: string;
     type?: FieldFormType;
     defaultValue?: string;
@@ -26,6 +28,7 @@ export class FormField {
     fields?: object;
     onchange?: any;
     mask?: any;
+    listOptions?: string;
     config?: {
       label: {
         size: string
@@ -47,6 +50,7 @@ export class FormField {
     this.onchange = options.onchange;
     this.mask = options.mask;
     this.formControlName = options.formGroupName;
+    this.listOptions = options.listOptions;
 
 
 

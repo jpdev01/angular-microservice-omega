@@ -55,7 +55,7 @@
 
                             <div *ngIf="field.isListField()">
                               <button (click)="openModal()" type="button"
-                                class="btn btn-primary">
+                                class="btn btn-light btn-sm">
                                 Ver opções
                               </button>
                               <app-modal>
@@ -90,11 +90,11 @@
 
                             <div *ngIf="field.isListField()">
                               <button (click)="openModal()" type="button"
-                                class="btn btn-primary">
+                                class="btn btn-light btn-sm">
                                 Ver opções
                               </button>
                               <app-modal>
-                                <app-providers-list></app-providers-list>
+                                <script>eval(field.listOptions)</script>
                               </app-modal>
 
                             </div>

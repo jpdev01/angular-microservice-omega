@@ -1,3 +1,4 @@
+import { CategoriesListModule } from './../../modules/home/categories/categories-list/categories-list.module';
 import { PipeModule } from 'src/app/main/shared/pipe/pipe/pipe.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -20,7 +21,8 @@ import { ProvidersListModule } from '../../modules/home/providers/providers-list
     PipeModule,
     ModalModule,
     NgxMaskModule.forRoot(),
-    ProvidersListModule
+    ProvidersListModule,
+    CategoriesListModule
   ],
   declarations: [FrmCadComponent, FrmGroupComponent],
   exports: [FrmCadComponent],
