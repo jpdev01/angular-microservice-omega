@@ -121,12 +121,14 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       }),
       new FormField({
         id: "code",
-        label: "Código de barras"
+        label: "Código de barras",
+        type: FieldFormType.TEXT
       }),
       new FormField({
         id: "finalValue",
         label: "Valor",
-        mask: new Mask().money
+        mask: new Mask().money,
+        type: FieldFormType.TEXT
       }),
       new FormField({
         id: "qtde",
@@ -136,7 +138,8 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       }),
       new FormField({
         id: "color",
-        label: "Cor"
+        label: "Cor",
+        type: FieldFormType.TEXT
       }),
       new FormField({
         id: "genre",
@@ -146,7 +149,8 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       }),
       new FormField({
         id: "color",
-        label: "Cor"
+        label: "Cor",
+        type: FieldFormType.TEXT
       }),
       new FormField({
         id: "size",
@@ -172,6 +176,7 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       new FormField({
         id: "initialValue",
         label: "Valor inicial",
+        type: FieldFormType.TEXT,
         mask: new Mask().money
       }),
       /*

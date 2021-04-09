@@ -22,7 +22,8 @@
                       <div class="row mb-2">
                         <div class="fb-field-container col-form-label control-label" class="">
                           <div class="fb-inline-field-container h-100" style="display: inherit; vertical-align:middle;">
-                            <label class=" m-0 form-control form-control-sm" style="vertical-align:middle;border:0px;">{{ field.label }}: </label>
+                            <label class=" m-0 form-control form-control-sm"
+                              style="vertical-align:middle;border:0px;">{{ field.label }}: </label>
                           </div>
                         </div>
                       </div>
@@ -38,28 +39,27 @@
                             *ngIf="!group.formGroupName && !field.formGroupName">
 
 
-                            <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
-                              *ngIf="field.type != 'select' && field.type != 'textarea' && field.type != 'modal'"
-                              [formControlName]="field.id"
+                            <input class="form-control form-control-sm rounded-0" type="{{field.getTypeAsString()}}"
+                              *ngIf="field.isTextField() || field.isPasswordField() || field.isDateField()" [formControlName]="field.id"
                               (change)="field.onchange ? field.onchange($event.target.value) : ''" [mask]="field.mask">
 
-                            <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'"
+                            <select class="form-control form-control-sm rounded-0" *ngIf="field.isSelectField()"
                               [formControlName]="field.id">
                               <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option
                                 }}</option>
                             </select>
 
-                            <textarea *ngIf="field.type == 'textarea'" class="form-control form-control-sm rounded-0"
-                              placeholder="" [formControlName]="field.id">
-                        </textarea>
+                            <textarea *ngIf="field.isTextAreaField()" class="form-control form-control-sm rounded-0" placeholder=""
+                              [formControlName]="field.id"></textarea>
 
-                            <div *ngIf="field.type == 'modal'">
-                              <button *ngIf="field.type == 'modal'" (click)="openModal()" type="button"
+
+                            <div *ngIf="field.isListField()">
+                              <button (click)="openModal()" type="button"
                                 class="btn btn-primary">
                                 Ver opções
                               </button>
                               <app-modal>
-                                 <app-providers-list></app-providers-list>
+                                <app-providers-list></app-providers-list>
                               </app-modal>
 
                             </div>
@@ -71,22 +71,33 @@
                           <!-- feito para campos especificos, ramificados, que possuem chave primaria na entidade-->
 
                           <div class="fb-inline-field-container form-line" style="display: inherit;vertical-align:top;"
-                            *ngIf="group.formGroupName && field.formGroupName" [formGroupName]="group.formGroupName">
+                            *ngIf="group.formGroupName || field.formGroupName" [formGroupName]="group.formGroupName">
 
 
-                            <input class="form-control form-control-sm rounded-0" type="{{field.type}}"
-                              *ngIf="field.type != 'select' && field.type != 'textarea'" [formControlName]="field.id"
+                            <input class="form-control form-control-sm rounded-0" type="{{field.getTypeAsString()}}"
+                              *ngIf="field.isTextField() || field.isPasswordField() || field.isDateField()" [formControlName]="field.id"
                               (change)="field.onchange ? field.onchange($event.target.value) : ''" [mask]="field.mask">
 
-                            <select class="form-control form-control-sm rounded-0" *ngIf="field.type == 'select'"
+                            <select class="form-control form-control-sm rounded-0" *ngIf="field.isSelectField()"
                               [formControlName]="field.id">
                               <option *ngFor="let option of field.fields | keyPipeFilter" value="{{ option }}">{{ option
                                 }}</option>
                             </select>
 
-                            <textarea *ngIf="field.type == 'textarea'" class="form-control form-control-sm rounded-0"
-                              placeholder="" [formControlName]="field.id">
-                        </textarea>
+                            <textarea *ngIf="field.isTextAreaField()" class="form-control form-control-sm rounded-0" placeholder=""
+                              [formControlName]="field.id"></textarea>
+
+
+                            <div *ngIf="field.isListField()">
+                              <button (click)="openModal()" type="button"
+                                class="btn btn-primary">
+                                Ver opções
+                              </button>
+                              <app-modal>
+                                <app-providers-list></app-providers-list>
+                              </app-modal>
+
+                            </div>
 
 
                           </div>

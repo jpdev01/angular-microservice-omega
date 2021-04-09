@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProviderApiService } from '../../../../shared/service/api/provider-api.service';
 import { FormGroupSerializer } from '../../../../shared/model/form-group-serializer.model';
 import { FormField } from '../../../../shared/model/form-field.model';
+import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
 
 @Component({
   selector: 'app-providers-frm',
@@ -48,7 +49,7 @@ export class ProvidersFrmComponent implements OnInit, EntityFormInterfaceCompone
     let formField = new FormField({
       id: "name",
       label: "Nome",
-      type: "text"
+      type: FieldFormType.TEXT
     });
 
     group.fields.push(formField);
@@ -56,7 +57,7 @@ export class ProvidersFrmComponent implements OnInit, EntityFormInterfaceCompone
     formField = new FormField({
       id: "description",
       label: "Descrição",
-      type: "text"
+      type: FieldFormType.TEXT
     });
 
     group.fields.push(formField);

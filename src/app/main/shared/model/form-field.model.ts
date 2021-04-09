@@ -3,7 +3,7 @@ import { FieldFormType } from "../enum/field-form-type.enum";
 export class FormField {
   id: string;
   label: string;
-  type: string | FieldFormType = FieldFormType.TEXT;
+  type: FieldFormType;
   defaultValue: string = "";
   classes = "";
   formControlName: string;
@@ -11,13 +11,13 @@ export class FormField {
   options: object;
   fields: object;
   onchange: any;
-  mask:any;
+  mask: any;
   formGroupName: string;
 
   constructor(options: {
     id?: string;
     label?: string;
-    type?: string | FieldFormType;
+    type?: FieldFormType;
     defaultValue?: string;
     style?: string;
     row?: string;
@@ -32,14 +32,11 @@ export class FormField {
       }
     };
     formGroupName?: string;
-  }= {}) {
+  } = {}) {
 
     this.id = options.id;
     this.label = options.label;
-    if (options.type && typeof(options.type) === 'string'){
-      options.type = FieldFormType[options.type];
-    }
-    this.type = options.type ? options.type : FieldFormType.TEXT;
+    this.type = options.type;
     this.defaultValue = options.defaultValue;
     if (options.style) {
       this.classes = options.style;
@@ -55,25 +52,31 @@ export class FormField {
 
   }
 
-  public isTextAreaField():boolean{
+  public isTextAreaField(): boolean {
     return this.type === FieldFormType.TEXTAREA;
   }
 
-  public isTextField():boolean{
+  public isTextField(): boolean {
     return this.type === FieldFormType.TEXT;
   }
 
-  public isListField():boolean{
+  public isListField(): boolean {
     return this.type === FieldFormType.LIST;
   }
 
-  public isSelectField():boolean{
+  public isSelectField(): boolean {
     return this.type === FieldFormType.SELECT;
   }
 
-  public isPasswordType(): boolean{
+  public isPasswordField(): boolean {
     return this.type === FieldFormType.PASSWORD;
   }
 
+  public isDateField(): boolean {
+    return this.type === FieldFormType.DATE;
+  }
 
+  public getTypeAsString(): string {
+    return FieldFormType[this.type];
+  }
 }

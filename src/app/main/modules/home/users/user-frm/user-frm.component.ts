@@ -17,6 +17,7 @@ import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serial
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 import { EntityFrmAbstract } from 'src/app/main/shared/abstract/entity-frm.abstract';
 import { EntityFormInterfaceComponent } from 'src/app/main/shared/interface/entity-form.interface';
+import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
 
 @Component({
   selector: 'app-user-frm',
@@ -31,12 +32,12 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
   formModel: FormSerializer;
   navbarRule;
 
-  constructor(public route: ActivatedRoute, 
-    public service: UserService, 
-    public serviceApi: UserApiService, 
-    private fb: FormBuilder, 
-    public router: Router, 
-    private toastService: ToastNotificationService, 
+  constructor(public route: ActivatedRoute,
+    public service: UserService,
+    public serviceApi: UserApiService,
+    private fb: FormBuilder,
+    public router: Router,
+    private toastService: ToastNotificationService,
     private navbarService: NavbarService) {
       super(route, serviceApi);
   }
@@ -108,7 +109,7 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
     let formField = new FormField({
       id: "login",
       label: "Login",
-      type: "text",
+      type: FieldFormType.TEXT,
       row: "1"
     });
 
@@ -117,7 +118,7 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
     formField = new FormField({
       id: "password",
       label: "Senha",
-      type: "password",
+      type: FieldFormType.PASSWORD,
       row: "1"
     });
 
@@ -126,7 +127,7 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
     formField = new FormField({
       id: "permission",
       label: "Permissao",
-      type: "select",
+      type: FieldFormType.SELECT,
       fields: Permission,
       config: {
         label: {size: "col-md-5"}

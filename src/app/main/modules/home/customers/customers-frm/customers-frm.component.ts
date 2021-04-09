@@ -15,6 +15,7 @@ import { EntityFormInterfaceComponent } from 'src/app/main/shared/interface/enti
 import { Customer } from 'src/app/main/shared/model/customer.model';
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 import { Address } from 'src/app/main/shared/model/address.model';
+import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
 
 @Component({
   selector: 'app-customers-frm',
@@ -68,7 +69,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     }
     let valueDefault = "";
     let emptyRequisities = ['', []];
-    
+
     let address = this.customer.address;
     if (!address) {
       address = new Address();
@@ -112,7 +113,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     let formField = new FormField({
       id: "name",
       label: "Nome",
-      type: "text",
+      type: FieldFormType.TEXT,
       row: "1"
     });
 
@@ -121,7 +122,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "nickname",
       label: "Apelido",
-      type: "text",
+      type: FieldFormType.TEXT,
       row: "1"
     });
 
@@ -130,7 +131,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "cpf",
       label: "CPF",
-      type: "text",
+      type: FieldFormType.TEXT,
       row: "1",
       mask: mask.cpf
     });
@@ -140,7 +141,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "RG",
       label: "RG",
-      type: "text",
+      type: FieldFormType.TEXT,
       row: "1",
       mask: mask.rg
     });
@@ -148,14 +149,14 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "borndate",
       label: "Data de Nascimento",
-      type: "date",
+      type: FieldFormType.DATE,
       row: "1"
     });
     group1.fields.push(formField);
     formField = new FormField({
       id: "dataReg",
       label: "Data de Registro",
-      type: "date",
+      type: FieldFormType.DATE,
       row: "1"
     });
     group1.fields.push(formField);
@@ -163,7 +164,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "email",
       label: "E-mail",
-      type: "email",
+      type: FieldFormType.EMAIL,
       row: "1"
     });
     group1.fields.push(formField);
@@ -171,7 +172,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "fone",
       label: "Telefone",
-      type: "text",
+      type: FieldFormType.TEXT,
       row: "1",
       mask: mask.fone
     });
@@ -179,7 +180,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "mobile",
       label: "Celular",
-      type: "text",
+      type: FieldFormType.TEXT,
       mask: mask.fone
     });
     group2.fields.push(formField);
@@ -187,7 +188,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "size",
       label: "Tamanho",
-      type: "select",
+      type: FieldFormType.SELECT,
       fields: new Size().size,
       row: "1"
     });
@@ -195,7 +196,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "size2",
       label: "Tamanho",
-      type: "select",
+      type: FieldFormType.SELECT,
       fields: new Size().size2,
       row: "1"
     });
@@ -203,14 +204,14 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "office",
       label: "Trabalho",
-      type: "text",
+      type: FieldFormType.TEXT,
       row: "1"
     });
     group2.fields.push(formField);
     formField = new FormField({
       id: "description",
       label: "Descrição",
-      type: "textarea",
+      type: FieldFormType.TEXTAREA,
       row: "1"
     });
     group2.fields.push(formField);
@@ -218,7 +219,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "address",
       label: "Endereço",
-      type: "address",
+      type: FieldFormType.ADDRESS,
       row: "1"
     });
     group3.fields.push(formField);
@@ -227,7 +228,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     formField = new FormField({
       id: "reference",
       label: "Referencia",
-      type: "text",
+      type: FieldFormType.TEXT,
       row: "1"
     });
     group4.fields.push(formField);

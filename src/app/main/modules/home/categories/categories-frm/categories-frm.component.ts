@@ -10,6 +10,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { FormSerializer } from 'src/app/main/shared/model/form-serializer.model';
 import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
 import { FormField } from 'src/app/main/shared/model/form-field.model';
+import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
 
 @Component({
   selector: 'app-categories-frm',
@@ -54,7 +55,7 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
     let formField = new FormField({
       id: "name",
       label: "Nome",
-      type: "text"
+      type: FieldFormType.TEXT
     });
 
     group.fields.push(formField);
@@ -62,7 +63,7 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
     formField = new FormField({
       id: "description",
       label: "Descrição",
-      type: "textarea"
+      type: FieldFormType.TEXTAREA
     });
 
     group.fields.push(formField);

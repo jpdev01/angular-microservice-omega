@@ -11,6 +11,7 @@ import {AddressService} from '../../shared/service/address.service';
 import { FormGroup } from '@angular/forms';
 import { Mask } from '../../shared/model/mask.model';
 import { ModalService } from '../../shared/service/modal.service';
+import { FieldFormType } from '../../shared/enum/field-form-type.enum';
 declare var $:any;
 
 @Component({
@@ -32,9 +33,9 @@ export class FrmCadComponent implements OnInit {
 
 
   constructor(
-    private router: Router, 
-    public toastService: ToastNotificationService, 
-    private utils: Utils, 
+    private router: Router,
+    public toastService: ToastNotificationService,
+    private utils: Utils,
     private addressService: AddressService,
     private modalService: ModalService
     ) { }
@@ -99,7 +100,7 @@ export class FrmCadComponent implements OnInit {
 
     for (let i = 0; i < groups.length; i++){
       groups[i].fields.forEach(field => {
-        if (field.type === "address") {
+        if (field.type === FieldFormType.ADDRESS) {
           groups[i] = this.initFieldsaddress();
         }
 
@@ -108,13 +109,14 @@ export class FrmCadComponent implements OnInit {
 
   }
 
+
   private initFieldsaddress(): any {
     let group = new FormGroupSerializer();
     let mask = new Mask();
     let field = new FormField({
       id: "cep",
       label: "CEP",
-      type: "text",
+      type: FieldFormType.TEXT,
       mask: mask.cep,
       onchange: (field)=> this.updateAddressByCep(field)
     });
@@ -122,32 +124,32 @@ export class FrmCadComponent implements OnInit {
     field = new FormField({
       id: "uf",
       label: "Estado",
-      type: "select",
+      type: FieldFormType.SELECT,
       fields: States
     });
     group.fields.push(field);
     field = new FormField({
       id: "city",
       label: "Cidade",
-      type: "text"
+      type: FieldFormType.TEXT
     });
     group.fields.push(field);
     field = new FormField({
       id: "neighborhood",
       label: "Bairro",
-      type: "text"
+      type: FieldFormType.TEXT
     });
     group.fields.push(field);
     field = new FormField({
       id: "publicPlace",
       label: "Endereço",
-      type: "text"
+      type: FieldFormType.TEXT
     });
     group.fields.push(field);
     field = new FormField({
       id: "complement",
       label: "Complemento",
-      type: "text"
+      type: FieldFormType.TEXT
     });
     group.fields.push(field);
     group.formGroupName = "address";
@@ -177,6 +179,7 @@ export class FrmCadComponent implements OnInit {
   public openModal(): void{
     this.modalService.toggle();
   }
+
 
 }
 // bairro: "Costa e Silva"
