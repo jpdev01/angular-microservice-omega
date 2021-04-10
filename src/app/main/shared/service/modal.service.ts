@@ -12,4 +12,8 @@ export class ModalService {
   public toggle(): void {
     $('#'+this.modalId).modal('toggle');
   }
+
+  public setId(id: string){
+    this.modalId = id;
+  }
 }

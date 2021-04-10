@@ -54,12 +54,14 @@
 
 
                             <div *ngIf="field.isListField()">
-                              <button (click)="openModal()" type="button"
+                              <button (click)="openModal(field)" type="button"
                                 class="btn btn-light btn-sm">
                                 Ver opções
                               </button>
-                              <app-modal [modalTitle]="field.label">
-                                <app-providers-list></app-providers-list>
+                              <app-modal [modalTitle]="field.label" [id]="'modal_' + field.id">
+                                <!--<div [innerHTML]="field.listOptions"></div>-->
+                                <app-providers-list *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
+                                <app-categories-list *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>
                               </app-modal>
 
                             </div>
@@ -89,12 +91,12 @@
 
 
                             <div *ngIf="field.isListField()">
-                              <button (click)="openModal()" type="button"
+                              <button (click)="openModal(field)" type="button"
                                 class="btn btn-light btn-sm">
                                 Ver opções
                               </button>
                               <app-modal [modalTitle]="field.label">
-                                <script>eval(field.listOptions)</script>
+                                <div [innerHTML]="field.listOptions"></div>
                               </app-modal>
 
                             </div>

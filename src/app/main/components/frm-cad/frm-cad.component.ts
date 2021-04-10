@@ -176,19 +176,9 @@ export class FrmCadComponent implements OnInit {
     return title;
   }
 
-  public openModal(): void{
+  public openModal(field): void{
+    this.modalService.setId('modal_'+field.id);
     this.modalService.toggle();
   }
 
-
 }
-// bairro: "Costa e Silva"
-// cep: "89218-640"
-// complemento: ""
-// ddd: "47"
-// gia: ""
-// ibge: "4209102"
-// localidade: "Joinville"
-// logradouro: "Rua Afonso Kieper"
-// siafi: "8179"
-// uf: "SC"

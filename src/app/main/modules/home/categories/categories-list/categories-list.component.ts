@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abstract';
 import { EntityListInterfaceComponent } from 'src/app/main/shared/interface/entity-list.interface';
@@ -18,6 +18,7 @@ export class CategoriesListComponent extends EntityListAbstract implements OnIni
   public users: Category[];
   filter = "";
   listData: EntityListSerialize;
+  @Input() config;
 
   constructor(public serviceApi: CategoryApiService, private router: Router, public utils: Utils, public navbarService: NavbarService) {
     super(serviceApi, navbarService);

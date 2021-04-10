@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abstract';
 import { Provider } from './../../../../shared/model/provider.model';
 import { EntityListInterfaceComponent } from 'src/app/main/shared/interface/entity-list.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EntityListSerialize } from 'src/app/main/shared/serialize/entity-list-serialize.model';
 import { ProviderApiService } from 'src/app/main/shared/service/api/provider-api.service';
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
@@ -17,6 +17,7 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
   public providers: Provider[];
   filter = "";
   listData: EntityListSerialize;
+  @Input() config;
 
   constructor(public serviceApi: ProviderApiService, public navbarService: NavbarService, private router: Router) {
     super(serviceApi, navbarService);

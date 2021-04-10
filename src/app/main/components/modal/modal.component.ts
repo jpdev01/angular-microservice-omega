@@ -9,6 +9,7 @@ declare var $: any;
 export class ModalComponent implements OnInit {
   size = 'xl';
   @Input() modalTitle;
+  @Input() id;
 
   constructor() { }
 

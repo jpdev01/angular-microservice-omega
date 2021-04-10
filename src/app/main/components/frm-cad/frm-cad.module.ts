@@ -22,7 +22,7 @@ import { ProvidersListModule } from '../../modules/home/providers/providers-list
     ModalModule,
     NgxMaskModule.forRoot(),
     ProvidersListModule,
-    CategoriesListModule
+    CategoriesListModule,
   ],
   declarations: [FrmCadComponent, FrmGroupComponent],
   exports: [FrmCadComponent],
