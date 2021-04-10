@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
-import { NavbarSecundaryComponent } from 'src/app/main/components/navbar-secundary/navbar-secundary.component';
-import { NavbarSecundaryModule } from 'src/app/main/components/navbar-secundary/navbar-secundary.module';
+import { NavbarListModule } from 'src/app/main/components/navbar-list/navbar-list.module';
 import { Utils } from 'src/app/main/shared/utils/Utils.model';
 import { ProductsApiService } from 'src/app/main/shared/service/products-api.service';
 import { PipeModule } from 'src/app/main/shared/pipe/pipe/pipe.module';
@@ -22,13 +21,13 @@ import { ProductInfoComponent } from './product-info/product-info.component';
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    NavbarSecundaryModule,
+    NavbarListModule,
     PipeModule,
     FrmCadModule,
     ListEntityModule,
     EntityInfoModule,
     FrmCadModule
   ],
-  providers: [Utils, NavbarSecundaryComponent, ProductsApiService, SearchFilterPipe]
+  providers: [Utils, ProductsApiService, SearchFilterPipe]
 })
 export class ProductsModule { }

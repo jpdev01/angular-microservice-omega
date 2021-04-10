@@ -10,8 +10,7 @@ import { UsersComponent } from './users.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { PipeModule } from '../../../shared/pipe/pipe/pipe.module';
 import { UserFrmComponent } from './user-frm/user-frm.component';
-import { NavbarSecundaryModule } from 'src/app/main/components/navbar-secundary/navbar-secundary.module';
-import { NavbarSecundaryComponent } from 'src/app/main/components/navbar-secundary/navbar-secundary.component';
+import { NavbarListModule } from 'src/app/main/components/navbar-list/navbar-list.module';
 import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
 import { FrmCadComponent } from 'src/app/main/components/frm-cad/frm-cad.component';
 import { UserApiService } from 'src/app/main/shared/service/user-api.service';
@@ -27,12 +26,12 @@ import {EntityInfoModule} from 'src/app/main/components/entity-info/entity-info.
     FormsModule,
     PipeModule,
     ReactiveFormsModule,
-    NavbarSecundaryModule,
+    NavbarListModule,
     FrmCadModule,
     ListEntityModule,
     EntityInfoModule
   ],
-  providers: [FormBuilder, Utils, UserService, UserApiService, NavbarSecundaryComponent, FrmCadComponent],
+  providers: [FormBuilder, Utils, UserService, UserApiService],
   exports: [UsersComponent]
 })
 export class UsersModule { }

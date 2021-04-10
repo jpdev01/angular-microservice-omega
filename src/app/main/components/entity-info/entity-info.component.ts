@@ -35,4 +35,37 @@ export class EntityInfoComponent implements OnInit {
     return this.entity.name || this.entity.login || this.entity.title;
   }
 
+  public getValueFormatted(fieldValue): string{
+    if (fieldValue){
+      if (typeof(fieldValue) === 'object') {
+        let label = "";
+        if (Array.isArray(fieldValue)) {
+          for (let i = 0; i < fieldValue.length; i++){
+            let element = fieldValue[i];
+            if (i != 0){
+              label += ", ";
+            }
+            label += this.getValueAsString(element);
+          }
+        }
+        else {
+          label += this.getValueAsString(fieldValue);
+        }
+        return label;
+      } else {
+        return fieldValue;
+      }
+    } else {
+      return "";
+    }
+  }
+
+  private getValueAsString(element): string{
+    if (element.name) {
+      return element.name;
+    } else if (element.title) {
+      return element.title;
+    }
+  }
+
 }

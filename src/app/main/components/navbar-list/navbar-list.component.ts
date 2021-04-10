@@ -3,11 +3,11 @@ import { Component, OnInit, SimpleChange } from '@angular/core';
 import { Utils } from '../../shared/utils/Utils.model';
 
 @Component({
-  selector: 'app-navbar-secundary',
-  templateUrl: './navbar-secundary.component.html',
-  styleUrls: ['./navbar-secundary.component.css']
+  selector: 'app-navbar-list',
+  templateUrl: './navbar-list.component.html',
+  styleUrls: ['./navbar-list.component.css']
 })
-export class NavbarSecundaryComponent implements OnInit {
+export class NavbarListComponent implements OnInit {
 
   filter: string;
 

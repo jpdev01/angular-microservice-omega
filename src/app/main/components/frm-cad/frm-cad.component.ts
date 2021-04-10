@@ -1,3 +1,4 @@
+import { NavbarService } from './../../shared/service/navbar.service';
 import { FormGroupSerializer } from './../../shared/model/form-group-serializer.model';
 import { FormField } from './../../shared/model/form-field.model';
 import { FormSerializer } from '../../shared/model/form-serializer.model';
@@ -40,13 +41,15 @@ export class FrmCadComponent implements OnInit {
     private utils: Utils,
     private addressService: AddressService,
     private modalService: ModalService,
-    private radioInputService: RadioInputService
+    private radioInputService: RadioInputService,
+    private navbarService: NavbarService
     ) { }
 
   ngOnInit() {
     this.getInfo();
     this.initForm();
     this.initEvents();
+    this.hideNavbar();
   }
 
   getInfo(){
@@ -219,6 +222,10 @@ export class FrmCadComponent implements OnInit {
 
   canIsNumber(value: any){
     return !isNaN(value);
+  }
+
+  private hideNavbar(){
+    this.navbarService.showNavbar(false);
   }
 
 }
