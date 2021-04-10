@@ -60,4 +60,10 @@ export class Product {
     this.categories = options.categories ? options.categories : [new Category(), new Category()];
     this.provider = options.provider ? new Provider(options.provider) : new Provider();
   }
+
+  newCategory(): Category{
+    let category = new Category();
+    this.categories.push(category);
+    return category;
+  }
 }

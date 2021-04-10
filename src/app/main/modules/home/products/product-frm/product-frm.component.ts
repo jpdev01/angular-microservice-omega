@@ -12,7 +12,7 @@ import { Size } from 'src/app/main/shared/model/size.model';
 import { ProductsApiService } from 'src/app/main/shared/service/products-api.service';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
-import {FieldFormType} from '../../../../shared/enum/field-form-type.enum';
+import { FieldFormType } from '../../../../shared/enum/field-form-type.enum';
 
 @Component({
   selector: 'app-product-frm',
@@ -46,31 +46,31 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
     this.initFormStructure();
   }
 
-  public getOnSave(): {onSucess: {}, onError: {}} {
+  public getOnSave(): { onSucess: {}, onError: {} } {
     return {
-        onSucess: {
-          action: () => {
-            this.router.navigate(['home/' + new PatternUrl().user]);
-          },
-          toast: this.toastService.create({
-            title: "ok",
-            text: "Produto salvo com sucesso!"
-          })
+      onSucess: {
+        action: () => {
+          this.router.navigate(['home/' + new PatternUrl().user]);
         },
-        onError: {
-          action: () => {
-            console.log("Erro ao salvar usuario!");
-          },
-          toast: this.toastService.create({
-            title: "Erro",
-            text: "Erro ao salvar produto!"
-          })
-        }
+        toast: this.toastService.create({
+          title: "ok",
+          text: "Produto salvo com sucesso!"
+        })
+      },
+      onError: {
+        action: () => {
+          console.log("Erro ao salvar usuario!");
+        },
+        toast: this.toastService.create({
+          title: "Erro",
+          text: "Erro ao salvar produto!"
+        })
+      }
     }
   }
 
   public loadEntityInfo(id: number): void {
-    this.serviceApi.getById(id).subscribe((result)=>{
+    this.serviceApi.getById(id).subscribe((result) => {
       this.product = result;
       this.initFormBuilder();
     })
@@ -81,7 +81,7 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
   }
 
   initFormBuilder(): void {
-    if (!this.product){
+    if (!this.product) {
       this.product = new Product();
     }
 
@@ -98,16 +98,14 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       size: [this.product.size, []],
       size2: [this.product.size2, []],
       code: [this.product.code, []],
-      // categories: this.fb.group({
-      //   id: [this.product.categories[0].name, []],
-      //   name: [this.product.categories[0].name, []],
-      //   description: [this.product.categories[0].description, []],
-      // }),
+      categories: this.fb.array([
+        this.createCategoryFormGroup()
+      ]),
       provider: this.fb.group({
         //before is providerId, providerName, etc.
         id: [this.product.provider.id],
         name: [this.product.provider.name],
-        description: [this.product.provider.description, []],
+        description: [this.product.provider.description, []]
       })
     });
   }
@@ -206,8 +204,17 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
     });
   }
 
-  private getQtdeProducts(): any[]{
+  private getQtdeProducts(): any[] {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+  }
+
+  createCategoryFormGroup() {
+    let category = this.product.newCategory();
+    return this.fb.group({
+      id: [category.id],
+      name: [category.name],
+      description: [category.description, []]
+    });
   }
 
 
