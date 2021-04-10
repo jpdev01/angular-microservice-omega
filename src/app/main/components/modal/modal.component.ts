@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalInfo} from '../../shared/model/modal-info.model';
 declare var $: any;
 
 @Component({
@@ -8,14 +9,17 @@ declare var $: any;
 })
 export class ModalComponent implements OnInit {
   size = 'xl';
-  @Input() modalTitle;
-  @Input() id;
+  @Input() modalInfo: ModalInfo;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.modalTitle);
 
+  }
+
+  public submit(){
+    let onSave = this.modalInfo.onSave;
+    onSave();
   }
 
 }

@@ -47,4 +47,12 @@ export class ListEntityComponent implements OnInit {
     );
   }
 
+  public containsInput(td): boolean{
+    return td === 'checkbox';
+  }
+
+  public isCheckboxInput(td): boolean {
+    return td === 'checkbox';
+  }
+
 }

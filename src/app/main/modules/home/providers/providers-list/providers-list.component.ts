@@ -43,10 +43,17 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
     this.router.navigate(['home/provider/info', id]);
   }
   initListData(): void {
+
     let tableInfo = {
       header: ["Nome", "Descrição"],
       row: ["name", "description"]
     };
+
+    if (this.config.checkbox){
+      tableInfo.header.unshift('Selecionar');
+      tableInfo.row.unshift('checkbox');
+    }
+
 
     this.listData = new EntityListSerialize({
       entity: super.getEntityList(),

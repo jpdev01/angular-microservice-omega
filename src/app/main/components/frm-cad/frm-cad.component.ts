@@ -12,6 +12,7 @@ import { FormGroup } from '@angular/forms';
 import { Mask } from '../../shared/model/mask.model';
 import { ModalService } from '../../shared/service/modal.service';
 import { FieldFormType } from '../../shared/enum/field-form-type.enum';
+import { ModalInfo } from '../../shared/model/modal-info.model';
 declare var $:any;
 
 @Component({
@@ -179,6 +180,13 @@ export class FrmCadComponent implements OnInit {
   public openModal(field): void{
     this.modalService.setId('modal_'+field.id);
     this.modalService.toggle();
+  }
+
+  public getModalInfo(field): ModalInfo {
+    return new ModalInfo({
+      id: 'modal_' + field.id,
+      title: field.label
+    });
   }
 
 }

@@ -58,9 +58,11 @@
                                 class="btn btn-light btn-sm">
                                 Ver opções
                               </button>
-                              <app-modal [modalTitle]="field.label" [id]="'modal_' + field.id">
+                              <app-modal [modalInfo]="getModalInfo(field)">
                                 <!--<div [innerHTML]="field.listOptions"></div>-->
-                                <app-providers-list *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
+                                <app-providers-list [config]="{
+                                  checkbox: true
+                                }" *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
                                 <app-categories-list *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>
                               </app-modal>
 
@@ -95,9 +97,14 @@
                                 class="btn btn-light btn-sm">
                                 Ver opções
                               </button>
-                              <app-modal [modalTitle]="field.label">
-                                <div [innerHTML]="field.listOptions"></div>
+                              <app-modal [modalInfo]="getModalInfo(field)">
+                                <!--<div [innerHTML]="field.listOptions"></div>-->
+                                <app-providers-list [config]="{
+                                  checkbox: true
+                                }" *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
+                                <app-categories-list *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>
                               </app-modal>
+
 
                             </div>
 

@@ -4,11 +4,13 @@ import { PipeModule } from './../../shared/pipe/pipe/pipe.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListEntityComponent } from './list-entity.component';
+import { RadioModule } from '../form/radio/radio.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    PipeModule
+    PipeModule,
+    RadioModule
   ],
   declarations: [ListEntityComponent],
   providers: [Utils],
