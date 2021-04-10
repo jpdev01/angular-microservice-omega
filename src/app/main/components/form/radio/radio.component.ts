@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { RadioInputService } from '../../../shared/service/form/radio-input.service';
 
 @Component({
   selector: 'app-radio',
@@ -8,9 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class RadioComponent implements OnInit {
   @Input() id;
 
-  constructor() { }
+  constructor(private radioInputService: RadioInputService) { }
 
   ngOnInit() {
+
+  }
+
+  emitValue($event){
+    this.radioInputService.emitSelected($event);
   }
 
 }

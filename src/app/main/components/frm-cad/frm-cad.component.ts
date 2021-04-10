@@ -13,6 +13,7 @@ import { Mask } from '../../shared/model/mask.model';
 import { ModalService } from '../../shared/service/modal.service';
 import { FieldFormType } from '../../shared/enum/field-form-type.enum';
 import { ModalInfo } from '../../shared/model/modal-info.model';
+import { RadioInputService } from '../../shared/service/form/radio-input.service';
 declare var $:any;
 
 @Component({
@@ -38,12 +39,14 @@ export class FrmCadComponent implements OnInit {
     public toastService: ToastNotificationService,
     private utils: Utils,
     private addressService: AddressService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private radioInputService: RadioInputService
     ) { }
 
   ngOnInit() {
     this.getInfo();
     this.initForm();
+    this.initEvents();
   }
 
   getInfo(){
@@ -185,7 +188,16 @@ export class FrmCadComponent implements OnInit {
   public getModalInfo(field): ModalInfo {
     return new ModalInfo({
       id: 'modal_' + field.id,
-      title: field.label
+      title: field.label,
+      onSave: () =>{
+        //registrar valor no formulario.
+      }
+    });
+  }
+
+  private initEvents(){
+    this.radioInputService.getRadioEvent().subscribe((event)=>{
+      console.log("Recebeu o evento: " + event);
     });
   }
 

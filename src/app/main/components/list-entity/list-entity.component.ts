@@ -1,6 +1,6 @@
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { Utils } from './../../shared/utils/Utils.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { EntityListSerialize } from '../../shared/serialize/entity-list-serialize.model';
 
@@ -12,6 +12,7 @@ import { EntityListSerialize } from '../../shared/serialize/entity-list-serializ
 export class ListEntityComponent implements OnInit {
 
   @Input() listData: EntityListSerialize;
+  //@Output() selectEvent: EventEmitter<any> = new EventEmitter<any>()
   entityInfoList: any;
   filter = "";
   patternUrl;
@@ -53,6 +54,10 @@ export class ListEntityComponent implements OnInit {
 
   public isCheckboxInput(td): boolean {
     return td === 'checkbox';
+  }
+
+  public resolveValue(event): void{
+    this.selectEvent.emit(event);
   }
 
 }
