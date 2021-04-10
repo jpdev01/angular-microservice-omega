@@ -56,8 +56,8 @@ export class ListEntityComponent implements OnInit {
     return td === 'checkbox';
   }
 
-  public resolveValue(event): void{
-    this.selectEvent.emit(event);
-  }
+  // public resolveValue(event): void{
+  //   this.selectEvent.emit(event);
+  // }
 
 }
