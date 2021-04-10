@@ -87,7 +87,6 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
 
     this.productForm = this.fb.group({
       name: [this.product.name, []],
-      password: [this.product.finalValue, []],
       finalValue: [this.product.finalValue, []],
       initialValue: [this.product.initialValue, []],
       description: [this.product.description, []],
@@ -99,11 +98,11 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       size: [this.product.size, []],
       size2: [this.product.size2, []],
       code: [this.product.code, []],
-      categories: this.fb.group({
-        id: [this.product.categories[0].name, []],
-        name: [this.product.categories[0].name, []],
-        description: [this.product.categories[0].description, []],
-      }),
+      // categories: this.fb.group({
+      //   id: [this.product.categories[0].name, []],
+      //   name: [this.product.categories[0].name, []],
+      //   description: [this.product.categories[0].description, []],
+      // }),
       provider: this.fb.group({
         //before is providerId, providerName, etc.
         id: [this.product.provider.id],

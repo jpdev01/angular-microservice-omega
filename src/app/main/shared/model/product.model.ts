@@ -51,13 +51,13 @@ export class Product {
     this.qtde = options.qtde;
     this.color = options.color;
     this.genre = options.genre;
-    
+
     this.entryDate = options.entryDate;
     this.style = options.style;
     this.size = options.size;
     this.size2 = options.size2;
     this.code = options.code;
-    this.categories = options.categories ? options.categories : [new Category()];
-    this.provider = options.provider ? options.provider : new Provider();
+    this.categories = options.categories ? options.categories : [new Category(), new Category()];
+    this.provider = options.provider ? new Provider(options.provider) : new Provider();
   }
 }
