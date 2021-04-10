@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 declare var $: any;
 
 @Component({
@@ -8,11 +8,13 @@ declare var $: any;
 })
 export class ModalComponent implements OnInit {
   size = 'xl';
+  @Input() modalTitle;
 
   constructor() { }
 
   ngOnInit(): void {
-    
+    console.log(this.modalTitle);
+
   }
 
 }

@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Utils } from './../../shared/utils/Utils.model';
 import { PipeModule } from './../../shared/pipe/pipe/pipe.module';
 import { NgModule } from '@angular/core';
