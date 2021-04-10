@@ -1,6 +1,7 @@
-import { NavbarService } from 'src/app/main/shared/service/navbar.service';
-import { Utils } from './../../shared/utils/Utils.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { NavbarService } from './../../shared/service/navbar.service';
+import { Utils } from './../../shared/utils/Utils.model';
 import { Router } from '@angular/router';
 import { EntityListSerialize } from '../../shared/serialize/entity-list-serialize.model';
 
@@ -19,12 +20,12 @@ export class ListEntityComponent implements OnInit {
 
   header: [];
   row: [];
-  constructor(private utils: Utils, private router: Router) { }
+  constructor(private utils: Utils, private router: Router, private navbarService: NavbarService) { }
 
   ngOnInit() {
-    console.log(this.listData);
     this.initHeader();
     this.createFilter();
+    this.showNavbar();
   }
 
   public open(entityInfo): void {
@@ -60,8 +61,7 @@ export class ListEntityComponent implements OnInit {
     return td === 'radio';
   }
 
-  // public resolveValue(event): void{
-  //   this.selectEvent.emit(event);
-  // }
-
+  private showNavbar(): void {
+    this.navbarService.showNavbar(true);
+  }
 }
