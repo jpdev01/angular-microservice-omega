@@ -51,7 +51,7 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
 
     if (this.config.checkbox){
       tableInfo.header.unshift('Selecionar');
-      tableInfo.row.unshift('checkbox');
+      tableInfo.row.unshift('radio');
     }
 
 

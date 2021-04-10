@@ -5,12 +5,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListEntityComponent } from './list-entity.component';
 import { RadioModule } from '../form/radio/radio.module';
+import { CheckboxModule } from '../form/checkbox/checkbox.module';
 
 @NgModule({
   imports: [
     CommonModule,
     PipeModule,
-    RadioModule
+    RadioModule,
+    CheckboxModule
   ],
   declarations: [ListEntityComponent],
   providers: [Utils],

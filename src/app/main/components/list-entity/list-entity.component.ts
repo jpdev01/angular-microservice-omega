@@ -49,11 +49,15 @@ export class ListEntityComponent implements OnInit {
   }
 
   public containsInput(td): boolean{
-    return td === 'checkbox';
+    return td === 'checkbox' || td === 'checkbox';
   }
 
   public isCheckboxInput(td): boolean {
     return td === 'checkbox';
+  }
+
+  public isRadioInput(td): boolean{
+    return td === 'radio';
   }
 
   // public resolveValue(event): void{

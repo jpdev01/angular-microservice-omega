@@ -13,8 +13,11 @@
             <tr *ngFor="let entityInfo of entityInfoList | searchFilter:filter" (click)="open(entityInfo) ">
              <td *ngFor="let td of row">
                <div *ngIf="!containsInput(td)">{{entityInfo[td]}}</div>
-               <div *ngIf="isCheckboxInput(td)">
+               <div *ngIf="isRadioInput(td)">
                 <app-radio [id]="listData.infoUrl" [fieldEntity]="entityInfo"></app-radio>
+               </div>
+               <div *ngIf="isCheckboxInput(td)">
+                <app-checkbox [id]="listData.infoUrl" [fieldEntity]="entityInfo"></app-checkbox>
                </div>
               </td>
             </tr>

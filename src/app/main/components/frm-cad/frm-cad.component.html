@@ -63,7 +63,10 @@
                                 <app-providers-list [config]="{
                                   checkbox: true
                                 }" *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
-                                <app-categories-list *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>
+                                <app-categories-list [config]="{
+                                  combobox: true
+                                }"
+                                *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>
                               </app-modal>
 
                             </div>

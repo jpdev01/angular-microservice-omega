@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CheckboxInputService } from 'src/app/main/shared/service/form/checkbox-input.service';
 
 @Component({
   selector: 'app-checkbox',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./checkbox.component.css']
 })
 export class CheckboxComponent implements OnInit {
+  @Input() fieldEntity;
 
-  constructor() { }
+  constructor(
+    private checkboxInputService: CheckboxInputService
+  ) { }
 
   ngOnInit() {
+  }
+
+  public change(event){
+    this.checkboxInputService.onSelect.emit(event);
   }
 
 }

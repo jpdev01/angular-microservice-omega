@@ -1,5 +1,6 @@
+import { Category } from 'src/app/main/shared/model/category.model';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EntityFrmAbstract } from 'src/app/main/shared/abstract/entity-frm.abstract';
 import { EntityFormInterfaceComponent } from 'src/app/main/shared/interface/entity-form.interface';
@@ -13,6 +14,7 @@ import { ProductsApiService } from 'src/app/main/shared/service/products-api.ser
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 import { FieldFormType } from '../../../../shared/enum/field-form-type.enum';
+import {CheckboxInputService } from '../../../../shared/service/form/checkbox-input.service';
 
 @Component({
   selector: 'app-product-frm',
@@ -31,7 +33,8 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
     public serviceApi: ProductsApiService,
     private router: Router,
     private toastService: ToastNotificationService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private checkboxInputService: CheckboxInputService) {
     super(route, serviceApi);
   }
 
@@ -44,6 +47,7 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       this.initFormBuilder();
     }
     this.initFormStructure();
+    this.populateCategoriesArray();
   }
 
   public getOnSave(): { onSucess: {}, onError: {} } {
@@ -99,7 +103,7 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       size2: [this.product.size2, []],
       code: [this.product.code, []],
       categories: this.fb.array([
-        this.createCategoryFormGroup()
+
       ]),
       provider: this.fb.group({
         //before is providerId, providerName, etc.
@@ -135,11 +139,6 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
         label: "Quantidade",
         type: FieldFormType.SELECT,
         fields: this.getQtdeProducts()
-      }),
-      new FormField({
-        id: "color",
-        label: "Cor",
-        type: FieldFormType.TEXT
       }),
       new FormField({
         id: "genre",
@@ -208,12 +207,30 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   }
 
-  createCategoryFormGroup() {
-    let category = this.product.newCategory();
-    return this.fb.group({
-      id: [category.id],
-      name: [category.name],
-      description: [category.description, []]
+  createCategoryFormGroup(category: Category): FormControl {
+    if (!category){
+      category = new Category();
+    }
+    return this.fb.control({
+      id: category.id,
+      name: category.name,
+      description: category.description
+    });
+  }
+
+  addCategoryToFormGroup(category: Category){
+    (<FormArray>this.productForm.controls['categories']).push(
+      this.createCategoryFormGroup(category)
+    );
+  }
+
+  populateCategoriesArray(){
+    this.checkboxInputService.getOnSelect().subscribe((event) => {
+      let categoryId = event.target.value;
+      let category = new Category({
+        id: categoryId
+      });
+      this.addCategoryToFormGroup(category);
     });
   }
 

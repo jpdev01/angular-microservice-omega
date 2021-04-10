@@ -45,6 +45,11 @@ export class CategoriesListComponent extends EntityListAbstract implements OnIni
       row: ["name", "description"]
     };
 
+    if (this.config.combobox){
+      tableInfo.header.unshift('Selecionar');
+      tableInfo.row.unshift('checkbox');
+    }
+
     this.listData = new EntityListSerialize({
       entity: super.getEntityList(),
       tableStructure: tableInfo,
