@@ -195,10 +195,30 @@ export class FrmCadComponent implements OnInit {
     });
   }
 
+  private formControlRadioInput;
   private initEvents(){
-    this.radioInputService.getRadioEvent().subscribe((event)=>{
-      console.log("Recebeu o evento: " + event);
+    this.radioInputService.getRadioEvent().subscribe((event) => {
+      if (this.formControlRadioInput){
+        let formControl = this.frm.get(this.formControlRadioInput);
+        let value = event.target.value;
+        if (formControl instanceof FormGroup) {
+          if(this.canIsNumber(value)){
+            //set by id
+            formControl.get('id').setValue(value);
+          }
+        }
+        else {
+          formControl.setValue(event.target.value);
+        }
+      }
     });
+    this.radioInputService.getId().subscribe((id) => {
+      this.formControlRadioInput = id;
+    });
+  }
+
+  canIsNumber(value: any){
+    return !isNaN(value);
   }
 
 }

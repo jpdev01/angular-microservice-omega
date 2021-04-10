@@ -1,3 +1,5 @@
+import { ModalService } from './../../shared/service/modal.service';
+import { NavbarService } from './../../shared/service/navbar.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalInfo} from '../../shared/model/modal-info.model';
 declare var $: any;
@@ -11,7 +13,7 @@ export class ModalComponent implements OnInit {
   size = 'xl';
   @Input() modalInfo: ModalInfo;
 
-  constructor() { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit(): void {
 
@@ -19,7 +21,14 @@ export class ModalComponent implements OnInit {
 
   public submit(){
     let onSave = this.modalInfo.onSave;
-    onSave();
+    if (onSave){
+      onSave();
+    }
+    this.close();
+  }
+
+  public close(){
+    this.modalService.toggle();
   }
 
 }

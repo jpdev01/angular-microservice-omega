@@ -11,16 +11,16 @@ import { Product } from '../model/product.model';
 })
 export class ProductsApiService implements ServiceApiInterface {
 
-  httpOptions;
+  httpOptions: object;
   apiUrl: string;
 
   constructor(private utils: Utils, private httpClient: HttpClient) {
     this.httpOptions = this.utils.getHttpOptions();
     this.apiUrl = this.utils.getApiUrl();
    }
-   
-  save(): void {
-    throw new Error('Method not implemented.');
+
+   public save(product: Product): Observable<Product> {
+    return this.httpClient.post<any>(this.apiUrl + '/product/save', product, this.httpOptions);
   }
 
   public getAll(): Observable<ResponsePageable>{

@@ -100,12 +100,15 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       size2: [this.product.size2, []],
       code: [this.product.code, []],
       categories: this.fb.group({
-        categoryName: [this.product.categories[0].name, []],
-        categoryDescription: [this.product.categories[0].description, []],
+        id: [this.product.categories[0].name, []],
+        name: [this.product.categories[0].name, []],
+        description: [this.product.categories[0].description, []],
       }),
       provider: this.fb.group({
-        providerName: [this.product.provider.name],
-        providerDescription: [this.product.provider.description, []],
+        //before is providerId, providerName, etc.
+        id: [this.product.provider.id],
+        name: [this.product.provider.name],
+        description: [this.product.provider.description, []],
       })
     });
   }

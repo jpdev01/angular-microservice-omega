@@ -8,11 +8,12 @@ import { RadioInputService } from '../../../shared/service/form/radio-input.serv
 })
 export class RadioComponent implements OnInit {
   @Input() id;
+  @Input() fieldEntity;
 
   constructor(private radioInputService: RadioInputService) { }
 
   ngOnInit() {
-
+    this.radioInputService.setId(this.id);
   }
 
   emitValue($event){

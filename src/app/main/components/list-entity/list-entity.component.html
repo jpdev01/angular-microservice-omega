@@ -14,7 +14,7 @@
              <td *ngFor="let td of row">
                <div *ngIf="!containsInput(td)">{{entityInfo[td]}}</div>
                <div *ngIf="isCheckboxInput(td)">
-                <app-radio [id]="'radio'"></app-radio>
+                <app-radio [id]="listData.infoUrl" [fieldEntity]="entityInfo"></app-radio>
                </div>
               </td>
             </tr>
