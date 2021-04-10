@@ -48,6 +48,7 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
     }
     this.initFormStructure();
     this.populateCategoriesArray();
+
   }
 
   public getOnSave(): { onSucess: {}, onError: {} } {
@@ -77,6 +78,7 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
     this.serviceApi.getById(id).subscribe((result) => {
       this.product = result;
       this.initFormBuilder();
+      this.initArrayCategories();
     })
   }
 
@@ -102,9 +104,7 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       size: [this.product.size, []],
       size2: [this.product.size2, []],
       code: [this.product.code, []],
-      categories: this.fb.array([
-
-      ]),
+      categories: this.fb.array([]),
       provider: this.fb.group({
         //before is providerId, providerName, etc.
         id: [this.product.provider.id],
@@ -232,6 +232,15 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       });
       this.addCategoryToFormGroup(category);
     });
+  }
+
+  initArrayCategories(): void{
+    let categories = this.product.categories;
+    if (categories){
+      categories.forEach((category) => {
+        this.addCategoryToFormGroup(category);
+      })
+    }
   }
 
 

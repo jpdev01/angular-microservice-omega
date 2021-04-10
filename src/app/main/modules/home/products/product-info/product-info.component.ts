@@ -1,3 +1,4 @@
+import { PatternUrl } from './../../../../shared/utils/PatternUrl.model';
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -19,13 +20,13 @@ export class ProductInfoComponent implements OnInit, EntityInfoInterface {
   product: any;
 
   constructor(
-    private router: Router, 
-    private route: ActivatedRoute, 
-    private service: ProductsService, 
+    private router: Router,
+    private route: ActivatedRoute,
+    private service: ProductsService,
     private serviceApi: ProductsApiService,
     private navbarService: NavbarService
     ) { }
- 
+
   ngOnInit() {
     this.loadIdByUrl();
     this.hideSearchNavbar();
@@ -38,7 +39,8 @@ export class ProductInfoComponent implements OnInit, EntityInfoInterface {
     this.entityInfoSerialize = new EntityInfoSerializer({
       label: 'Produto',
       entity: this.product,
-      groups: new ProductInfoSerializer().serialize(this.product)
+      groups: new ProductInfoSerializer().serialize(this.product),
+      url: new PatternUrl().product
     });
   }
 
