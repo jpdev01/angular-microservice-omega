@@ -1,4 +1,5 @@
 export class PatternUrl {
+    home = 'home';
     product = 'product';
     customer = 'customer';
     user = 'user';
@@ -7,4 +8,8 @@ export class PatternUrl {
 
     list: 'list';
     frm: 'frm';
+
+    getFieldHome(url: string): string{
+      return '/' + this.home + '/' + url;
+    }
 }
