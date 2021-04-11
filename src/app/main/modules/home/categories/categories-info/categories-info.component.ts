@@ -29,7 +29,7 @@ export class CategoriesInfoComponent implements OnInit, EntityInfoInterface {
     this.entityInfoSerialize = new EntityInfoSerializer({
       label: "Categoria",
       entity: this.category,
-      url: new PatternUrl().customer,
+      url: new PatternUrl().category,
       groups: [new CategoryInfoSerialize().serialize(this.category)]
     });
   }
