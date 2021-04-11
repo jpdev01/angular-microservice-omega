@@ -14,6 +14,7 @@ export class ListEntityComponent implements OnInit {
 
   @Input() listData: EntityListSerialize;
   //@Output() selectEvent: EventEmitter<any> = new EventEmitter<any>()
+  @Input() config;
   entityInfoList: any;
   filter = "";
   patternUrl;
@@ -62,6 +63,8 @@ export class ListEntityComponent implements OnInit {
   }
 
   private showNavbar(): void {
-    this.navbarService.showNavbar(true);
+    if (!this.config || (this.config && !this.config.isEform)){
+      this.navbarService.showNavbar(true);
+    }
   }
 }

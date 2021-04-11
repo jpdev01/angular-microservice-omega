@@ -40,7 +40,7 @@
 
 
                             <input class="form-control form-control-sm rounded-0" type="{{field.getTypeAsString()}}"
-                              *ngIf="field.isTextField() || field.isPasswordField() || field.isDateField()" [formControlName]="field.id"
+                              *ngIf="field.isTextField() || field.isPasswordField() || field.isPasswordField() || field.isDateField()" [formControlName]="field.id"
                               (change)="field.onchange ? field.onchange($event.target.value) : ''" [mask]="field.mask">
 
                             <select class="form-control form-control-sm rounded-0" *ngIf="field.isSelectField()"
@@ -61,10 +61,12 @@
                               <app-modal [modalInfo]="getModalInfo(field)">
                                 <!--<div [innerHTML]="field.listOptions"></div>-->
                                 <app-providers-list [config]="{
-                                  checkbox: true
+                                  checkbox: true,
+                                  isEform: true
                                 }" *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
                                 <app-categories-list [config]="{
-                                  combobox: true
+                                  combobox: true,
+                                  isEform: true
                                 }"
                                 *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>
                               </app-modal>

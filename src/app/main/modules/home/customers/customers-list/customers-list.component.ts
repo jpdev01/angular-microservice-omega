@@ -23,7 +23,6 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
 
   ngOnInit() {
     this.initListData();
-    this.initNavbar();
     this.getFilter();
   }
 
@@ -39,10 +38,6 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
       infoUrl: new PatternUrl().customer
     })
   };
-
-  private initNavbar(): void {
-    super.openListNavbar();
-  }
 
   public getFilter(): void {
     this.filter = super.getFilter();

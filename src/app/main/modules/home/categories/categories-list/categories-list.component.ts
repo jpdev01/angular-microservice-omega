@@ -25,14 +25,10 @@ export class CategoriesListComponent extends EntityListAbstract implements OnIni
    }
 
   ngOnInit(): void {
-    this.openListNavbar();
     this.initListData();
     this.getFilter();
   }
 
-  openListNavbar(): void {
-    this.navbarService.showNavbar(true);
-  }
   getFilter(): void {
     this.filter = super.getFilter();
   }

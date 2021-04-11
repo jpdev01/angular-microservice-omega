@@ -26,15 +26,8 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
   }
 
   ngOnInit() {
-    this.openListNavbar();
     this.initListData();
     this.getFilter();
-  }
-
-
-
-  public openListNavbar(): void {
-    this.navbarService.showNavbar(true);
   }
 
   public getFilter(): void {

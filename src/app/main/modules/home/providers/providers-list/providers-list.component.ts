@@ -24,7 +24,6 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
   }
 
   ngOnInit(): void {
-    this.openListNavbar();
     this.initListData();
     this.getFilter();
   }
@@ -33,9 +32,7 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
   getEntityList(): any[] {
     throw new Error('Method not implemented.');
   }
-  openListNavbar(): void {
-    super.openListNavbar();
-  }
+
   getFilter(): void {
     this.filter = super.getFilter();
   }
