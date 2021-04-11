@@ -22,7 +22,6 @@ export class CustomerInfoComponent implements OnInit, EntityInfoInterface {
   constructor(private navbarService: NavbarService, private route: ActivatedRoute, private serviceApi: CustomersApiService) { }
 
   ngOnInit(): void {
-    this.hideUserNavbar();
     this.loadIdByUrl();
     if (this.customerId) {
       this.getEntityInfoById(this.customerId);
@@ -45,10 +44,6 @@ export class CustomerInfoComponent implements OnInit, EntityInfoInterface {
       this.customer = result;
       this.loadEntityInfoSerialize();
     });
-  }
-
-  hideUserNavbar() {
-    this.navbarService.showNavbar(false);
   }
 
 }

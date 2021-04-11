@@ -14,4 +14,5 @@ export class PatternUrl {
     getFieldHome(url: string): string{
       return '/' + this.home + '/' + url;
     }
+
 }
