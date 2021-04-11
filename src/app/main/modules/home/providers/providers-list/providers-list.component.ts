@@ -46,16 +46,19 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
       row: ["name", "description"]
     };
 
+    let eform = false;
     if (this.config && this.config.radio){
       tableInfo.header.unshift('Selecionar');
       tableInfo.row.unshift('radio');
+      eform = true;
     }
 
 
     this.listData = new EntityListSerialize({
       entity: super.getEntityList(),
       tableStructure: tableInfo,
-      infoUrl: new PatternUrl().provider
+      infoUrl: new PatternUrl().provider,
+      eform: eform
     });
   }
 

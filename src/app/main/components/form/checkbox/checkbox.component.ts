@@ -8,6 +8,8 @@ import { CheckboxInputService } from 'src/app/main/shared/service/form/checkbox-
 })
 export class CheckboxComponent implements OnInit {
   @Input() fieldEntity;
+  @Input() id;
+  @Input() name;
 
   constructor(
     private checkboxInputService: CheckboxInputService

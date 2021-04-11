@@ -41,15 +41,18 @@ export class CategoriesListComponent extends EntityListAbstract implements OnIni
       row: ["name", "description"]
     };
 
+    let isEform = false;
     if (this.config && this.config.checkbox){
       tableInfo.header.unshift('Selecionar');
       tableInfo.row.unshift('checkbox');
+      isEform = true;
     }
 
     this.listData = new EntityListSerialize({
       entity: super.getEntityList(),
       tableStructure: tableInfo,
-      infoUrl: new PatternUrl().category
+      infoUrl: new PatternUrl().category,
+      eform: isEform
     });
   }
 

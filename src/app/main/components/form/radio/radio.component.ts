@@ -8,6 +8,7 @@ import { RadioInputService } from '../../../shared/service/form/radio-input.serv
 })
 export class RadioComponent implements OnInit {
   @Input() id;
+  @Input() name;
   @Input() fieldEntity;
 
   constructor(private radioInputService: RadioInputService) { }

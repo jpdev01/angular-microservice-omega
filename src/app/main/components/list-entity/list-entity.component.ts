@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 import { NavbarService } from './../../shared/service/navbar.service';
 import { Utils } from './../../shared/utils/Utils.model';
@@ -29,10 +29,15 @@ export class ListEntityComponent implements OnInit {
     this.initHeader();
     this.createFilter();
     this.showNavbar();
+    // FIXME remover quando passar a usar form do angular! gambi.
+    this.markFieldsSelected();
   }
 
   public open(entityInfo): void {
-    this.router.navigate(['home/' + this.patternUrl + '/info', entityInfo.id]);
+    let isEform = this.config.eform;
+    if (!isEform){
+      this.router.navigate(['home/' + this.patternUrl + '/info', entityInfo.id]);
+    }
   }
 
   private initHeader(): void {
@@ -68,6 +73,36 @@ export class ListEntityComponent implements OnInit {
     if (!this.config || (this.config && !this.config.isEform)){
       this.navbarService.showNavbar(true);
     }
+  }
+
+  private markFieldsSelected(): void{
+    // FIXME futuramente isso deve ser alterado para formulario + formControls
+    // GAMBI! JQuery pode quebrar indo pegar so pelo id.
+    let nameComponent = this.listData.infoUrl;
+    if (this.config && this.config.selectedFields){
+      let controls = this.config.selectedFields.controls;
+      if (Array.isArray(controls)){
+        controls.forEach((control) => {
+          let controlId = control.value['id'];
+          this.markImpl(nameComponent + controlId);
+        });
+      } else {
+          let controlId = controls['id'].value;
+          this.markImpl(nameComponent + controlId);
+      }
+    }
+  }
+
+  private markImpl(controllerId: any): void{
+    var controllerId = controllerId;
+    $( document ).ready(function() {
+      $("#" + controllerId).prop("checked", true);
+  })
+  }
+
+  //@ViewChild('tbody') someInput: ElementRef;
+  ngAfterContentiInit() {
+    this.markFieldsSelected();
   }
 
 }
