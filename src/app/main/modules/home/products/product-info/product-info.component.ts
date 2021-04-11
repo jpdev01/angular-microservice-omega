@@ -56,7 +56,7 @@ export class ProductInfoComponent implements OnInit, EntityInfoInterface {
   }
 
   private hideSearchNavbar(): void {
-    this.navbarService.showNavbar(false);
+    this.navbarService.showNavbar(false, new PatternUrl().provider);
   }
 
   // getParams(): void {

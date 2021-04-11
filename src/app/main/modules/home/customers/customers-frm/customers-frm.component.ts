@@ -1,3 +1,4 @@
+
 import { CustomersApiService } from './../../../../shared/service/customers-api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -51,7 +52,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
   }
 
   closeNavBar(): void {
-    this.navbarService.showNavbar(false);
+    this.navbarService.showNavbar(false, new PatternUrl().customer);
   }
 
   getIdByUrl(): void {

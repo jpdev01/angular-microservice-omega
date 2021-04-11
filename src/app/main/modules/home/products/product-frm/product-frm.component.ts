@@ -26,7 +26,6 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
   productId: number;
   public productForm: FormGroup;
   formModel: FormSerializer;
-  navbarRule;
 
   constructor(
     public route: ActivatedRoute,

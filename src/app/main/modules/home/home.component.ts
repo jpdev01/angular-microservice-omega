@@ -33,19 +33,15 @@ export class HomeComponent implements OnInit {
     NavbarService.interfaceRuleEmitter.subscribe(
       (interfaceRule) => {
         if (interfaceRule.element === 'navbar') {
-          if (interfaceRule.show == true) {
-            this.navbarShow = true;
-          } else {
-            this.navbarShow = false;
-          }
+          this.navbarShow = interfaceRule.show;
         }
       }
     );
   }
 
-  private closeNotification(): void{
-    ToastNotificationService.interfaceRuleEmitter.emit(undefined);
-    this.notification = undefined;
-  }
+  // private closeNotification(): void{
+  //   ToastNotificationService.interfaceRuleEmitter.emit(undefined);
+  //   this.notification = undefined;
+  // }
 
 }

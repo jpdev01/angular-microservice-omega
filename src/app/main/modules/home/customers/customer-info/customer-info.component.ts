@@ -1,3 +1,4 @@
+import { PatternUrl } from './../../../../shared/utils/PatternUrl.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EntityInfoInterface } from 'src/app/main/shared/interface/entity-info.interface';
@@ -48,8 +49,8 @@ export class CustomerInfoComponent implements OnInit, EntityInfoInterface {
     });
   }
 
-  hideUserNavbar() {  
-    this.navbarService.showNavbar(false);
+  hideUserNavbar() {
+    this.navbarService.showNavbar(false, new PatternUrl().customer);
   }
 
 }

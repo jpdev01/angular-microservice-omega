@@ -1,3 +1,4 @@
+
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { ToastNotificationService } from './../../../../shared/service/toast-notification.service';
 
@@ -145,7 +146,7 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
   }
 
   applyInterfaceRule() {
-    this.navbarService.showNavbar(false);
+    this.navbarService.showNavbar(false, new PatternUrl().user);
   }
 
 }

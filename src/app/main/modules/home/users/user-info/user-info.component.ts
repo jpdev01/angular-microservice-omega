@@ -1,3 +1,5 @@
+import { PatternUrl } from './../../../../shared/utils/PatternUrl.model';
+import { NavbarService } from './../../../../shared/service/navbar.service';
 import { UserService } from '../../../../shared/service/user.service';
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -19,7 +21,7 @@ export class UserInfoComponent implements OnInit {
   navbarRule;
   entityInfoSerialize: any;
 
-  constructor(private route: ActivatedRoute, private service: UserService, private serviceApi: UserApiService) {
+  constructor(private route: ActivatedRoute, private service: UserService, private serviceApi: UserApiService, private navbarService: NavbarService) {
     // this.route.params.subscribe(params => this.userId = params['id']);
   }
 
@@ -43,7 +45,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   hideUserNavbar() {
-    this.service.hideUserNavbar();
+    this.navbarService.showNavbar(false, new PatternUrl().user);
   }
 
   private loadEntityInfoSerialize(): void {

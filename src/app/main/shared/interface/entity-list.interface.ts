@@ -1,7 +1,7 @@
 export declare interface EntityListInterfaceComponent {
 
     getEntityList(): any[];
-    openSecondNavbar(): void;
+    openListNavbar(): void;
     getFilter(): void;
     redirectToInfo(id: number): void;
     initListData(): void;

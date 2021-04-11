@@ -1,3 +1,4 @@
+import { PatternUrl } from './../utils/PatternUrl.model';
 
 import { ActivatedRoute } from "@angular/router";
 import { EntityFormInterfaceComponent } from "../interface/entity-form.interface";
@@ -27,8 +28,8 @@ export abstract class EntityListAbstract implements EntityListInterfaceComponent
             });
             */
     }
-    openSecondNavbar(): void {
-        this.navbarService.showNavbar(true);
+    openListNavbar(): void {
+        this.navbarService.showNavbar(true, new PatternUrl().abstract);
     }
     getFilter(): any {
         return NavbarService.emitterFilterChange.subscribe((filter) => {return filter});
@@ -37,5 +38,5 @@ export abstract class EntityListAbstract implements EntityListInterfaceComponent
         throw new Error("Method not implemented.");
     }
 
-    
+
 }

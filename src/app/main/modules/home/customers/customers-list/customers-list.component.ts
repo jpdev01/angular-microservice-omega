@@ -17,7 +17,7 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
   listData: {};
   filter = "";
 
-  constructor(public serviceApi: CustomersApiService, public navbarService: NavbarService) { 
+  constructor(public serviceApi: CustomersApiService, public navbarService: NavbarService) {
     super(serviceApi, navbarService);
   }
 
@@ -41,7 +41,7 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
   };
 
   private initNavbar(): void {
-    super.openSecondNavbar();
+    super.openListNavbar();
   }
 
   public getFilter(): void {

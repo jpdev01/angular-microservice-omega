@@ -28,7 +28,7 @@ export class UsersListComponent extends EntityListAbstract implements OnInit, En
   }
 
   ngOnInit(): void {
-    this.openSecondNavbar();
+    this.openListNavbar();
     this.initListData();
     this.getFilter();
   }
@@ -51,8 +51,8 @@ export class UsersListComponent extends EntityListAbstract implements OnInit, En
     this.router.navigate(['home/user/info', id]);
   }
 
-  public openSecondNavbar(): void {
-    super.openSecondNavbar();
+  public openListNavbar(): void {
+    super.openListNavbar();
   }
 
   public initListData(): void {

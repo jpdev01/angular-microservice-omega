@@ -6,8 +6,10 @@ export class PatternUrl {
     category = 'category';
     provider = 'provider';
 
-    list: 'list';
-    frm: 'frm';
+    list= 'list';
+    frm= 'frm';
+
+    abstract = 'abstract';
 
     getFieldHome(url: string): string{
       return '/' + this.home + '/' + url;

@@ -24,17 +24,17 @@ export class UserService {
   constructor(
   ) { }
 
-  public interfaceRule(name: string, show: boolean) {
+  // public interfaceRule(name: string, show: boolean) {
 
-  }
+  // }
 
-  hideUserNavbar(): void {
-    let navbarRule = new InterfaceRule("navbar", false, null);
-    this.interfaceRuleEmitter.emit(navbarRule);
-  }
+  // hideUserNavbar(): void {
+  //   let navbarRule = new InterfaceRule("navbar", false, null);
+  //   this.interfaceRuleEmitter.emit(navbarRule);
+  // }
 
-  showUserNavbar(): void {
-    let navbarRule = new InterfaceRule("navbar", true, null);
-    this.interfaceRuleEmitter.emit(navbarRule);
-  }
+  // showUserNavbar(): void {
+  //   let navbarRule = new InterfaceRule("navbar", true, null);
+  //   this.interfaceRuleEmitter.emit(navbarRule);
+  // }
 }

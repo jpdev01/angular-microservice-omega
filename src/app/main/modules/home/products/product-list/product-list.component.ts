@@ -1,3 +1,4 @@
+
 import { CategoriesListComponent } from './../../categories/categories-list/categories-list.component';
 import { ResponsePageable } from './../../../../shared/model/responsePageable.model';
 import { Utils } from './../../../../shared/utils/Utils.model';
@@ -25,15 +26,15 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
   }
 
   ngOnInit() {
-    this.openSecondNavbar();
+    this.openListNavbar();
     this.initListData();
     this.getFilter();
   }
 
 
 
-  public openSecondNavbar(): void {
-    this.navbarService.showNavbar(true);
+  public openListNavbar(): void {
+    this.navbarService.showNavbar(true, new PatternUrl().product);
   }
 
   public getFilter(): void {

@@ -1,3 +1,4 @@
+import { PatternUrl } from './../../shared/utils/PatternUrl.model';
 import { NavbarService } from './../../shared/service/navbar.service';
 import { FormGroupSerializer } from './../../shared/model/form-group-serializer.model';
 import { FormField } from './../../shared/model/form-field.model';
@@ -225,7 +226,7 @@ export class FrmCadComponent implements OnInit {
   }
 
   private hideNavbar(){
-    this.navbarService.showNavbar(false);
+    this.navbarService.showNavbar(false, new PatternUrl().frm);
   }
 
 }

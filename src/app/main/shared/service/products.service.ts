@@ -9,11 +9,11 @@ export class ProductsService {
 
   constructor() { }
 
-  interfaceRuleEmitter = new EventEmitter<any>();
+  //interfaceRuleEmitter = new EventEmitter<any>();
 
-  showSecondNavbar(show: boolean): void {
-    let navbarRule = new InterfaceRule("navbar", show, null);
-    this.interfaceRuleEmitter.emit(navbarRule);
-  }
+  // showSecondNavbar(show: boolean): void {
+  //   let navbarRule = new InterfaceRule("navbar", show, null);
+  //   this.interfaceRuleEmitter.emit(navbarRule);
+  // }
 
 }
