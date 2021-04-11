@@ -4,6 +4,7 @@ import { NavbarService } from './../../shared/service/navbar.service';
 import { Utils } from './../../shared/utils/Utils.model';
 import { Router } from '@angular/router';
 import { EntityListSerialize } from '../../shared/serialize/entity-list-serialize.model';
+declare var $: any;
 
 @Component({
   selector: 'app-list-entity',
@@ -21,6 +22,7 @@ export class ListEntityComponent implements OnInit {
 
   header: [];
   row: [];
+  selectedFields;
   constructor(private utils: Utils, private router: Router, private navbarService: NavbarService) { }
 
   ngOnInit() {
@@ -67,4 +69,5 @@ export class ListEntityComponent implements OnInit {
       this.navbarService.showNavbar(true);
     }
   }
+
 }

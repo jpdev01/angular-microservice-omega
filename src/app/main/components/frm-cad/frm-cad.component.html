@@ -62,11 +62,13 @@
                                 <!--<div [innerHTML]="field.listOptions"></div>-->
                                 <app-providers-list [config]="{
                                   radio: true,
-                                  isEform: true
+                                  isEform: true,
+                                  selectedFields: frm.controls['provider']
                                 }" *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
                                 <app-categories-list [config]="{
                                   checkbox: true,
-                                  isEform: true
+                                  isEform: true,
+                                  selectedFields: frm.controls['categories']
                                 }"
                                 *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>
                               </app-modal>

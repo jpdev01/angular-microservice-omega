@@ -180,8 +180,11 @@ export class FrmCadComponent implements OnInit {
 
   public getEntityTitle(): string {
     let frm = this.frm;
-    let title = (frm.get('name') || frm.get('login') || frm.get('title')).value;
-    return title;
+    if(frm){
+      let title = (frm.get('name') || frm.get('login') || frm.get('title')).value;
+      return title;
+    }
+    return "";
   }
 
   public openModal(field): void{
