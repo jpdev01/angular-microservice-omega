@@ -40,7 +40,7 @@
 
 
                             <input class="form-control form-control-sm rounded-0" type="{{field.getTypeAsString()}}"
-                              *ngIf="field.isTextField() || field.isPasswordField() || field.isPasswordField() || field.isDateField()" [formControlName]="field.id"
+                              *ngIf="field.isTextField() || field.isPasswordField() || field.isEmailField() || field.isDateField()" [formControlName]="field.id"
                               (change)="field.onchange ? field.onchange($event.target.value) : ''" [mask]="field.mask">
 
                             <select class="form-control form-control-sm rounded-0" *ngIf="field.isSelectField()"

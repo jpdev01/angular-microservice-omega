@@ -80,6 +80,10 @@ export class FormField {
     return this.type === FieldFormType.DATE;
   }
 
+  public isEmailField(): boolean {
+    return this.type === FieldFormType.EMAIL;
+  }
+
   public getTypeAsString(): string {
     return FieldFormType[this.type];
   }
