@@ -226,7 +226,7 @@ export class FrmCadComponent implements OnInit {
   }
 
   private hideNavbar(){
-    this.navbarService.showNavbar(false, new PatternUrl().frm);
+    this.navbarService.showNavbar(false);
   }
 
 }

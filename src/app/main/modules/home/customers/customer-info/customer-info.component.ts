@@ -1,12 +1,10 @@
-import { PatternUrl } from './../../../../shared/utils/PatternUrl.model';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EntityInfoInterface } from 'src/app/main/shared/interface/entity-info.interface';
 import { Customer } from 'src/app/main/shared/model/customer.model';
 import { EntityInfoSerializer } from 'src/app/main/shared/model/entity-info-serializer.model';
-import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
 import { CustomerInfoSerialize } from 'src/app/main/shared/serialize/customer-info.serialize';
-import { UserInfoSerialize } from 'src/app/main/shared/serialize/user-info-serialize.model';
 import { CustomersApiService } from 'src/app/main/shared/service/customers-api.service';
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
@@ -50,7 +48,7 @@ export class CustomerInfoComponent implements OnInit, EntityInfoInterface {
   }
 
   hideUserNavbar() {
-    this.navbarService.showNavbar(false, new PatternUrl().customer);
+    this.navbarService.showNavbar(false);
   }
 
 }

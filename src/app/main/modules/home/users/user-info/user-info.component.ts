@@ -45,7 +45,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   hideUserNavbar() {
-    this.navbarService.showNavbar(false, new PatternUrl().user);
+    this.navbarService.showNavbar(false);
   }
 
   private loadEntityInfoSerialize(): void {

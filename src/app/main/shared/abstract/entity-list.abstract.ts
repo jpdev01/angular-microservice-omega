@@ -29,7 +29,7 @@ export abstract class EntityListAbstract implements EntityListInterfaceComponent
             */
     }
     openListNavbar(): void {
-        this.navbarService.showNavbar(true, new PatternUrl().abstract);
+        this.navbarService.showNavbar(true);
     }
     getFilter(): any {
         return NavbarService.emitterFilterChange.subscribe((filter) => {return filter});

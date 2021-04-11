@@ -12,7 +12,7 @@ export class NavbarService {
 
   constructor() { }
 
-  public showNavbar(show: boolean, component: string): void {
+  public showNavbar(show: boolean): void {
     let navbarRule = new InterfaceRule("navbar", show, null);
     NavbarService.interfaceRuleEmitter.emit(navbarRule);
   }

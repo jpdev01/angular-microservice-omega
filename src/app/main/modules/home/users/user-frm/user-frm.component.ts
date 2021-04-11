@@ -146,7 +146,7 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
   }
 
   applyInterfaceRule() {
-    this.navbarService.showNavbar(false, new PatternUrl().user);
+    this.navbarService.showNavbar(false);
   }
 
 }

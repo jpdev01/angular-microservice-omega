@@ -52,7 +52,7 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
   }
 
   closeNavBar(): void {
-    this.navbarService.showNavbar(false, new PatternUrl().customer);
+    this.navbarService.showNavbar(false);
   }
 
   getIdByUrl(): void {
