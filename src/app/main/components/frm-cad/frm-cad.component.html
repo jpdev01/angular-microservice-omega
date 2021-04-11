@@ -61,11 +61,11 @@
                               <app-modal [modalInfo]="getModalInfo(field)">
                                 <!--<div [innerHTML]="field.listOptions"></div>-->
                                 <app-providers-list [config]="{
-                                  checkbox: true,
+                                  radio: true,
                                   isEform: true
                                 }" *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
                                 <app-categories-list [config]="{
-                                  combobox: true,
+                                  checkbox: true,
                                   isEform: true
                                 }"
                                 *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>

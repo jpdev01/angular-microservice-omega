@@ -46,7 +46,7 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
       row: ["name", "description"]
     };
 
-    if (this.config.checkbox){
+    if (this.config.radio){
       tableInfo.header.unshift('Selecionar');
       tableInfo.row.unshift('radio');
     }
