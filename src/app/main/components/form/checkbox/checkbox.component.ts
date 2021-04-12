@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { CheckboxInputService } from 'src/app/main/shared/service/form/checkbox-input.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class CheckboxComponent implements OnInit {
   @Input() fieldEntity;
   @Input() id;
   @Input() name;
+  @Input() eform: FormGroup;
 
   constructor(
     private checkboxInputService: CheckboxInputService
@@ -17,10 +19,14 @@ export class CheckboxComponent implements OnInit {
 
   ngOnInit() {
     this.checkboxInputService.setOnInit(this.id);
+    this.initOnFrm();
   }
 
   public change(event){
     this.checkboxInputService.onSelect.emit(event);
   }
 
+  private initOnFrm(): void{
+    this.eform.addControl(this.id, new FormControl(''));
+  }
 }

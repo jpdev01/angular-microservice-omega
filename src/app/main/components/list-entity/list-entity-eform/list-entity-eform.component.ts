@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { EntityListSerialize } from '../../../shared/serialize/entity-list-serialize.model';
 
@@ -9,10 +10,14 @@ import { EntityListSerialize } from '../../../shared/serialize/entity-list-seria
 export class ListEntityEformComponent implements OnInit {
   @Input() listData: EntityListSerialize;
   @Input() config;
+  frm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.frm = this.fb.group({
+
+    });
   }
 
 }

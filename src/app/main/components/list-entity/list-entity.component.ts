@@ -17,6 +17,7 @@ export class ListEntityComponent implements OnInit {
   @Input() listData: EntityListSerialize;
   //@Output() selectEvent: EventEmitter<any> = new EventEmitter<any>()
   @Input() config;
+  @Input() eform;
   entityInfoList: any;
   filter = "";
   patternUrl;
