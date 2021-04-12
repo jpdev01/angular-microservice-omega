@@ -20,6 +20,8 @@ export class CategoriesListComponent extends EntityListAbstract implements OnIni
   listData: EntityListSerialize;
   @Input() config;
 
+  isEform = false;
+
   constructor(public serviceApi: CategoryApiService, private router: Router, public utils: Utils, public navbarService: NavbarService) {
     super(serviceApi, navbarService);
    }
@@ -41,18 +43,17 @@ export class CategoriesListComponent extends EntityListAbstract implements OnIni
       row: ["name", "description"]
     };
 
-    let isEform = false;
     if (this.config && this.config.checkbox){
       tableInfo.header.unshift('Selecionar');
       tableInfo.row.unshift('checkbox');
-      isEform = true;
+      this.isEform = true;
     }
 
     this.listData = new EntityListSerialize({
       entity: super.getEntityList(),
       tableStructure: tableInfo,
       infoUrl: new PatternUrl().category,
-      eform: isEform
+      eform: this.isEform
     });
   }
 

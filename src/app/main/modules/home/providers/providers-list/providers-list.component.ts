@@ -18,6 +18,7 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
   filter = "";
   listData: EntityListSerialize;
   @Input() config;
+  isEform: boolean;
 
   constructor(public serviceApi: ProviderApiService, public navbarService: NavbarService, private router: Router) {
     super(serviceApi, navbarService);
@@ -46,11 +47,11 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
       row: ["name", "description"]
     };
 
-    let eform = false;
+    this.isEform = false;
     if (this.config && this.config.radio){
       tableInfo.header.unshift('Selecionar');
       tableInfo.row.unshift('radio');
-      eform = true;
+      this.isEform = true;
     }
 
 
@@ -58,7 +59,7 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
       entity: super.getEntityList(),
       tableStructure: tableInfo,
       infoUrl: new PatternUrl().provider,
-      eform: eform
+      eform: this.isEform
     });
   }
 

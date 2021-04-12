@@ -3,6 +3,7 @@ import { ListEntityModule } from './../../../../components/list-entity/list-enti
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CategoriesListComponent } from './categories-list.component';
+import { ListEntityEformModule } from 'src/app/main/components/list-entity/list-entity-eform/list-entity-eform.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CategoriesListComponent } from './categories-list.component';
     CommonModule,
     ListEntityModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ListEntityEformModule
   ],
   exports: [CategoriesListComponent]
 })

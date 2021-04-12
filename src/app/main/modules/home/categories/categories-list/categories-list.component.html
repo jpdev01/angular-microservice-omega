@@ -1,1 +1,12 @@
-<app-list-entity [listData]="listData" [config]="config"></app-list-entity>
+<app-list-entity
+*ngIf="!isEform"
+[listData]="listData"
+[config]="config"
+></app-list-entity>
+
+
+<app-list-entity-eform
+*ngIf="isEform"
+[listData]="listData"
+[config]="config"
+></app-list-entity-eform>
