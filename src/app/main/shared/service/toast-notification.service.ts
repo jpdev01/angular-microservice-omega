@@ -37,7 +37,6 @@ export class ToastNotificationService {
     title?: string;
     labelTime?: string;
   } = {}): ToastNotification {
-    debugger;
     this.toast = new ToastNotification(options);
     return this.toast;
   }
