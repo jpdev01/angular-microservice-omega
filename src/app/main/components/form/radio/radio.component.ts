@@ -17,7 +17,7 @@ export class RadioComponent implements OnInit {
   constructor(private radioInputService: RadioInputService) { }
 
   ngOnInit() {
-    this.radioInputService.setId(this.id);
+    this.radioInputService.setId(this.name);
     this.initOnFrm();
   }
 
