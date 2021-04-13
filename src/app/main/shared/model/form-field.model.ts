@@ -87,4 +87,8 @@ export class FormField {
   public getTypeAsString(): string {
     return FieldFormType[this.type];
   }
+
+  public isNumberField(): boolean {
+    return this.type === FieldFormType.NUMBER;
+  }
 }

@@ -34,7 +34,7 @@ export class ListEntityComponent implements OnInit {
   }
 
   public open(entityInfo): void {
-    let isEform = this.config.eform;
+    let isEform = this.config && this.config.isEform;
     if (!isEform) {
       this.router.navigate(['home/' + this.patternUrl + '/info', entityInfo.id]);
     }

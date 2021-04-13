@@ -125,7 +125,7 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
       new FormField({
         id: "code",
         label: "Código de barras",
-        type: FieldFormType.TEXT
+        type: FieldFormType.NUMBER
       }),
       new FormField({
         id: "finalValue",
@@ -205,6 +205,12 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
   private getQtdeProducts(): any[] {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   }
+
+  // private getQtdeProducts(): {fields: any[]} {
+  //   return {
+  //     fields: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+  //   };
+  // }
 
   createCategoryFormGroup(category: Category): FormControl {
     if (!category){

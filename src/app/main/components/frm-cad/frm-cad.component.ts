@@ -47,6 +47,7 @@ export class FrmCadComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    console.log(this.formModel);
     this.getInfo();
     this.initForm();
     this.initEvents();
