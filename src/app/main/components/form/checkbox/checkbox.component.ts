@@ -12,6 +12,7 @@ export class CheckboxComponent implements OnInit {
   @Input() id;
   @Input() name;
   @Input() eform: FormGroup;
+  checked = false;
 
   constructor(
     private checkboxInputService: CheckboxInputService
@@ -27,6 +28,12 @@ export class CheckboxComponent implements OnInit {
   }
 
   private initOnFrm(): void{
-    this.eform.addControl(this.id, new FormControl(''));
+    let selected = this.eform.get(this.id);
+    if (selected){
+      // existe na entidade.
+      this.checked = true;
+    } else {
+      this.eform.addControl(this.id, new FormControl(''));
+    }
   }
 }

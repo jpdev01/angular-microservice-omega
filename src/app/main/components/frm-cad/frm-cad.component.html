@@ -106,10 +106,14 @@
                               </button>
                               <app-modal [modalInfo]="getModalInfo(field)">
                                 <!--<div [innerHTML]="field.listOptions"></div>-->
-                                <app-providers-list [config]="{
+                                <app-providers-list
+                                [config]="{
                                   checkbox: true
-                                }" *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
-                                <app-categories-list *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>
+                                }"
+                                *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
+                                <app-categories-list
+                                *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"
+                                ></app-categories-list>
                               </app-modal>
 
 

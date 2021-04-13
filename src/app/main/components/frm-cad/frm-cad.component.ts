@@ -203,6 +203,9 @@ export class FrmCadComponent implements OnInit {
   }
 
   private formControlRadioInput;
+
+  // estudar o que esse metodo esta fazendo.
+  // provavelmente esta sendo usado para persistir os checkbox. A partir, usar os formControl recem criados.
   private initEvents(){
     this.radioInputService.getRadioEvent().subscribe((event) => {
       if (this.formControlRadioInput){

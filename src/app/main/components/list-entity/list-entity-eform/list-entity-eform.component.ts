@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { EntityListSerialize } from '../../../shared/serialize/entity-list-serialize.model';
 
@@ -15,9 +15,26 @@ export class ListEntityEformComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.frm = this.fb.group({
+    this.initFrm();
+  }
 
+  initFrm(){
+    this.frm = this.fb.group({
     });
+    let selectedFields = this.config.selectedFields;
+    let nameComponent = this.listData.infoUrl;
+    let id;
+    if (selectedFields) {
+      if (selectedFields instanceof FormArray){
+        selectedFields.controls.forEach((control)=>{
+          id = control.value.id;
+          this.frm.addControl(nameComponent + id, new FormControl(''));
+        })
+      } else {
+        id = selectedFields.controls.id.value;
+        this.frm.addControl(nameComponent + id, new FormControl(''));
+      }
+    }
   }
 
 }

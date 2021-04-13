@@ -48,10 +48,12 @@ export class ProvidersListComponent extends EntityListAbstract implements OnInit
     };
 
     this.isEform = false;
-    if (this.config && this.config.radio){
-      tableInfo.header.unshift('Selecionar');
-      tableInfo.row.unshift('radio');
-      this.isEform = true;
+    if (this.config) {
+      if (this.config.radio) {
+        tableInfo.header.unshift('Selecionar');
+        tableInfo.row.unshift('radio');
+        this.isEform = true;
+      }
     }
 
 
