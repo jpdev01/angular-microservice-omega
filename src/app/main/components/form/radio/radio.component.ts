@@ -12,6 +12,7 @@ export class RadioComponent implements OnInit {
   @Input() name;
   @Input() fieldEntity;
   @Input() eform: FormGroup;
+  checked = false;
 
   constructor(private radioInputService: RadioInputService) { }
 
@@ -25,7 +26,13 @@ export class RadioComponent implements OnInit {
   }
 
   private initOnFrm(): void{
-    this.eform.addControl(this.id, new FormControl(''));
+    let selected = this.eform.get(this.id);
+    if (selected){
+      // existe na entidade.
+      this.checked = true;
+    } else {
+      this.eform.addControl(this.id, new FormControl(''));
+    }
   }
 
 }
