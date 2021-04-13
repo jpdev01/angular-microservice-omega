@@ -57,7 +57,7 @@ export class Product {
     this.size = options.size;
     this.size2 = options.size2;
     this.code = options.code;
-    this.categories = options.categories ? options.categories : [new Category(), new Category()];
+    this.categories = options.categories ? options.categories : [new Category()];
     this.provider = options.provider ? new Provider(options.provider) : new Provider();
   }
 

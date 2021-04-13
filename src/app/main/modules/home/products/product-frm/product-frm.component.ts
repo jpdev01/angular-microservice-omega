@@ -15,6 +15,7 @@ import { ToastNotificationService } from 'src/app/main/shared/service/toast-noti
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 import { FieldFormType } from '../../../../shared/enum/field-form-type.enum';
 import {CheckboxInputService } from '../../../../shared/service/form/checkbox-input.service';
+import { Provider } from 'src/app/main/shared/model/provider.model';
 
 @Component({
   selector: 'app-product-frm',
@@ -89,6 +90,8 @@ export class ProductFrmComponent extends EntityFrmAbstract implements OnInit, En
     if (!this.product) {
       this.product = new Product();
     }
+    this.product.provider = this.product.provider ? this.product.provider : new Provider();
+    this.product.categories = this.product.categories ? this.product.categories : [new Category()];
 
     this.productForm = this.fb.group({
       name: [this.product.name, []],
