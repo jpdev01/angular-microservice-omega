@@ -5,6 +5,7 @@ export class PatternUrl {
     user = 'user';
     category = 'category';
     provider = 'provider';
+    storeSpace = 'store-space';
 
     list= 'list';
     frm= 'frm';
@@ -13,6 +14,12 @@ export class PatternUrl {
 
     getFieldHome(url: string): string{
       return '/' + this.home + '/' + url;
+    }
+
+    getTarget(item): string {
+      if (item.newTab){
+        return "_blank";
+      }
     }
 
 }
