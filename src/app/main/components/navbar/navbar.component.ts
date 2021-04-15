@@ -23,8 +23,8 @@ export class NavbarComponent implements OnInit {
   createIcons(){
     let patternUrl = new PatternUrl();
     this.componentsNavbar = [
-      new IconNavbar({name:'Ínicio', image:'fa fa-home', link: patternUrl.home, newTab: false}),
-      new IconNavbar({name:'Portal de vendas', image:'fa fa-cart-plus', link:patternUrl.storeSpace}),
+      new IconNavbar({name:'Ínicio', image:'fa fa-home', link: patternUrl.home}),
+      new IconNavbar({name:'Portal de vendas', image:'fa fa-cart-plus', link:patternUrl.storeSpace, newTab: true}),
       new IconNavbar({name:'Caixa', image:'fa fa-folder-open-o', link:''}),
       new IconNavbar({name:'Pagamentos', image:'fa fa-credit-card-alt', link:''}),
       new IconDropdownNavbar({name:'Consultas', image:'fa fa-home', items:
