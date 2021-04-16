@@ -5,6 +5,7 @@ import { Utils } from './../../shared/utils/Utils.model';
 import { Router } from '@angular/router';
 import { EntityListSerialize } from '../../shared/serialize/entity-list-serialize.model';
 import { CheckboxInputService } from '../../shared/service/form/checkbox-input.service';
+import { Observable } from 'rxjs';
 declare var $: any;
 
 @Component({
@@ -43,9 +44,13 @@ export class ListEntityComponent implements OnInit {
   private initHeader(): void {
     this.header = this.listData.tableStructure.header;
     this.row = this.listData.tableStructure.row;
-    this.listData.entity.subscribe(result => {
-      this.entityInfoList = result.content;
-    });
+    if (this.listData.entity instanceof Observable){
+      this.listData.entity.subscribe(result => {
+        this.entityInfoList = result.content;
+      });
+    } else {
+      this.entityInfoList = this.listData.entity;
+    }
     this.patternUrl = this.listData.infoUrl;
   }
 

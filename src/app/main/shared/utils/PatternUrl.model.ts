@@ -5,7 +5,7 @@ export class PatternUrl {
     user = 'user';
     category = 'category';
     provider = 'provider';
-    storeSpace = 'store-space';
+    storeSpace = 'store';
 
     list= 'list';
     frm= 'frm';
