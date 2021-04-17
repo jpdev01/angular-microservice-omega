@@ -5,6 +5,7 @@ import { EntityListSerialize } from './../../../shared/serialize/entity-list-ser
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/main/shared/model/product.model';
 import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
+import { CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sell',
@@ -20,7 +21,8 @@ export class SellComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private productApi: ProductsApiService
+    private productApi: ProductsApiService,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
@@ -51,10 +53,21 @@ export class SellComponent implements OnInit {
 
   private getProductByCode(code: any){
     this.productApi.getById(code).subscribe((product)=>{
-      if (product.qtde){
+      let avaliable = this.availableProduct(product);
+      if (avaliable){
         this.addFieldToArray(product);
+        this.saveListProduct(this.listData.entity);
       }
     });
+  }
+
+  private availableProduct(product: Product): boolean{
+    let qtde = product.qtde;
+    let selectedInList =  this.getProductInReading(product.id);
+    if (selectedInList && selectedInList.length){
+      qtde = qtde - selectedInList.length;
+    }
+    return qtde > 0;
   }
 
   public initListData(): void {
@@ -67,7 +80,9 @@ export class SellComponent implements OnInit {
           // exclusao de item
           let tableStructureEntity = this.listData.entity;
           let index = tableStructureEntity.indexOf(tr);
+          tr.qtde++;
           tableStructureEntity.splice(index, 1);
+          this.saveListProduct(this.listData.entity);
         }
       })
       ]
@@ -90,6 +105,27 @@ export class SellComponent implements OnInit {
 
   private initConfig(): void {
     this.config.isEform = true;
+  }
+
+  /*
+  * COOKIE
+  */
+  private saveListProduct(products: Product[]): void {
+    let productsObject = JSON.stringify(products);
+    this.cookieService.set('store-products', productsObject);
+  }
+
+  getListProduct(): Product[]{
+    let productsObject = this.cookieService.get('store-products');
+    if (productsObject){
+      return JSON.parse(productsObject);
+    }
+  return [];
+  }
+
+  getProductInReading(productId: any): any{
+    let products = this.getListProduct();
+    return products.filter(product => product.id != null && product.id === productId);
   }
 
 }
