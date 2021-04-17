@@ -13,7 +13,7 @@ import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
 })
 export class SellComponent implements OnInit {
   listData;
-  typeInput = TypeInput.SCANNER;
+  typeInput = TypeInput.KEYBOARD;
   frm: FormGroup;
   codeScan;
   config;
@@ -37,9 +37,11 @@ export class SellComponent implements OnInit {
   }
 
   keyCode($event): void {
+    let type = $event.type;
     let code = $event.target.value;
+    let validInput = (this.typeInput == TypeInput.SCANNER && type == "keyup") || (this.typeInput == TypeInput.KEYBOARD && type == "change")
     if (code){
-      if (this.typeInput == TypeInput.SCANNER){
+      if (validInput){
         this.getProductByCode(code);
         //this.frm.controls['codeScan'].setValue("");
         this.codeScan = "";

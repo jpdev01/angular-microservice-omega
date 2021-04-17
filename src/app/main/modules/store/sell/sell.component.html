@@ -6,7 +6,8 @@
           id="code" class="form-control"
           placeholder="Código de barras do produto..."
           [(ngModel)]="codeScan"
-          (keyup)="keyCode($event)">
+          (keyup)="keyCode($event)"
+          (change)="keyCode($event)">
           <div class="input-group-prepend">
               <div class="input-group-text bg-light">
                   <input type="radio" class='box-mode mr-2'
