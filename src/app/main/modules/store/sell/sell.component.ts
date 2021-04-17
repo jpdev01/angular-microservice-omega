@@ -36,14 +36,14 @@ export class SellComponent implements OnInit {
     let code = $event.target.value;
     if (code){
       if (this.typeInput == TypeInput.SCANNER){
-        this.getProductById(code);
+        this.getProductByCode(code);
         //this.frm.controls['codeScan'].setValue("");
         this.codeScan = "";
       }
     }
   }
 
-  private getProductById(code: any){
+  private getProductByCode(code: any){
     this.productApi.getById(code).subscribe((product)=>{
       this.listData.entity.push(product);
     });

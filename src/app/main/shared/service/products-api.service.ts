@@ -31,5 +31,9 @@ export class ProductsApiService implements ServiceApiInterface {
     return this.httpClient.get<Product>(this.apiUrl + '/product/' + id);
   }
 
+  public getByCode(code: string): Observable<Product>{
+  return this.httpClient.get<Product>(this.apiUrl + '/product/code' + code);
+  }
+
 
 }
