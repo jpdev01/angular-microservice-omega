@@ -14,9 +14,12 @@ export class FormField {
   mask: any;
   formGroupName: string;
   listOptions: string;
+  onclick: any;
+  icon: string;
 
   constructor(options: {
     id?: string;
+    icon?: string;
     options?: string;
     label?: string;
     type?: FieldFormType;
@@ -27,6 +30,7 @@ export class FormField {
     labelConfig?: any;
     fields?: object;
     onchange?: any;
+    onclick?: any;
     mask?: any;
     listOptions?: string;
     config?: {
@@ -52,6 +56,8 @@ export class FormField {
     this.formControlName = options.formGroupName;
     this.listOptions = options.listOptions;
 
+    this.icon = options.icon;
+    this.onclick = options.onclick;
 
 
   }

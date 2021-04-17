@@ -1,8 +1,10 @@
+import { FormField } from './../../../shared/model/form-field.model';
 import { ProductsApiService } from './../../../shared/service/products-api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EntityListSerialize } from './../../../shared/serialize/entity-list-serialize.model';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/main/shared/model/product.model';
+import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
 
 @Component({
   selector: 'app-sell',
@@ -14,6 +16,7 @@ export class SellComponent implements OnInit {
   typeInput = TypeInput.SCANNER;
   frm: FormGroup;
   codeScan;
+  config;
 
   constructor(
     private fb: FormBuilder,
@@ -23,6 +26,7 @@ export class SellComponent implements OnInit {
   ngOnInit() {
     this.initListData();
     this.initFrm();
+    this.initConfig();
   }
 
   private initFrm(){
@@ -51,9 +55,20 @@ export class SellComponent implements OnInit {
 
   public initListData(): void {
     let tableInfo = {
-      header: ["Código de Barras", "Nome", "Valor"],
-      row: ["code", "name", "finalValue"]
+      header: ["Código de Barras", "Nome", "Valor", "Remover"],
+      row: ["code", "name", "finalValue", new FormField({
+        type: FieldFormType.BUTTON,
+        icon: "fa fa-trash",
+        onclick: (tr) => {
+          // exclusao de item
+          let tableStructureEntity = this.listData.entity;
+          let index = tableStructureEntity.indexOf(tr);
+          tableStructureEntity.splice(index, 1);
+        }
+      })
+      ]
     };
+
 
     this.listData = new EntityListSerialize({
       entity: [],
@@ -69,9 +84,13 @@ export class SellComponent implements OnInit {
       this.typeInput = $event.target.value;
   }
 
+  private initConfig(): void {
+    this.config.isEform = true;
+  }
 
 }
 
 enum TypeInput {
   KEYBOARD, SCANNER
 }
+

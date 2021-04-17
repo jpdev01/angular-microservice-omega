@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { EntityListSerialize } from '../../shared/serialize/entity-list-serialize.model';
 import { CheckboxInputService } from '../../shared/service/form/checkbox-input.service';
 import { Observable } from 'rxjs';
+import { FormField } from '../../shared/model/form-field.model';
 declare var $: any;
 
 @Component({
@@ -63,7 +64,7 @@ export class ListEntityComponent implements OnInit {
   }
 
   public containsInput(td): boolean {
-    return td === 'checkbox' || td === 'checkbox';
+    return td === 'checkbox' || td === 'checkbox' || this.isFormField(td);
   }
 
   public isCheckboxInput(td): boolean {
@@ -74,10 +75,18 @@ export class ListEntityComponent implements OnInit {
     return td === 'radio';
   }
 
+  public isFormField(td): boolean {
+    return td instanceof FormField;
+  }
+
   private showNavbar(): void {
     if (!this.config || (this.config && !this.config.isEform)) {
       this.navbarService.showNavbar(true);
     }
+  }
+
+  private removeItem(item){
+
   }
 
 }

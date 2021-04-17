@@ -20,7 +20,7 @@ import { ListEntityModule } from './main/components/list-entity/list-entity.modu
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ListEntityModule
+    ListEntityModule,
   ],
   providers: [Utils, AuthGuard, AdminGuard],
   bootstrap: [AppComponent]
