@@ -1,4 +1,4 @@
-import { Product } from 'src/app/main/shared/model/product.model';
+import {Product} from '../model/product.model';
 
 export class ProvisionalSale {
   id: number;
