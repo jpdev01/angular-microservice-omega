@@ -21,6 +21,7 @@ export class SellComponent implements OnInit {
   config = {
     isEform: true
   };
+  finalValue = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -87,6 +88,7 @@ export class SellComponent implements OnInit {
           tr.qtde++;
           tableStructureEntity.splice(index, 1);
           this.saveListProduct(this.listData.entity);
+          this.removeValue(tr.finalValue);
         }
       })
       ]
@@ -97,9 +99,12 @@ export class SellComponent implements OnInit {
       entity: this.getListProduct(),
       tableStructure: tableInfo
     });
+
+    this.setValueByProducts(this.listData.entity);
   }
 
   public addFieldToArray(product: Product) {
+    this.addValue(product.finalValue);
     this.listData.entity.push(product);
   }
 
@@ -113,6 +118,27 @@ export class SellComponent implements OnInit {
   private saveListProduct(products: Product[]): void {
     let productsObject = JSON.stringify(products);
     this.cookieService.set('store-products', productsObject);
+  }
+
+  private addValue(newValue: number){
+    this.finalValue = this.finalValue + newValue;
+  }
+
+  private removeValue(excValue: number){
+    this.finalValue = this.finalValue - excValue;
+  }
+
+  private setValueByProducts(products: Product[]): void{
+    let value = this.getValueByProducts(products);
+    this.finalValue = value;
+  }
+
+  private getValueByProducts(products: Product[]): number{
+    let finalValue = 0;
+    products.forEach(product => {
+      finalValue = finalValue + product.finalValue;
+    });
+    return finalValue;
   }
 
   getListProduct(): Product[]{
