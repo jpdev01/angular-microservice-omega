@@ -1,6 +1,6 @@
 import { NavbarService } from './../../../../shared/service/navbar.service';
 import { Customer } from './../../../../shared/model/customer.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {CustomersApiService} from './../../../../shared/service/customers-api.service';
 import { ResponsePageable } from 'src/app/main/shared/model/responsePageable.model';
 import { EntityListSerialize } from 'src/app/main/shared/serialize/entity-list-serialize.model';
@@ -16,6 +16,7 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
   customers: Customer[];
   listData: {};
   filter = "";
+  @Input() config;
 
   constructor(public serviceApi: CustomersApiService, public navbarService: NavbarService) {
     super(serviceApi, navbarService);

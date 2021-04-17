@@ -16,7 +16,7 @@ import { EntityInfoModule } from 'src/app/main/components/entity-info/entity-inf
 
 
 @NgModule({
-  declarations: [CustomersComponent, CustomersListComponent, CustomersFrmComponent, CustomerInfoComponent],
+  declarations: [CustomersComponent, CustomersFrmComponent, CustomerInfoComponent],
   imports: [
     CommonModule,
     CustomersRoutingModule,

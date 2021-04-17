@@ -1,3 +1,10 @@
-<p>
-  select-customer works!
-</p>
+<button (click)="openModal('customer')" type="button" class="btn btn-light btn-sm">
+  Ver opções
+</button>
+<app-modal [modalInfo]="getModalInfo()">
+  <!--<div [innerHTML]="field.listOptions"></div>-->
+  <app-customers-list [config]="{
+                                    radio: true,
+                                    isEform: true
+                                  }">
+  </app-customers-list>
