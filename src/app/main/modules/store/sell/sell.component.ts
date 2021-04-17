@@ -90,7 +90,7 @@ export class SellComponent implements OnInit {
 
 
     this.listData = new EntityListSerialize({
-      entity: [],
+      entity: this.getListProduct(),
       tableStructure: tableInfo
     });
   }
