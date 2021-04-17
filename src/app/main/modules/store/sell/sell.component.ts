@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/main/shared/model/product.model';
 import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
 import { CookieService} from 'ngx-cookie-service';
+import { config } from 'rxjs';
 
 @Component({
   selector: 'app-sell',
@@ -17,7 +18,9 @@ export class SellComponent implements OnInit {
   typeInput = TypeInput.KEYBOARD;
   frm: FormGroup;
   codeScan;
-  config;
+  config = {
+    isEform: true
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -28,7 +31,6 @@ export class SellComponent implements OnInit {
   ngOnInit() {
     this.initListData();
     this.initFrm();
-    this.initConfig();
   }
 
   private initFrm(){
@@ -51,12 +53,14 @@ export class SellComponent implements OnInit {
     }
   }
 
-  private getProductByCode(code: any){
-    this.productApi.getById(code).subscribe((product)=>{
-      let avaliable = this.availableProduct(product);
-      if (avaliable){
-        this.addFieldToArray(product);
-        this.saveListProduct(this.listData.entity);
+  private getProductByCode(code: any) {
+    this.productApi.getById(code).subscribe((product) => {
+      if (product) {
+        let avaliable = this.availableProduct(product);
+        if (avaliable) {
+          this.addFieldToArray(product);
+          this.saveListProduct(this.listData.entity);
+        }
       }
     });
   }
@@ -101,10 +105,6 @@ export class SellComponent implements OnInit {
 
   changeMethodInput($event){
       this.typeInput = $event.target.value;
-  }
-
-  private initConfig(): void {
-    this.config.isEform = true;
   }
 
   /*
