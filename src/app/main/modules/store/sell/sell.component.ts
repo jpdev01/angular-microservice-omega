@@ -49,7 +49,9 @@ export class SellComponent implements OnInit {
 
   private getProductByCode(code: any){
     this.productApi.getById(code).subscribe((product)=>{
-      this.listData.entity.push(product);
+      if (product.qtde){
+        this.addFieldToArray(product);
+      }
     });
   }
 
