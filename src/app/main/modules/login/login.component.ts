@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     private service: UserService,
     private authService : AuthService
     ) {
-      this.validateIsLogged();
+      //    this.validateIsLogged();
     }
 
   ngOnInit(): void {

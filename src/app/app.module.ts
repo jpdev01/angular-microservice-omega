@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './main/shared/safety/AuthGuard.model';
 import { AdminGuard } from './main/shared/safety/AdminGuard.model';
 import { ListEntityModule } from './main/components/list-entity/list-entity.module';
-import { HttpErrorInterceptor } from './main/shared/service/api/http-error-interceptor.service';
+import { HttpErrorInterceptor } from './main/shared/service/api/auth/http-error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { HttpErrorInterceptor } from './main/shared/service/api/http-error-inter
     HttpClientModule,
     ListEntityModule,
   ],
-  providers: [Utils, AuthGuard, AdminGuard,
+  providers: [Utils,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
