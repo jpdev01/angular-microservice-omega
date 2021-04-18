@@ -17,6 +17,7 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
   listData: {};
   filter = "";
   @Input() config;
+  isEform = false;
 
   constructor(public serviceApi: CustomersApiService, public navbarService: NavbarService) {
     super(serviceApi, navbarService);
@@ -38,6 +39,14 @@ export class CustomersListComponent extends EntityListAbstract implements OnInit
       tableStructure: tableInfo,
       infoUrl: new PatternUrl().customer
     })
+
+    if (this.config) {
+      if (this.config.radio) {
+        tableInfo.header.unshift('Selecionar');
+        tableInfo.row.unshift('radio');
+        this.isEform = true;
+      }
+    }
   };
 
   public getFilter(): void {

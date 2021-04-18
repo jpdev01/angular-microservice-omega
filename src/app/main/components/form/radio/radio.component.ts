@@ -26,12 +26,14 @@ export class RadioComponent implements OnInit {
   }
 
   private initOnFrm(): void{
-    let selected = this.eform.get(this.id);
-    if (selected){
-      // existe na entidade.
-      this.checked = true;
-    } else {
-      this.eform.addControl(this.id, new FormControl(''));
+    if (this.eform){
+      let selected = this.eform.get(this.id);
+      if (selected){
+        // existe na entidade.
+        this.checked = true;
+      } else {
+        this.eform.addControl(this.id, new FormControl(''));
+      }
     }
   }
 

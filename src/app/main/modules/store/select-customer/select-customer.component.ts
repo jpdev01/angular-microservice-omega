@@ -1,5 +1,5 @@
 import { ModalService } from './../../../shared/service/modal.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalInfo } from 'src/app/main/shared/model/modal-info.model';
 
 @Component({
@@ -8,10 +8,13 @@ import { ModalInfo } from 'src/app/main/shared/model/modal-info.model';
   styleUrls: ['./select-customer.component.css']
 })
 export class SelectCustomerComponent implements OnInit {
+  @Input() customer;
+  customerName;
 
   constructor(private modalService: ModalService) { }
 
   ngOnInit() {
+    this.customerName = this.customer ? this.customer.name : '';
   }
 
   public openModal(field): void{
@@ -27,6 +30,12 @@ export class SelectCustomerComponent implements OnInit {
         //registrar valor no formulario.
       }
     });
+  }
+
+  ngDoCheck(){
+    if(this.customer){
+      this.customerName = this.customer.name;
+    }
   }
 
 }

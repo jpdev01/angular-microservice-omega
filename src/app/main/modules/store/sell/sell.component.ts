@@ -1,9 +1,11 @@
+import { CustomersApiService } from './../../../shared/service/customers-api.service';
+import { RadioInputService } from './../../../shared/service/form/radio-input.service';
+import { Customer } from './../../../shared/model/customer.model';
+import { Product } from './../../../shared/model/product.model';
 import { FormField } from './../../../shared/model/form-field.model';
 import { ProductsApiService } from './../../../shared/service/products-api.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EntityListSerialize } from './../../../shared/serialize/entity-list-serialize.model';
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/main/shared/model/product.model';
 import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
 import { CookieService} from 'ngx-cookie-service';
 import { config } from 'rxjs';
@@ -14,13 +16,21 @@ import { config } from 'rxjs';
   styleUrls: ['./sell.component.css']
 })
 export class SellComponent implements OnInit {
+  products: Product[];
+  customer: Customer;
 
-  constructor(){
+  constructor(
+    private radioService: RadioInputService,
+    private customerApiService: CustomersApiService
+  ){
 
   }
 
   ngOnInit(){
-
+    this.radioService.getRadioEvent().subscribe(event => {
+      let customerId = event.target.value;
+      this.customerApiService.getById(customerId).subscribe(customer => this.customer = customer);
+    })
   }
 }
 
