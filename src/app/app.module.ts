@@ -1,5 +1,5 @@
 import { Utils } from './main/shared/utils/Utils.model';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './main/shared/safety/AuthGuard.model';
 import { AdminGuard } from './main/shared/safety/AdminGuard.model';
 import { ListEntityModule } from './main/components/list-entity/list-entity.module';
+import { HttpErrorInterceptor } from './main/shared/service/api/http-error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,12 @@ import { ListEntityModule } from './main/components/list-entity/list-entity.modu
     HttpClientModule,
     ListEntityModule,
   ],
-  providers: [Utils, AuthGuard, AdminGuard],
+  providers: [Utils, AuthGuard, AdminGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
