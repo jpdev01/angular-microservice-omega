@@ -1,3 +1,5 @@
+import { Sale } from './../../../shared/model/sale.model';
+import { SaleApiService } from './../../../shared/service/api/sale-api.service';
 import { CustomersApiService } from './../../../shared/service/customers-api.service';
 import { RadioInputService } from './../../../shared/service/form/radio-input.service';
 import { Customer } from './../../../shared/model/customer.model';
@@ -18,12 +20,31 @@ import { config } from 'rxjs';
 export class SellComponent implements OnInit {
   products: Product[];
   customer: Customer;
+  sale: Sale;
 
   constructor(
     private radioService: RadioInputService,
-    private customerApiService: CustomersApiService
+    private customerApiService: CustomersApiService,
+    private saleApiService: SaleApiService,
+    private cookieService: CookieService
   ){
 
+  }
+
+  public save(): void {
+    this.products = this.getListProduct();
+    console.log(this.customer);
+  }
+
+  /*
+* COOKIE
+*/
+  getListProduct(): Product[] {
+    let productsObject = this.cookieService.get('store-products');
+    if (productsObject) {
+      return JSON.parse(productsObject);
+    }
+    return [];
   }
 
   ngOnInit(){

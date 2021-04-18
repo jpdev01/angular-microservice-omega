@@ -13,6 +13,29 @@ export class Sale {
   products: Product[];
   seller: User;
   status: SaleStatus;
-  
+
+  constructor(options: {
+    id?: number;
+    totalValue?: number;
+    date?: Date;
+    description?: string;
+    installments?: number;
+
+    customer?: Customer;
+    products?: Product[];
+    seller?: User;
+    status?: SaleStatus;
+  } = {}){
+    this.id = options.id;
+    this.totalValue = options.totalValue;
+    this.date = options.date;
+    this.description = options.description;
+    this.installments = options.installments;
+    this.customer = options.customer;
+    this.products = options.products;
+    this.seller = options.seller;
+    this.status = options.status;
+  }
+
 
 }

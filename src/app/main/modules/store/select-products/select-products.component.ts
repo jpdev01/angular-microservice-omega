@@ -140,6 +140,9 @@ export class SelectProductsComponent implements OnInit {
     return finalValue;
   }
 
+  /*
+  * COOKIE
+  */
   getListProduct(): Product[]{
     let productsObject = this.cookieService.get('store-products');
     if (productsObject){
