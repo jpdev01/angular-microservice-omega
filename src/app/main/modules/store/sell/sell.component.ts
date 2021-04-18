@@ -20,7 +20,7 @@ import { config } from 'rxjs';
 export class SellComponent implements OnInit {
   products: Product[];
   customer: Customer;
-  sale: Sale;
+  sale = new Sale();
 
   constructor(
     private radioService: RadioInputService,
@@ -33,7 +33,9 @@ export class SellComponent implements OnInit {
 
   public save(): void {
     this.products = this.getListProduct();
-    console.log(this.customer);
+    this.sale.customer = this.customer;
+    this.sale.products = this.products;
+    this.saleApiService.save(this.sale).subscribe(result => console.log(result));
   }
 
   /*
