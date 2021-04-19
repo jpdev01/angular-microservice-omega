@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
 
   validateLogin(): void {
     this.authService.validateLogin(this.formLogin.value).subscribe(
-      (resultSuccess) => {
-        debugger;
+      (resultSuccess: any) => {
+        localStorage.setItem('access_token', resultSuccess.token);
         this.authService.login();
         this.userIsLogged = true;
         this.redirectToHome();

@@ -22,7 +22,7 @@ export class CustomersApiService implements ServiceApiInterface {
     return this.httpClient.get<Customer>(this.apiUrl  + '/customer/' + id);
   }
   getAll(): Observable<ResponsePageable>{
-    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/customer');
+    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/customer', this.httpOptions);
   }
   public save(customer: Customer): Observable<Customer> {
     return this.httpClient.post<any>(this.apiUrl + '/customer/save', customer, this.httpOptions);
