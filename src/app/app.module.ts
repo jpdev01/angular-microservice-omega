@@ -23,7 +23,7 @@ import { HttpErrorInterceptor } from './main/shared/service/api/auth/http-error-
     HttpClientModule,
     ListEntityModule,
   ],
-  providers: [Utils,
+  providers: [Utils, AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,

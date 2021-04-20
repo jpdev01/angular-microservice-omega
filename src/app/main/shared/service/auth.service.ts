@@ -1,3 +1,4 @@
+import { Utils } from './../utils/Utils.model';
 import { User } from './../model/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -16,13 +17,17 @@ export class AuthService {
 
   apiUrl= "http://localhost:8080/neusamoda";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private utils: Utils) { }
 
 
   private loggedIn = new BehaviorSubject<boolean>(this.tokenAvailable());
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
+  }
+
+  public isLoged(): boolean {
+    return this.utils.getToken() != undefined;
   }
 
   login(){

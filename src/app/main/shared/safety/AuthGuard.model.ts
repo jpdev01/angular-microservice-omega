@@ -11,24 +11,27 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
-    return this.authService.isLoggedIn
-      .pipe(
-        take(1),
-        map((isLoggedIn: boolean) => {
-          if (!isLoggedIn){
-            this.router.navigate(['/login']);
-            return false;
-          }
-          return true;
-        })
-      );
-  }
+  // canActivate(
+  //   next: ActivatedRouteSnapshot,
+  //   state: RouterStateSnapshot
+  // ): Observable<boolean> {
+  //   return this.authService.isLoggedIn
+  //     .pipe(
+  //       take(1),
+  //       map((isLoggedIn: boolean) => {
+  //         if (!isLoggedIn){
+  //           this.router.navigate(['/login']);
+  //           return false;
+  //         }
+  //         return true;
+  //       })
+  //     );
+  // }
 
   // Uma outra maneira de fazer essa validacao seria ir ate a api e verificar se a session do usuario existe
 
+  canActivate(): boolean{
+    return this.authService.isLoged();
+  }
 }
 

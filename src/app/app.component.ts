@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Utils } from './main/shared/utils/Utils.model';
 import { UserService } from './main/shared/service/user.service';
 import { Component } from '@angular/core';
@@ -15,10 +16,12 @@ export class AppComponent {
 
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router){}
 
   ngOnInit() {
-    this.isLoggedIn$ = this.authService.isLoggedIn;
+    if (this.authService.isLoged()){
+      this.router.navigate(['home']);
+    }
   }
 
   onLogout(){

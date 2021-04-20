@@ -10,11 +10,11 @@ const routes: Routes = [
   { path: 'security', loadChildren: () => import('./main/modules/login/login.module').then(m => m.LoginModule) },
   {
     path: '',
-    redirectTo: '/security',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   { path: 'login', loadChildren: () => import('./main/modules/login/login.module').then(m => m.LoginModule) },
-  { path: 'home', loadChildren: () => import('./main/modules/home/home.module').then(m => m.HomeModule) },
+  { path: 'home', loadChildren: () => import('./main/modules/home/home.module').then(m => m.HomeModule), canActivate: [AuthGuard] },
   { path: 'main', loadChildren: () => import('./main/modules/home/main/main.module').then(m => m.MainModule) },
   { path: 'store', loadChildren: () => import('./main/modules/store/store.module').then(m => m.StoreModule) },
   { path: 'error/403', component: ForbiddenComponent}
