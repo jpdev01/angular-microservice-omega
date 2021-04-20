@@ -11,16 +11,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      const authToken = this.utils.getToken();
-      // request = request.clone({
-      //   setHeaders: {
-      //     'Content-Type' : 'application/json; charset=utf-8',
-      //     'Accept'       : 'application/json',
-      //     'Authorization': `Bearer ${authToken}`,
-      //   },
-      // });
-      request.headers.append("Authorization", "Bearer " + authToken);
-      request.headers.set('x-access-token', "Bearer " + authToken);
       return next.handle(request)
       .pipe(
         catchError((err, caught: Observable<HttpEvent<any>>) => {
