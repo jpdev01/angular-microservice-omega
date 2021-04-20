@@ -11,7 +11,7 @@ export class Utils {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type' : 'application/json',
-      'Authorization': "Bearer " + this.getToken()
+      'Authorization': `Bearer ` + this.getToken()
     })
   };
 

@@ -27,12 +27,12 @@ export class UserApiService implements ServiceApiInterface {
 
   public getAll(): Observable<ResponsePageable> {
     debugger;
-    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user');
+    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user', this.httpOptions);
   }
 
   public getById(id: number): Observable<User> {
     debugger;
-    return this.httpClient.get<User>(this.apiUrl + '/user/' + id);
+    return this.httpClient.get<User>(this.apiUrl + '/user/' + id, this.httpOptions);
   }
 
   public save(user: User): Observable<User> {

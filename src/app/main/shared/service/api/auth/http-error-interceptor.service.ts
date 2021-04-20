@@ -20,6 +20,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       //   },
       // });
       request.headers.append("Authorization", "Bearer " + authToken);
+      request.headers.set('x-access-token', "Bearer " + authToken);
       return next.handle(request)
       .pipe(
         catchError((err, caught: Observable<HttpEvent<any>>) => {

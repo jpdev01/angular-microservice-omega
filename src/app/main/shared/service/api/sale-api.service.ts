@@ -18,11 +18,11 @@ export class SaleApiService implements ServiceApiInterface{
   }
 
   public getAll(): Observable<Sale> {
-    return this.httpClient.get<Sale>(this.apiUrl + '/sale');
+    return this.httpClient.get<Sale>(this.apiUrl + '/sale', this.httpOptions);
   }
 
   public getById(id: number): Observable<Sale> {
-    return this.httpClient.get<Sale>(this.apiUrl + '/sale/' + id);
+    return this.httpClient.get<Sale>(this.apiUrl + '/sale/' + id, this.httpOptions);
   }
 
   public save(sale: Sale): Observable<Sale> {

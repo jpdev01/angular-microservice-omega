@@ -20,12 +20,12 @@ export class CategoryApiService implements ServiceApiInterface {
     }
 
     public getAll(): Observable<ResponsePageable> {
-        return this.httpClient.get<ResponsePageable>(this.apiUrl + '/category');
+        return this.httpClient.get<ResponsePageable>(this.apiUrl + '/category', this.httpOptions);
     }
 
     public getById(id: number): Observable<Category> {
         debugger;
-        return this.httpClient.get<Category>(this.apiUrl + '/category/' + id);
+        return this.httpClient.get<Category>(this.apiUrl + '/category/' + id, this.httpOptions);
     }
 
     public save(category: Category): Observable<Category> {

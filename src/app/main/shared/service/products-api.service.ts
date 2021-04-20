@@ -24,15 +24,15 @@ export class ProductsApiService implements ServiceApiInterface {
   }
 
   public getAll(): Observable<ResponsePageable>{
-    return this.httpClient.get<ResponsePageable>(this.apiUrl   + '/product');
+    return this.httpClient.get<ResponsePageable>(this.apiUrl   + '/product', this.httpOptions);
   }
 
   public getById(id: number): Observable<Product>{
-    return this.httpClient.get<Product>(this.apiUrl + '/product/' + id);
+    return this.httpClient.get<Product>(this.apiUrl + '/product/' + id, this.httpOptions);
   }
 
   public getByCode(code: string): Observable<Product>{
-  return this.httpClient.get<Product>(this.apiUrl + '/product/code' + code);
+  return this.httpClient.get<Product>(this.apiUrl + '/product/code' + code, this.httpOptions);
   }
 
 

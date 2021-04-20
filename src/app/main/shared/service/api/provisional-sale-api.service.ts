@@ -19,12 +19,12 @@ export class ProvisionalSaleApiService implements ServiceApiInterface {
   }
 
   public getAll(): Observable<ProvisionalSale> {
-    return this.httpClient.get<ProvisionalSale>(this.apiUrl + '/provisionalSale');
+    return this.httpClient.get<ProvisionalSale>(this.apiUrl + '/provisionalSale', this.httpOptions);
   }
 
   public getById(id: number): Observable<ProvisionalSale> {
     debugger;
-    return this.httpClient.get<ProvisionalSale>(this.apiUrl + '/provisionalSale/' + id);
+    return this.httpClient.get<ProvisionalSale>(this.apiUrl + '/provisionalSale/' + id, this.httpOptions);
   }
 
   public save(provisionalSale: ProvisionalSale): Observable<ProvisionalSale> {

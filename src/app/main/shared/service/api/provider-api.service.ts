@@ -20,11 +20,11 @@ export class ProviderApiService implements ServiceApiInterface {
   }
 
   public getAll(): Observable<ResponsePageable> {
-      return this.httpClient.get<ResponsePageable>(this.apiUrl + '/provider');
+      return this.httpClient.get<ResponsePageable>(this.apiUrl + '/provider', this.httpOptions);
   }
 
   public getById(id: number): Observable<Provider> {
-      return this.httpClient.get<Provider>(this.apiUrl + '/provider/' + id);
+      return this.httpClient.get<Provider>(this.apiUrl + '/provider/' + id, this.httpOptions);
   }
 
   public save(category: Provider): Observable<Provider> {
