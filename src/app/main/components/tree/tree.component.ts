@@ -6,12 +6,20 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./tree.component.css']
 })
 export class TreeComponent implements OnInit {
-  @Input() labels;
+  @Input() listData;
 
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public getTitle(entity: any): string{
+    return entity.name || entity.title;
+  }
+
+  public onClick(category): any{
+    this.listData.onclick(category);
   }
 
 }

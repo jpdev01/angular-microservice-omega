@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../../shared/service/products.service';
 import { EntityInfoInterface } from 'src/app/main/shared/interface/entity-info.interface';
-import { ProductsApiService } from 'src/app/main/shared/service/products-api.service';
+import { ProductsApiService } from 'src/app/main/shared/service/api/products-api.service';
 import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
 import { ProductInfoSerializer } from 'src/app/main/shared/serialize/product-info.serialize';
 import { EntityInfoSerializer } from 'src/app/main/shared/model/entity-info-serializer.model';

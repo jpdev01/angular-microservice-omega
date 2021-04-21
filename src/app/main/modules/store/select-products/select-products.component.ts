@@ -1,4 +1,4 @@
-import { ProductsApiService } from './../../../shared/service/products-api.service';
+import { ProductsApiService } from '../../../shared/service/api/products-api.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormField } from './../../../shared/model/form-field.model';
 import { EntityListSerialize } from './../../../shared/serialize/entity-list-serialize.model';

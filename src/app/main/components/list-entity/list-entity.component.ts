@@ -89,4 +89,12 @@ export class ListEntityComponent implements OnInit {
 
   }
 
+  ngAfterContentChecked()	{
+    let entityList = this.listData.entity;
+    if (!(entityList instanceof Observable))
+    {
+      this.entityInfoList = entityList;
+    }
+  }
+
 }

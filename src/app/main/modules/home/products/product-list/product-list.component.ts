@@ -1,10 +1,11 @@
+import { CategoryApiService } from 'src/app/main/shared/service/api/category-api.service';
 
 import { CategoriesListComponent } from './../../categories/categories-list/categories-list.component';
 import { ResponsePageable } from './../../../../shared/model/responsePageable.model';
 import { Utils } from './../../../../shared/utils/Utils.model';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../../shared/model/product.model';
-import { ProductsApiService } from '../../../../shared/service/products-api.service';
+import { ProductsApiService } from '../../../../shared/service/api/products-api.service';
 import { ProductsService } from '../../../../shared/service/products.service';
 import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
@@ -19,15 +20,24 @@ import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 })
 export class ProductListComponent extends EntityListAbstract implements OnInit {
   filter = "";
-  listData: {};
+  listData: EntityListSerialize;
+  categoriesTree;
 
-  constructor(public serviceApi: ProductsApiService, private utils: Utils, private router: Router, private service: ProductsService, public navbarService: NavbarService) {
+  constructor(
+    public serviceApi: ProductsApiService,
+    private utils: Utils,
+    private router: Router,
+    private service: ProductsService,
+    public navbarService: NavbarService,
+    private categoriesApiService: CategoryApiService
+    ) {
     super(serviceApi, navbarService);
   }
 
   ngOnInit() {
     this.initListData();
     this.getFilter();
+    this.getCategoriesTree();
   }
 
   public getFilter(): void {
@@ -57,6 +67,30 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
       tableStructure: tableInfo,
       infoUrl: new PatternUrl().product
     })
+  }
+
+  public getCategoriesTree(): void{
+    this.categoriesApiService.getAll().subscribe(categories => {
+      this.categoriesTree = categories.content;
+      this.getTreeOnClick();
+    })
+  }
+
+  private getTreeOnClick(): void {
+    this.categoriesTree.onclick = (category) => {
+      if (category === "all")
+      {
+        this.serviceApi.getAll().subscribe(products => {
+          this.listData.entity = products.content;
+        })
+      }
+      else
+      {
+        this.serviceApi.getAllFromCategory(category).subscribe((products) => {
+          this.listData.entity = products;
+        })
+      }
+    }
   }
 
 }

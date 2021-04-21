@@ -5,7 +5,7 @@ import { RadioInputService } from './../../../shared/service/form/radio-input.se
 import { Customer } from './../../../shared/model/customer.model';
 import { Product } from './../../../shared/model/product.model';
 import { FormField } from './../../../shared/model/form-field.model';
-import { ProductsApiService } from './../../../shared/service/products-api.service';
+import { ProductsApiService } from '../../../shared/service/api/products-api.service';
 import { EntityListSerialize } from './../../../shared/serialize/entity-list-serialize.model';
 import { Component, OnInit } from '@angular/core';
 import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';

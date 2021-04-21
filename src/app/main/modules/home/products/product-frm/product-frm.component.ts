@@ -10,12 +10,12 @@ import { FormSerializer } from 'src/app/main/shared/model/form-serializer.model'
 import { Mask } from 'src/app/main/shared/model/mask.model';
 import { Product } from 'src/app/main/shared/model/product.model';
 import { Size } from 'src/app/main/shared/model/size.model';
-import { ProductsApiService } from 'src/app/main/shared/service/products-api.service';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
 import { FieldFormType } from '../../../../shared/enum/field-form-type.enum';
 import {CheckboxInputService } from '../../../../shared/service/form/checkbox-input.service';
 import { Provider } from 'src/app/main/shared/model/provider.model';
+import { ProductsApiService } from 'src/app/main/shared/service/api/products-api.service';
 
 @Component({
   selector: 'app-product-frm',
