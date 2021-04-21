@@ -14,6 +14,7 @@ import { ListEntityModule } from 'src/app/main/components/list-entity/list-entit
 import { EntityInfoModule } from 'src/app/main/components/entity-info/entity-info.module';
 import { ProductFrmComponent } from './product-frm/product-frm.component';
 import { ProductInfoComponent } from './product-info/product-info.component';
+import { TreeModule } from '../../../components/tree/tree.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ProductInfoComponent } from './product-info/product-info.component';
     FrmCadModule,
     ListEntityModule,
     EntityInfoModule,
-    FrmCadModule
+    FrmCadModule,
+    TreeModule
   ],
   providers: [Utils, ProductsApiService, SearchFilterPipe]
 })
