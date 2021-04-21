@@ -11,7 +11,7 @@ declare var $:any;
 export class TreeComponent implements OnInit {
   @Input() listData;
   @Input() entityType;
-  selected = "all";
+  selected: any;
   modalEditInfo: ModalInfo;
   editCategory = false;
   isCategoryEntity = false;
@@ -32,18 +32,31 @@ export class TreeComponent implements OnInit {
   }
 
   public edit(category){
-    if (this.entityType === "category"){
-      this.isCategoryEntity = true;
-    }
     this.modalEditInfo = new ModalInfo({
       title: "Categoria " + category.name,
       size: 'modal-lg',
       id: 'categoryEditModal'
     });
+    this.populateFrmModal();
+  }
+
+  public new(): void {
+    this.modalEditInfo = new ModalInfo({
+      title: "Categoria ",
+      size: 'modal-lg',
+      id: 'categoryEditModal'
+    });
+    this.populateFrmModal();
+    this.selected = new Category();
+  }
+
+  populateFrmModal(): void{
+    if (this.entityType === "category"){
+      this.isCategoryEntity = true;
+    }
     this.modalService.setId(this.modalEditInfo.id);
     this.editCategory = true;
     this.modalService.toggle();
-
   }
 
 }

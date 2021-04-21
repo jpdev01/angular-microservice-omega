@@ -1,6 +1,10 @@
 <ul class="list-group list-group-flush">
   <li class="list-group-item" [ngClass]="selected === 'all' ? 'list-group-item-secondary' : ''"
-    (click)="onClick('all')">Todos</li>
+    (click)="onClick('all')">Todos
+    <p class="d-inline" (click)="new()">
+      <i class="fa fa-plus"></i>
+    </p>
+  </li>
   <li class="list-group-item" [ngClass]="selected === entity ? 'list-group-item-secondary' : ''"
     *ngFor="let entity of listData" (click)="onClick(entity)">
     <div class="w-100">
@@ -11,6 +15,6 @@
     </div>
   </li>
 </ul>
-<app-modal [modalInfo]="modalEditInfo" *ngIf="isCategoryEntity && editCategory == true">
-  <app-categories-frm [categoryId]="selected.id"></app-categories-frm>
+<app-modal [modalInfo]="modalEditInfo" *ngIf="isCategoryEntity">
+  <app-categories-frm [categoryId]="selected.id ? selected.id : undefined"></app-categories-frm>
 </app-modal>
