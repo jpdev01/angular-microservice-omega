@@ -1,4 +1,4 @@
 <ul class="list-group list-group-flush">
-  <li class="list-group-item" (click)="onClick('all')">Todos</li>
-  <li class="list-group-item" *ngFor="let entity of listData" (click)="onClick(entity)">{{getTitle(entity)}}</li>
+  <li class="list-group-item" [ngClass]="!selected ? 'list-group-item-secondary' : ''" (click)="onClick('all')">Todos</li>
+  <li class="list-group-item" [ngClass]="selected === entity ? 'list-group-item-secondary' : ''" *ngFor="let entity of listData" (click)="onClick(entity); applyColor($event)">{{getTitle(entity)}}</li>
 </ul>

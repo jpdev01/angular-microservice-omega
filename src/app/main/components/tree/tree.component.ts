@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TreeComponent implements OnInit {
   @Input() listData;
+  selected;
 
 
   constructor() { }
@@ -20,6 +21,11 @@ export class TreeComponent implements OnInit {
 
   public onClick(category): any{
     this.listData.onclick(category);
+    this.selected = category;
+  }
+
+  private applyColor(event): void{
+    console.log(event.target);
   }
 
 }
