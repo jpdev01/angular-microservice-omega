@@ -1,4 +1,16 @@
 <ul class="list-group list-group-flush">
-  <li class="list-group-item" [ngClass]="selected === 'all' ? 'list-group-item-secondary' : ''" (click)="onClick('all')">Todos</li>
-  <li class="list-group-item" [ngClass]="selected === entity ? 'list-group-item-secondary' : ''" *ngFor="let entity of listData" (click)="onClick(entity); applyColor($event)">{{getTitle(entity)}}</li>
+  <li class="list-group-item" [ngClass]="selected === 'all' ? 'list-group-item-secondary' : ''"
+    (click)="onClick('all')">Todos</li>
+  <li class="list-group-item" [ngClass]="selected === entity ? 'list-group-item-secondary' : ''"
+    *ngFor="let entity of listData" (click)="onClick(entity)">
+    <div class="w-100">
+      {{getTitle(entity)}}
+      <p class="d-inline" (click)="edit(entity)">
+        <i class="fa fa-edit right"></i>
+      </p>
+    </div>
+  </li>
 </ul>
+<app-modal [modalInfo]="modalEditInfo" *ngIf="editCategory == true">
+  <app-categories-frm></app-categories-frm>
+</app-modal>

@@ -4,7 +4,7 @@
 
 
 <div class="modal fade" id="{{modalInfo.id ? modalInfo.id : 'onroadModal'}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" [ngClass]="size == 'xl' ? 'modal-xl' : (size == 'large' ? 'modal-lg' : 'modal-sm')">
+    <div class="modal-dialog" [ngClass]="size">
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="staticBackdropLabel">{{modalInfo.title}}</h2>

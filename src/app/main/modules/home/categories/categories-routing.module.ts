@@ -6,6 +6,7 @@ import { CategoriesFrmComponent } from './categories-frm/categories-frm.componen
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { CategoriesComponent } from './categories.component';
 import {CategoriesListModule} from './categories-list/categories-list.module';
+import { CategoriesFrmModule } from './categories-frm/categories-frm.module';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), CategoriesListModule],
+  imports: [RouterModule.forChild(routes), CategoriesListModule, CategoriesFrmModule],
   exports: [RouterModule]
 })
 export class CategoriesRoutingModule { }

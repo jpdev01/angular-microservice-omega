@@ -1,5 +1,7 @@
+import { ModalService } from './../../shared/service/modal.service';
+import { ModalInfo } from './../../shared/model/modal-info.model';
 import { Component, Input, OnInit } from '@angular/core';
-
+declare var $:any;
 @Component({
   selector: 'app-tree',
   templateUrl: './tree.component.html',
@@ -8,9 +10,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TreeComponent implements OnInit {
   @Input() listData;
   selected = "all";
+  modalEditInfo: ModalInfo;
+  editCategory = false;
 
 
-  constructor() { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
   }
@@ -24,8 +28,16 @@ export class TreeComponent implements OnInit {
     this.selected = category;
   }
 
-  private applyColor(event): void{
-    console.log(event.target);
+  public edit(category){
+    this.modalEditInfo = new ModalInfo({
+      title: "Categoria " + category.name,
+      size: 'modal-lg',
+      id: 'categoryEditModal'
+    });
+    this.modalService.setId(this.modalEditInfo.id);
+    this.editCategory = true;
+    this.modalService.toggle();
+
   }
 
 }

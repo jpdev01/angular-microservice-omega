@@ -10,13 +10,15 @@ declare var $: any;
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  size = 'xl';
+  size = 'modal-xl';
   @Input() modalInfo: ModalInfo;
 
   constructor(private modalService: ModalService) { }
 
   ngOnInit(): void {
-
+    if (this.modalInfo.size){
+      this.size = this.modalInfo.size;
+    }
   }
 
   public submit(){

@@ -13,12 +13,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [CategoriesComponent, CategoriesFrmComponent, CategoriesInfoComponent],
+  declarations: [CategoriesComponent, CategoriesInfoComponent],
   imports: [
     CommonModule,
     CategoriesRoutingModule,
     ListEntityModule,
-    FormsModule, ReactiveFormsModule, FrmCadModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FrmCadModule,
     EntityInfoModule
   ]
 })
