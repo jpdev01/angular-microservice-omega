@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -6,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoggedService {
 
-  constructor(){}
+  constructor(private router: Router){}
 
   private situacaoLoginUsuario = new BehaviorSubject<boolean>(false);
 
@@ -26,5 +27,6 @@ export class LoggedService {
 
       // "Avisa" que o usuário NÂO está logado
       this.situacaoLoginUsuario.next(false);
+      this.router.navigate(['login']);
   }
 }

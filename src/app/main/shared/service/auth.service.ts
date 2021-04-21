@@ -31,7 +31,6 @@ export class AuthService {
   }
 
   login(){
-    this.createToken();
     this.loggedIn.next(true);
   }
 
@@ -44,10 +43,6 @@ export class AuthService {
   }
 
   public tokenAvailable(): boolean {
-    return !!localStorage.getItem('token');
-  }
-
-  private createToken(): void {
-    localStorage.setItem('token', 'login');
+    return !!localStorage.getItem('access_token');
   }
 }

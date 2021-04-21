@@ -31,7 +31,11 @@ export class AuthGuard implements CanActivate {
   // Uma outra maneira de fazer essa validacao seria ir ate a api e verificar se a session do usuario existe
 
   canActivate(): boolean{
-    return this.authService.isLoged();
+    if (this.authService.tokenAvailable()) {
+      return true;
+    }
+    this.router.navigate(["login"]);
+    return false;
   }
 }
 

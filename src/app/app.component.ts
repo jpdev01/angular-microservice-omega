@@ -19,8 +19,8 @@ export class AppComponent {
   constructor(private authService: AuthService, private router: Router){}
 
   ngOnInit() {
-    if (this.authService.isLoged()){
-      this.router.navigate(['home']);
+    if (!this.authService.tokenAvailable()){
+      this.router.navigate(['login']);
     }
   }
 
