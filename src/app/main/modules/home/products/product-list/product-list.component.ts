@@ -58,8 +58,8 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
 
   public initListData(){
     let tableInfo = {
-      header: ["Código", "Nome", "Categoria", ""],
-      row: ["code", "name", "category", ""]
+      header: ["Código", "Nome", "Fornecedor", ""],
+      row: ["code", "name", "provider.name", ""]
     };
 
     this.listData = new EntityListSerialize({

@@ -97,4 +97,21 @@ export class ListEntityComponent implements OnInit {
     }
   }
 
+  public getValueAsString(entityInfo, td): string{
+    if (td && entityInfo) {
+      if (td.indexOf(".") != -1)
+      {
+        let tree = td.split(".");
+        tree.forEach(element => {
+          if(entityInfo){
+            entityInfo = entityInfo[element];
+          }
+        });
+        return entityInfo;
+      }
+      return entityInfo[td];
+    }
+    return "";
+  }
+
 }
