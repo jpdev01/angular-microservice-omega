@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TreeComponent implements OnInit {
   @Input() listData;
-  selected;
+  selected = "all";
 
 
   constructor() { }
