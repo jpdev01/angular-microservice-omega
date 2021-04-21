@@ -114,6 +114,10 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
     }
   }
 
+  ngOnChanges(){
+    this.ngOnInit();
+  }
+
 
 
 }
