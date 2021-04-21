@@ -34,6 +34,7 @@ export class FrmCadComponent implements OnInit {
   labelConfig = {size: ''};
   entityName = "";
   onSave: any;
+  withHeader = false;
 
 
   constructor(
@@ -51,7 +52,10 @@ export class FrmCadComponent implements OnInit {
     this.getInfo();
     this.initForm();
     this.initEvents();
-    this.hideNavbar();
+    if (!this.formModel.configs.hideNavbar == false){
+      this.hideNavbar();
+    }
+    this.populateHeader();
   }
 
   getInfo(){
@@ -234,6 +238,11 @@ export class FrmCadComponent implements OnInit {
 
   private hideNavbar(){
     this.navbarService.showNavbar(false);
+  }
+
+  private populateHeader(): void{
+    let header = this.formModel.configs.withHeader;
+    this.withHeader = header === false ? header : true;
   }
 
 }

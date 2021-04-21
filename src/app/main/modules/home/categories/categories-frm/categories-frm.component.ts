@@ -2,7 +2,7 @@ import { NavbarService } from 'src/app/main/shared/service/navbar.service';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryApiService } from './../../../../shared/service/api/category-api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EntityFormInterfaceComponent } from 'src/app/main/shared/interface/entity-form.interface';
 import { Category } from 'src/app/main/shared/model/category.model';
 import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
@@ -18,7 +18,7 @@ import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
   styleUrls: ['./categories-frm.component.css']
 })
 export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceComponent {
-  categoryId;
+  @Input() categoryId;
   category: Category;
   public categoryFrm: FormGroup;
   formModel: FormSerializer;
@@ -30,7 +30,7 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
     private fb: FormBuilder, private navbarService: NavbarService) { }
 
   ngOnInit(): void {
-    this.applyInterfaceRule();
+    //this.applyInterfaceRule();
     this.getIdByUrl();
     if (this.categoryId) {
       this.loadEntityInfo(this.categoryId);
@@ -41,10 +41,12 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
   }
 
   getIdByUrl(): void {
-    this.route.params.subscribe(params => this.categoryId = params['id']);
+    if (!this.categoryId) {
+      this.route.params.subscribe(params => this.categoryId = params['id']);
+    }
   }
   loadEntityInfo(id: number): void {
-    this.serviceApi.getById(id).subscribe((result)=>{
+    this.serviceApi.getById(id).subscribe((result) => {
       this.category = result;
       this.initFormBuilder();
     })
@@ -72,11 +74,12 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
       entityName: "Categoria",
       groups: [group],
       serviceApi: this.serviceApi,
-      onSave: this.getOnSave()
+      onSave: this.getOnSave(),
+      configs: { withHeader: false, hideNavbar: false }
     });
   }
   initFormBuilder(): void {
-    if (!this.category){
+    if (!this.category) {
       this.category = new Category();
     }
 
@@ -88,7 +91,7 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
   applyInterfaceRule(): void {
     this.navbarService.showNavbar(false);
   }
-  getOnSave(): {onSucess: {}, onError: {}} {
+  getOnSave(): { onSucess: {}, onError: {} } {
     return {
       onSucess: {
         action: () => {
@@ -108,7 +111,9 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
           text: "Erro ao salvar categoria!"
         })
       }
+    }
   }
-  }
+
+
 
 }

@@ -1,4 +1,4 @@
-<div class="card-header panel-heading">
+<div class="card-header panel-heading" *ngIf="withHeader">
   <div class="panel-title card-title">{{entityName}}: {{getEntityTitle()}}</div>
 </div>
 
@@ -146,7 +146,7 @@
   </div>
 </div>
 
-<div class="panel-footer card-footer" style="width: 100%; text-align: right;">
+<div class="panel-footer card-footer" style="width: 100%; text-align: right;" *ngIf="withHeader">
 
   <div class="btn-group"
     style="display:inline-block; -moz-user-select: none; -webkit-user-select:none; user-select:none;">

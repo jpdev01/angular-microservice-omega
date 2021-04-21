@@ -11,6 +11,6 @@
     </div>
   </li>
 </ul>
-<app-modal [modalInfo]="modalEditInfo" *ngIf="editCategory == true">
-  <app-categories-frm></app-categories-frm>
+<app-modal [modalInfo]="modalEditInfo" *ngIf="isCategoryEntity && editCategory == true">
+  <app-categories-frm [categoryId]="1"></app-categories-frm>
 </app-modal>

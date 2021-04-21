@@ -8,7 +8,7 @@ export class FormSerializer {
   name: string;
   groups: FormGroupSerializer[];
   formGroupName: string;
-  configs: object;
+  configs: any;
   serviceApi: any;
   onSave: {
     onSucess: any,
@@ -20,7 +20,7 @@ export class FormSerializer {
     name?: string;
     formGroupName?: string;
     groups?: any[];
-    configs?: object;
+    configs?: any;
     entityName?: string;
     serviceApi?: any;
     onSave?: {

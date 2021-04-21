@@ -1,3 +1,4 @@
+import { Category } from 'src/app/main/shared/model/category.model';
 import { ModalService } from './../../shared/service/modal.service';
 import { ModalInfo } from './../../shared/model/modal-info.model';
 import { Component, Input, OnInit } from '@angular/core';
@@ -9,9 +10,11 @@ declare var $:any;
 })
 export class TreeComponent implements OnInit {
   @Input() listData;
+  @Input() entityType;
   selected = "all";
   modalEditInfo: ModalInfo;
   editCategory = false;
+  isCategoryEntity = false;
 
 
   constructor(private modalService: ModalService) { }
@@ -29,6 +32,9 @@ export class TreeComponent implements OnInit {
   }
 
   public edit(category){
+    if (this.entityType === "category"){
+      this.isCategoryEntity = true;
+    }
     this.modalEditInfo = new ModalInfo({
       title: "Categoria " + category.name,
       size: 'modal-lg',

@@ -1,6 +1,6 @@
 
 import { CustomersApiService } from './../../../../shared/service/customers-api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { NavbarService } from 'src/app/main/shared/service/navbar.service';
@@ -25,6 +25,7 @@ import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
 })
 export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, EntityFormInterfaceComponent {
 
+  @Input() configs;
   public customerForm: FormGroup;
   formModel: FormSerializer;
 
@@ -68,8 +69,6 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
     if (!this.customer){
       this.customer = new Customer();
     }
-    let valueDefault = "";
-    let emptyRequisities = ['', []];
 
     let address = this.customer.address;
     if (!address) {
@@ -233,12 +232,16 @@ export class CustomersFrmComponent extends EntityFrmAbstract implements OnInit, 
       row: "1"
     });
     group4.fields.push(formField);
+    if (this.configs.hideNavbar === false){
+      this.configs.hideNavbar = false;
+    }
 
     this.formModel = new FormSerializer({
       entityName: "Cliente",
       groups: [group1, group2, group3, group4],
       serviceApi: this.serviceApi,
-      onSave: this.getOnSave()
+      onSave: this.getOnSave(),
+      configs: this.configs
     });
 
   }
