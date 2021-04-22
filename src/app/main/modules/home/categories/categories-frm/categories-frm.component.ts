@@ -11,6 +11,7 @@ import { FormSerializer } from 'src/app/main/shared/model/form-serializer.model'
 import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
 import { FormField } from 'src/app/main/shared/model/form-field.model';
 import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
+import { CategoryService } from '../../../../shared/service/category.service';
 
 @Component({
   selector: 'app-categories-frm',
@@ -27,7 +28,10 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
     private router: Router,
     private toastService: ToastNotificationService,
     private route: ActivatedRoute,
-    private fb: FormBuilder, private navbarService: NavbarService) { }
+    private fb: FormBuilder,
+    private navbarService: NavbarService,
+    private categoryservice: CategoryService
+    ) { }
 
   ngOnInit(): void {
     //this.applyInterfaceRule();
@@ -84,6 +88,7 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
     }
 
     this.categoryFrm = this.fb.group({
+      id: [this.category.id],
       name: [this.category.name, [Validators.required]],
       description: [this.category.description, [Validators.required]]
     });
@@ -95,7 +100,10 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
     return {
       onSucess: {
         action: () => {
-          this.router.navigate(['home/' + new PatternUrl().category]);
+          // let inModal = this.formModel.configs.isModalForm;
+          // if (!inModal) {
+          //   this.router.navigate(['home/' + new PatternUrl().category]);
+          // }
         },
         toast: this.toastService.create({
           title: "ok",
@@ -117,7 +125,5 @@ export class CategoriesFrmComponent implements OnInit, EntityFormInterfaceCompon
   ngOnChanges(){
     this.ngOnInit();
   }
-
-
 
 }

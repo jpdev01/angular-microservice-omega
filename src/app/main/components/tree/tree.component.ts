@@ -2,6 +2,7 @@ import { Category } from 'src/app/main/shared/model/category.model';
 import { ModalService } from './../../shared/service/modal.service';
 import { ModalInfo } from './../../shared/model/modal-info.model';
 import { Component, Input, OnInit } from '@angular/core';
+import { CategoryService } from '../../shared/service/category.service';
 declare var $:any;
 @Component({
   selector: 'app-tree',
@@ -17,7 +18,7 @@ export class TreeComponent implements OnInit {
   isCategoryEntity = false;
 
 
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService, private categoryService: CategoryService) { }
 
   ngOnInit() {
   }
@@ -35,7 +36,8 @@ export class TreeComponent implements OnInit {
     this.modalEditInfo = new ModalInfo({
       title: "Categoria " + category.name,
       size: 'modal-lg',
-      id: 'categoryEditModal'
+      id: 'categoryEditModal',
+      onSave: () => this.categoryService.setEventSave(),
     });
     this.populateFrmModal();
   }

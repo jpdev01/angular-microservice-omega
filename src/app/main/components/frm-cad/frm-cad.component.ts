@@ -16,6 +16,7 @@ import { ModalService } from '../../shared/service/modal.service';
 import { FieldFormType } from '../../shared/enum/field-form-type.enum';
 import { ModalInfo } from '../../shared/model/modal-info.model';
 import { RadioInputService } from '../../shared/service/form/radio-input.service';
+import { CategoryService } from '../../shared/service/category.service';
 declare var $:any;
 
 @Component({
@@ -44,7 +45,8 @@ export class FrmCadComponent implements OnInit {
     private addressService: AddressService,
     private modalService: ModalService,
     private radioInputService: RadioInputService,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private categoryService: CategoryService
     ) { }
 
   ngOnInit() {
@@ -56,6 +58,9 @@ export class FrmCadComponent implements OnInit {
       this.hideNavbar();
     }
     this.populateHeader();
+    this.categoryService.getEventOnsave().subscribe((ok) => {
+      this.save();
+    })
   }
 
   getInfo(){
