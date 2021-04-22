@@ -37,7 +37,7 @@ export class TreeComponent implements OnInit {
       title: "Categoria " + category.name,
       size: 'modal-lg',
       id: 'categoryEditModal',
-      onSave: () => this.categoryService.setEventSave(),
+      onSave: () => this.categoryService.setEventSave()
     });
     this.populateFrmModal();
   }
@@ -46,7 +46,8 @@ export class TreeComponent implements OnInit {
     this.modalEditInfo = new ModalInfo({
       title: "Categoria ",
       size: 'modal-lg',
-      id: 'categoryEditModal'
+      id: 'categoryEditModal',
+      onSave: () => this.categoryService.setEventSave()
     });
     this.populateFrmModal();
     this.selected = new Category();
