@@ -1,3 +1,5 @@
+
+  <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto h-75 mb-4 w-100">
 <ul class="list-group list-group-flush">
   <li class="list-group-item" [ngClass]="selected === 'all' ? 'list-group-item-secondary' : ''"
     (click)="onClick('all')">Todos
@@ -15,6 +17,7 @@
     </div>
   </li>
 </ul>
+</div>
 <app-modal [modalInfo]="modalEditInfo" *ngIf="isCategoryEntity">
   <app-categories-frm [categoryId]="selected.id ? selected.id : undefined"></app-categories-frm>
 </app-modal>
