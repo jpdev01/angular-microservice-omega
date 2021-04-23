@@ -1,5 +1,11 @@
 <div class="col-12 h-100">
-  <div class="row" style="height: 90%;">
+  <ul class="nav nav-tabs" *ngIf="componentsNav" >
+    <li class="nav-item" *ngFor="let navItem of componentsNav">
+      <a class="nav-link" [ngClass]="selectedNav === navItem ? 'active' : ''" (click)="navItem.action()">{{navItem.title}}</a>
+    </li>
+  </ul>
+
+  <div class="row" style="height: 90%;" *ngIf="selectedNav == componentsNav[0]">
     <div class="col-6 h-100">
       <app-select-products></app-select-products>
     </div>
@@ -7,7 +13,13 @@
       <app-select-customer [customer]="customer"></app-select-customer>
     </div>
   </div>
+
+  <div class="row" style="height: 90%;" *ngIf="selectedNav == componentsNav[1]">
+    <app-payment></app-payment>
+  </div>
+
   <div class="row justify-content-end">
     <button class="btn btn-sm btn-light" (click)="save()">Salvar</button>
   </div>
+
 </div>

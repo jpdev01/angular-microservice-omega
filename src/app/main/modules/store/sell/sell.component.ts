@@ -1,3 +1,4 @@
+import { IconNavbar } from './../../../shared/model/icon-navbar.model';
 import { Sale } from './../../../shared/model/sale.model';
 import { SaleApiService } from './../../../shared/service/api/sale-api.service';
 import { CustomersApiService } from './../../../shared/service/customers-api.service';
@@ -21,6 +22,8 @@ export class SellComponent implements OnInit {
   products: Product[];
   customer: Customer;
   sale = new Sale();
+  componentsNav: IconNavbar[];
+  selectedNav: IconNavbar;
 
   constructor(
     private radioService: RadioInputService,
@@ -30,6 +33,7 @@ export class SellComponent implements OnInit {
   ){
 
   }
+
 
   public save(): void {
     this.products = this.getListProduct();
@@ -50,10 +54,33 @@ export class SellComponent implements OnInit {
   }
 
   ngOnInit(){
+    this.initNav();
     this.radioService.getRadioEvent().subscribe(event => {
       let customerId = event.target.value;
       this.customerApiService.getById(customerId).subscribe(customer => this.customer = customer);
-    })
+    });
+  }
+
+  initNav(): void {
+    this.componentsNav = [
+      new IconNavbar({
+        name: 'Produtos',
+        action: () => {
+          this.changeSelectedNav(0);
+        }
+      }),
+      new IconNavbar({
+        name: 'Pagamento',
+        action: () => {
+          this.changeSelectedNav(1);
+        }
+      })
+    ];
+    this.selectedNav = this.componentsNav[0];
+  }
+
+  changeSelectedNav(index: number): void{
+    this.selectedNav = this.componentsNav[index];
   }
 }
 
