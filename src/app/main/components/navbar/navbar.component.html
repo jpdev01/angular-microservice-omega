@@ -1,4 +1,4 @@
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark" style="height: 8%;">
   <a class="navbar-brand" href="#">{{title}}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <div class="item-navbar" *ngFor="let item of componentsNavbar; first as isFirst">
-      <li class="nav-item active" *ngIf="!item.itens">
+      <li class="nav-item" *ngIf="!item.itens">
         <a class="nav-link" href="{{ item.link }}" target='{{patternUrl.getTarget(item)}}'>
           <i class="{{item.image}}"></i>
           {{ item.title }}

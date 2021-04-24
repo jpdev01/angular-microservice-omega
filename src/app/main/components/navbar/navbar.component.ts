@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
       [
         new IconNavbar({name:'Aniversários', image:'', link:''})
       ]}),
-      new IconNavbar({name:'Logout', image:'', link:''})
+      new IconNavbar({name:'Logout', image:'fa fa-sign-out', link:''})
     ];
   }
 
