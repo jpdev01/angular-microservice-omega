@@ -1,3 +1,4 @@
+import { PaginationModule } from './../../../components/pagination/pagination.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -28,7 +29,8 @@ import { TreeModule } from '../../../components/tree/tree.module';
     ListEntityModule,
     EntityInfoModule,
     FrmCadModule,
-    TreeModule
+    TreeModule,
+    PaginationModule
   ],
   providers: [Utils, ProductsApiService, SearchFilterPipe]
 })
