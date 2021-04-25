@@ -17,7 +17,6 @@ import { UserApiService } from 'src/app/main/shared/service/user-api.service';
 import {ListEntityModule} from 'src/app/main/components/list-entity/list-entity.module';
 import {EntityInfoModule} from 'src/app/main/components/entity-info/entity-info.module';
 
-
 @NgModule({
   declarations: [UsersComponent, UsersListComponent, UserFrmComponent, UserInfoComponent],
   imports: [

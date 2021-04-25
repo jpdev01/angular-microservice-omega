@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
         new IconNavbar({name:'Produtos', image:'', link: patternUrl.getFieldHome(patternUrl.product) }),
         new IconNavbar({name:'Categorias', image:'', link: patternUrl.getFieldHome(patternUrl.category)}),
         new IconNavbar({name:'Fornecedores', image:'', link: patternUrl.getFieldHome(patternUrl.provider)}),
+        new IconNavbar({name:'Usuários', image:'', link: patternUrl.getFieldHome(patternUrl.user)}),
         new IconNavbar({name:'Vendas', image:'', link:''}),
         new IconNavbar({name:'Vendas condicionais', image:'', link:''})
       ]}),
