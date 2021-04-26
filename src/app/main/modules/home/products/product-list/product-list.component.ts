@@ -1,3 +1,4 @@
+import { ProviderApiService } from 'src/app/main/shared/service/api/provider-api.service';
 import { CategoryApiService } from 'src/app/main/shared/service/api/category-api.service';
 
 import { CategoriesListComponent } from './../../categories/categories-list/categories-list.component';
@@ -23,6 +24,7 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
   listData: EntityListSerialize;
   categoriesTree;
   optionsTree;
+  entityTree: any;
 
   constructor(
     public serviceApi: ProductsApiService,
@@ -30,7 +32,8 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
     private router: Router,
     private service: ProductsService,
     public navbarService: NavbarService,
-    private categoriesApiService: CategoryApiService
+    private categoriesApiService: CategoryApiService,
+    private providerApiService: ProviderApiService
   ) {
     super(serviceApi, navbarService);
   }
@@ -73,29 +76,77 @@ export class ProductListComponent extends EntityListAbstract implements OnInit {
 
   public getCategoriesTree(): void {
     this.categoriesApiService.getAll().subscribe(categories => {
-      this.categoriesTree = categories.content;
-      this.getTreeOnClick();
+      this.entityTree = {
+        fields: categories.content,
+        type: new PatternUrl().category,
+        onclick: (category) => {
+          if (category === "all") {
+            this.serviceApi.getAll().subscribe(products => {
+              this.listData.entity = products.content;
+            })
+          }
+          else {
+            this.serviceApi.getAllFromCategory(category).subscribe((products) => {
+              this.listData.entity = products;
+            })
+          }
+        }
+      };
+      //this.getTreeOnClick();
     })
   }
 
-  private getTreeOnClick(): void {
-    this.categoriesTree.onclick = (category) => {
-      if (category === "all") {
-        this.serviceApi.getAll().subscribe(products => {
-          this.listData.entity = products.content;
-        })
+  public getProvidersTree(): void {
+    this.providerApiService.getAll().subscribe(providers => {
+      this.entityTree = {
+        fields: providers.content,
+        type: new PatternUrl().provider,
+        onclick: (provider) => {
+          if (provider === "all") {
+            this.serviceApi.getAll().subscribe(products => {
+              this.listData.entity = products.content;
+            })
+          }
+          else {
+            this.serviceApi.getAllFromProvider(provider).subscribe((products) => {
+              this.listData.entity = products;
+            })
+          }
+        }
       }
-      else {
-        this.serviceApi.getAllFromCategory(category).subscribe((products) => {
-          this.listData.entity = products;
-        })
-      }
-    }
+    });
   }
+
+  // private getTreeOnClick(): void {
+  //   this.categoriesTree.onclick = (element) => {
+  //     if (element === "all") {
+  //       this.serviceApi.getAll().subscribe(products => {
+  //         this.listData.entity = products.content;
+  //       })
+  //     }
+  //     else {
+  //       this.serviceApi.getAllFromCategory(element).subscribe((products) => {
+  //         this.listData.entity = products;
+  //       })
+  //     }
+  //   }
+  // }
 
   public initOptionsPagination(): void {
     this.optionsTree = {
-      elements: ["Categorias", "Fornecedores"]
+      elements: [{
+        title: "Categorias",
+        onclick: () => {
+          this.entityTree = this.getCategoriesTree();
+        },
+        entityType: new PatternUrl().category
+      }, {
+        title: "Fornecedores",
+        onclick: () => {
+          this.entityTree = this.getProvidersTree();
+        },
+        entityType: new PatternUrl().provider
+      }]
     }
   }
 

@@ -1,3 +1,4 @@
+import { Provider } from 'src/app/main/shared/model/provider.model';
 import { Category } from '../../model/category.model';
 import { ResponsePageable } from '../../model/responsePageable.model';
 import { Observable } from 'rxjs';
@@ -38,6 +39,10 @@ export class ProductsApiService implements ServiceApiInterface {
 
   public getAllFromCategory(category: Category): Observable<Product>{
     return this.httpClient.get<Product>(this.apiUrl + '/product/category/' + category.id, this.httpOptions);
+  }
+
+  public getAllFromProvider(provider: Provider): Observable<Product>{
+    return this.httpClient.get<Product>(this.apiUrl + '/product/provider/' + provider.id, this.httpOptions);
   }
 
 

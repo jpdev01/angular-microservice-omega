@@ -6,8 +6,8 @@
       </a>
     </li> -->
     <li class="page-item" *ngFor="let option of options.elements">
-      <a class="page-link text-dark" href="#">
-        {{option}}
+      <a class="page-link text-dark" (click)="option.onclick()">
+        {{option.title}}
       </a>
     </li>
     <!-- <li class="page-item">

@@ -15,7 +15,7 @@
     </div>
   </li>
   <li class="list-group-item" [ngClass]="selected === entity ? 'list-group-item-secondary' : ''"
-    *ngFor="let entity of listData" (click)="onClick(entity)">
+    *ngFor="let entity of listData.fields" (click)="onClick(entity)">
     <div class="col-12 p-0">
       <div class="row">
         <div class="col-10">

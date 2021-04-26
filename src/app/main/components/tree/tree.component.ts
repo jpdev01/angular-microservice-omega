@@ -3,6 +3,7 @@ import { ModalService } from './../../shared/service/modal.service';
 import { ModalInfo } from './../../shared/model/modal-info.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { CategoryService } from '../../shared/service/category.service';
+import { PatternUrl } from '../../shared/utils/PatternUrl.model';
 declare var $:any;
 @Component({
   selector: 'app-tree',
@@ -54,7 +55,8 @@ export class TreeComponent implements OnInit {
   }
 
   populateFrmModal(): void{
-    if (this.entityType === "category"){
+    let pattern = new PatternUrl();
+    if (this.listData.type === pattern.category){
       this.isCategoryEntity = true;
     }
     this.modalService.setId(this.modalEditInfo.id);
