@@ -1,24 +1,24 @@
 
-import { NavbarService } from 'src/app/main/shared/service/navbar.service';
+import { NavbarService } from '../../../../shared/service/navbar.service';
 import { ToastNotificationService } from './../../../../shared/service/toast-notification.service';
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/main/shared/model/user.model';
+import { User } from '../../../../shared/model/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 import { FormField } from '../../../../shared/model/form-field.model';
 import { FormSerializer } from '../../../../shared/model/form-serializer.model';
-import { InterfaceRule } from 'src/app/main/shared/model/interface-rule.model';
+import { InterfaceRule } from '../../../../shared/model/interface-rule.model';
 import { UserService } from '../../../../shared/service/user.service';
-import { UserApiService } from '../../../../shared/service/user-api.service';
-import { Permission } from 'src/app/main/shared/enum/permission.enum';
-import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
-import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
-import { EntityFrmAbstract } from 'src/app/main/shared/abstract/entity-frm.abstract';
-import { EntityFormInterfaceComponent } from 'src/app/main/shared/interface/entity-form.interface';
-import { FieldFormType } from 'src/app/main/shared/enum/field-form-type.enum';
+import { UserApiService } from '../../../../shared/service/api/user-api.service';
+import { Permission } from '../../../../shared/enum/permission.enum';
+import { FormGroupSerializer } from '../../../../shared/model/form-group-serializer.model';
+import { PatternUrl } from '../../../../shared/utils/PatternUrl.model';
+import { EntityFrmAbstract } from '../../../../shared/abstract/entity-frm.abstract';
+import { EntityFormInterfaceComponent } from '../../../../shared/interface/entity-form.interface';
+import { FieldFormType } from '../../../../shared/enum/field-form-type.enum';
 
 @Component({
   selector: 'app-user-frm',
@@ -44,6 +44,7 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
   }
 
   ngOnInit(): void {
+    this.serviceApi.getForm(new User()).subscribe(result => console.log(result));
     this.applyInterfaceRule();
     this.getIdByUrl();
     if (this.userId) {

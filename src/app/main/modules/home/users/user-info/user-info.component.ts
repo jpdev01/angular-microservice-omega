@@ -3,11 +3,11 @@ import { NavbarService } from './../../../../shared/service/navbar.service';
 import { UserService } from '../../../../shared/service/user.service';
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/main/shared/model/user.model';
+import { User } from '../../../../shared/model/user.model';
 import { EntityInfoSerializer } from '../../../../shared/model/entity-info-serializer.model';
-import { UserApiService } from 'src/app/main/shared/service/user-api.service';
-import {UserInfoSerialize} from 'src/app/main/shared/serialize/user-info-serialize.model';
-import { FormGroupSerializer } from 'src/app/main/shared/model/form-group-serializer.model';
+import { UserApiService } from '../../../../shared/service/api/user-api.service';
+import {UserInfoSerialize} from '../../../../shared/serialize/user-info-serialize.model';
+import { FormGroupSerializer } from '../../../../shared/model/form-group-serializer.model';
 
 @Component({
   selector: 'app-user-info',

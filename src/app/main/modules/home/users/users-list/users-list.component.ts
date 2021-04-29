@@ -2,15 +2,15 @@ import { NavbarService } from './../../../../shared/service/navbar.service';
 import { Utils } from '../../../../shared/utils/Utils.model';
 import { ResponsePageable } from '../../../../shared/model/responsePageable.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from 'src/app/main/shared/model/user.model';
-import { UserService } from 'src/app/main/shared/service/user.service';
+import { User } from '../../../../shared/model/user.model';
+import { UserService } from '../../../../shared/service/user.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
-import { UserApiService } from 'src/app/main/shared/service/user-api.service';
-import { EntityListAbstract } from 'src/app/main/shared/abstract/entity-list.abstract';
-import { EntityListInterfaceComponent } from 'src/app/main/shared/interface/entity-list.interface';
-import { EntityListSerialize } from 'src/app/main/shared/serialize/entity-list-serialize.model';
-import { PatternUrl } from 'src/app/main/shared/utils/PatternUrl.model';
+import { UserApiService } from '../../../../shared/service/api/user-api.service';
+import { EntityListAbstract } from '../../../../shared/abstract/entity-list.abstract';
+import { EntityListInterfaceComponent } from '../../../../shared/interface/entity-list.interface';
+import { EntityListSerialize } from '../../../../shared/serialize/entity-list-serialize.model';
+import { PatternUrl } from '../../../../shared/utils/PatternUrl.model';
 
 @Component({
   selector: 'app-users-list',

@@ -13,7 +13,7 @@ import { UserFrmComponent } from './user-frm/user-frm.component';
 import { NavbarListModule } from 'src/app/main/components/navbar-list/navbar-list.module';
 import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
 import { FrmCadComponent } from 'src/app/main/components/frm-cad/frm-cad.component';
-import { UserApiService } from 'src/app/main/shared/service/user-api.service';
+import { UserApiService } from 'src/app/main/shared/service/api/user-api.service';
 import {ListEntityModule} from 'src/app/main/components/list-entity/list-entity.module';
 import {EntityInfoModule} from 'src/app/main/components/entity-info/entity-info.module';
 
