@@ -4,12 +4,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="navbar && navbar.fields">
     <ul class="navbar-nav mr-auto">
-      <div class="item-navbar" *ngFor="let item of componentsNavbar; first as isFirst">
-      <li class="nav-item" *ngIf="!item.itens">
-        <a class="nav-link" href="{{ item.link }}" target='{{patternUrl.getTarget(item)}}'>
-          <i class="{{item.image}}"></i>
+      <div class="item-navbar" *ngFor="let item of navbar.fields; first as isFirst">
+      <li class="nav-item" *ngIf="!item.fields">
+        <a class="nav-link" *ngIf="item.link" href="{{ item.link }}" target='{{patternUrl.getTarget(item)}}'>
+          <i class="{{item.icon}}"></i>
           {{ item.title }}
           <span class="sr-only" *ngIf="isFirst">(current)</span>
           </a>
@@ -17,9 +17,9 @@
 
 
 
-      <li class="nav-item dropdown" *ngIf="item.itens">
+      <li class="nav-item dropdown" *ngIf="item.fields">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="{{item.image}}">
+          <i class="{{item.icon}}">
             <span class="badge badge-primary"></span>
           </i>
           {{item.title}}

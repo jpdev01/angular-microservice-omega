@@ -1,4 +1,4 @@
-export class Form {
+export class Eform {
   nameId: string;
   fields: any[];
 }

@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ServiceApiInterface } from '../../interface/service-api.interface';
-import {Form} from '../../../shared/model/form/EForm.model';
+import {Eform} from '../../../shared/model/form/EForm.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +39,6 @@ export class UserApiService implements ServiceApiInterface {
   }
 
   public  getForm(user: User): Observable<any> {
-    return this.httpClient.get<Form>(this.apiUrl + '/user/eform/build', this.httpOptions);
+    return this.httpClient.get<Eform>(this.apiUrl + '/user/eform/build', this.httpOptions);
   }
 }

@@ -19,6 +19,7 @@ import { PatternUrl } from '../../../../shared/utils/PatternUrl.model';
 import { EntityFrmAbstract } from '../../../../shared/abstract/entity-frm.abstract';
 import { EntityFormInterfaceComponent } from '../../../../shared/interface/entity-form.interface';
 import { FieldFormType } from '../../../../shared/enum/field-form-type.enum';
+import {Eform} from '../../../../shared/model/form/EForm.model';
 
 @Component({
   selector: 'app-user-frm',
@@ -44,7 +45,7 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
   }
 
   ngOnInit(): void {
-    this.serviceApi.getForm(new User()).subscribe(result => console.log(result));
+    this.serviceApi.getForm(new User()).subscribe((result: Eform) => console.log(result));
     this.applyInterfaceRule();
     this.getIdByUrl();
     if (this.userId) {
@@ -63,32 +64,32 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
     })
   }
 
-  public getOnSave(): {onSucess: {}, onError: {}} {
-    return {
-        onSucess: {
-          action: () => {
-            this.router.navigate(['home/' + new PatternUrl().user]);
-          },
-          toast: this.toastService.create({
-            title: "ok",
-            text: "Usuário salvo com sucesso!"
-          })
-        },
-        onError: {
-          action: () => {
-            console.log("Erro ao salvar usuario!");
-          },
-          toast: this.toastService.create({
-            title: "ok",
-            text: "Usuário salvo com sucesso!"
-          })
-        }
-    }
-  }
+  // public getOnSave(): {onSucess: {}, onError: {}} {
+  //   return {
+  //       onSucess: {
+  //         action: () => {
+  //           this.router.navigate(['home/' + new PatternUrl().user]);
+  //         },
+  //         toast: this.toastService.create({
+  //           title: "ok",
+  //           text: "Usuário salvo com sucesso!"
+  //         })
+  //       },
+  //       onError: {
+  //         action: () => {
+  //           console.log("Erro ao salvar usuario!");
+  //         },
+  //         toast: this.toastService.create({
+  //           title: "ok",
+  //           text: "Usuário salvo com sucesso!"
+  //         })
+  //       }
+  //   }
+  // }
 
-  getIdByUrl(): void {
-    this.route.params.subscribe(params => this.userId = params['id']);
-  }
+  // getIdByUrl(): void {
+  //   this.route.params.subscribe(params => this.userId = params['id']);
+  // }
 
   initFormBuilder(): void {
     if (!this.user){
@@ -141,8 +142,7 @@ export class UserFrmComponent extends EntityFrmAbstract implements OnInit, Entit
     this.formModel = new FormSerializer({
       entityName: "Usuário",
       groups: [group],
-      serviceApi: this.serviceApi,
-      onSave: this.getOnSave()
+      serviceApi: this.serviceApi
     });
   }
 

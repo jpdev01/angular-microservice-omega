@@ -12,6 +12,8 @@ export class PatternUrl {
 
     abstract = 'abstract';
 
+    eformBuild = "eform/build";
+
     getFieldHome(url: string): string{
       return '/' + this.home + '/' + url;
     }
@@ -20,6 +22,7 @@ export class PatternUrl {
       if (item.newTab){
         return "_blank";
       }
+      return "";
     }
 
 }
