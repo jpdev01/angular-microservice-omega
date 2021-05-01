@@ -12,6 +12,7 @@ import { EformApiService } from '../../../shared/service/api/eform-api.service';
 export class EformComponent implements OnInit {
   eformLink: string;
   eform: Eform;
+  withHeader: boolean;
 
   constructor(
     private route: ActivatedRoute,

@@ -6,6 +6,6 @@ import { EformComponent } from './eform.component';
   imports: [
     CommonModule
   ],
-  declarations: [EformComponent]
+  declarations: [EformComponent], exports: [EformComponent]
 })
 export class EformModule { }
