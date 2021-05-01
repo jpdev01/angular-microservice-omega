@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: 'product', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
     { path: 'category', loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule) },
     { path: 'provider', loadChildren: () => import('./providers/providers.module').then(m => m.ProvidersModule) },
-    { path: 'eform/:eformLink', component: EformComponent }
+    { path: 'eform/:component', component: EformComponent }
   ]
   },
   { path: 'home', component: HomeComponent }

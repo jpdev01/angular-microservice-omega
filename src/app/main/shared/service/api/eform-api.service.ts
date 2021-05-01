@@ -18,7 +18,7 @@ export class EformApiService {
   }
 
   public get(url: String): Observable<Eform> {
-    return this.httpClient.get<Eform>(this.apiUrl  + url, this.httpOptions);
+    return this.httpClient.get<Eform>(this.apiUrl  + "/" + url, this.httpOptions);
   }
 
 }
