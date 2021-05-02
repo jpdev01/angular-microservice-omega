@@ -3,7 +3,7 @@ import { FieldFormType } from "../enum/field-form-type.enum";
 export class FormField {
   id: string;
   label: string;
-  type: FieldFormType;
+  fieldType: FieldFormType;
   defaultValue: string = "";
   classes = "";
   formControlName: string;
@@ -16,6 +16,7 @@ export class FormField {
   listOptions: string;
   onclick: any;
   icon: string;
+  group: string;
 
   constructor(options: {
     id?: string;
@@ -43,7 +44,7 @@ export class FormField {
 
     this.id = options.id;
     this.label = options.label;
-    this.type = options.type;
+    this.fieldType = options.type;
     this.defaultValue = options.defaultValue;
     if (options.style) {
       this.classes = options.style;
@@ -63,38 +64,38 @@ export class FormField {
   }
 
   public isTextAreaField(): boolean {
-    return this.type === FieldFormType.TEXTAREA;
+    return this.fieldType === FieldFormType.TEXTAREA;
   }
 
   public isTextField(): boolean {
-    return this.type === FieldFormType.TEXT;
+    return this.fieldType === FieldFormType.TEXT;
   }
 
   public isListField(): boolean {
-    return this.type === FieldFormType.LIST;
+    return this.fieldType === FieldFormType.LIST;
   }
 
   public isSelectField(): boolean {
-    return this.type === FieldFormType.SELECT;
+    return this.fieldType === FieldFormType.SELECT;
   }
 
   public isPasswordField(): boolean {
-    return this.type === FieldFormType.PASSWORD;
+    return this.fieldType === FieldFormType.PASSWORD;
   }
 
   public isDateField(): boolean {
-    return this.type === FieldFormType.DATE;
+    return this.fieldType === FieldFormType.DATE;
   }
 
   public isEmailField(): boolean {
-    return this.type === FieldFormType.EMAIL;
+    return this.fieldType === FieldFormType.EMAIL;
   }
 
   public getTypeAsString(): string {
-    return FieldFormType[this.type];
+    return FieldFormType[this.fieldType];
   }
 
   public isNumberField(): boolean {
-    return this.type === FieldFormType.NUMBER;
+    return this.fieldType === FieldFormType.NUMBER;
   }
 }
