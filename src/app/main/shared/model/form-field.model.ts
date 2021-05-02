@@ -34,6 +34,7 @@ export class FormField {
     onclick?: any;
     mask?: any;
     listOptions?: string;
+    group?: string;
     config?: {
       label: {
         size: string
@@ -59,7 +60,7 @@ export class FormField {
 
     this.icon = options.icon;
     this.onclick = options.onclick;
-
+    this.group = options.group;
 
   }
 

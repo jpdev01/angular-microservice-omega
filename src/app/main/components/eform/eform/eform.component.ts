@@ -84,6 +84,7 @@ export class EformComponent implements OnInit {
 
       if (!groups[groupIndex]) {
         groups[groupIndex] = {fields: []};
+        //groups.push({fields: []});
         groups[groupIndex].fields = [];
       }
 
