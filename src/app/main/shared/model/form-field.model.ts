@@ -21,9 +21,12 @@ export class FormField {
   constructor(options: {
     id?: string;
     icon?: string;
-    options?: string;
+    options?: any;
     label?: string;
+    // JS
     type?: FieldFormType;
+    //JAVA
+    fieldType?: string;
     defaultValue?: string;
     style?: string;
     row?: string;
@@ -42,10 +45,9 @@ export class FormField {
     };
     formGroupName?: string;
   } = {}) {
-
     this.id = options.id;
     this.label = options.label;
-    this.fieldType = options.type;
+    this.fieldType = FieldFormType[options.fieldType];
     this.defaultValue = options.defaultValue;
     if (options.style) {
       this.classes = options.style;
@@ -56,7 +58,7 @@ export class FormField {
     this.onchange = options.onchange;
     this.mask = options.mask;
     this.formControlName = options.formGroupName;
-    this.listOptions = options.listOptions;
+    this.fields = options.options;
 
     this.icon = options.icon;
     this.onclick = options.onclick;

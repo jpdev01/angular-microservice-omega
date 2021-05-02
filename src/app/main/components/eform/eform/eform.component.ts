@@ -45,9 +45,6 @@ export class EformComponent implements OnInit {
       field = eform.fields[i];
       eform.fields[i] = new FormField(field);
     }
-    eform.fields.forEach((field: any) => {
-      field = new FormField(field);
-    });
     return eform.fields;
   }
 
