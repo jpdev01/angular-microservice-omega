@@ -1,3 +1,4 @@
+<app-header>
 <div class="card-header panel-heading" *ngIf="withHeader">
   <div class="panel-title card-title">{{entityName}}: {{getEntityTitle()}}</div>
 </div>
@@ -145,27 +146,4 @@
 
   </div>
 </div>
-
-<div class="panel-footer card-footer" style="width: 100%; text-align: right;" *ngIf="withHeader">
-
-  <div class="btn-group"
-    style="display:inline-block; -moz-user-select: none; -webkit-user-select:none; user-select:none;">
-    <!-- <button data-toggle="dropdown" class="btn btn-default btn-sm dropdown-toggle">
-      <i class="fa fa-th blue"></i>
-      Dropdown test</button>
-    <ul class="dropdown-menu pull-left" aria-labelledby="drop2" widget="tdropdown">
-      <li><a style="cursor: pointer">
-          <i class="far fa-check-circle" style="padding: 4px"></i>
-          <span>PostAction</span>
-        </a>
-      </li>
-      <li><a onclick="" style="cursor: pointer">
-          <i class="fa fa-link" style="padding: 4px"></i>
-          <span>Shortcut to customers</span>
-        </a>
-      </li>
-    </ul> -->
-    <button type="button" class="btn btn-secondary" onclick="cancel()">Cancelar</button>
-    <button type="button" class="btn btn-light" (click)="save()">Salvar</button>
-  </div>
-</div>
+</app-header>
