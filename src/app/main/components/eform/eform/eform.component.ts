@@ -1,3 +1,4 @@
+import { UserApiService } from './../../../shared/service/api/user-api.service';
 import { group } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Eform } from './../../../shared/model/form/EForm.model';
@@ -6,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { EformApiService } from '../../../shared/service/api/eform-api.service';
 import { FormField } from 'src/app/main/shared/model/form-field.model';
+import { ApiService } from 'src/app/main/shared/service/api/api.service';
 
 @Component({
   selector: 'app-eform',
@@ -17,11 +19,13 @@ export class EformComponent implements OnInit {
   eformModel: Eform;
   withHeader: boolean;
   formGroup: FormGroup;
+  public header: any;
 
   constructor(
     private route: ActivatedRoute,
     private eformApi: EformApiService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private api: ApiService
   ) { }
 
   ngOnInit() {
@@ -36,6 +40,7 @@ export class EformComponent implements OnInit {
       eform.fields = this.getFieldsWithType(eform);
       this.eformModel = eform;
       this.buildEform();
+      this.initHeader();
     });
   }
 
@@ -89,6 +94,26 @@ export class EformComponent implements OnInit {
     }
     this.eformModel.groups = groups;
     console.log(this.eformModel);
+  }
+
+  private initHeader(): void{
+    this.header = {
+      component: this.component,
+      service: this.api,
+      eform: this.formGroup,
+      ok: {
+        event: this.save,
+        onSave: this.eformModel.onSave,
+        onError: this.eformModel.onSaveError
+      }
+    }
+  }
+
+  private save(component: string, service: any, formGroup: any): void{
+    if (service.setComponent){
+      service.setComponent(component);
+    }
+    service.save(formGroup.value);
   }
 
   // CONTROL FIELDS
