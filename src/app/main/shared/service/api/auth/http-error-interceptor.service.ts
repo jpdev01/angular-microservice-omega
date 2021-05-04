@@ -4,19 +4,26 @@ import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/internal/operators';
 import { Router } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
+import { LoggedService } from '../../logged.service';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router, private utils: Utils){}
+  constructor(private router: Router, private utils: Utils, private loggedService: LoggedService){}
 
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       return next.handle(request)
       .pipe(
         catchError((err, caught: Observable<HttpEvent<any>>) => {
-          if (err instanceof HttpErrorResponse && (err.status == 403 || err.status == 401)) {
-            this.router.navigate(['login']);
-            return of(err as any);
+          let permissionError = err.status == 403 || err.status == 401;
+          if (err instanceof HttpErrorResponse && (permissionError)) {
+            if (err.status == 401) {
+              this.loggedService.efetuarLogout();
+            } else {
+              this.router.navigate(['login']);
+              return of(err as any);
+            }
           }
           throw err;
         })

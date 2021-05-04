@@ -3,11 +3,14 @@ import { group } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Eform } from './../../../shared/model/form/EForm.model';
 import { PatternUrl } from '../../../shared/utils/PatternUrl.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { EformApiService } from '../../../shared/service/api/eform-api.service';
 import { FormField } from 'src/app/main/shared/model/form-field.model';
 import { ApiAllService } from '../../../shared/service/api/apiAll.service';
+import { ToastNotification } from 'src/app/main/shared/model/toast-notification.model';
+import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
+import { EventsBindingService } from '../events-binding.service';
 
 @Component({
   selector: 'app-eform',
@@ -25,17 +28,26 @@ export class EformComponent implements OnInit {
     private route: ActivatedRoute,
     private eformApi: EformApiService,
     private fb: FormBuilder,
-    private apiGet: ApiAllService
+    private apiGet: ApiAllService,
+    private router: Router,
+    private toastService: ToastNotificationService,
+    private eformBindingService: EventsBindingService,
+    private userApiService: UserApiService
   ) { }
 
   ngOnInit() {
     this.getEFormByURI();
+    this.eformBindingService.getEventSave().subscribe((save: boolean) => {
+      if (save) {
+        this.save();
+      }
+    })
   }
 
   private getEFormByURI() {
     this.getURI();
     let patternUrl = new PatternUrl();
-    this.eformApi.get(this.component + "/" + patternUrl.eformBuild).subscribe((eform: Eform)=> {
+    this.eformApi.get(this.component + "/" + patternUrl.eformBuild).subscribe((eform: Eform) => {
       eform = new Eform(eform);
       eform.fields = this.getFieldsWithType(eform);
       this.eformModel = eform;
@@ -44,8 +56,8 @@ export class EformComponent implements OnInit {
     });
   }
 
-  private getFieldsWithType(eform: Eform): FormField[]{
-    for (let i = 0; i < eform.fields.length; i++){
+  private getFieldsWithType(eform: Eform): FormField[] {
+    for (let i = 0; i < eform.fields.length; i++) {
       let field: {};
       field = eform.fields[i];
       eform.fields[i] = new FormField(field);
@@ -85,7 +97,7 @@ export class EformComponent implements OnInit {
       let groupIndex = fields[fieldIndex].group;
 
       if (!groups[groupIndex]) {
-        groups[groupIndex] = {fields: []};
+        groups[groupIndex] = { fields: [] };
         //groups.push({fields: []});
         groups[groupIndex].fields = [];
       }
@@ -96,7 +108,7 @@ export class EformComponent implements OnInit {
     console.log(this.eformModel);
   }
 
-  private initHeader(): void{
+  private initHeader(): void {
     this.header = {
       component: this.component,
       service: this.apiGet.getByString(this.component),
@@ -109,11 +121,33 @@ export class EformComponent implements OnInit {
     }
   }
 
-  private save(component: string, service: any, formGroup: any): void{
-    if (service.setComponent){
-      service.setComponent(component);
-    }
-    service.save(formGroup.value).subscribe(result=> console.log(result));
+
+  // private save(component: string, service: any, formGroup: any): void{
+  //   if (service.setComponent){
+  //     service.setComponent(component);
+  //   }
+  //   let onSave = this.eformModel.onSave;
+  //   service.save(formGroup.value).subscribe(sucess => {
+  //     this.createToastNotification(onSave.message);
+  //     if (onSave.route){
+  //       this.router.navigate([onSave.route]);
+  //     }
+  //   });
+  // }
+
+  private save(): void {
+    let service = this.apiGet.getByString(this.component);
+    let onSave = this.eformModel.onSave;  
+    this.userApiService.save(this.formGroup.value).subscribe(sucess => {
+
+    }, error => {
+
+    });
+  }
+
+  private createToastNotification(toast: ToastNotification): void {
+    this.toastService.create(toast);
+    this.toastService.show();
   }
 
   // CONTROL FIELDS

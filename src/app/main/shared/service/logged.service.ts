@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoggedService {
 
-  constructor(private router: Router){}
+  constructor(private router: Router) { }
 
   private situacaoLoginUsuario = new BehaviorSubject<boolean>(false);
 
@@ -16,17 +16,17 @@ export class LoggedService {
   // }
 
   definirTokenDeAutenticacao(token: string) {
-      localStorage.setItem('token', token);
+    localStorage.setItem('token', token);
 
-      // "Avisa" que o usuário agora está logado
-      this.situacaoLoginUsuario.next(true);
+    // "Avisa" que o usuário agora está logado
+    this.situacaoLoginUsuario.next(true);
   }
 
   efetuarLogout() {
-      localStorage.removeItem('token');
+    localStorage.removeItem('token');
 
-      // "Avisa" que o usuário NÂO está logado
-      this.situacaoLoginUsuario.next(false);
-      this.router.navigate(['login']);
+    // "Avisa" que o usuário NÂO está logado
+    this.situacaoLoginUsuario.next(false);
+    this.router.navigate(['login']);
   }
 }

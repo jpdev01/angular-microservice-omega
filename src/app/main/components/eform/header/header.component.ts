@@ -1,5 +1,6 @@
 import { UserApiService } from './../../../shared/service/api/user-api.service';
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { EventsBindingService } from '../events-binding.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ export class HeaderComponent implements OnInit {
   @Input() header;
 
   constructor(
-    private api: UserApiService
+    private api: UserApiService,
+    private eformBindingService: EventsBindingService
   ) { }
 
   ngOnInit() {
@@ -18,15 +20,16 @@ export class HeaderComponent implements OnInit {
   }
 
   public ok(): void{
-    if (this.header && this.header.ok && this.header.ok.event){
-      if (this.header.service && this.header.eform){
-        this.header.ok.event(this.header.component, this.api, this.header.eform);
-      } else {
-        this.header.ok.event(this.header.component);
-      }
-    } else {
-      console.log("not save function find");
-    }
+    this.eformBindingService.setEventSave(true);
+    // if (this.header && this.header.ok && this.header.ok.event){
+    //   if (this.header.service && this.header.eform){
+    //     this.header.ok.event(this.header.component, this.api, this.header.eform);
+    //   } else {
+    //     this.header.ok.event(this.header.component);
+    //   }
+    // } else {
+    //   console.log("not save function find");
+    // }
   }
 
 
