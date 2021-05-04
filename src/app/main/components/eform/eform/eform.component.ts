@@ -24,6 +24,8 @@ export class EformComponent implements OnInit {
   withHeader: boolean;
   formGroup: FormGroup;
   public header: any;
+  entityId: number;
+  entity: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,13 +50,28 @@ export class EformComponent implements OnInit {
   private getEFormByURI() {
     this.getURI();
     let patternUrl = new PatternUrl();
+
     this.eformApi.get(this.component + "/" + patternUrl.eformBuild).subscribe((eform: Eform) => {
-      eform = new Eform(eform);
-      eform.fields = this.getFieldsWithType(eform);
-      this.eformModel = eform;
-      this.buildEform();
-      this.initHeader();
+      this.buildEform(eform);
     });
+
+
+    if (this.entityId) {
+      let service: ServiceApiInterface = this.apiGet.getByString(this.component);
+      service.getById(this.entityId).subscribe((entity) => {
+        this.entity = entity;
+      })
+
+    }
+
+  }
+
+  private buildEform(eform) {
+    eform = new Eform(eform);
+    eform.fields = this.getFieldsWithType(eform);
+    this.eformModel = eform;
+    this.buildEformImpl();
+    this.initHeader();
   }
 
   private getFieldsWithType(eform: Eform): FormField[] {
@@ -68,16 +85,22 @@ export class EformComponent implements OnInit {
 
   private getURI() {
     this.route.params.subscribe(params => this.component = params['component']);
+    this.route.params.subscribe(params => this.entityId = params['id']);
   }
 
-  private buildEform(): void {
+  private buildEformImpl(): void {
     // monta os campos do form group dinamicamente
     this.formGroup = this.fb.group({
 
     });
     let fields = this.eformModel.fields;
     Object.keys(fields).forEach((key) => {
-      this.formGroup.addControl(fields[key].id, new FormControl());
+      let fieldName = fields[key].id;
+      let fieldValue = '';
+      if (this.entity){
+        fieldValue = this.entity[fieldName]
+      }
+      this.formGroup.addControl(fieldName, new FormControl(fieldValue));
     });
     console.log(this.formGroup);
 
@@ -110,6 +133,7 @@ export class EformComponent implements OnInit {
   }
 
   private initHeader(): void {
+    // remover
     this.header = {
       component: this.component,
       service: this.apiGet.getByString(this.component),
@@ -122,29 +146,15 @@ export class EformComponent implements OnInit {
     }
   }
 
-
-  // private save(component: string, service: any, formGroup: any): void{
-  //   if (service.setComponent){
-  //     service.setComponent(component);
-  //   }
-  //   let onSave = this.eformModel.onSave;
-  //   service.save(formGroup.value).subscribe(sucess => {
-  //     this.createToastNotification(onSave.message);
-  //     if (onSave.route){
-  //       this.router.navigate([onSave.route]);
-  //     }
-  //   });
-  // }
-
   private save(): void {
     // Busca o service de forma dinamica. melhorar!
     let service: ServiceApiInterface = this.apiGet.getByString(this.component);
     let onSave = this.eformModel.onSave;
     service.save(this.formGroup.value).subscribe(sucess => {
-      this.createToastNotification(new ToastNotification({text: onSave.message}));
-          if (onSave.route){
-            this.router.navigate([onSave.route]);
-          }
+      this.createToastNotification(new ToastNotification({ text: onSave.message }));
+      if (onSave.route) {
+        this.router.navigate([onSave.route]);
+      }
     }, error => {
 
     });

@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EformApiService {
-
   apiUrl: string;
   httpOptions: object;
 
@@ -19,6 +18,10 @@ export class EformApiService {
 
   public get(url: String): Observable<Eform> {
     return this.httpClient.get<Eform>(this.apiUrl  + "/" + url, this.httpOptions);
+  }
+
+  public getWithId(url: string, id: number | string){
+    return this.httpClient.get<Eform>(this.apiUrl  + "/" + url + "/" + id, this.httpOptions);
   }
 
 }
