@@ -11,6 +11,7 @@ import { ApiAllService } from '../../../shared/service/api/apiAll.service';
 import { ToastNotification } from 'src/app/main/shared/model/toast-notification.model';
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { EventsBindingService } from '../events-binding.service';
+import { ServiceApiInterface } from 'src/app/main/shared/interface/service-api.interface';
 
 @Component({
   selector: 'app-eform',
@@ -136,10 +137,14 @@ export class EformComponent implements OnInit {
   // }
 
   private save(): void {
-    let service = this.apiGet.getByString(this.component);
-    let onSave = this.eformModel.onSave;  
-    this.userApiService.save(this.formGroup.value).subscribe(sucess => {
-
+    // Busca o service de forma dinamica. melhorar!
+    let service: ServiceApiInterface = this.apiGet.getByString(this.component);
+    let onSave = this.eformModel.onSave;
+    service.save(this.formGroup.value).subscribe(sucess => {
+      this.createToastNotification(new ToastNotification({text: onSave.message}));
+          if (onSave.route){
+            this.router.navigate([onSave.route]);
+          }
     }, error => {
 
     });
