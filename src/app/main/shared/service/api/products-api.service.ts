@@ -12,7 +12,6 @@ import { Product } from '../../model/product.model';
   providedIn: 'root'
 })
 export class ProductsApiService implements ServiceApiInterface {
-
   httpOptions: object;
   apiUrl: string;
 

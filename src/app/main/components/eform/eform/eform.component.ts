@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { EformApiService } from '../../../shared/service/api/eform-api.service';
 import { FormField } from 'src/app/main/shared/model/form-field.model';
-import { ApiService } from 'src/app/main/shared/service/api/api.service';
+import { ApiAllService } from '../../../shared/service/api/apiAll.service';
 
 @Component({
   selector: 'app-eform',
@@ -25,7 +25,7 @@ export class EformComponent implements OnInit {
     private route: ActivatedRoute,
     private eformApi: EformApiService,
     private fb: FormBuilder,
-    private api: ApiService
+    private apiGet: ApiAllService
   ) { }
 
   ngOnInit() {
@@ -99,7 +99,7 @@ export class EformComponent implements OnInit {
   private initHeader(): void{
     this.header = {
       component: this.component,
-      service: this.api,
+      service: this.apiGet.getByString(this.component),
       eform: this.formGroup,
       ok: {
         event: this.save,
@@ -113,7 +113,7 @@ export class EformComponent implements OnInit {
     if (service.setComponent){
       service.setComponent(component);
     }
-    service.save(formGroup.value);
+    service.save(formGroup.value).subscribe(result=> console.log(result));
   }
 
   // CONTROL FIELDS

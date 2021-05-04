@@ -13,32 +13,28 @@ import {Eform} from '../../../shared/model/form/EForm.model';
 })
 export class UserApiService implements ServiceApiInterface {
 
-  apiUrl: string;
   httpOptions: object;
+  apiUrl: string;
 
-  constructor(private httpClient: HttpClient, private utils: Utils) {
-    this.apiUrl = this.utils.getApiUrl();
+  constructor(private utils: Utils, private httpClient: HttpClient) {
     this.httpOptions = this.utils.getHttpOptions();
+    this.apiUrl = this.utils.getApiUrl();
    }
 
-  ngOnInit(): void {
-    // this.apiUrl = this.utils.getApiUrl();
-    // this.httpOptions = this.utils.getHttpOptions();
+   public save(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.apiUrl + '/user/save', user, this.httpOptions);
   }
 
-  public getAll(): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(this.apiUrl + '/user', this.httpOptions);
+  public getAll(): Observable<ResponsePageable>{
+    return this.httpClient.get<ResponsePageable>(this.apiUrl   + '/user', this.httpOptions);
   }
 
-  public getById(id: number): Observable<User> {
+  public getById(id: number): Observable<User>{
     return this.httpClient.get<User>(this.apiUrl + '/user/' + id, this.httpOptions);
-  }
-
-  public save(user: User): Observable<User> {
-    return this.httpClient.post<any>(this.apiUrl + '/user/save2', user, this.httpOptions);
   }
 
   public  getForm(user: User): Observable<any> {
     return this.httpClient.get<Eform>(this.apiUrl + '/user/eform/build', this.httpOptions);
   }
+
 }
