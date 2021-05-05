@@ -12,6 +12,7 @@ import { ToastNotification } from 'src/app/main/shared/model/toast-notification.
 import { ToastNotificationService } from 'src/app/main/shared/service/toast-notification.service';
 import { EventsBindingService } from '../events-binding.service';
 import { ServiceApiInterface } from 'src/app/main/shared/interface/service-api.interface';
+import { ModalInfo } from 'src/app/main/shared/model/modal-info.model';
 
 @Component({
   selector: 'app-eform',
@@ -186,6 +187,17 @@ export class EformComponent implements OnInit {
   private createToastNotification(toast: ToastNotification): void {
     this.toastService.create(toast);
     this.toastService.show();
+  }
+
+  // MELHORAR ISSO.
+  public getModalInfo(field): ModalInfo {
+    return new ModalInfo({
+      id: 'modal_' + field.id,
+      title: field.label,
+      onSave: () =>{
+        //registrar valor no formulario.
+      }
+    });
   }
 
   // CONTROL FIELDS

@@ -1,4 +1,5 @@
 import { FieldFormType } from "../enum/field-form-type.enum";
+import { ListType } from './form/list-type.enum';
 
 export class FormField {
   id: string;
@@ -17,6 +18,8 @@ export class FormField {
   onclick: any;
   icon: string;
   group: string;
+  modeView: string;
+  listType: ListType;
 
   constructor(options: {
     id?: string;
@@ -29,6 +32,8 @@ export class FormField {
     fieldType?: string;
     defaultValue?: string;
     style?: string;
+    listType?: ListType;
+    modeView?: string;
     row?: string;
     size?: string;
     labelConfig?: any;
@@ -63,7 +68,8 @@ export class FormField {
     this.icon = options.icon;
     this.onclick = options.onclick;
     this.group = options.group;
-
+    this.modeView = options.modeView;
+    this.listType = options.listType;
   }
 
   public isTextAreaField(): boolean {
