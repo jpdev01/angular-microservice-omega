@@ -54,12 +54,14 @@ export class EformComponent implements OnInit {
     this.eformApi.get(this.component + "/" + patternUrl.eformBuild).subscribe((eform: Eform) => {
       this.buildEform(eform);
     });
-
-
     if (this.entityId) {
       let service: ServiceApiInterface = this.apiGet.getByString(this.component);
       service.getById(this.entityId).subscribe((entity) => {
         this.entity = entity;
+        if (this.formGroup){
+          // caso o formulario seja carregado antes da entidade, ele atualiza os campos do formulario.
+          this.updateEformValues();
+        }
       })
 
     }
@@ -81,6 +83,22 @@ export class EformComponent implements OnInit {
       eform.fields[i] = new FormField(field);
     }
     return eform.fields;
+  }
+
+  private updateEformValues(): void{
+    let obj = this.entity;
+
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+          let entityValue = obj[key];
+          let field = this.formGroup.controls[key];
+          if (field){
+            this.formGroup.controls[key].setValue(entityValue);
+          }
+      }
+  }
+
+    this.formGroup.controls
   }
 
   private getURI() {
