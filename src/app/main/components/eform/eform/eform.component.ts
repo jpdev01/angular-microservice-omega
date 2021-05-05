@@ -80,7 +80,12 @@ export class EformComponent implements OnInit {
     for (let i = 0; i < eform.fields.length; i++) {
       let field: {};
       field = eform.fields[i];
-      eform.fields[i] = new FormField(field);
+      if (field){
+        eform.fields[i] = new FormField(field);
+      } else {
+        console.log("field not found!");
+        eform.fields.splice(i, 1);
+      }
     }
     return eform.fields;
   }

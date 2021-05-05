@@ -9,12 +9,12 @@
     <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto h-100 mb-4 w-100">
 
 
-      <form class="form-horizontal" [formGroup]="formGroup" *ngIf="formGroup">
+      <form class="form-horizontal" [formGroup]="formGroup" *ngIf="formGroup && eformModel.groups">
         <div class="card-body panel-body col-12" style="width: 100%">
           <div class="row">
             <div *ngFor="let group of eformModel.groups">
 
-              <div class="col-12">
+              <div class="col-12" *ngIf="group && group.fields">
                 <div class="row">
 
                   <div class="col-auto">
