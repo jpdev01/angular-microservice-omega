@@ -6,7 +6,7 @@ import { Utils } from '../../utils/Utils.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ListService {
+export class ListApiService {
   apiUrl: string;
   httpOptions: object;
 
@@ -16,7 +16,7 @@ export class ListService {
   }
 
   public get(component: string): Observable<any> {
-    return this.httpClient.get<any>(this.apiUrl  + "/" + component, this.httpOptions);
+    return this.httpClient.get<any>(this.apiUrl  + "/" + component + '/list/build', this.httpOptions);
   }
 
 }

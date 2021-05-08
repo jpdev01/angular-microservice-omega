@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { EformModule } from '../../components/eform/eform/eform.module';
 import { EformComponent } from '../../components/eform/eform/eform.component';
+import { ListModule } from '../../components/list/list/list.module';
+import { ListComponent } from '../../components/list/list/list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent,
@@ -14,7 +16,8 @@ const routes: Routes = [
     { path: 'category', loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule) },
     { path: 'provider', loadChildren: () => import('./providers/providers.module').then(m => m.ProvidersModule) },
     { path: 'eform/:component', component: EformComponent },
-    { path: 'eform/:component/:id', component: EformComponent }
+    { path: 'eform/:component/:id', component: EformComponent },
+    { path: 'list/:component', component: ListComponent }
   ]
   },
   { path: 'home', component: HomeComponent }
@@ -22,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), EformModule],
+  imports: [RouterModule.forChild(routes), EformModule, ListModule],
   exports: [RouterModule]
 })
 export class HomeRoutingModule { }
