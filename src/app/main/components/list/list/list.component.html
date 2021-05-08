@@ -2,14 +2,14 @@
   <div class="row h-100">
     <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto h-100 mb-4 w-100">
       <div class="table-responsive">
-        <table class="table">
+        <table class="table" *ngIf="listData && listData.content">
           <thead class="thead-light">
-            <tr>
-              <th scope="col" *ngFor="let th of listData.cols">{{th}}</th>
+            <tr *ngIf="listData.content.cols">
+              <th scope="col" *ngFor="let th of listData.content.cols">{{th}}</th>
             </tr>
           </thead>
-          <tbody #tbody>
-            <tr *ngFor="let row of listData.rows | searchFilter:filter" (click)="open(entityInfo) ">
+          <tbody #tbody *ngIf="listData.content.rows">
+            <tr *ngFor="let row of listData.content.rows | searchFilter:filter" (click)="open(entityInfo) ">
              <td *ngFor="let td of row">
                <div *ngIf="!containsInput(td)">{{getValueAsString(entityInfo, td)}}</div>
                <div *ngIf="isRadioInput(td)">

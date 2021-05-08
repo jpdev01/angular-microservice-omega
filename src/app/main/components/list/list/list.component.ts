@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListApiService } from '../../../shared/service/api/list-api.service';
 import { EntityListSerialize } from '../../../shared/serialize/entity-list-serialize.model';
+import { View } from 'src/app/main/shared/model/list/view.enum';
 
 @Component({
   selector: 'app-list',
@@ -35,16 +36,20 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.initEntity();
-    this.initHeader();
     this.createFilter();
-    this.showNavbar();
   }
 
   private initEntity(): void {
     this.route.params.subscribe(params => {
       this.component = params['component'];
       this.listApiService.get(this.component).subscribe((listData => {
-        this.listData = listData;
+        let viewMode = listData.view;
+        if (typeof(viewMode) == "string") {
+          viewMode = View[viewMode];
+        }
+        listData.view = viewMode;
+        this.listData = new EntityListSerialize(listData);
+        this.showNavbar();
       }));
     });
 
@@ -55,19 +60,6 @@ export class ListComponent implements OnInit {
     // if (!isEform) {
     //   this.router.navigate(['home/' + this.patternUrl + '/info', entityInfo.id]);
     // }
-  }
-
-  private initHeader(): void {
-    this.header = this.listData.tableStructure.header;
-    this.row = this.listData.tableStructure.row;
-    if (this.listData.entity instanceof Observable) {
-      this.listData.entity.subscribe(result => {
-        this.entityInfoList = result.content;
-      });
-    } else {
-      this.entityInfoList = this.listData.entity;
-    }
-    this.patternUrl = this.listData.infoUrl;
   }
 
   private createFilter(): void {
@@ -95,20 +87,14 @@ export class ListComponent implements OnInit {
   }
 
   private showNavbar(): void {
-    // if (!this.config || (this.config && !this.config.isEform)) {
-    //   this.navbarService.showNavbar(true);
-    // }
+    let viewMode = this.listData.view;
+    if (viewMode && viewMode === View.FULL) {
+      this.navbarService.showNavbar(true);
+    }
   }
 
   private removeItem(item) {
 
-  }
-
-  ngAfterContentChecked() {
-    let entityList = this.listData.entity;
-    if (!(entityList instanceof Observable)) {
-      this.entityInfoList = entityList;
-    }
   }
 
   public getValueAsString(entityInfo, td): string {
