@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchFilterPipe implements PipeTransform {
 
-  transform(items: any[], term: string): any {
+  transform(items: any[], term): any {
     if (items && term) {
       if (this.isUser(items)) {
         return items.filter(item => item.login != null && item.login.indexOf(term) !== -1);
@@ -26,7 +26,13 @@ export class SearchFilterPipe implements PipeTransform {
   }
 
   subFilter(items, term): void{
-    return items.filter(itemArray => itemArray.filter(item => item.indexOf(term) !== -1).length > 0 ? true : false);
+
+    return items.filter(itemArray => itemArray.filter(item => item && this.itemIsString(item) && `${item}`.indexOf(term) !== -1).length > 0 ? true : false);
   }
+
+  itemIsString(item: any): boolean{
+    return typeof(item) === "string";
+  }
+
 
 }
