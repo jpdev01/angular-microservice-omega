@@ -10,7 +10,7 @@
             </tr>
           </thead>
           <tbody #tbody *ngIf="listData.content.rows">
-            <tr *ngFor="let row of listData.content.rows | searchFilter:filter" (click)="open(entityInfo) ">
+            <tr *ngFor="let row of listData.content.rows| searchFilter:filter" (click)="open(entityInfo) ">
              <td *ngFor="let td of row">
                <div *ngIf="!containsInput(td)">{{getValueAsString(entityInfo, td)}}</div>
                <div *ngIf="isRadioInput(td)">

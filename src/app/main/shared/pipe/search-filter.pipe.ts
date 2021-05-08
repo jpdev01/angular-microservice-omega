@@ -10,7 +10,10 @@ export class SearchFilterPipe implements PipeTransform {
       if (this.isUser(items)) {
         return items.filter(item => item.login != null && item.login.indexOf(term) !== -1);
       }
-      return items.filter(item => item.name && item.name.indexOf(term) !== -1);
+      if (items && items[0].name){
+        return items.filter(item => item.name && item.name.indexOf(term) !== -1);
+      }
+      return this.subFilter(items, term);
     }
     return items;
   }
@@ -20,6 +23,10 @@ export class SearchFilterPipe implements PipeTransform {
       return true;
     }
     return false;
+  }
+
+  subFilter(items, term): void{
+    return items.filter(itemArray => itemArray.filter(item => item.indexOf(term) !== -1).length > 0 ? true : false);
   }
 
 }
