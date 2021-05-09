@@ -30,33 +30,8 @@ export class TableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.initEntity();
     this.createFilter();
-  }
-
-  private initEntity(): void {
-    if (!this.component){
-      this.route.params.subscribe(params => {
-        if(params['component']){
-          this.component = params['component'];
-        }
-      });
-    }
-    if (this.modeView){
-      this.listApiService.setOptions({
-        reduced: true
-      });
-    }
-    this.listApiService.get(this.component).subscribe((listData => {
-      let viewMode = listData.view;
-      if (typeof(viewMode) == "string") {
-        viewMode = View[viewMode];
-      }
-      listData.view = viewMode;
-      this.listData = new EntityListSerialize(listData);
-      this.showNavbar();
-    }));
-
+    this.showNavbar();
   }
 
   public open(key): void {

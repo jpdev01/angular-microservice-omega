@@ -17,6 +17,7 @@ export class ListComponent implements OnInit {
   listData: EntityListSerialize;
   @Input() component: string;
   @Input() modeView;
+  isEform = false;
 
   header: [];
   row: [];
@@ -42,6 +43,7 @@ export class ListComponent implements OnInit {
       this.listApiService.setOptions({
         reduced: true
       });
+      this.isEform = true;
     }
     this.listApiService.get(this.component).subscribe((listData => {
       let viewMode = listData.view;
