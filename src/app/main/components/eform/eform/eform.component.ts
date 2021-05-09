@@ -13,6 +13,7 @@ import { ToastNotificationService } from 'src/app/main/shared/service/toast-noti
 import { EventsBindingService } from '../events-binding.service';
 import { ServiceApiInterface } from 'src/app/main/shared/interface/service-api.interface';
 import { ModalInfo } from 'src/app/main/shared/model/modal-info.model';
+import {ModalService} from '../../../shared/service/modal.service';
 
 @Component({
   selector: 'app-eform',
@@ -36,7 +37,8 @@ export class EformComponent implements OnInit {
     private router: Router,
     private toastService: ToastNotificationService,
     private eformBindingService: EventsBindingService,
-    private userApiService: UserApiService
+    private userApiService: UserApiService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit() {
@@ -198,6 +200,11 @@ export class EformComponent implements OnInit {
         //registrar valor no formulario.
       }
     });
+  }
+
+  public openModal(field): void{
+    this.modalService.setId('modal_'+field.id);
+    this.modalService.toggle();
   }
 
   // CONTROL FIELDS

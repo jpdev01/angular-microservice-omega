@@ -1,3 +1,4 @@
+import { TableModule } from '../table/table.module';
 import { HeaderModule } from '../header/header.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,8 +8,8 @@ import { PipeModule } from 'src/app/main/shared/pipe/pipe/pipe.module';
 @NgModule({
   imports: [
     CommonModule,
-    PipeModule,
-    HeaderModule
+    HeaderModule,
+    TableModule
   ],
   declarations: [ListComponent], exports: [ListComponent]
 })

@@ -1,0 +1,31 @@
+<div class="col-12 h-100 pb-4 w-100">
+  <div class="row h-100">
+    <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto h-100 mb-4 w-100">
+      <div class="table-responsive">
+        <table class="table" *ngIf="listData && listData.content">
+          <thead class="thead-light">
+            <tr *ngIf="listData.content.cols">
+              <th scope="col" *ngFor="let th of listData.content.cols">{{th}}</th>
+            </tr>
+          </thead>
+          <tbody #tbody *ngIf="listData.content.rows">
+            <tr *ngFor="let row of listData.content.rows| searchFilter:filter" (click)="open(row.key) ">
+             <td *ngFor="let td of row.value">
+               <div *ngIf="!containsInput(td)">{{getValueAsString(entityInfo, td)}}</div>
+               <div *ngIf="isRadioInput(td)">
+                <app-radio [eform]="eform" [id]="listData.infoUrl + entityInfo.id" [name]="listData.infoUrl" [fieldEntity]="entityInfo"></app-radio>
+               </div>
+               <div *ngIf="isCheckboxInput(td)">
+                <app-checkbox [eform]="eform" [id]="listData.infoUrl + entityInfo.id" [name]="listData.infoUrl" [fieldEntity]="entityInfo"></app-checkbox>
+               </div>
+               <div *ngIf="isFormField(td)">
+                <i class="{{td.icon}}" (click)="td.onclick(entityInfo)"></i>
+               </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+  </div>
+</div>
