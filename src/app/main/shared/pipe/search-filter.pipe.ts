@@ -25,8 +25,10 @@ export class SearchFilterPipe implements PipeTransform {
     return false;
   }
 
-  subFilter(items, term): void{
-
+  subFilter(items, term){
+    if (items[0].value){
+      return items.filter(itemArray => itemArray.value.filter(item => item && this.itemIsString(item) && `${item}`.indexOf(term) !== -1).length > 0 ? true : false);
+    }
     return items.filter(itemArray => itemArray.filter(item => item && this.itemIsString(item) && `${item}`.indexOf(term) !== -1).length > 0 ? true : false);
   }
 

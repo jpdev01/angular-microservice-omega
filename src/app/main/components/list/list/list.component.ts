@@ -1,13 +1,12 @@
-import { FormField } from '../../../shared/model/form-field.model';
-import { CheckboxInputService } from '../../../shared/service/form/checkbox-input.service';
-import { NavbarService } from '../../../shared/service/navbar.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Utils } from '../../../shared/utils/Utils.model';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ListApiService } from '../../../shared/service/api/list-api.service';
-import { EntityListSerialize } from '../../../shared/serialize/entity-list-serialize.model';
-import { View } from 'src/app/main/shared/model/list/view.enum';
+import {FormField} from '../../../shared/model/form-field.model';
+import {CheckboxInputService} from '../../../shared/service/form/checkbox-input.service';
+import {NavbarService} from '../../../shared/service/navbar.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Utils} from '../../../shared/utils/Utils.model';
+import {Component, OnInit} from '@angular/core';
+import {ListApiService} from '../../../shared/service/api/list-api.service';
+import {EntityListSerialize} from '../../../shared/serialize/entity-list-serialize.model';
+import {View} from 'src/app/main/shared/model/list/view.enum';
 
 @Component({
   selector: 'app-list',
@@ -19,7 +18,6 @@ export class ListComponent implements OnInit {
   listData: EntityListSerialize;
   entityInfoList: any;
   filter = "";
-  patternUrl;
   component: string;
 
   header: [];
@@ -55,11 +53,11 @@ export class ListComponent implements OnInit {
 
   }
 
-  public open(entityInfo): void {
-    //let isEform = this.config && this.config.isEform;
-    // if (!isEform) {
-    //   this.router.navigate(['home/' + this.patternUrl + '/info', entityInfo.id]);
-    // }
+  public open(key): void {
+    let viewIsFull = this.listData.view === View.FULL;
+    if (viewIsFull) {
+      this.router.navigate(['home/' + this.component + '/info', key]);
+    }
   }
 
   private createFilter(): void {
