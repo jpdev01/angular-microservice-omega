@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsersListComponent } from './users-list/users-list.component';
 import { UsersComponent } from './users.component';
 import {UserInfoComponent} from './user-info/user-info.component';
 import { SearchFilterPipe } from '../../../shared/pipe/search-filter.pipe';
@@ -11,7 +10,6 @@ const routes: Routes = [
   {
     path: '', component: UsersComponent,
     children: [
-      { path: '', component: UsersListComponent },
       { path: 'info/:id', component: UserInfoComponent },
       { path: 'frm', component: UserFrmComponent },
       { path: 'frm/:id', component: UserFrmComponent }

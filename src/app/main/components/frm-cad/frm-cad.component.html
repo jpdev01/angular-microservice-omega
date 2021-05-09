@@ -60,17 +60,17 @@
                               </button>
                               <app-modal [modalInfo]="getModalInfo(field)">
                                 <!--<div [innerHTML]="field.listOptions"></div>-->
-                                <app-providers-list [config]="{
-                                  radio: true,
-                                  isEform: true,
-                                  selectedFields: frm.controls['provider']
-                                }" *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
-                                <app-categories-list [config]="{
-                                  checkbox: true,
-                                  isEform: true,
-                                  selectedFields: frm.controls['categories']
-                                }"
-                                *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>
+<!--                                <app-providers-list [config]="{-->
+<!--                                  radio: true,-->
+<!--                                  isEform: true,-->
+<!--                                  selectedFields: frm.controls['provider']-->
+<!--                                }" *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>-->
+<!--                                <app-categories-list [config]="{-->
+<!--                                  checkbox: true,-->
+<!--                                  isEform: true,-->
+<!--                                  selectedFields: frm.controls['categories']-->
+<!--                                }"-->
+<!--                                *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"></app-categories-list>-->
                               </app-modal>
 
                             </div>
@@ -104,17 +104,17 @@
                                 class="btn btn-light btn-sm">
                                 Ver opções
                               </button>
-                              <app-modal [modalInfo]="getModalInfo(field)">
-                                <!--<div [innerHTML]="field.listOptions"></div>-->
-                                <app-providers-list
-                                [config]="{
-                                  checkbox: true
-                                }"
-                                *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>
-                                <app-categories-list
-                                *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"
-                                ></app-categories-list>
-                              </app-modal>
+<!--                              <app-modal [modalInfo]="getModalInfo(field)">-->
+<!--                                &lt;!&ndash;<div [innerHTML]="field.listOptions"></div>&ndash;&gt;-->
+<!--                                <app-providers-list-->
+<!--                                [config]="{-->
+<!--                                  checkbox: true-->
+<!--                                }"-->
+<!--                                *ngIf="field.listOptions === '<app-providers-list></app-providers-list>'"></app-providers-list>-->
+<!--                                <app-categories-list-->
+<!--                                *ngIf="field.listOptions === '<app-categories-list></app-categories-list>'"-->
+<!--                                ></app-categories-list>-->
+<!--                              </app-modal>-->
 
 
                             </div>

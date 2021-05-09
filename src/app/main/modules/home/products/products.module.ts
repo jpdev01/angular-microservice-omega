@@ -9,7 +9,6 @@ import { Utils } from 'src/app/main/shared/utils/Utils.model';
 import { ProductsApiService } from 'src/app/main/shared/service/api/products-api.service';
 import { PipeModule } from 'src/app/main/shared/pipe/pipe/pipe.module';
 import { SearchFilterPipe } from 'src/app/main/shared/pipe/search-filter.pipe';
-import { ProductListComponent } from './product-list/product-list.component';
 import { FrmCadModule } from 'src/app/main/components/frm-cad/frm-cad.module';
 import { ListEntityModule } from 'src/app/main/components/list-entity/list-entity.module';
 import { EntityInfoModule } from 'src/app/main/components/entity-info/entity-info.module';
@@ -19,7 +18,7 @@ import { TreeModule } from '../../../components/tree/tree.module';
 
 
 @NgModule({
-  declarations: [ProductsComponent, ProductFrmComponent, ProductInfoComponent, ProductListComponent],
+  declarations: [ProductsComponent, ProductFrmComponent, ProductInfoComponent],
   imports: [
     CommonModule,
     ProductsRoutingModule,

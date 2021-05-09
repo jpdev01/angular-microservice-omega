@@ -1,4 +1,4 @@
-import { CustomersListComponent } from './customers-list/customers-list.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
