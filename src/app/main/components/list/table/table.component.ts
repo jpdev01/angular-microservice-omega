@@ -58,11 +58,11 @@ export class TableComponent implements OnInit {
   }
 
   public isRadioInput(td): boolean {
-    return td === 'radio';
+    return td === 'radio' || td.fieldType === "RADIO";
   }
 
   public isFormField(td): boolean {
-    return td instanceof FormField;
+    return td instanceof FormField || this.isRadioInput(td);
   }
 
   private showNavbar(): void {

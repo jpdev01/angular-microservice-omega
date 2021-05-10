@@ -41,7 +41,8 @@ export class ListComponent implements OnInit {
     }
     if (this.modeView){
       this.listApiService.setOptions({
-        reduced: true
+        reduced: true,
+        radio: true
       });
       this.isEform = true;
     }

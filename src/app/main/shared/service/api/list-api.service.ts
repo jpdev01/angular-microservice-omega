@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RequestParam } from '../../utils/request-param.model';
 import { Utils } from '../../utils/Utils.model';
 
 @Injectable({
@@ -17,8 +18,20 @@ export class ListApiService {
   }
 
   public get(component: string): Observable<any> {
-    if (this.options && this.options.reduced){
-      return this.httpClient.get<any>(this.apiUrl  + "/" + component + '/list/build?reduced=true', this.httpOptions);
+    if (this.options){
+      let params = [];
+      if(this.options.reduced){
+        params = this.utils.addRequestParam(new RequestParam({
+          key: 'reduced', value: this.options.reduced
+        }), params);
+      }
+      if (this.options.radio){
+        params = this.utils.addRequestParam(new RequestParam({
+          key: 'radio', value: this.options.radio
+        }), params);
+      }
+      let uri = this.utils.buildRequestParam(params);
+      return this.httpClient.get<any>(this.apiUrl  + "/" + component + '/list/build' + uri, this.httpOptions);
     }
     return this.httpClient.get<any>(this.apiUrl  + "/" + component + '/list/build', this.httpOptions);
   }
