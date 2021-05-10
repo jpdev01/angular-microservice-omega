@@ -10,7 +10,7 @@ import { NavbarApiService } from '../../shared/service/api/navbar-api.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  title = "Neusa Moda";
+  title = "ERP Project";
   navbar;
   patternUrl = new PatternUrl();
 

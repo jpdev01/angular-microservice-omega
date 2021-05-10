@@ -50,7 +50,7 @@ export class TableComponent implements OnInit {
   }
 
   public containsInput(td): boolean {
-    return td === 'checkbox' || td === 'checkbox' || this.isFormField(td);
+    return td === 'checkbox' || td === 'checkbox' || this.isFormField(td) || this.isRadioInput(td);
   }
 
   public isCheckboxInput(td): boolean {
@@ -62,7 +62,7 @@ export class TableComponent implements OnInit {
   }
 
   public isFormField(td): boolean {
-    return td instanceof FormField || this.isRadioInput(td);
+    return td instanceof FormField;
   }
 
   private showNavbar(): void {
