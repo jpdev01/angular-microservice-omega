@@ -1,3 +1,4 @@
+import { RadioInputService } from './../../../shared/service/form/radio-input.service';
 import { UserApiService } from './../../../shared/service/api/user-api.service';
 import { group } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -38,7 +39,8 @@ export class EformComponent implements OnInit {
     private toastService: ToastNotificationService,
     private eformBindingService: EventsBindingService,
     private userApiService: UserApiService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private radioInputService: RadioInputService
   ) { }
 
   ngOnInit() {
@@ -48,6 +50,7 @@ export class EformComponent implements OnInit {
         this.save();
       }
     })
+    this.getSpecialInputs();
   }
 
   private getEFormByURI() {
@@ -205,6 +208,17 @@ export class EformComponent implements OnInit {
   public openModal(field): void{
     this.modalService.setId('modal_'+field.id);
     this.modalService.toggle();
+  }
+
+  private getSpecialInputs(): void {
+    this.radioInputService.getRadioEvent().subscribe((event) => {
+      let value = event.target.value;
+      let name = event.target.name;
+      let control = this.formGroup.controls[name];
+      if (control){
+        control.setValue(value);
+      }
+    });
   }
 
   // CONTROL FIELDS

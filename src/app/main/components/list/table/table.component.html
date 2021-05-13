@@ -13,7 +13,7 @@
              <td *ngFor="let td of row.value">
                <div *ngIf="!containsInput(td)">{{getValueAsString(entityInfo, td)}}</div>
                <div *ngIf="isRadioInput(td)">
-                <app-radio [id]="row.key" [name]="row.key"></app-radio>
+                <app-radio [id]="row.key" [name]="td.label"></app-radio>
                </div>
                <div *ngIf="isCheckboxInput(td)">
                 <app-checkbox [eform]="eform" [id]="listData.infoUrl + entityInfo.id" [name]="listData.infoUrl" [fieldEntity]="entityInfo"></app-checkbox>

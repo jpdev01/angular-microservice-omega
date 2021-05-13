@@ -1,13 +1,14 @@
+import { RadioInputService } from './../../../shared/service/form/radio-input.service';
 import { Component, Input, OnInit } from '@angular/core';
 
-import {FormField} from '../../../shared/model/form-field.model';
-import {CheckboxInputService} from '../../../shared/service/form/checkbox-input.service';
-import {NavbarService} from '../../../shared/service/navbar.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Utils} from '../../../shared/utils/Utils.model';
-import {ListApiService} from '../../../shared/service/api/list-api.service';
-import {EntityListSerialize} from '../../../shared/serialize/entity-list-serialize.model';
-import {View} from '../../../shared/model/list/view.enum';
+import { FormField } from '../../../shared/model/form-field.model';
+import { CheckboxInputService } from '../../../shared/service/form/checkbox-input.service';
+import { NavbarService } from '../../../shared/service/navbar.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Utils } from '../../../shared/utils/Utils.model';
+import { ListApiService } from '../../../shared/service/api/list-api.service';
+import { EntityListSerialize } from '../../../shared/serialize/entity-list-serialize.model';
+import { View } from '../../../shared/model/list/view.enum';
 
 @Component({
   selector: 'app-table',
