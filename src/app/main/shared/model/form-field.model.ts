@@ -20,6 +20,8 @@ export class FormField {
   group: string;
   modeView: string;
   listType: ListType;
+  instance: any;
+  webComponent: any;
 
   constructor(options: {
     id?: string;
@@ -48,7 +50,9 @@ export class FormField {
         size: string
       }
     };
+    instance?: any;
     formGroupName?: string;
+    webComponent?: any;
   } = {}) {
     this.id = options.id;
     this.label = options.label;
@@ -70,6 +74,8 @@ export class FormField {
     this.group = options.group;
     this.modeView = options.modeView;
     this.listType = options.listType;
+    this.instance = options.instance;
+    this.webComponent = options.webComponent;
   }
 
   public isTextAreaField(): boolean {

@@ -25,9 +25,9 @@ export class ListApiService {
           key: 'reduced', value: this.options.reduced
         }), params);
       }
-      if (this.options.radio){
+      if (this.options.input){
         params = this.utils.addRequestParam(new RequestParam({
-          key: 'radio', value: this.options.radio
+          key: 'input', value: this.options.input
         }), params);
       }
       let uri = this.utils.buildRequestParam(params);
