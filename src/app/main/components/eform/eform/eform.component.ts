@@ -1,7 +1,7 @@
 import { RadioInputService } from './../../../shared/service/form/radio-input.service';
 import { UserApiService } from './../../../shared/service/api/user-api.service';
 import { group } from '@angular/animations';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
 import { Eform } from './../../../shared/model/form/EForm.model';
 import { PatternUrl } from '../../../shared/utils/PatternUrl.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { ToastNotificationService } from 'src/app/main/shared/service/toast-noti
 import { EventsBindingService } from '../events-binding.service';
 import { ServiceApiInterface } from 'src/app/main/shared/interface/service-api.interface';
 import { ModalInfo } from 'src/app/main/shared/model/modal-info.model';
-import {ModalService} from '../../../shared/service/modal.service';
+import { ModalService } from '../../../shared/service/modal.service';
 
 @Component({
   selector: 'app-eform',
@@ -64,7 +64,7 @@ export class EformComponent implements OnInit {
       let service: ServiceApiInterface = this.apiGet.getByString(this.component);
       service.getById(this.entityId).subscribe((entity) => {
         this.entity = entity;
-        if (this.formGroup){
+        if (this.formGroup) {
           // caso o formulario seja carregado antes da entidade, ele atualiza os campos do formulario.
           this.updateEformValues();
         }
@@ -86,7 +86,7 @@ export class EformComponent implements OnInit {
     for (let i = 0; i < eform.fields.length; i++) {
       let field: {};
       field = eform.fields[i];
-      if (field){
+      if (field) {
         eform.fields[i] = new FormField(field);
       } else {
         console.log("field not found!");
@@ -96,18 +96,18 @@ export class EformComponent implements OnInit {
     return eform.fields;
   }
 
-  private updateEformValues(): void{
+  private updateEformValues(): void {
     let obj = this.entity;
 
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {
-          let entityValue = obj[key];
-          let field = this.formGroup.controls[key];
-          if (field){
-            this.formGroup.controls[key].setValue(entityValue);
-          }
+        let entityValue = obj[key];
+        let field = this.formGroup.controls[key];
+        if (field) {
+          this.formGroup.controls[key].setValue(entityValue);
+        }
       }
-  }
+    }
 
     this.formGroup.controls
   }
@@ -118,22 +118,42 @@ export class EformComponent implements OnInit {
   }
 
   private buildEformImpl(): void {
-    // monta os campos do form group dinamicamente
-    this.formGroup = this.fb.group({
+    this.formGroup = this.getFormGroup();
+
+    this.buildGroups();
+  }
+
+  private getFormGroup(): FormGroup {
+    let formGroup = this.fb.group({
 
     });
     let fields = this.eformModel.fields;
     Object.keys(fields).forEach((key) => {
-      let fieldName = fields[key].id;
+      let field = fields[key];
+      let fieldName = field.id;
       let fieldValue = '';
-      if (this.entity){
-        fieldValue = this.entity[fieldName]
+      if (this.entity) {
+        fieldValue = this.entity[fieldName];
       }
-      this.formGroup.addControl(fieldName, new FormControl(fieldValue));
+      if (field.instance) {
+        let subFormGroup: FormGroup = this.fb.group({});
+        formGroup.addControl(fieldName, this.getFormGroupByField(field.instance));
+      } else {
+        formGroup.addControl(fieldName, new FormControl(fieldValue));
+      }
     });
-    console.log(this.formGroup);
+    return formGroup;
+  }
 
-    this.buildGroups();
+  private getFormGroupByField(subField): AbstractControl {
+    let fieldWithFormGroup: FormGroup = this.fb.group({
+
+    });
+    Object.keys(subField).forEach((key) => {
+      let fieldValue = subField[key];
+      fieldWithFormGroup.addControl(key, new FormControl(fieldValue));
+    });
+    return fieldWithFormGroup;
   }
 
   private buildGroups(): void {
@@ -199,14 +219,14 @@ export class EformComponent implements OnInit {
     return new ModalInfo({
       id: 'modal_' + field.id,
       title: field.label,
-      onSave: () =>{
+      onSave: () => {
         //registrar valor no formulario.
       }
     });
   }
 
-  public openModal(field): void{
-    this.modalService.setId('modal_'+field.id);
+  public openModal(field): void {
+    this.modalService.setId('modal_' + field.id);
     this.modalService.toggle();
   }
 
@@ -215,8 +235,17 @@ export class EformComponent implements OnInit {
       let value = event.target.value;
       let name = event.target.name;
       let control = this.formGroup.controls[name];
-      if (control){
-        control.setValue(value);
+      if (control) {
+        if(control instanceof FormGroup){
+          let formGroupControls = control.controls;
+          if(formGroupControls){
+            if(formGroupControls["id"]){
+              formGroupControls["id"].setValue(value);
+            }
+          }
+        } else {
+          control.setValue(value);
+        }
       }
     });
   }

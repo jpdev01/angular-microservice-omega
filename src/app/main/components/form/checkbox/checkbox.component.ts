@@ -8,32 +8,17 @@ import { CheckboxInputService } from 'src/app/main/shared/service/form/checkbox-
   styleUrls: ['./checkbox.component.css']
 })
 export class CheckboxComponent implements OnInit {
-  @Input() fieldEntity;
   @Input() id;
   @Input() name;
-  @Input() eform: FormGroup;
+  @Input() fieldEntity;
   checked = false;
 
-  constructor(
-    private checkboxInputService: CheckboxInputService
-  ) { }
+  constructor(private checkboxInputService: CheckboxInputService) { }
 
   ngOnInit() {
-    this.checkboxInputService.setOnInit(this.id);
-    this.initOnFrm();
   }
 
-  public change(event){
-    this.checkboxInputService.onSelect.emit(event);
-  }
-
-  private initOnFrm(): void{
-    let selected = this.eform.get(this.id);
-    if (selected){
-      // existe na entidade.
-      this.checked = true;
-    } else {
-      this.eform.addControl(this.id, new FormControl(''));
-    }
+  emitValue($event){
+    this.checkboxInputService.setOnSelect($event);
   }
 }

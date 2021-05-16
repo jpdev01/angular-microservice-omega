@@ -42,10 +42,11 @@ export class ListComponent implements OnInit {
     if (this.modeView){
       this.listApiService.setOptions({
         reduced: true,
-        radio: true
+        input: true
       });
       this.isEform = true;
     }
+    this.component = this.component.toLowerCase();
     this.listApiService.get(this.component).subscribe((listData => {
       let viewMode = listData.view;
       if (typeof(viewMode) == "string") {

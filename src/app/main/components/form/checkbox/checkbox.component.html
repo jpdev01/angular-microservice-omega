@@ -1,5 +1,5 @@
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="{{fieldEntity.id}}" id="{{id}}" (change)="change($event)" [checked]="checked">
+  <input class="form-check-input" type="checkbox" name="{{name}}" id="{{id}}" value="{{id}}" (change)="emitValue($event)"[checked]="checked">
   <!-- <label class="form-check-label" for="defaultCheck1">
     Default checkbox
   </label> -->

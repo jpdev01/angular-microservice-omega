@@ -51,11 +51,11 @@ export class TableComponent implements OnInit {
   }
 
   public containsInput(td): boolean {
-    return td === 'checkbox' || td === 'checkbox' || this.isFormField(td) || this.isRadioInput(td);
+    return td === 'checkbox' || td === 'checkbox' || this.isFormField(td) || this.isRadioInput(td) || this.isCheckboxInput(td);
   }
 
   public isCheckboxInput(td): boolean {
-    return td === 'checkbox';
+    return td === 'checkbox' || td.fieldType === "CHECKBOX";
   }
 
   public isRadioInput(td): boolean {

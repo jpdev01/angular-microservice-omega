@@ -16,7 +16,7 @@
                 <app-radio [id]="row.key" [name]="td.label"></app-radio>
                </div>
                <div *ngIf="isCheckboxInput(td)">
-                <app-checkbox [eform]="eform" [id]="listData.infoUrl + entityInfo.id" [name]="listData.infoUrl" [fieldEntity]="entityInfo"></app-checkbox>
+                <app-checkbox [id]="row.key" [name]="td.label"></app-checkbox>
                </div>
                <div *ngIf="isFormField(td)">
                 <i class="{{td.icon}}" (click)="td.onclick(entityInfo)"></i>

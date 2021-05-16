@@ -64,7 +64,7 @@
                                   Ver opções
                                 </button>
                                 <app-modal [modalInfo]="getModalInfo(field)">
-                                  <app-list [component]="field.id" [modeView]="'reduced'">
+                                  <app-list [component]="field.webComponent || field.id" [modeView]="'reduced'">
                                   </app-list>
                                 </app-modal>
 
