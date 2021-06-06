@@ -1,7 +1,8 @@
+import { CheckboxInputService } from './../../../shared/service/form/checkbox-input.service';
 import { RadioInputService } from './../../../shared/service/form/radio-input.service';
 import { UserApiService } from './../../../shared/service/api/user-api.service';
 import { group } from '@angular/animations';
-import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, AbstractControl, FormArray } from '@angular/forms';
 import { Eform } from './../../../shared/model/form/EForm.model';
 import { PatternUrl } from '../../../shared/utils/PatternUrl.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -40,7 +41,8 @@ export class EformComponent implements OnInit {
     private eformBindingService: EventsBindingService,
     private userApiService: UserApiService,
     private modalService: ModalService,
-    private radioInputService: RadioInputService
+    private radioInputService: RadioInputService,
+    private checkboxInputService: CheckboxInputService
   ) { }
 
   ngOnInit() {
@@ -136,8 +138,12 @@ export class EformComponent implements OnInit {
         fieldValue = this.entity[fieldName];
       }
       if (field.instance) {
-        let subFormGroup: FormGroup = this.fb.group({});
-        formGroup.addControl(fieldName, this.getFormGroupByField(field.instance));
+
+        if(field.listType === "MANY") {
+          formGroup.addControl(fieldName, this.getFormGroupByField(field.instance, true));
+        } else {
+          formGroup.addControl(fieldName, this.getFormGroupByField(field.instance, false));
+        }
       } else {
         formGroup.addControl(fieldName, new FormControl(fieldValue));
       }
@@ -145,15 +151,36 @@ export class EformComponent implements OnInit {
     return formGroup;
   }
 
-  private getFormGroupByField(subField): AbstractControl {
-    let fieldWithFormGroup: FormGroup = this.fb.group({
-
-    });
+  private getFormGroupByField(subField, isArray: boolean): AbstractControl {
+    let fieldWithFormGroup: FormGroup = this.fb.group({});
     Object.keys(subField).forEach((key) => {
       let fieldValue = subField[key];
       fieldWithFormGroup.addControl(key, new FormControl(fieldValue));
     });
+    if(isArray){
+      let formArray: FormArray = this.fb.array([]);
+      return formArray;
+    }
     return fieldWithFormGroup;
+  }
+
+  private addControlToArrayForm(nameControl: string): FormGroup{
+    let fieldForm;
+    let arrayForm = this.formGroup.controls[nameControl];
+    if(!arrayForm){
+      nameControl = this.safeControlName(nameControl);
+      arrayForm = this.formGroup.controls[nameControl];
+    }
+    if(arrayForm instanceof FormArray){
+      this.eformModel.fields.forEach((currentValue, index) => {
+        if(currentValue.id === nameControl){
+          fieldForm = this.getFormGroupByField(currentValue.instance, false);
+        }
+      });
+    } else {
+      console.log("is not array form!");
+    }
+    return fieldForm;
   }
 
   private buildGroups(): void {
@@ -248,8 +275,32 @@ export class EformComponent implements OnInit {
         }
       }
     });
+    this.checkboxInputService.getOnSelect().subscribe(event => {
+      let value = event.target.value;
+      let name = event.target.name;
+      let control = this.formGroup.controls[name];
+      if(!control){
+        control = this.getControlByPluralName(name);
+      }
+
+      if(control instanceof FormControl){
+        control.setValue(value);
+      } else if(control instanceof FormArray){
+        control.push(this.addControlToArrayForm(name));
+        control.controls[control.controls.length - 1].setValue(value);
+      }
+    });
   }
 
-  // CONTROL FIELDS
-  // DEPOIS ALTERAR ISSO PARA FAZER NO MODEL DO FIELD
+  private getControlByPluralName(name: string){
+    if(name === "category"){
+      return this.formGroup.controls[this.safeControlName(name)];
+    }
+  }
+
+  private safeControlName(name: string){
+    if(name === "category"){
+      return "categories";
+    }
+  }
 }
