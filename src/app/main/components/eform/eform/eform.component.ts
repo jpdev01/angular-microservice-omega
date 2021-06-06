@@ -139,7 +139,7 @@ export class EformComponent implements OnInit {
       }
       if (field.instance) {
 
-        if(field.listType === "MANY") {
+        if (field.listType === "MANY") {
           formGroup.addControl(fieldName, this.getFormGroupByField(field.instance, true));
         } else {
           formGroup.addControl(fieldName, this.getFormGroupByField(field.instance, false));
@@ -157,23 +157,23 @@ export class EformComponent implements OnInit {
       let fieldValue = subField[key];
       fieldWithFormGroup.addControl(key, new FormControl(fieldValue));
     });
-    if(isArray){
+    if (isArray) {
       let formArray: FormArray = this.fb.array([]);
       return formArray;
     }
     return fieldWithFormGroup;
   }
 
-  private addControlToArrayForm(nameControl: string): FormGroup{
+  private addControlToArrayForm(nameControl: string): FormGroup {
     let fieldForm;
     let arrayForm = this.formGroup.controls[nameControl];
-    if(!arrayForm){
+    if (!arrayForm) {
       nameControl = this.safeControlName(nameControl);
       arrayForm = this.formGroup.controls[nameControl];
     }
-    if(arrayForm instanceof FormArray){
+    if (arrayForm instanceof FormArray) {
       this.eformModel.fields.forEach((currentValue, index) => {
-        if(currentValue.id === nameControl){
+        if (currentValue.id === nameControl) {
           fieldForm = this.getFormGroupByField(currentValue.instance, false);
         }
       });
@@ -263,10 +263,10 @@ export class EformComponent implements OnInit {
       let name = event.target.name;
       let control = this.formGroup.controls[name];
       if (control) {
-        if(control instanceof FormGroup){
+        if (control instanceof FormGroup) {
           let formGroupControls = control.controls;
-          if(formGroupControls){
-            if(formGroupControls["id"]){
+          if (formGroupControls) {
+            if (formGroupControls["id"]) {
               formGroupControls["id"].setValue(value);
             }
           }
@@ -276,30 +276,49 @@ export class EformComponent implements OnInit {
       }
     });
     this.checkboxInputService.getOnSelect().subscribe(event => {
-      let value = event.target.value;
       let name = event.target.name;
+      let value = event.target.value;
       let control = this.formGroup.controls[name];
-      if(!control){
+      if (!control) {
         control = this.getControlByPluralName(name);
       }
 
-      if(control instanceof FormControl){
-        control.setValue(value);
-      } else if(control instanceof FormArray){
-        control.push(this.addControlToArrayForm(name));
-        control.controls[control.controls.length - 1].setValue(value);
+
+      if (event.target.checked) {
+
+
+        if (control instanceof FormControl) {
+          control.setValue(value);
+        } else if (control instanceof FormArray) {
+          control.push(this.addControlToArrayForm(name));
+          let newControl = control.controls[control.controls.length - 1];
+          if (newControl instanceof FormGroup) {
+            newControl.controls["id"].setValue(value);
+          }
+        }
+      } else {
+        // se nao estiver checado
+        if(control instanceof FormArray){
+          // acha o indice do elemento a ser removido
+          control.controls.forEach((element, index) => {
+            if(element.value.id === value){
+              (control as FormArray).removeAt(index);
+            }
+          })
+        }
       }
+
     });
   }
 
-  private getControlByPluralName(name: string){
-    if(name === "category"){
+  private getControlByPluralName(name: string) {
+    if (name === "category") {
       return this.formGroup.controls[this.safeControlName(name)];
     }
   }
 
-  private safeControlName(name: string){
-    if(name === "category"){
+  private safeControlName(name: string) {
+    if (name === "category") {
       return "categories";
     }
   }
