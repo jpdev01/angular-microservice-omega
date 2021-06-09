@@ -4,6 +4,8 @@ import { ModalInfo } from './../../shared/model/modal-info.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { CategoryService } from '../../shared/service/category.service';
 import { PatternUrl } from '../../shared/utils/PatternUrl.model';
+import { RestEngineService } from '../../shared/service/api/rest-engine.service';
+
 declare var $:any;
 @Component({
   selector: 'app-tree',
@@ -20,10 +22,17 @@ export class TreeComponent implements OnInit {
   isCategoryEntity = false;
 
 
-  constructor(private modalService: ModalService, private categoryService: CategoryService) { }
+  constructor(
+    private modalService: ModalService,
+    private categoryService: CategoryService,
+    private restEngineService: RestEngineService
+    ) { }
 
   ngOnInit() {
     this.getContentRest();
+    if(!this.listData){
+      this.listData = {fields: []};
+    }
   }
 
   public getTitle(entity: any): string{
@@ -67,7 +76,10 @@ export class TreeComponent implements OnInit {
   }
 
   private getContentRest(){
-    
+    let treeList = this.restEngineService.getCustom(this.treeConfig.urlRest);
+    treeList.subscribe((list) => {
+      this.listData.fields = list.content;
+    });
   }
 
 }
