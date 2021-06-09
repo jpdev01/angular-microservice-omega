@@ -1,6 +1,6 @@
 
   <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto mb-4 w-100">
-<ul class="list-group list-group-flush">
+<ul class="list-group list-group-flush" *ngIf="listData && listData.fields">
   <li class="list-group-item" [ngClass]="selected === 'all' ? 'list-group-item-secondary' : ''"
     (click)="onClick('all')">
     <div class="col-12 p-0">

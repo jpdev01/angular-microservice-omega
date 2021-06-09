@@ -17,6 +17,7 @@ export class ListComponent implements OnInit {
   listData: EntityListSerialize;
   @Input() component: string;
   @Input() modeView;
+  treeConfig: any;
   isEform = false;
 
   header: [];
@@ -48,6 +49,10 @@ export class ListComponent implements OnInit {
     }
     this.component = this.component.toLowerCase();
     this.listApiService.get(this.component).subscribe((listData => {
+      if(listData.treeComponent){
+        this.treeConfig = listData.treeComponent;
+      }
+
       let viewMode = listData.view;
       if (typeof(viewMode) == "string") {
         viewMode = View[viewMode];

@@ -13,6 +13,7 @@ declare var $:any;
 export class TreeComponent implements OnInit {
   @Input() listData;
   @Input() entityType;
+  @Input() treeConfig;
   selected: any;
   modalEditInfo: ModalInfo;
   editCategory = false;
@@ -22,6 +23,7 @@ export class TreeComponent implements OnInit {
   constructor(private modalService: ModalService, private categoryService: CategoryService) { }
 
   ngOnInit() {
+    this.getContentRest();
   }
 
   public getTitle(entity: any): string{
@@ -62,6 +64,10 @@ export class TreeComponent implements OnInit {
     this.modalService.setId(this.modalEditInfo.id);
     this.editCategory = true;
     this.modalService.toggle();
+  }
+
+  private getContentRest(){
+    
   }
 
 }
