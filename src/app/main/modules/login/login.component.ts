@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('access_token', resultSuccess.token);
         this.authService.login();
         this.userIsLogged = true;
-        window.setTimeout(()=>{this.redirectToHome()}, 300)
+        window.setTimeout(()=>{this.redirectToHome()}, 1000)
     },
     (resultError) => {
       if (resultError.status == '403') {

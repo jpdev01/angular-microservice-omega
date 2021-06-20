@@ -10,6 +10,8 @@ import { ListApiService } from '../../../shared/service/api/list-api.service';
 import { EntityListSerialize } from '../../../shared/serialize/entity-list-serialize.model';
 import { View } from '../../../shared/model/list/view.enum';
 import { DOMTypeReference, ScrollService } from 'src/app/main/shared/service/scroll.service';
+import { SelectedFilterService } from 'src/app/main/shared/service/selected-filter.service';
+import { Category } from 'src/app/main/shared/model/category.model';
 
 @Component({
   selector: 'app-table',

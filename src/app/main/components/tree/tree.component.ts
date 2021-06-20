@@ -6,6 +6,7 @@ import { CategoryService } from '../../shared/service/category.service';
 import { PatternUrl } from '../../shared/utils/PatternUrl.model';
 import { RestEngineService } from '../../shared/service/api/rest-engine.service';
 import { DOMTypeReference, ScrollService } from './../../shared/service/scroll.service';
+import {SelectedFilterService} from './../../shared/service/selected-filter.service';
 
 declare var $:any;
 @Component({
@@ -27,7 +28,8 @@ export class TreeComponent implements OnInit {
     private modalService: ModalService,
     private categoryService: CategoryService,
     private restEngineService: RestEngineService,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private selectService: SelectedFilterService
     ) { }
 
   ngOnInit() {
@@ -42,9 +44,8 @@ export class TreeComponent implements OnInit {
     return entity.name || entity.title;
   }
 
-  public onClick(category): any{
-    this.listData.onclick(category);
-    this.selected = category;
+  public onClick(element): any{
+    this.selectService.set(element);
   }
 
   public edit(category){
