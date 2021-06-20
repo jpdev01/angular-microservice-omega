@@ -1,10 +1,12 @@
   <div *ngIf="listData">
   <app-header *ngIf="!isEform">
-    <div class="col-2">
-      <app-tree *ngIf="treeConfig" [treeConfig]="treeConfig"></app-tree>
-    </div>
-    <div class="">
-      <app-table [listData]="listData"></app-table>
+    <div class="row">
+      <div class="col-2">
+        <app-tree *ngIf="treeConfig" [treeConfig]="treeConfig"></app-tree>
+      </div>
+      <div class="col-10">
+        <app-table [listData]="listData"></app-table>
+      </div>
     </div>
   </app-header>
   <app-table [listData]="listData" *ngIf="isEform"></app-table></div>
