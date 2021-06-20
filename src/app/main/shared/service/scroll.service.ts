@@ -27,6 +27,10 @@ export class ScrollService {
 
         ScrollBar.init(document.querySelector(".scroll-component"), options);
     }
+
+    createDefault(type: DOMTypeReference, element: string): void{
+        this.create(type, element, null);
+    }
 }
 
 export enum DOMTypeReference {

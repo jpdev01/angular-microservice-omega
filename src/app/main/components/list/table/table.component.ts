@@ -9,6 +9,7 @@ import { Utils } from '../../../shared/utils/Utils.model';
 import { ListApiService } from '../../../shared/service/api/list-api.service';
 import { EntityListSerialize } from '../../../shared/serialize/entity-list-serialize.model';
 import { View } from '../../../shared/model/list/view.enum';
+import { DOMTypeReference, ScrollService } from 'src/app/main/shared/service/scroll.service';
 
 @Component({
   selector: 'app-table',
@@ -27,12 +28,14 @@ export class TableComponent implements OnInit {
     private navbarService: NavbarService,
     private checkboxInputService: CheckboxInputService,
     private route: ActivatedRoute,
-    private listApiService: ListApiService
+    private listApiService: ListApiService,
+    private scrollService: ScrollService
   ) { }
 
   ngOnInit() {
     this.createFilter();
     this.showNavbar();
+    this.scrollService.createDefault(DOMTypeReference.CLASS, 'scroll');
   }
 
   public open(key): void {
@@ -99,7 +102,7 @@ export class TableComponent implements OnInit {
   }
 
   initScroll(): void{
-    
+
   }
 
 }
