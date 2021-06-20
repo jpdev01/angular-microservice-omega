@@ -1,33 +1,32 @@
-
-  <div class="my-custom-scrollbar my-custom-scrollbar-primary container-fluid mx-auto mb-4 w-100">
-<ul class="list-group list-group-flush" *ngIf="listData && listData.fields">
-  <li class="list-group-item" [ngClass]="selected === 'all' ? 'list-group-item-secondary' : ''"
-    (click)="onClick('all')">
-    <div class="col-12 p-0">
-      <div class="row">
-        <div class="col-10">
-          Todos
-        </div>
-        <div class="col-2" (click)="new()">
+<div class="my-custom-scrollbar my-custom-scrollbar-primary mx-auto mb-4 w-100">
+  <ul class="list-group list-group-flush" *ngIf="listData">
+    <li class="list-group-item" [ngClass]="selected === 'all' ? 'list-group-item-secondary' : ''"
+      (click)="onClick('all')">
+      <div class="col-12 p-0">
+        <div class="row">
+          <div class="col-10">
+            Todos
+          </div>
+          <div class="col-2" (click)="new()">
             <i class="fa fa-plus"></i>
+          </div>
         </div>
       </div>
-    </div>
-  </li>
-  <li class="list-group-item" [ngClass]="selected === entity ? 'list-group-item-secondary' : ''"
-    *ngFor="let entity of listData.fields" (click)="onClick(entity)">
-    <div class="col-12 p-0">
-      <div class="row">
-        <div class="col-10">
-          {{getTitle(entity)}}
-        </div>
-        <div class="col-2" (click)="edit(entity)">
+    </li>
+    <li class="list-group-item" [ngClass]="selected === entity ? 'list-group-item-secondary' : ''"
+      *ngFor="let entity of listData.fields">
+      <div class="col-12 p-0" (click)="onClick(entity)">
+        <div class="row">
+          <div class="col-10">
+            {{getTitle(entity)}}
+          </div>
+          <div class="col-2" (click)="edit(entity)">
             <i class="fa fa-edit"></i>
+          </div>
         </div>
       </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
 </div>
 <app-modal [modalInfo]="modalEditInfo" *ngIf="isCategoryEntity">
   <app-categories-frm [categoryId]="selected.id ? selected.id : undefined"></app-categories-frm>
