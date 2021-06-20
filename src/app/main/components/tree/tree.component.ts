@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CategoryService } from '../../shared/service/category.service';
 import { PatternUrl } from '../../shared/utils/PatternUrl.model';
 import { RestEngineService } from '../../shared/service/api/rest-engine.service';
+import { DOMTypeReference, ScrollService } from './../../shared/service/scroll.service';
 
 declare var $:any;
 @Component({
@@ -25,7 +26,8 @@ export class TreeComponent implements OnInit {
   constructor(
     private modalService: ModalService,
     private categoryService: CategoryService,
-    private restEngineService: RestEngineService
+    private restEngineService: RestEngineService,
+    private scrollService: ScrollService
     ) { }
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class TreeComponent implements OnInit {
     if(!this.listData){
       this.listData = {fields: []};
     }
+    this.initScroll();
   }
 
   public getTitle(entity: any): string{
@@ -80,6 +83,14 @@ export class TreeComponent implements OnInit {
     treeList.subscribe((list) => {
       this.listData.fields = list.content;
     });
+  }
+
+  private initScroll(): void{
+    let options = {
+      'damping': 0.05,
+      'alwaysShowTrack': true
+    };
+    this.scrollService.create(DOMTypeReference.CLASS, 'scroll-component', options);
   }
 
 }

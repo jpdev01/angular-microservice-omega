@@ -98,4 +98,8 @@ export class TableComponent implements OnInit {
     return "";
   }
 
+  initScroll(): void{
+    
+  }
+
 }
