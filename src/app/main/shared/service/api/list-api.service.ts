@@ -16,29 +16,29 @@ export class ListApiService {
 
   constructor(private httpClient: HttpClient, private utils: Utils) {
     this.apiUrl = PortalUtil.getApiUrl();
-    this.httpOptions = this.utils.getHttpOptions();
+    this.httpOptions = PortalUtil.getHttpOptions();
   }
 
   public get(component: string): Observable<any> {
     if (this.options){
       let params = [];
       if(this.options.reduced){
-        params = this.utils.addRequestParam(new RequestParam({
+        params = PortalUtil.addRequestParam(new RequestParam({
           key: 'reduced', value: this.options.reduced
         }), params);
       }
       if (this.options.input){
-        params = this.utils.addRequestParam(new RequestParam({
+        params = PortalUtil.addRequestParam(new RequestParam({
           key: 'input', value: this.options.input
         }), params);
       }
-      let uri = this.utils.buildRequestParam(params);
+      let uri = PortalUtil.buildRequestParam(params);
       return this.httpClient.get<any>(this.apiUrl  + "/" + component + '/list/build' + uri, this.httpOptions);
     }
 
     if(this.filter){
-      this.utils.setParam(this.filter);
-      this.httpOptions = this.utils.getHttpOptions();
+      PortalUtil.setParam(this.filter);
+      this.httpOptions = PortalUtil.getHttpOptions();
     }
     return this.httpClient.get<any>(this.apiUrl  + "/" + component + '/list/build', this.httpOptions);
   }

@@ -14,7 +14,7 @@ export class NavbarApiService {
 
   constructor(private httpClient: HttpClient, private utils: Utils) {
     this.apiUrl = PortalUtil.getApiUrl();
-    this.httpOptions = this.utils.getHttpOptions();
+    this.httpOptions = PortalUtil.getHttpOptions();
   }
 
   public get(): Observable<any> {

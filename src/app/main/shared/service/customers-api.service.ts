@@ -17,7 +17,7 @@ export class CustomersApiService implements ServiceApiInterface {
 
   constructor(private httpClient: HttpClient, private utils: Utils) {
     this.apiUrl = PortalUtil.getApiUrl();
-    this.httpOptions = this.utils.getHttpOptions();
+    this.httpOptions = PortalUtil.getHttpOptions();
   }
   getById(id: Number): Observable<Customer> {
     return this.httpClient.get<Customer>(this.apiUrl  + '/customer/' + id, this.httpOptions);

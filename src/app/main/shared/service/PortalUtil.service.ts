@@ -27,14 +27,14 @@ export class PortalUtil {
   }
 
 
-  public addParam(param: {
+  public static addParam(param: {
     key?: string; 
     value?: string;
   } = {}): void{
     PortalUtil.httpOptions.params.append(param.key, param.value);
   }
 
-  public setParam(param: HttpParams): void{
+  public static setParam(param: HttpParams): void{
     PortalUtil.httpOptions.params = param;
   }
 
@@ -46,7 +46,7 @@ export class PortalUtil {
     return localStorage.getItem('access_token');
   }
 
-  addRequestParam(newParam: RequestParam, params: RequestParam[]): RequestParam[]{
+  static addRequestParam(newParam: RequestParam, params: RequestParam[]): RequestParam[]{
     if (!params) {
       params  = [];
     }
@@ -54,7 +54,7 @@ export class PortalUtil {
     return params;
   }
 
-  buildRequestParam(params: RequestParam[]): string{
+  static buildRequestParam(params: RequestParam[]): string{
     let uri = "";
     if(params){
       uri = "?";

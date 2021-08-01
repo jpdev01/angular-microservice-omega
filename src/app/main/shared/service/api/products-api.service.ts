@@ -17,7 +17,7 @@ export class ProductsApiService implements ServiceApiInterface {
   apiUrl: string;
 
   constructor(private utils: Utils, private httpClient: HttpClient) {
-    this.httpOptions = this.utils.getHttpOptions();
+    this.httpOptions = PortalUtil.getHttpOptions();
     this.apiUrl = PortalUtil.getApiUrl();
    }
 

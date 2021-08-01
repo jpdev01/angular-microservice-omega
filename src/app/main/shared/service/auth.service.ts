@@ -14,7 +14,7 @@ export class AuthService {
   apiUrl = PortalUtil.getApiUrl();
 
   constructor(private httpClient: HttpClient, private utils: Utils) {
-    this.httpOptions = this.utils.getHttpOptions();
+    this.httpOptions = PortalUtil.getHttpOptions();
   }
 
 
@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   public isLoged(): boolean {
-    return this.utils.getToken() != undefined;
+    return PortalUtil.getToken() != undefined;
   }
 
   login(){
