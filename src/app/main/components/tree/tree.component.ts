@@ -80,7 +80,7 @@ export class TreeComponent implements OnInit {
     }
     this.modalService.setId(this.modalEditInfo.id);
     this.editCategory = true;
-    this.modalService.toggle();
+    this.modalService.instance(this.modalEditInfo);
   }
 
   private getContentRest(){

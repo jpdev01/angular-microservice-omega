@@ -28,6 +28,6 @@
     </li>
   </ul>
 </div>
-<app-modal [modalInfo]="modalEditInfo" *ngIf="isCategoryEntity">
-  <app-categories-frm [categoryId]="selected.id ? selected.id : undefined"></app-categories-frm>
+<app-modal [modalInfo]="modalEditInfo">
+  <app-categories-frm [categoryId]="selected && selected.id ? selected.id : undefined"></app-categories-frm>
 </app-modal>

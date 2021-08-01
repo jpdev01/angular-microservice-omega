@@ -16,6 +16,10 @@ export class ModalComponent implements OnInit {
   constructor(private modalService: ModalService) { }
 
   ngOnInit(): void {
+    this.modalService.getInstance().subscribe((modal: ModalInfo) => {
+        this.instance(modal);
+    });
+
     if (this.modalInfo.size){
       this.size = this.modalInfo.size;
     }
@@ -30,6 +34,11 @@ export class ModalComponent implements OnInit {
   }
 
   public close(){
+    this.modalService.toggle();
+  }
+
+  public instance(modal: ModalInfo){
+    this.modalInfo = modal;
     this.modalService.toggle();
   }
 

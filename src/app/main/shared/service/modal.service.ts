@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { ModalInfo } from '../model/modal-info.model';
 declare var $: any;
 
 @Injectable({
@@ -6,14 +7,23 @@ declare var $: any;
 })
 export class ModalService {
   modalId = "onroadModal";
+  modalEmitter = new EventEmitter<ModalInfo>();
 
   constructor() { }
 
   public toggle(): void {
-    $('#'+this.modalId).modal('toggle');
+    $('#' + this.modalId).modal('toggle');
   }
 
-  public setId(id: string){
+  public setId(id: string) {
     this.modalId = id;
+  }
+
+  public instance(modal: ModalInfo) {
+    this.modalEmitter.emit(modal);
+  }
+
+  getInstance() {
+    return this.modalEmitter;
   }
 }
