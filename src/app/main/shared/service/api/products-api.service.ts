@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ServiceApiInterface } from '../../interface/service-api.interface';
 import { Product } from '../../model/product.model';
+import { PortalUtil } from '../PortalUtil.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ProductsApiService implements ServiceApiInterface {
 
   constructor(private utils: Utils, private httpClient: HttpClient) {
     this.httpOptions = this.utils.getHttpOptions();
-    this.apiUrl = this.utils.getApiUrl();
+    this.apiUrl = PortalUtil.getApiUrl();
    }
 
    public save(product: Product): Observable<Product> {

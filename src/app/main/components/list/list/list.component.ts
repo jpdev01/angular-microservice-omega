@@ -8,6 +8,7 @@ import {ListApiService} from '../../../shared/service/api/list-api.service';
 import {EntityListSerialize} from '../../../shared/serialize/entity-list-serialize.model';
 import {View} from 'src/app/main/shared/model/list/view.enum';
 import { SelectedFilterService } from 'src/app/main/shared/service/selected-filter.service';
+import { Tree } from 'src/app/main/shared/model/tree.model';
 
 @Component({
   selector: 'app-list',
@@ -24,6 +25,8 @@ export class ListComponent implements OnInit {
   header: [];
   row: [];
   selectedFields;
+
+  filter: {};
   constructor(
     private route: ActivatedRoute,
     private listApiService: ListApiService,
@@ -71,8 +74,13 @@ export class ListComponent implements OnInit {
   }
 
   makeSelectEvent():void{
-    this.selectedService.get().subscribe((element)=> {
-      console.log(element);
+    this.selectedService.get().subscribe((data)=> {
+      this.filter = {
+        'name': data.type,
+        'value': data.element.id
+      };
+      this.listApiService.setFilter(this.filter);
+      this.getListData();
     });
   }
 }

@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ServiceApiInterface } from '../../interface/service-api.interface';
 import {Eform} from '../../../shared/model/form/EForm.model';
+import { PortalUtil } from '../PortalUtil.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class UserApiService implements ServiceApiInterface {
 
   constructor(private utils: Utils, private httpClient: HttpClient) {
     this.httpOptions = this.utils.getHttpOptions();
-    this.apiUrl = this.utils.getApiUrl();
+    this.apiUrl = PortalUtil.getApiUrl();
    }
 
    public save(user: User): Observable<User> {

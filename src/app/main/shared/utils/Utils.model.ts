@@ -1,4 +1,4 @@
-import { HttpHeaders } from "@angular/common/http";
+import { HttpHeaders, HttpParams } from "@angular/common/http";
 import { EventEmitter, Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Subject } from 'rxjs';
@@ -8,18 +8,25 @@ import { RequestParam } from './request-param.model';
 // @Injectable()
 export class Utils {
 
-  private apiUrl: string = "http://localhost:8080/neusamoda";
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type' : 'application/json',
       'Authorization': `Bearer ` + this.getToken()
-    })
+    }),
+    params: new HttpParams().append("category", "1")
   };
 
   constructor() { }
 
-  public getApiUrl(): string {
-    return this.apiUrl;
+  public addParam(param: {
+    key?: string; 
+    value?: string;
+  } = {}): void{
+    this.httpOptions.params.append(param.key, param.value);
+  }
+
+  public setParam(param: HttpParams): void{
+    this.httpOptions.params = param;
   }
 
   public getHttpOptions(): object {

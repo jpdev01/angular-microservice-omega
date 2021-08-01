@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { ServiceApiInterface } from "../../interface/service-api.interface";
 import { Utils } from "../../utils/Utils.model";
 import { Sale } from '../../model/sale.model';
+import { PortalUtil } from "../PortalUtil.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class SaleApiService implements ServiceApiInterface{
   httpOptions: object;
 
   constructor(private httpClient: HttpClient, private utils: Utils) {
-      this.apiUrl = this.utils.getApiUrl();
+      this.apiUrl = PortalUtil.getApiUrl();
       this.httpOptions = this.utils.getHttpOptions();
   }
 

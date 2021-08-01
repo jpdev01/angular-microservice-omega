@@ -7,6 +7,7 @@ import { PatternUrl } from '../../shared/utils/PatternUrl.model';
 import { RestEngineService } from '../../shared/service/api/rest-engine.service';
 import { DOMTypeReference, ScrollService } from './../../shared/service/scroll.service';
 import {SelectedFilterService} from './../../shared/service/selected-filter.service';
+import { Tree } from './../../shared/model/tree.model';
 
 declare var $:any;
 @Component({
@@ -45,7 +46,10 @@ export class TreeComponent implements OnInit {
   }
 
   public onClick(element): any{
-    this.selectService.set(element);
+    this.selectService.set({
+      'element': element,
+      'type': this.treeConfig.urlRest
+    });
   }
 
   public edit(category){
@@ -80,9 +84,9 @@ export class TreeComponent implements OnInit {
   }
 
   private getContentRest(){
-    let treeList = this.restEngineService.getCustom(this.treeConfig.urlRest);
-    treeList.subscribe((list) => {
-      this.listData.fields = list.content;
+    let treeList = this.restEngineService.getCustom(this.treeConfig.urlRest + '/tree');
+    treeList.subscribe((data: Tree) => {
+      this.listData.fields = data.fields;
     });
   }
 

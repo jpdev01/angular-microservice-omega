@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/internal/operators';
 import { Router } from '@angular/router';
 import { ThrowStmt } from '@angular/compiler';
 import { LoggedService } from '../../logged.service';
+import { url } from 'node:inspector';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
@@ -16,7 +17,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       return next.handle(request)
       .pipe(
         catchError((err, caught: Observable<HttpEvent<any>>) => {
-          let permissionError = err.status == 403 || err.status == 401;
+          let permissionError = err.status == 403 || err.status == 401 || err.url.indexOf("/neusamoda/auth/login") != -1;
           if (err instanceof HttpErrorResponse && (permissionError)) {
             if (err.status == 401) {
               this.loggedService.efetuarLogout();

@@ -1,19 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequestParam } from '../../utils/request-param.model';
 import { Utils } from '../../utils/Utils.model';
+import { PortalUtil } from '../PortalUtil.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListApiService {
   apiUrl: string;
-  httpOptions: object;
+  httpOptions: {};
   options: any;
+  filter: any;
 
   constructor(private httpClient: HttpClient, private utils: Utils) {
-    this.apiUrl = this.utils.getApiUrl();
+    this.apiUrl = PortalUtil.getApiUrl();
     this.httpOptions = this.utils.getHttpOptions();
   }
 
@@ -33,7 +35,23 @@ export class ListApiService {
       let uri = this.utils.buildRequestParam(params);
       return this.httpClient.get<any>(this.apiUrl  + "/" + component + '/list/build' + uri, this.httpOptions);
     }
+
+    if(this.filter){
+      this.utils.setParam(this.filter);
+      this.httpOptions = this.utils.getHttpOptions();
+    }
     return this.httpClient.get<any>(this.apiUrl  + "/" + component + '/list/build', this.httpOptions);
+  }
+
+
+  public setFilter(filter: any): void{
+    this.filter = filter;
+    this.filter = new HttpParams({
+      fromObject: {
+        filter
+      }
+    });
+    this.filter.append(filter.name, filter.value);
   }
 
   public setOptions(options): void{

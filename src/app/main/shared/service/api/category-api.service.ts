@@ -5,6 +5,7 @@ import { ServiceApiInterface } from "../../interface/service-api.interface";
 import { Category } from "../../model/category.model";
 import { ResponsePageable } from "../../model/responsePageable.model";
 import { Utils } from "../../utils/Utils.model";
+import {PortalUtil} from '../PortalUtil.service';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +16,7 @@ export class CategoryApiService implements ServiceApiInterface {
     httpOptions: object;
 
     constructor(private httpClient: HttpClient, private utils: Utils) {
-        this.apiUrl = this.utils.getApiUrl();
+        this.apiUrl = PortalUtil.getApiUrl();
         this.httpOptions = this.utils.getHttpOptions();
     }
 
