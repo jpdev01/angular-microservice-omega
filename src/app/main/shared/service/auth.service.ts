@@ -3,6 +3,7 @@ import { User } from './../model/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PortalUtil } from './PortalUtil.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
     })
   };
 
-  apiUrl= "http://localhost:8080/neusamoda";
+  apiUrl= PortalUtil.getApiUrl();
 
   constructor(private httpClient: HttpClient, private utils: Utils) { }
 

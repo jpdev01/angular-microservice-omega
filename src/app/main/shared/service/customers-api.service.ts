@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from '../model/customer.model';
 import { ServiceApiInterface } from '../interface/service-api.interface';
+import { PortalUtil } from './PortalUtil.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CustomersApiService implements ServiceApiInterface {
   httpOptions: object;
 
   constructor(private httpClient: HttpClient, private utils: Utils) {
-    this.apiUrl = this.utils.getApiUrl();
+    this.apiUrl = PortalUtil.getApiUrl();
     this.httpOptions = this.utils.getHttpOptions();
   }
   getById(id: Number): Observable<Customer> {
