@@ -64,7 +64,7 @@ export class TreeComponent implements OnInit {
 
   public new(): void {
     this.modalEditInfo = new ModalInfo({
-      title: "Categoria ",
+      title: "Nova Categoria",
       size: 'modal-lg',
       id: 'categoryEditModal',
       onSave: () => this.categoryService.setEventSave()

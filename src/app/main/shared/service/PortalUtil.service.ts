@@ -38,12 +38,27 @@ export class PortalUtil {
     PortalUtil.httpOptions.params = param;
   }
 
+  static setToken(newToken: string): void{
+      PortalUtil.setToken(newToken);
+      PortalUtil.httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ` + newToken
+        }),
+        params: new HttpParams().append("category", "1")
+    };
+  }
+
   public static getHttpOptions(): { headers: HttpHeaders; } {
     return PortalUtil.httpOptions;
   }
 
   static getToken() {
     return localStorage.getItem('access_token');
+  }
+
+  static removeToken(){
+      localStorage.removeItem('access_token');
   }
 
   static addRequestParam(newParam: RequestParam, params: RequestParam[]): RequestParam[]{
