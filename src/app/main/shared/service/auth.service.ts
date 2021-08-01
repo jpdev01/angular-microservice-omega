@@ -10,15 +10,12 @@ import { PortalUtil } from './PortalUtil.service';
 })
 export class AuthService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type' : 'application/json'
-    })
-  };
+  httpOptions = PortalUtil.getHttpOptions();
+  apiUrl = PortalUtil.getApiUrl();
 
-  apiUrl= PortalUtil.getApiUrl();
-
-  constructor(private httpClient: HttpClient, private utils: Utils) { }
+  constructor(private httpClient: HttpClient, private utils: Utils) {
+    this.httpOptions = this.utils.getHttpOptions();
+  }
 
 
   private loggedIn = new BehaviorSubject<boolean>(this.tokenAvailable());

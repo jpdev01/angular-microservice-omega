@@ -29,7 +29,7 @@ export class Utils {
     this.httpOptions.params = param;
   }
 
-  public getHttpOptions(): object {
+  public getHttpOptions(): { headers: HttpHeaders; } {
     return this.httpOptions;
   }
 
