@@ -5,6 +5,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Utils } from '../../shared/utils/Utils.model';
+import { PortalUtil } from '../../shared/service/PortalUtil.service';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +32,9 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    if (this.authService.tokenAvailable()) {
+      this.redirectToHome();
+    }
     this.formLogin = this.fb.group({
       login: [''],
       password: ['']
