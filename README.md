@@ -1,4 +1,9 @@
-# Projeto Omega - Frontend (com consumo em api)
+## Projeto Omega - Frontend (com consumo em api) - Micro-service
+# 1- Subir o back-end: https://github.com/jpdev01/project-omega-backend
+# 2- Subir o frontend (esse app): no terminal do projeto: ng serve
+
+------------------------------------------------------------------
+# doc angular:
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
