@@ -39,7 +39,7 @@ export class PortalUtil {
   }
 
   static setToken(newToken: string): void{
-      PortalUtil.setToken(newToken);
+      //PortalUtil.setToken(newToken);
       PortalUtil.httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',

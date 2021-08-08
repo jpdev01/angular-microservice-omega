@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     this.authService.validateLogin(this.formLogin.value).subscribe(
       (resultSuccess: any) => {
         localStorage.setItem('access_token', resultSuccess.token);
-        PortalUtil.setToken('access_token');
+        PortalUtil.setToken(resultSuccess.token);
         this.authService.login();
         this.userIsLogged = true;
         window.setTimeout(()=>{this.redirectToHome()}, 1000)
