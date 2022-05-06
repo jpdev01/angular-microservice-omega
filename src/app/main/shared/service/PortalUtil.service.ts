@@ -8,13 +8,13 @@ import { RequestParam } from '../utils/request-param.model';
 export class PortalUtil {
 
     static baseUrl: string;
-    private static apiUrl: string = "http://localhost:8080/neusamoda";
+    private static apiUrl = 'http://localhost:8080/neusamoda';
     private static httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ` + PortalUtil.getToken()
+            Authorization: `Bearer ` + PortalUtil.getToken()
         }),
-        params: new HttpParams().append("category", "1")
+        params: new HttpParams().append('category', '1')
     };
     static icoms = new EventEmitter<any>();
 
@@ -28,7 +28,7 @@ export class PortalUtil {
 
 
   public static addParam(param: {
-    key?: string; 
+    key?: string;
     value?: string;
   } = {}): void{
     PortalUtil.httpOptions.params.append(param.key, param.value);
@@ -39,13 +39,13 @@ export class PortalUtil {
   }
 
   static setToken(newToken: string): void{
-      //PortalUtil.setToken(newToken);
+      // PortalUtil.setToken(newToken);
       PortalUtil.httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ` + newToken
+            Authorization: `Bearer ` + newToken
         }),
-        params: new HttpParams().append("category", "1")
+        params: new HttpParams().append('category', '1')
     };
   }
 
@@ -70,17 +70,17 @@ export class PortalUtil {
   }
 
   static buildRequestParam(params: RequestParam[]): string{
-    let uri = "";
-    if(params){
-      uri = "?";
+    let uri = '';
+    if (params){
+      uri = '?';
       params.forEach(param => {
-        let index = params.indexOf(param);
-        let isInitialOrLatest = index == 0 || index == params.length;
+        const index = params.indexOf(param);
+        const isInitialOrLatest = index == 0 || index == params.length;
         if (!isInitialOrLatest){
-          uri += "&";
+          uri += '&';
         }
         uri += param.key;
-        uri += "=";
+        uri += '=';
         uri += param.value;
       });
     }
